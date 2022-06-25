@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+Crawl-delay:3
+Sitemap:https://annextrades.com/monologistaks.xml
+Sitemap:https://annextrades.com/phenogeneticsxfm.xml
+Sitemap:https://annextrades.com/flitciq.xml
+Sitemap:https://annextrades.com/mydaleinekzl.xml
+Sitemap:https://annextrades.com/linoleicucx.xml
+Sitemap:https://annextrades.com/stamboulinense.xml
+Sitemap:https://annextrades.com/sergestusqzr.xml
+Sitemap:https://annextrades.com/nonrateablenessotd.xml
+Sitemap:https://annextrades.com/denouncesnfj.xml
+Sitemap:https://annextrades.com/unconveningfds.xml
+Sitemap:https://annextrades.com/shiplapocw.xml
+Sitemap:https://annextrades.com/coahomaoip.xml
+Sitemap:https://annextrades.com/denominalfhy.xml
+Sitemap:https://annextrades.com/plainedgeduhu.xml
+Sitemap:https://annextrades.com/tabagismuaq.xml
+Sitemap:https://annextrades.com/sitemap.xml
