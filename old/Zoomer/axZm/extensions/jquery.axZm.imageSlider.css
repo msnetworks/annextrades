@@ -1,0 +1,151 @@
+/*!
+* Plugin: jQuery AJAX-ZOOM, axZm.imageSlider.css
+* Copyright: Copyright (c) 2010-2018 Vadim Jacobi
+* License Agreement: http://www.ajax-zoom.com/index.php?cid=download
+* Extension Version: 2.0
+* Extension Date: 2018-10-01
+* URL: http://www.ajax-zoom.com
+* Documentation: http://www.ajax-zoom.com/index.php?cid=docs
+*/
+
+
+/* Bullet navigation container */
+.axZmPlayerSubNavi {
+    box-sizing: border-box!important;
+    backgroundColor: transparent;
+    padding: 2px 70px 0 70px;
+}
+
+.axZmPlayerSubNaviOutside {
+    padding: 0;
+}
+
+@media (max-width: 768px) {
+    .axZmPlayerSubNavi {
+        display: none;
+    }
+}
+
+/* Bullets */
+.axZmPlayerSubControl {
+    box-sizing: border-box!important;
+    font-weight: bold;
+    width: 22px;
+    height: 22px;
+    line-height: 16px;
+    cursor: pointer;
+    background-color: #333333;
+    text-align: center;
+    font-family: "Courier New";
+    padding: 3px 0px 0px 0px;
+    margin: 4px;
+    color: #fff;
+    font-size: 11px;
+    border-radius: 50%;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Bullet navigation mouseover */
+.axZmPlayerSubControlOver {
+    background-color: #666666;
+}
+
+/* Bullet navigation selected */
+.axZmPlayerSubControlSelected {
+    background-color: #2379B5;
+}
+
+.axZmPlayerInlineGalContainer {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 0;
+}
+
+.axZmPlayerInlineGal {
+    width: 24px;
+    height: 24px;
+    background-image: url(../icons/gallery24.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.axZmPlayerPlayPauseContainer {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 0;
+}
+
+.axZmPlayerPlayPause {
+    width: 24px;
+    height: 24px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.axZmPlayerPlayPausePlay {
+    background-image: url(../icons/playPause24_play.png);
+}
+
+.axZmPlayerPlayPausePause {
+    background-image: url(../icons/playPause24_pause.png);
+}
+
+
+/* Rounded corners for image inside bullet navigation popup */
+.axZmPlayerSubControlPicPopup {
+    border-radius: 3px;
+}
+
+.axZmPlayerDescrBox {
+    min-width: 100px;
+    position: absolute;
+    z-index: 5;
+    font-size: 16px;
+    color: #FFFFFF;
+    font-family: "Courier New";
+    text-shadow: 1px 1px 1px #000000; 
+}
+
+.axZmPlayerDescrBoxCustom {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 6px; 
+}
+
+.axZmPlayerDescrBox:hover {
+    color: #FF8C00;
+}
+
+
+.axZmPlayerZoomLevel {
+    font-family: "Courier New";
+    text-shadow: 1px 1px 1px #000000;
+    font-size: 16px;
+    color: #fff !important;
+    margin: 0;
+    width: 50px;
+}
+
+.axZmQuickSHcooment {
+    color:#999999; 
+    font-style: italic;
+}
+
+
+/* Tipsy (bullet popup) css */
+.aZtipsy { padding: 5px; font-size: 10px; position: absolute; z-index: 999999999; }
+.aZtipsy-inner { padding: 2px; background-color: #fff; color: black; min-width: 50px; text-align: center; }
+.aZtipsy-inner { border-radius: 5px; -moz-border-radius:5px; -webkit-border-radius:5px; }
+.aZtipsy-inner {box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);}
+.aZtipsy-arrow { position: absolute; background: url('../icons/tipsy_white.gif') no-repeat top left; width: 9px; height: 5px; }
+.aZtipsy-n .aZtipsy-arrow { top: 0; left: 50%; margin-left: -4px; }
+.aZtipsy-nw .aZtipsy-arrow { top: 0; left: 10px; }
+.aZtipsy-ne .aZtipsy-arrow { top: 0; right: 10px; }
+.aZtipsy-s .aZtipsy-arrow { bottom: 0; left: 50%; margin-left: -4px; background-position: bottom left; }
+.aZtipsy-sw .aZtipsy-arrow { bottom: 0; left: 10px; background-position: bottom left; }
+.aZtipsy-se .aZtipsy-arrow { bottom: 0; right: 10px; background-position: bottom left; }
+.aZtipsy-e .aZtipsy-arrow { top: 50%; margin-top: -4px; right: 0; width: 5px; height: 9px; background-position: top right; }
+.aZtipsy-w .aZtipsy-arrow { top: 50%; margin-top: -4px; left: 0; width: 5px; height: 9px; }

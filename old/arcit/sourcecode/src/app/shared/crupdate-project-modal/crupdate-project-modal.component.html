@@ -1,0 +1,68 @@
+<div class="modal-header">
+    <h2 class="modal-title" mat-dialog-title *ngIf="updating" trans>Update Project</h2>
+    <h2 class="modal-title" mat-dialog-title *ngIf="!updating" trans>Create Project</h2>
+    <button type="button" (click)="close()" class="close-button" mat-icon-button tabindex="-1">
+        <mat-icon svgIcon="close"></mat-icon>
+    </button>
+</div>
+
+<form autocomplete="off" (ngSubmit)="confirm()" ngNativeValidate>
+    <mat-dialog-content class="many-inputs">
+        <div class="input-container">
+            <label for="name" trans>Name</label>
+            <input type="text" id="name" name="name" [(ngModel)]="model.name" required>
+            <div class="error" *ngIf="errors.name">{{errors.name}}</div>
+        </div>
+
+        <ng-container *ngIf="data.showExtraConfig">
+            <div class="input-container">
+                <select-user-input [(ngModel)]="model.users[0]" name="project-owner"></select-user-input>
+            </div>
+
+            <div class="input-container">
+                <label for="template" trans>Template</label>
+                <select id="template" name="template" [(ngModel)]="model.template">
+                    <option [ngValue]="null" trans>None</option>
+                    <option [ngValue]="template.name" *ngFor="let template of templates">{{template.name}}</option>
+                </select>
+                <div class="error" *ngIf="errors.template">{{errors.template}}</div>
+            </div>
+
+            <div class="input-container">
+                <label for="published" trans>Published</label>
+                <select id="published" name="published" [(ngModel)]="model.published">
+                    <option [ngValue]="1" trans>Yes</option>
+                    <option [ngValue]="0" trans>No</option>
+                </select>
+                <div class="error" *ngIf="errors.published">{{errors.published}}</div>
+            </div>
+
+            <div class="input-container">
+                <label for="framework" trans>Framework</label>
+                <select id="framework" name="framework" [(ngModel)]="model.framework">
+                    <option [value]="null" trans>None</option>
+                    <option value="bootstrap-3" trans>Bootstrap 3</option>
+                    <option value="bootstrap-4" trans>Bootstrap 4</option>
+                </select>
+                <div class="error" *ngIf="errors.framework">{{errors.framework}}</div>
+            </div>
+
+            <div class="input-container">
+                <label for="theme" trans>Theme</label>
+                <select id="theme" name="theme" [(ngModel)]="model.theme">
+                    <option [ngValue]="null" trans>None</option>
+                    <option [ngValue]="theme.name" *ngFor="let theme of themes">{{theme.name}}</option>
+                </select>
+                <div class="error" *ngIf="errors.theme">{{errors.theme}}</div>
+            </div>
+        </ng-container>
+    </mat-dialog-content>
+
+    <mat-dialog-actions class="buttons right">
+        <button (click)="close()" type="button" mat-button class="cancel-button" trans>Cancel</button>
+        <button type="submit" class="button primary" mat-raised-button color="accent" [disabled]="loading">
+            <span *ngIf="updating" trans>Update</span>
+            <span *ngIf="!updating" trans>Create</span>
+        </button>
+    </mat-dialog-actions>
+</form>

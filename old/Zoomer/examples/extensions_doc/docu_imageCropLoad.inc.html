@@ -1,0 +1,87 @@
+<style type="text/css"> 
+	.optionsTable {width: 100%; border-spacing: 0; border: 1px solid #AAAAAA; font-family: Tahoma, Geneva, sans-serif; font-size: 10pt;}
+	.optionsTable th {background-color: #D4D4D4; padding-top: 10px; padding-bottom: 10px; font-size:12pt; font-family: "Comic Sans MS", cursive, sans-serif;}
+	.optionsTable td, .optionsTable th{padding-left: 5px; padding-right: 5px;}
+	.optionsTable th{white-space: nowrap;}
+	.optionsTable td, .optionsTable th {vertical-align: top; line-height: 1.2em; text-align: left; border-bottom: 1px solid #AAAAAA; padding-top: 3px; padding-bottom: 8px;}
+	.optionsTable .subOpt td {border-bottom-width: 0; font-size: 12pt;}
+	.optionsTable tr.important {font-weight: bolder;}
+	.optionsTable td:nth-child(1) {border-right: #AAA 1px dotted;}
+	.optionsTable td:nth-child(2) {border-right: #AAA 1px dotted; word-break: break-all;}
+	.optionsTable ul, .optionsTable ol {padding-left: 14px; margin-top: 0}
+	.optionsTable li {margin-bottom: 5px; padding-left: 14px;}
+	.optionsTable tr:nth-child(odd) { background-color: #FDFDFD;}
+	.optionsTable tr:nth-child(even) { background-color: #FFFFFF;}
+	.optionsTable tr:last-child>td { border-bottom: none;}	
+	.optionsTable.sub th {padding-top: 3px; padding-bottom: 3px; font-size: 11pt;}
+	.optionsTable.sub td {line-height: 1em; padding-bottom: 2px; padding-top: 2px;}
+	.optionsSimilarExDescr {position: absolute; background-color: #eee; font-size: 9px; width: 100%; pointer-events: none; text-align: center; overflow: hidden;}
+	.optionsSimilarExLI {float: left; margin: 0 10px 10px 0; position: relative; border: #aaa 1px solid;}
+	.optionsHeader {color: #1a4a7a; font-size: 150%; margin: 0; padding: 20px 0px 5px 0px;}
+	.optionsTable pre, .optionsTable code {white-space: pre-wrap;}
+	.optionsText {}
+	</style>
+
+<!-- $.axZmImageCropLoad - documentation -->
+<table class="optionsTable">
+<tbody>
+	<tr><th>Option</th><th>Default</th><th>Description</th></tr>
+	<tr><td>installPath </td><td> 'auto' </td><td> Path to /axZm directory, e.g. /test/axZm/ </td></tr>
+	<tr><td>cropJsonURL </td><td> null </td><td> Url of the json with crop data. The JSON file can be made with example35.php;</td></tr>
+	<tr><td>cropJson </td><td> null </td><td> Alternatively to cropJsonURL define JSON here</td></tr>
+	<tr><td>sliderID </td><td> null </td><td> ID of axZmThumbSlider</td></tr>
+	<tr><td>thumbsContainerID </td><td> null </td><td> ID of some container to put thumbs into (no slider)</td></tr>
+	<tr><td>thumbsContainerUlClass </td><td> 'azThumbCrop' </td><td>  class which will be added to the UL element </td></tr>
+	<tr><td>thumbsContainerLiCss </td><td> {} </td><td> Quickly overwrite css e.g. margin of the li (thumbs) </td></tr>
+	<tr><td>thumbsContainerLiDescr </td><td> false </td><td> Add title from crop data to the thumb </td></tr>
+	<tr><td>spinToSpeed </td><td> '2500' </td><td> Optionally pass duration of spinning when clicked on the thumb </td></tr>
+	<tr><td>spinToMotion </td><td> 'easeOutQuint' </td><td> Optional pass easing type of the spinning animation.  
+		Possible motions types: 
+		"swing", "linear", "easeInQuad", "easeOutQuad", "easeInOutQuad", "easeInCubic", "easeOutCubic", "easeInOutCubic", "easeInQuart", 
+		"easeOutQuart","easeInOutQuart", "easeInQuint","easeOutQuint", "easeInOutQuint", "easeInSine", "easeOutSine", "easeInOutSine", 
+		"easeInExpo", "easeOutExpo", "easeInOutExpo", "easeInCirc", "easeOutCirc", "easeInOutCirc", "easeInElastic", "easeOutElastic", 
+		"easeInOutElastic", "easeInBack", "easeOutBack", "easeInOutBack", "easeInBounce", "easeOutBounce", "easeInOutBounce"
+	</td></tr>
+	<tr><td>handleTexts </td><td> null </td><td> function after spinTo or zoomTo; if defined in JSON title and description are passed as arguments</td></tr>
+</tbody>
+</table>
+
+<div style="clear: both;">
+	<sup id="o_sup_1">1</sup> examples where $.axZmImageCropLoad is used:<br>
+	<ul style="list-style: none; display: inline-block; padding: 0; margin: 0">
+		<li class="optionsSimilarExLI"><div class="optionsSimilarExDescr">example35_clean.php</div><a href="example35_clean.php"><img src="https://www.ajax-zoom.com/pic/layout/image-zoom_35_clean.jpg" style="width: 100px; height: auto;" align="left" alt=""></a></li>
+		<li class="optionsSimilarExLI"><div class="optionsSimilarExDescr">example35_clean_horizontal.php</div><a href="example35_clean_horizontal.php"><img src="https://www.ajax-zoom.com/pic/layout/image-zoom_35_clean_horizontal.jpg" style="width: 100px; height: auto;" align="left" alt=""></a></li>
+		<li class="optionsSimilarExLI"><div class="optionsSimilarExDescr">example35_responsive.php</div><a href="example35_responsive.php"><img src="https://www.ajax-zoom.com/pic/layout/image-zoom_35_responsive.jpg" style="width: 100px; height: auto;" align="left" alt=""></a></li>
+		<li class="optionsSimilarExLI"><div class="optionsSimilarExDescr">example35_responsive.php</div><a href="example35_gallery.php"><img src="https://www.ajax-zoom.com/pic/layout/image-zoom_35_gallery.jpg" style="width: 100px; height: auto;" align="left" alt=""></a></li>
+	</ul> 
+</div>
+
+<script type="text/javascript">
+if (window.jQuery){
+	$('.optionsTable:not(.methods) td:nth-child(2)').each(function(){
+ 		var txt = $.trim($(this).html());
+ 		if (txt == 'false' || txt == 'true'){
+ 			$(this).html('<span style="color: green">'+txt+'</span>');
+		} else if (txt == 'null') {
+			$(this).html('<span style="color: blue">'+txt+'</span>');
+		}
+		else if (txt == 'function'){
+			$(this).html('<span style="color: #003c00">'+txt+'</span>');
+		}
+		//else if (txt.charAt(0) != '\'' && txt.charAt(0) != '{' && txt.charAt(0) != '['){
+		else if (parseInt(txt) == txt){
+			$(this).html('<span style="color: red">'+txt+'</span>');
+		}
+	});
+
+	$('.optionsTable:not(.sub) td:nth-child(1)').each(function(){
+ 		var txt = $.trim($(this).html());
+ 		if (txt){$(this).parent().attr('id', 'pOpt_'+txt);}
+	});
+
+	if (window.optionsHeader){$('<div class="optionsHeader">'+window.optionsHeader+'</div>').insertBefore('.optionsTable:eq(0)');}
+	if (window.optionsText){$('<p class="optionsText">'+window.optionsText+'</p>').insertBefore('.optionsTable:eq(0)');}
+}
+</script>
+
+<div style="clear: both; height: 50px;"></div>

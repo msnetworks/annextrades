@@ -1,0 +1,72 @@
+@import "variables";
+
+column-presets {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 20px 0;
+
+  .custom-preset .col {
+    line-height: 28px;
+    padding: 0 6px;
+    font-weight: 500;
+    color: #fff;
+  }
+
+  .preset {
+    display: flex;
+    height: 28px;
+    flex: 0 0 calc(25% - 4px);
+    margin-bottom: 8px;
+
+    &.active .col, &:hover .col {
+      opacity: 1;
+    }
+
+    .col {
+      height: 100%;
+      margin-right: 3px;
+      border-radius: 2px;
+      background-color: mat-color($app-accent, default);
+      opacity: 0.2;
+      cursor: pointer;
+    }
+
+    .col-12 {
+      width: percentage(12 / 12);
+    }
+
+    .col-8 {
+      width: percentage(8 / 12);
+    }
+
+    .col-6 {
+      width: percentage(6 / 12);
+    }
+
+    .col-4 {
+      width: percentage(4 / 12);
+    }
+
+    .col-3 {
+      width: percentage(3 / 12);
+    }
+
+    .col-2 {
+      width: percentage(2 / 12);
+    }
+  }
+
+  .custom-span-panel {
+    margin-top: 5px;
+
+    input {
+      height: 30px;
+      margin: 0;
+    }
+
+    .error {
+      margin-top: 5px;
+    }
+  }
+}

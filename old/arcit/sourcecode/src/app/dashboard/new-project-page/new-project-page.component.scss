@@ -1,0 +1,96 @@
+@import "../../../scss/variables";
+
+new-project-page {
+  display: block;
+  background-color: mat-color($app-background, background);
+  min-height: 100vh;
+
+  .page-header {
+    margin-top: 40px;
+
+    .title {
+      margin: 0;
+    }
+
+    .subtitle {
+      color: mat-color($app-foreground, secondary-text);
+      margin: 4px 0 0;
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+      margin-top: 30px;
+
+      @media only screen and (max-width: $medium) {
+        display: block;
+
+        .input-container {
+          margin-bottom: 10px;
+        }
+      }
+    }
+
+    .input-container {
+      flex: 1 1 auto;
+      position: relative;
+      max-width: 300px;
+
+      .mat-icon {
+        position: absolute;
+        left: 8px;
+        top: 15px;
+        color: mat-color($app-foreground, icon);
+        z-index: 2;
+      }
+
+      input, select {
+        background-color: mat-color($app-background, card);
+        height: 52px;
+      }
+    }
+
+    .search-input-container {
+      margin-right: 10px;
+
+      input {
+        padding-left: 38px;
+      }
+    }
+
+    .category-input-container {
+      margin-right: 40px;
+    }
+
+    .blank-page-button {
+      flex: 0 0 auto;
+      line-height: 48px;
+      margin-right: 10px;
+    }
+  }
+
+  .content  {
+    .ad-host-top {
+      margin-top: 60px;
+    }
+
+    .ad-host-bottom {
+      margin-bottom: 60px;
+    }
+  }
+
+  .template-grid {
+    padding-bottom: 60px;
+  }
+
+  .template-grid-item-footer {
+    padding: 18px;
+    text-align: center;
+    text-transform: capitalize;
+  }
+
+  loading-indicator {
+    margin-bottom: 30px;
+  }
+}

@@ -1,0 +1,8 @@
+{
+    "name": "Wonder",
+    "category": "landing page",
+    "framework": "bootstrap-3",
+    "libraries": [
+        "jquery-easing"
+    ]
+}

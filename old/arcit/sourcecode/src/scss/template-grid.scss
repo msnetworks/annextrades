@@ -1,0 +1,47 @@
+@import "variables";
+
+.template-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -7px;
+
+  .template-grid-item {
+    flex: 0 0 100%;
+    background-color: mat-color($app-background, card);
+    @include mat-elevation(2);
+    margin: 0 0 10px;
+    cursor: pointer;
+    transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+    border-radius: 4px;
+    overflow: hidden;
+
+    @media only screen and (min-width: $medium) {
+      flex: 0 0 auto;
+      width: calc(50% - 20px);
+      margin: 0 10px 20px;
+    }
+
+    @media only screen and (min-width: $large) {
+      flex: 0 0 auto;
+      width: calc(33.33% - 20px);
+      margin: 0 10px 20px;
+    }
+
+    &:hover {
+      @include mat-elevation(8);
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      max-height: 228px;
+      object-fit: cover;
+    }
+
+    figcaption {
+      padding: 18px;
+      text-align: center;
+      text-transform: capitalize;
+    }
+  }
+}

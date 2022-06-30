@@ -1,0 +1,417 @@
+<style type="text/css"> 
+.optionsTable, .optionsTable * {box-sizing: border-box;}
+.optionsTable {width: 100%; border-spacing: 0; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
+.optionsTable tbody[data-az_options_head].active th{background-color: #337AB7; border-color: #337AB7 !important; color: #FFF;}
+.optionsTable tbody[data-az_options_head] th i {margin-right: 10px; top: 0px; color: #9E9E9E;}
+.optionsTable tbody[data-az_options_head].active th i{color: #FFF;}
+.optionsTable td {transition: background-color .15s ease;}
+.optionsTable th {white-space: nowrap;}
+.optionsTable td, .optionsTable th {padding-left: 5px; padding-right: 5px; vertical-align: top; text-align: left; padding-top: 3px; padding-bottom: 8px; border-bottom: 1px solid #DDD;}
+.optionsTable th {background-color: #EEE; padding-top: 10px; padding-bottom: 10px; font-size: 16px; font-weight: bold;}
+.optionsTable th.optionsTabCat {cursor: pointer; background-color: #EEE; padding-top: 10px; padding-bottom: 10px; font-weight: normal; font-size:16px; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
+
+.optionsTable ul, .optionsTable ol {padding-left: 14px; margin-top: 0;}
+.optionsTable li {margin-bottom: 5px; padding-left: 14px;}
+.optionsTable tbody tr:nth-child(odd) { background-color: #F9F9F9;}
+.optionsTable tbody tr:nth-child(even) { background-color: #FFF;}
+.optionsTable .removed {text-decoration: line-through;}
+.optionsTable .optionsType {text-align: right; font-size: 8pt; font-weight: bold; position: relative; color: #777; top: -3px; right: -2px; float: right; margin-left: 20px; margin-bottom: 11pt;min-width: 100px;}
+.optionsTable tr td:last-child {border-right: #DDD 1px solid;}
+.optionsTable tr th:last-child {border-right: #DDD 1px solid;}
+.optionsTable tr td:first-child {border-left: #DDD 1px solid;}
+.optionsTable tr th:first-child {border-left: #DDD 1px solid;}
+.optionsTable tbody:first-child tr:first-child th {border-top: #DDD 1px solid;}
+.optionsTable tr td:nth-of-type(2) {word-break: break-all; min-width: 150px;}
+
+.optionsTable .az_highlight_tr, .optionsTable .az_highlight_tr td {background-color: yellow; transition: background-color .15s ease;}
+.optionsTable .optionsDefaultHeading {font-weight: bold; margin-top: 20px;}
+.optionsTable pre:not([class*="language-"]) {border-radius: 0; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; box-shadow: none; margin-top: 0; white-space: pre-wrap;}
+.optionsTable code:not([class*="language-"]) {border-top: #DDD 1px solid; border-right: #DDD 1px solid; border-bottom: #DDD 1px solid; white-space: pre-wrap; padding-left: 2px; padding-right: 2px; tab-size: 2;}
+
+@media only screen and (max-width: 1024px) {
+	.optionsTable {border-top: #DDD 1px solid;}
+	.optionsTable tbody tr:nth-child(odd) {background-color: #FFF;}
+	.optionsTable,.optionsTable>tbody,.optionsTable>tbody>tr>th,.optionsTable>tbody>tr>td,.optionsTable>tbody>tr {display: block;}
+	.optionsTable>tbody>tr>th:not(.optionsTabCat) {display: none;}
+	.optionsTable>tbody>tr>td {position: relative; padding-left: 100px;}
+	.optionsTable>tbody>tr>td:nth-of-type(1), .optionsTable>tbody>tr>td:nth-of-type(2), 
+	.optionsTable>tbody>tr>td:nth-of-type(3) {border-bottom: 1px solid #DDD;}
+	.optionsTable tr>td:nth-of-type(1){padding-bottom: 5px; padding-top: 5px;}
+	.optionsTable tr>td:nth-of-type(2){border-bottom: none; border-left: #DDD 1px solid; border-right: #DDD 1px solid;}
+	.optionsTable>tbody>tr.subOpt>td{background-color: #D4D4D4; color: #000;}
+	.optionsTable>tbody>tr>td[colspan="3"] {background-color: #FFF !important;}
+	.optionsTable>tbody>tr>td:before {position: absolute; top: 3px; left: 3px;width: 90px; white-space: nowrap;}
+	.optionsTable tr:nth-child(2n+1) {background-color: #FFF;}
+	.optionsTable tr td:nth-of-type(2) {word-break: break-word;}
+	.optionsTable>tbody>tr>td:nth-of-type(1) {word-break: break-all; background-color: #EEE; font-size:18px; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; border-left: #DDD 1px solid; border-right: #DDD 1px solid;}
+	.optionsTable>tbody>tr>td:nth-of-type(3) {overflow-x: hidden; border-left: #DDD 1px solid;}
+	.optionsTable>tbody>tr>td:nth-of-type(1):before { content: "";}
+	.optionsTable>tbody>tr>td:nth-of-type(2):before { content: "Default:";}
+	.optionsTable>tbody>tr>td:nth-of-type(3):before { content: "Description:";}
+}
+</style>
+
+<!-- $.azThumbGallery - documentation -->
+<div style="overflow-x: hidden;">
+<table class="optionsTable"><tbody>
+	<tr>
+		<th>Option</th>
+		<th>Default</th>
+		<th>Description</th>
+	</tr>
+
+	<tr>
+		<td>zoomRatio</td>
+		<td>1.5</td>
+		<td>
+			The degree of the zoom-in effect when a user hovers a thumbnail image with the mouse or touches with the finger on touch devices.
+		</td>
+	</tr>
+
+	<tr>
+		<td>fadeInSpeed</td>
+		<td>250</td>
+		<td>
+			The speed of fade-in effect when a thumbnail image appears after preloading.
+		</td>
+	</tr>
+
+	<tr>
+		<td>zoomEsingIn</td>
+		<td>'swing'</td>
+		<td>
+			Easing animation of the zoom-in effect.
+		</td>
+	</tr>
+
+	<tr>
+		<td>zoomEsingOut</td>
+		<td>'swing'</td>
+		<td>
+			Easing animation of the zoom-out effect.
+		</td>
+	</tr>
+
+	<tr>
+		<td>zoomInSpeed</td>
+		<td>250</td>
+		<td>
+			Duration of the zoom-in effect.
+		</td>
+	</tr>
+
+	<tr>
+		<td>zoomOutSpeed</td>
+		<td>100</td>
+		<td>
+			Duration of the zoom-out effect.
+		</td>
+	</tr>
+
+	<tr>
+		<td>parentHeightRatio</td>
+		<td>false</td>
+		<td>
+			If the width of the thumbnail image is responsive, 
+			you can set the aspect ratio of the parent container, e.g., 0.75. 
+			The proportions of the parent container are then always the same. 
+			You can also set the value of this option to "auto".
+		</td>
+	</tr>
+
+	<tr>
+		<td>parentHeightLL</td>
+		<td>0.75</td>
+		<td>
+			If image aspect ratio of the image is unknown, 
+			e.g., the <code>parentHeightRatio</code> option is set to "auto" and the images "lazy load" plugin is used 
+			(initially, the src attribute of the image is empty), 
+			the <code>parentHeightLL</code> option temporally applies until the src of the image is set by the "lazy load" script.
+		</td>
+	</tr>
+
+	<tr>
+		<td>maxHeight</td>
+		<td>1.0</td>
+		<td>
+			Limit the height of the thumbnail relative to the height of the browser's window. 
+			This limit applies when the <code>parentHeightRatio</code> option is set to "auto". 
+			The <code>maxHeight</code> is useful if the "thumbnails" image is quite large.
+		</td>
+	</tr>
+
+	<tr>
+		<td>parentWidthRatio</td>
+		<td>false</td>
+		<td>
+			If the height of the thumbnail image is responsive, 
+			you can set the aspect ratio of the parent container, e.g., 1.33. 
+			The proportions of the parent container are then always the same. 
+			You can also set the value of this option to "auto".
+		</td>
+	</tr>
+
+	<tr>
+		<td>overlay</td>
+		<td>true</td>
+		<td>
+			Show semi-transparent overlay while zoom effect runs.
+		</td>
+	</tr>
+
+	<tr>
+		<td>overlayColor</td>
+		<td>'#000'</td>
+		<td>
+			Background color of the overlay.
+		</td>
+	</tr>
+
+	<tr>
+		<td>overlayOpacity</td>
+		<td>0.4</td>
+		<td>
+			Opacity of the overlay.
+		</td>
+	</tr>
+
+	<tr>
+		<td>axZmPath</td>
+		<td>'auto'</td>
+		<td>
+			Path to the "/axZm" folder, which contains the AJAX-ZOOM core files, e.g. "/test/axZm/". 
+			Please avoid providing a relative path.
+		</td>
+	</tr>
+
+	<tr>
+		<td>axZmCallBacks</td>
+		<td>{}</td>
+		<td>
+			AJAX-ZOOM has several callbacks, 
+			https://www.ajax-zoom.com/index.php?cid=docs#onBeforeStart
+		</td>
+	</tr>
+
+	<tr>
+		<td>fullScreenApi</td>
+		<td>false</td>
+		<td>
+			Try to open AJAX-ZOOM at browsers fullscreen mode, possible on modern browsers except for IE < 10 and some mobile browsers. 
+			At the time writing this documentation, AJAX-ZOOM does not apply the fullscreen API for mobile browsers even if it is supported. 
+			That may change in the future version.
+		</td>
+	</tr>
+
+	<tr>
+		<td>instantWrapClass</td>
+		<td>null</td>
+		<td>
+			Wrap the image tag automatically by a div HTML element with a CSS class specified in this option. 
+		</td>
+	</tr>
+
+	<tr>
+		<td>ajaxZoomOpenMode</td>
+		<td>'fullscreen'</td>
+		<td>
+			This option determines how AJAX-ZOOM opens when the user clicks on a thumbnail, 
+			possible values are: 
+			<ol style="margin-top: 10px">
+				<li>'fullscreen' - AJAX-ZOOM opens at fullscreen mode, see also the <code>fullScreenApi</code>
+				</li>
+				<li>'fancyboxFullscreen' - AJAX-ZOOM opens in the responsive "Fancybox". 
+					"Fancybox" is a commonly used lightbox jQuery plugin.
+				</li>
+				<li>'fancybox' - AJAX-ZOOM opens in a regular, fixed width and height "Fancybox".
+				</li>
+				<li>'colorbox' - AJAX-ZOOM opens in "Colorbox" with fixed width and height. 
+					"Colorbox" is another third party modal window plugin.
+				</li>
+				<li>'iframe' - Replace the image with AJAX-ZOOM viewer.
+				</li>
+			</ol>
+		</td>
+	</tr>
+
+	<tr>
+		<td>exampleFullscreen</td>
+		<td>'mouseOverExtension'</td>
+		<td>
+			Configuration set <sup><a href="#o_sup_2">2</a></sup>, 
+			which is passed to AJAX-ZOOM when the value of the <code>ajaxZoomOpenMode</code> is 'fullscreen'.
+		</td>
+	</tr>
+
+	<tr>
+		<td>exampleFancyboxFullscreen</td>
+		<td>'mouseOverExtension'</td>
+		<td>
+			Configuration set <sup><a href="#o_sup_2">2</a></sup>, 
+			which is passed to AJAX-ZOOM when the value of the <code>ajaxZoomOpenMode</code> is 'fancyboxFullscreen'.
+		</td>
+	</tr>
+
+	<tr>
+		<td>exampleFancybox</td>
+		<td>'modal'</td>
+		<td>
+			Configuration set <sup><a href="#o_sup_2">2</a></sup>, 
+			which is passed to AJAX-ZOOM when the value of the <code>ajaxZoomOpenMode</code> is 'fancybox'. 
+		</td>
+	</tr>
+
+	<tr>
+		<td>exampleColorbox</td>
+		<td>'modal'</td>
+		<td>
+			Configuration set <sup><a href="#o_sup_2">2</a></sup>, 
+			which is passed to AJAX-ZOOM when the value of the <code>ajaxZoomOpenMode</code> is 'colorbox'.
+		</td>
+	</tr>
+
+	<tr>
+		<td>exampleIframe</td>
+		<td>'mouseOverExtension'</td>
+		<td>
+			Configuration set <sup><a href="#o_sup_2">2</a></sup>, 
+			which is passed to AJAX-ZOOM when the value of the <code>ajaxZoomOpenMode</code> is 'iframe'.
+		</td>
+	</tr>
+
+	<tr>
+		<td>iframeLink</td>
+		<td>'example33_vario.php'</td>
+		<td>
+			If "ajaxZoomOpenMode" option is set to "iframe", the value of this option defines the path
+			to a file that handles the AJAX-ZOOM viewer.
+		</td>
+	</tr>
+
+	<tr>
+		<td>iframeParam</td>
+		<td>'noSplash=1&stepZoom=1&mNavi=mZoomOut:5,mZoomIn:15'</td>
+		<td>
+			Additionally to the information about the images,
+			the extension appends these parameters and values to the query string, 
+			which are passed to the file defined in the <code>iframeLink</code> option.
+		</td>
+	</tr>
+
+	<tr>
+		<td>iframeClose</td>
+		<td>'Close zoom'</td>
+		<td>
+			Show button to close AJAX-ZOOM viewer if <code>ajaxZoomOpenMode</code> option is set to "iframe". 
+			Can be true, false or string. 
+			If a string, the value of this option defines the text that is added to the button.
+		</td>
+	</tr>
+
+	<tr>
+		<td>fancyBoxParam</td>
+		<td>{}</td>
+		<td>
+			If "fancybox" is used in <code>ajaxZoomOpenMode</code> option, 
+			this object extends the default "Fancybox" plugin options.
+		</td>
+	</tr>
+
+	<tr>
+		<td>colorBoxParam</td>
+		<td>{}</td>
+		<td>
+			If "colorbox" is used in <code>ajaxZoomOpenMode</code> option, 
+			this object extends the default "Colorbox" plugin options.
+		</td>
+	</tr>
+
+	<tr>
+		<td colspan="3" style="text-align: right;">
+			Last updated: 2019-02-28 
+		</td>
+	</tr>
+</tbody></table>
+</div>
+
+<div style="clear: both; margin-top: 10px">
+	<sup id="o_sup_2">2</sup> you will find the respective configuration set in /axZm/zoomConfigCustom.inc.php after<br>
+	<code>elseif ($_GET['example'] == [someValue])</code><br>
+	There you can change existing options or copy from /axZm/zoomConfig.inc.php other options to change the values. 
+</div>
+
+<!-- Load jquery.axZm.azGrid.css -->
+<script type="text/javascript">
+var cssAzGrid = document.head.querySelector('link[href*="azGrid.css"]');
+var cssAzGridLoaded = cssAzGrid ? cssAzGrid.sheet.cssRules.length : false;
+if (cssAzGridLoaded === false) {
+	var cssAzGridLink = document.createElement('link');
+	cssAzGridLink.setAttribute('type', 'text/css');
+	cssAzGridLink.setAttribute('rel', 'stylesheet');
+	cssAzGridLink.setAttribute('href', '../axZm/extensions/jquery.axZm.azGrid.css');
+	document.getElementsByTagName("head")[0].appendChild(cssAzGridLink);
+}
+</script>
+
+<!-- Links to other examples that use the extension -->
+<div style="clear: both; margin-top: 20px;">
+	<h4>Examples, which use the <code>$.azHoverThumb</code> extension</h4>
+	<style type="text/css">
+		#azGridThumbOtherExamples {
+			--azAR: 0.66;
+		}
+		#azGridThumbOtherExamples li img.thumb {
+			top: auto;
+		}
+	</style>
+	<ul id="azGridThumbOtherExamples" class="azGridThumb azGrid-6-xxl azGrid-6-xl azGrid-6-lg azGrid-6-md azGrid-6-sm azGrid-3-xs">
+		<li>
+			<div class="wrap">
+				<div class="optionsSimilarExDescr">example6</div>
+				<a href="example6.php"><img src="example_files/img/image-zoom_6.jpg" class="thumb" alt=""></a>
+			</div>
+		</li>
+		<li>
+			<div class="wrap">
+				<div class="optionsSimilarExDescr">example6_cms</div>
+				<a href="example6_cms.php"><img src="example_files/img/image-zoom_6_cms.jpg" class="thumb" alt=""></a>
+			</div>
+		</li>
+	</ul>
+</div>
+
+<script type="text/javascript">
+if (window.jQuery) {
+	$('.optionsTable:not(.methods) td:nth-child(2)').each(function() {
+		var txt = $.trim($(this).html());
+		if (txt == 'false' || txt == 'true') {
+			$(this).html('<span style="color: green">'+txt+'</span>');
+		} else if (txt == 'null') {
+			$(this).html('<span style="color: blue">'+txt+'</span>');
+		} else if (txt == 'function'){
+			$(this).html('<span style="color: #003c00">'+txt+'</span>');
+		} else if (txt && txt.charAt(0) != '\'' && (txt.charAt(0) == '{' || txt.charAt(0) == '[')) {
+			$(this).html('<span style="color: #00008B">'+txt+'</span>');
+		} else if (parseFloat(txt) == txt){
+			$(this).html('<span style="color: red">'+txt+'</span>');
+		}
+	});
+
+	$('.optionsTable:not(.sub) td:nth-child(1)').each(function() {
+		var txt = $.trim($(this).html());
+		if (txt) {
+			$(this).parent().attr('id', 'pOpt_'+txt);
+		}
+	});
+
+	if (window.optionsHeader) {
+		$('<div class="optionsHeader">'+window.optionsHeader+'</div>').insertBefore('.optionsTable:eq(0)');
+	}
+
+	if (window.optionsText) {
+		$('<p class="optionsText">'+window.optionsText+'</p>').insertBefore('.optionsTable:eq(0)');
+	}
+}
+</script>
+
+<div style="clear: both; height: 50px;"></div>

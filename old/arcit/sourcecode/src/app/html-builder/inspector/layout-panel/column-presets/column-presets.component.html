@@ -1,0 +1,42 @@
+<div class="preset" [class.active]="presetIsActive([12])" (click)="selectPreset([12])">
+    <span class="col col-12"></span>
+</div>
+<div class="preset" [class.active]="presetIsActive([6,6])" (click)="selectPreset([6,6])">
+    <div class="col col-6"></div>
+    <div class="col col-6"></div>
+</div>
+<div class="preset" [class.active]="presetIsActive([4,8])" (click)="selectPreset([4,8])">
+    <div class="col col-4"></div>
+    <div class="col col-8"></div>
+</div>
+<div class="preset" [class.active]="presetIsActive([8,4])" (click)="selectPreset([8,4])">
+    <div class="col col-8"></div>
+    <div class="col col-4"></div>
+</div>
+<div class="preset" [class.active]="presetIsActive([4,4,4])" (click)="selectPreset([4,4,4])">
+    <div class="col col-4"></div>
+    <div class="col col-4"></div>
+    <div class="col col-4"></div>
+</div>
+<div class="preset" [class.active]="presetIsActive([3,3,3,3])" (click)="selectPreset([3,3,3,3])">
+    <div class="col col-3"></div>
+    <div class="col col-3"></div>
+    <div class="col col-3"></div>
+    <div class="col col-3"></div>
+</div>
+<div class="preset" [class.active]="presetIsActive([2,2,2,2,2,2])" (click)="selectPreset([2,2,2,2,2,2])">
+    <div class="col col-2"></div>
+    <div class="col col-2"></div>
+    <div class="col col-2"></div>
+    <div class="col col-2"></div>
+    <div class="col col-2"></div>
+    <div class="col col-2"></div>
+</div>
+<button class="no-style preset custom-preset" (click)="toggleCustomPanel()">
+    <span class="col col-12" trans>Custom</span>
+</button>
+
+<div class="custom-span-panel input-container" *ngIf="customPanelOpen">
+    <input type="text" [(ngModel)]="customSpan" (ngModelChange)="selectPresetFromCustomSpan()" placeholder="4 + 4 + 4">
+    <div class="error" *ngIf="!customPresetIsValid" trans>This preset is not valid.</div>
+</div>

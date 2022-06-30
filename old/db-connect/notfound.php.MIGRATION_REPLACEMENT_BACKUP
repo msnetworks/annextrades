@@ -1,0 +1,52 @@
+<?php 
+ob_start();
+@session_start();
+session_register("provided");
+error_reporting(0);
+//$dbcon="remote";
+$dbcon="remote";
+if($dbcon=="local")
+{
+
+$con=mysqli_connect("localhost","root","");
+mysqli_select_db("b2b");
+
+} 
+else 
+{
+
+$con=mysqli_connect("mysql25.opentransfer.com","vsjayan_testuser","Testuser123");
+mysqli_select_db("vsjayan_testdb");
+
+}
+
+$res=mysqli_fetch_array(mysqli_query($con,"select * from generalsettings"));
+
+$webname=$res['webname'];
+
+$webkeyword=$res['webkeyword'];
+
+$webdes=$res['webdes'];
+
+$mailurl=$res['admin_mailid'];
+
+$logo=$res['logo'];
+
+$signin=$res['weburl'];
+
+$paymail=mysqli_fetch_array(mysqli_query($con,"select * from paypalsettings"));
+
+$paypalmail=$paymail['paypalsettings'];
+
+$formaction = "https://www.sandbox.paypal.com/cgi-bin/webscr";
+//$formaction = "https://www.paypal.com/cgi-bin/webscr";
+//$buyerid = "padmapriya@i-netsolution.com";
+//$buyerid = "alagirivimal@i-netsolution.com";
+$paypalmail;
+$success= $signin."success.php?pay=$pay";
+//$success= "http://demo.2daytemplates.com/success.php?pay=$pay";
+                
+$fail = $signin."fail.php";
+//$fail = "http://demo.2daytemplates.com/fail.php";
+
+?>

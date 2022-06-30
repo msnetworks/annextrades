@@ -1,0 +1,31 @@
+{
+  "/secure": {
+    "target": "http://localhost/architect3/server",
+    "secure": false
+  },
+
+  "/storage": {
+    "target": "http://localhost/architect3/server",
+    "secure": false
+  },
+  "/builder/fonts": {
+    "target": "http://localhost/architect3/server",
+    "secure": false
+  },
+  "/builder/css": {
+    "target": "http://localhost/architect3/server",
+    "secure": false
+  },
+  "/builder/images": {
+    "target": "http://localhost/architect3/server",
+    "secure": false
+  },
+  "/client/assets/images": {
+    "target": "http://localhost/architect3/server",
+    "secure": false
+  },
+  "/__clockwork": {
+    "target": "http://localhost/architect3/server/public",
+    "secure": false
+  }
+}

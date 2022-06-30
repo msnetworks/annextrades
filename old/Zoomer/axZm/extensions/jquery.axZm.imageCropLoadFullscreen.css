@@ -1,0 +1,33 @@
+/*!
+* Plugin: jQuery AJAX-ZOOM, jquery.axZm.imageCropLoadFullscreen.css
+* Copyright: Copyright (c) 2010-2019 Vadim Jacobi
+* License Agreement: http://www.ajax-zoom.com/index.php?cid=download
+* Extension Version: 1.0
+* Extension Date: 2019-03-24
+* URL: http://www.ajax-zoom.com
+* Documentation: http://www.ajax-zoom.com/index.php?cid=docs
+*/
+
+.axZm_fullScreenCropSlider {
+	height: 100%!important;
+}
+
+.axZm_fullScreenCropSlider li {
+	border-radius: 50%;
+	border-color: #fff;
+	box-shadow: 0 0 0 1px #fff;
+	transition: all 0.2s ease-out;
+}
+
+.axZm_fullScreenCropSlider li.selected {
+	/*
+	border-color: #0191ff;
+	-webkit-box-shadow: 0 0 0 1px #0191ff;
+	box-shadow: 0 0 0 1px #0191ff;
+	*/
+	border-radius: 5px;
+	border-color: #fff;
+	box-shadow: 0 0 0 1px #fff;
+	transform: scale(1) rotate(0.00001deg);
+	transition: all 0.2s ease-in;
+}

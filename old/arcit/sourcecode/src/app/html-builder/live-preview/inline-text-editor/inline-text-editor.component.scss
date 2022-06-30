@@ -1,0 +1,69 @@
+@import "variables";
+
+inline-text-editor {
+  display: block;
+  background-color: mat-color($app-background, card);
+  @include mat-elevation(4);
+  width: 648px;
+  min-width: 648px;
+  max-width: 90%;
+  border-radius: 4px;
+  overflow: hidden;
+
+  .toolbar, .link-panel, .icons-panel {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .link-panel {
+    border-top: 1px solid mat-color($app-foreground, divider);
+
+    button {
+      margin-left: 8px;
+    }
+  }
+
+  .icons-panel {
+    border-top: 1px solid mat-color($app-foreground, divider);
+    flex-wrap: wrap;
+    height: 400px;
+    width: 100%;
+    overflow: auto;
+    position: relative;
+
+    .mat-icon-button {
+      font-size: 19px;
+
+      &:hover {
+        color: mat-color($app-accent, default);
+      }
+    }
+  }
+
+  .controls-group {
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+    padding-right: 5px;
+    border-right: 1px solid rgba(0,0,0,0.08);
+
+    &:last-of-type {
+      border-right: none;
+      margin-right: 0;
+      padding-right: 0;
+    }
+
+    &.flex-group {
+      display: flex;
+    }
+
+    .input-container {
+      margin-right: 5px;
+    }
+
+    .active {
+      color: mat-color($app-accent, default);
+    }
+  }
+}

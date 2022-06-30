@@ -1,0 +1,309 @@
+body
+{
+	background: none repeat scroll 0 0 #FFFFFF;
+	color: #000000;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 14px;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#install
+{
+	display: none;
+	padding: 10px;
+}
+
+#install_rights
+{
+	cursor:pointer;
+}
+
+.install-rights-caption
+{
+	display: inline-block;
+	text-decoration: none;
+	border-bottom: dashed 1px #999;
+}
+
+.install-rights-requires
+{
+	display: inline-block;
+	margin-left: 5px;
+	color: red;
+}
+
+.install-rights-item
+{
+	position: relative;
+	display: inline-block;
+}
+
+.install-label
+{
+	display: inline-block;
+	margin-right: 5px;
+}
+
+#install_payment_currency
+{
+	margin: 10px 0 10px 25px;
+}
+
+#install_finish
+{
+	background-image: -webkit-linear-gradient(bottom , #729E00, #97BA00) !important;
+	background-image: -moz-linear-gradient(bottom , #729E00, #97BA00) !important;
+	background-image: -ms-linear-gradient(bottom , #729E00, #97BA00) !important;
+	background-image: linear-gradient(bottom , #729E00, #97BA00) !important;
+	background-color: #97BA00;
+	color: #FFFFFF;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1), 0 1px 1px rgba(0, 0, 0, 0.1), -1px 1px 1px rgba(0, 0, 0, 0.1);
+	display: inline-block;
+	height: 36px;
+	padding: 5px 30px;
+	line-height: 34px;
+	cursor: pointer;
+	outline: medium none;
+	font-weight: bold;
+	border-radius: 5px;
+	margin-top: 20px;
+}
+
+.install-group {
+	padding: 10px;
+	margin: 0 0 20px 0;
+	border: solid 1px #999;
+}
+
+.layout
+{
+	position: relative;
+}
+.week-selector
+{
+	white-space: nowrap;
+}
+
+.week-select
+{
+	display: inline-block;
+	width: 150px;
+	margin: 1px;
+	padding: 5px;
+	text-align: center;
+	background-color: #DDD;
+	border: solid 1px #999;
+	cursor: pointer;
+}
+
+.week-select.week-selected, .week-select:hover
+{
+	background-color: #EEE;
+}
+
+.menu-add, .menu-share
+{
+	display: inline-block;
+	border-bottom: dashed 1px #999;
+	cursor: pointer;
+	margin: 0 0 20px 20px;
+}
+
+.menu-share
+{
+	position: absolute;
+	top: 3px;
+	right: 10px;
+}
+
+.menu-share-finished {
+	border-bottom: none !important;
+	color: #999;
+}
+
+.menu-add-btn
+{
+	display: inline-block;
+	height: 20px;
+	width: 20px;
+	cursor: pointer;
+	text-align: center;
+}
+
+.input-name, .input-price
+{
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 18px;
+	height: 23px;
+}
+
+.input-name
+{
+	width: 350px;
+}
+
+.input-price
+{
+	width: 80px;
+}
+
+.add-form-submit
+{
+	margin-top: 10px;
+	display: inline-block;
+	border-bottom: dashed 1px #999;
+	cursor: pointer;
+}
+
+.week-menu
+{
+	padding-top: 20px;
+}
+
+.menu-day
+{
+	position: relative;
+	border: solid 1px #ddd;
+	margin: 0 0 20px 1px;
+}
+
+.menu-date
+{
+	display: block;
+	padding: 5px;
+	background-color: #ddd;
+}
+
+.menu-day.menu-day-today
+{
+	border: solid 1px #999;
+}
+.menu-day.menu-day-today .menu-date
+{
+	background-color: #999;
+	color: white;
+}
+
+.menu-day.menu-day-today .menu-share
+{
+	color: white;
+	border-bottom: dashed 1px white;
+}
+
+.menu-list
+{
+	list-style: none;
+	padding: 0 20px;
+}
+
+.menu-list-item {
+	margin: 10px 0;
+	position: relative;
+	width: 100%;
+	text-align: left;
+	border-bottom: 1px dotted #000;
+	clear: both;
+}
+
+.menu-list-item.menu-list-item-edit
+{
+	height: 29px;
+}
+
+.menu-list-name, .menu-list-price
+{
+	position: relative;
+	top: 1px;
+	background: white;
+}
+
+.menu-list-name
+{
+	padding: 1px 5px 1px 0;
+}
+
+
+.menu-list-item-edit .menu-list-name
+{
+	display: inline-block;
+}
+
+.menu-list-price
+{
+	padding: 1px 0 1px 5px;
+	float: right;
+	font-style: italic;
+}
+
+.menu-list-delete
+{
+	position: absolute;
+	top: 2px;
+	height: 15px;
+	width: 15px;
+	display: none;
+	cursor: pointer;
+	text-align: center;
+	color: red;
+	font-weight: bold;
+	background: url("images/menu_sprite.png") no-repeat scroll -23px 2px transparent;
+}
+
+.menu-list-item .menu-list-delete
+{
+	left: 0;
+	margin-left: -15px;
+}
+
+.install-rights-item .menu-list-delete
+{
+	right: 0;
+	margin-right: -15px;
+}
+
+.menu-list-item:hover .menu-list-delete, .install-rights-item:hover .menu-list-delete
+{
+	display: inline-block;
+}
+
+.input-name-hint
+{
+	position: absolute;
+	width: 356px;
+	background: white;
+	left: 0;
+	top: 0;
+	margin: 3px 0;
+	padding: 1px;
+	z-index: 10;
+}
+
+.input-name-hint-item
+{
+	padding: 6px 12px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	border: solid 1px #999;
+	margin-top: 1px;
+	cursor: pointer;
+	white-space: nowrap;
+}
+
+.input-name-hint-item:hover
+{
+	background-color: #EEE;
+}
+
+.menu-settings
+{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	height: 20px;
+	width: 20px;
+	display: inline-block;
+	cursor: pointer;
+	background: url("images/menu_sprite.png") no-repeat scroll 1px 1px transparent;
+}

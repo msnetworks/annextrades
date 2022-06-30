@@ -1,0 +1,76 @@
+<div class="breadcrumbs" *ngIf="path.length">
+    <span class="crumb-container" *ngFor="let item of path; last as last" (mouseenter)="livePreview.repositionBox('hover')" [class.last]="last" (mouseleave)="livePreview.hideBox('hover')">
+        <button class="crumb no-style" (click)="selected.selectNode(item.node)">{{item.name}}</button>
+        <mat-icon svgIcon="keyboard-arrow-right" *ngIf="!last"></mat-icon>
+    </span>
+</div>
+
+<button class="edit-layout-button" mat-raised-button (click)="openLayoutPanel()" *ngIf="selectedIsLayout()" color="accent" trans>Edit Layout</button>
+<button class="edit-layout-button" mat-raised-button (click)="openUploadImageModal()" *ngIf="selectedIsImage()" color="accent" trans>Change Image</button>
+<button class="edit-layout-button" mat-raised-button (click)="openLinkEditorModal()" *ngIf="selectedIsLink()" color="accent" trans>Change Link</button>
+<button class="edit-layout-button" mat-raised-button (click)="openChangeIconPanel()" *ngIf="selectedIsIcon()" color="accent" trans>Change Icon</button>
+
+<mat-accordion>
+    <mat-expansion-panel class="category mat-elevation-z" *ngIf="canModify('attributes')">
+        <mat-expansion-panel-header>
+            <mat-panel-title trans>Attributes</mat-panel-title>
+        </mat-expansion-panel-header>
+        <attributes-panel class="panel-body"></attributes-panel>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel class="category mat-elevation-z" *ngIf="canModify('background')">
+        <mat-expansion-panel-header>
+            <mat-panel-title trans>Background</mat-panel-title>
+        </mat-expansion-panel-header>
+        <background-panel class="panel-body"></background-panel>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel class="category mat-elevation-z" *ngIf="canModify('shadows')">
+        <mat-expansion-panel-header>
+            <mat-panel-title trans>Shadows</mat-panel-title>
+        </mat-expansion-panel-header>
+        <shadows-panel class="panel-body"></shadows-panel>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel class="category mat-elevation-z" *ngIf="canModify('padding')">
+        <mat-expansion-panel-header>
+            <mat-panel-title trans>Padding</mat-panel-title>
+        </mat-expansion-panel-header>
+        <spacing-panel type="padding" class="panel-body"></spacing-panel>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel class="category mat-elevation-z" *ngIf="canModify('margin')">
+        <mat-expansion-panel-header>
+            <mat-panel-title trans>Margin</mat-panel-title>
+        </mat-expansion-panel-header>
+        <spacing-panel type="margin" class="panel-body"></spacing-panel>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel class="category mat-elevation-z" *ngIf="canModify('text')">
+        <mat-expansion-panel-header>
+            <mat-panel-title trans>Text Style</mat-panel-title>
+        </mat-expansion-panel-header>
+        <text-style-panel class="panel-body"></text-style-panel>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel class="category mat-elevation-z" *ngIf="canModify('box')">
+        <mat-expansion-panel-header>
+            <mat-panel-title trans>Border</mat-panel-title>
+        </mat-expansion-panel-header>
+        <spacing-panel type="borderWidth" class="panel-body">
+            <border-style-controls></border-style-controls>
+        </spacing-panel>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel class="category mat-elevation-z" *ngIf="canModify('box')">
+        <mat-expansion-panel-header>
+            <mat-panel-title trans>Border Roundness</mat-panel-title>
+        </mat-expansion-panel-header>
+        <spacing-panel type="borderRadius" class="panel-body" max="30"></spacing-panel>
+    </mat-expansion-panel>
+</mat-accordion>
+
+<no-results-message *ngIf="!selected.node">
+    <span primary-text trans>Nothing is selected.</span>
+    <span secondary-text trans>Click on any element on the right to inspect and modify it.</span>
+</no-results-message>

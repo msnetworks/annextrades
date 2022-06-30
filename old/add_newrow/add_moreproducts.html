@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+<script type="text/javascript">
+function addRow(tableID) {
+
+			var table = document.getElementById(tableID);
+
+			var rowCount = table.rows.length;			
+			var row = table.insertRow(rowCount);
+
+			var cell1 = row.insertCell(0);
+			var element1 = document.createElement("input");
+			//element1.type = "checkbox";
+			element1.id="chk_"+rowCount;
+			//element1.id="text";
+			//element1.onclick=function(){removeRow(this);}
+			//cell1.appendChild(element1);
+cell1.innerHTML = rowCount + 1;
+
+
+			//var cell2 = row.insertCell(1);
+			//cell2.innerHTML = rowCount + 1;
+
+
+
+			var cell2 = row.insertCell(1);
+			var element1 = document.createElement("input");
+			element1.type = "text";
+			element1.id ="b_"+rowCount;
+			element1.setAttribute('name',element1.id);
+			element1.setAttribute('className','textbox');
+			element1.setAttribute('class','textbox');
+			element1.setAttribute('onkeydown',"return chkkeycode(event,this.id)");
+			element1.onblur=function(){Trim(this.id);}
+
+			
+			var oP1=document.createElement("div");
+			oP1.style.color = "#FF3300";			
+			oP1.style.display = "none";
+			oP1.id = element1.id+"_err";
+			oP1.appendChild( document.createTextNode("Please Enter Boarding Point") );				
+			cell2.appendChild(element1);
+			cell2.appendChild(oP1);
+			
+			
+
+			var cell3 = row.insertCell(2);
+			var element2 = document.createElement("input");
+			element2.type = "text";
+			element2.id ="b_"+rowCount;
+			element2.setAttribute('name',element2.id);
+			element2.setAttribute('className','textbox');
+			element2.setAttribute('class','textbox');
+			element2.setAttribute('onkeydown',"return chkkeycode(event,this.id)");
+			element2.onblur=function(){Trim(this.id);}
+			
+			
+			var oP1=document.createElement("div");
+			oP1.style.color = "#FF3300";			
+			oP1.style.display = "none";
+			oP1.id = element2.id+"_err";
+			oP1.appendChild( document.createTextNode("Please Enter Boarding Point") );				
+			cell3.appendChild(element2);
+			cell3.appendChild(oP1);
+			
+			
+			var cell4 = row.insertCell(3);
+			var element3 = document.createElement("input");
+			element3.type = "text";
+			element3.id="bt_"+rowCount;					
+			element3.setAttribute('className','textbox');
+			element3.setAttribute('class','textbox');
+			element3.setAttribute("name",element3.id);
+			element3.setAttribute("id",element3.id);			
+			element3.onfocus=function(){time_show(this.id);}
+			element3.setAttribute("value","");
+			//element3.setAttribute("readonly","readonly");
+			element3.setAttribute('style',"cursor:pointer");
+			
+			cell4.appendChild(element3);
+			
+			
+			
+			var cell5 = row.insertCell(4);
+			var element4 = document.createElement("input");
+			element4.type = "text";
+			element4.id="bt_"+rowCount;					
+			element4.setAttribute('className','textbox');
+			element4.setAttribute('class','textbox');
+			element4.setAttribute("name",element4.id);
+			element4.setAttribute("id",element4.id);			
+			element4.onfocus=function(){time_show(this.id);}
+			element4.setAttribute("value","");
+			//element3.setAttribute("readonly","readonly");
+			element4.setAttribute('style',"cursor:pointer");
+			
+			cell5.appendChild(element4);
+			
+			
+			
+			
+			var oP2=document.createElement("div");
+			oP2.style.color = "#FF3300";			
+			oP2.style.display = "none";
+			oP2.id = element3.id+"_err";
+			oP2.appendChild( document.createTextNode("Please Choose Boarding Time") );
+			
+			
+			cell4.appendChild(oP2);	
+			
+			document.getElementById('boardlist').value+=","+element2.id+"-"+element3.id;
+			document.getElementById('boardcount').value=parseInt(document.getElementById('boardcount').value)+1;
+		}
+function deleteRow(tableID) {
+			try { 
+			var table = document.getElementById(tableID);
+			var rowCount = table.rows.length;
+
+			for(var i=0; i<rowCount; i++) {
+				var row = table.rows[i];
+				var chkbox = row.cells[0].childNodes[0];				
+				if(null != chkbox && true == chkbox.checked) {				
+					
+					var chkval=chkbox.id.split("_");
+					var val="b_"+chkval[1]+"-bt_"+chkval[1];
+					
+					var x1="b_"+chkval[1]; 
+					var x2="bt_"+chkval[1];
+					var z1=document.getElementById("b_"+chkval[1]).value;
+					var z2=document.getElementById("bt_"+chkval[1]).value;
+					
+					table.deleteRow(i);
+					rowCount--;
+					i--;
+					
+					var arr=document.getElementById('boardlist').value.split(",");
+
+					for(var j=0; j<arr.length;j++ )
+					 { 
+						if(arr[j]==val)
+							arr.splice(j,1);
+					  }
+					  document.getElementById('boardlist').value=arr; 
+					  document.getElementById('boardcount').value=parseInt(document.getElementById('boardcount').value)-1;
+				}
+			}
+			}catch(e) {
+				alert(e);
+			}
+		}
+</script>
+</head>
+
+<body>
+
+
+<table width="450" id="dataTable">
+		<tr>
+		
+			<td width="170">
+			<INPUT type="text" name="b_0" id="b_0" class="textbox" value="" onKeyDown="return chkkeycode(event,this.id)" /> 
+			<div id="b_0_err" style="display:none; color:#FF3300;">Please Enter Boarding Point</div>
+			</td>
+			<td width="170">
+			<INPUT type="text" name="b_0" id="b_0" class="textbox" value="" onKeyDown="return chkkeycode(event,this.id)" /> 
+			<div id="b_0_err" style="display:none; color:#FF3300;">Please Enter Boarding Point</div>
+			</td>
+			<td width="172"> 
+			<input type="text" name="bt_0" id="bt_0" class="textbox" value="Choose Time" onFocus="time_show(this.id);" style="cursor:pointer;" />
+			<div id="bt_0_err" style="display:none; color:#FF3300;">Please Enter Boarding Time</div>
+			</td>
+			<td width="20"><img src="plus_icon.png" border="0" onClick="addRow('dataTable')" /></td>
+			<td width="23"><img src="minus_icon.png" border="0" onClick="deleteRow('dataTable')" /></td>
+		</tr>
+
+
+
+
+
+
+
+		  </table>
+
+
+</body>
+</html>

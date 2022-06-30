@@ -1,0 +1,144 @@
+@import "variables";
+
+$context-box-spacing: 10px;
+
+context-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 1px solid $hover-box-bg-color;
+  color: $hover-box-actions-color;
+  pointer-events: none;
+
+  &.toolbar-bottom {
+    .context-box-toolbar {
+      top: auto;
+      bottom: -12px;
+    }
+
+    .action-button.resize-button {
+      right: 15px;
+    }
+  }
+
+  .context-box-toolbar {
+    position: absolute;
+    top: -12px;
+    left: 0;
+    width: 100%;
+    height: 25px;
+    pointer-events: all;
+    color: $hover-box-bg-color;
+    user-select: none;
+  }
+
+  .spacing {
+    position: absolute;
+    pointer-events: all;
+  }
+
+  .top-spacing, .bottom-spacing {
+    height: $context-box-spacing;
+    width: 100%;
+    left: 0;
+    top: 0;
+  }
+
+  .bottom-spacing {
+    top: auto;
+    bottom: 0;
+  }
+
+  .left-spacing, .right-spacing {
+    height: 100%;
+    width: $context-box-spacing;
+    top: 0;
+    left: 0;
+  }
+
+  .right-spacing {
+    right: 0;
+    left: auto;
+  }
+
+  .action-button {
+    position: absolute;
+    border: 1px solid $hover-box-bg-color;
+    border-radius: 2px;
+    background-color: #fff;
+
+    &.edit-button {
+      left: -11px;
+
+      &:hover {
+        background-color: $hover-box-bg-color;
+        color: #fff;
+      }
+    }
+
+    &.delete-button {
+      right: -11px;
+
+      &:hover {
+        background-color: mat-color($app-warn, default);
+        border-color: mat-color($app-warn, default);
+        color: mat-color($app-warn, default-contrast);
+      }
+    }
+
+    &.resize-button {
+      right: -11px;
+      bottom: -9px;
+      pointer-events: all;
+      color: $hover-box-bg-color;
+
+      &:hover {
+        background-color: $hover-box-bg-color;
+        color: #fff;
+      }
+
+      .mat-icon {
+        transform: rotate(90deg);
+      }
+    }
+
+    mat-icon {
+      display: block;
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .element-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 25px;
+    padding: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    border: 1px solid $hover-box-bg-color;
+    border-radius: 2px;
+    background-color: #fff;
+    cursor: move;
+    max-width: calc(100% - 46px);
+
+    &:hover {
+      color: darken($hover-box-bg-color, 10%);
+    }
+
+    .column-name {
+      text-transform: uppercase;
+      font-size: 1.4rem;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    .mat-icon {
+      display: block;
+    }
+  }
+}

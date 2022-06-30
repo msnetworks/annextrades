@@ -1,0 +1,73 @@
+<form class="auth-page" id="auth-page" (ngSubmit)="register()" *ngIf="errors$ | async as errors" [formGroup]="form" ngNativeValidate>
+    <div class="many-inputs auth-panel">
+
+        <loading-indicator class="overlay" [isVisible]="loading$ | async"></loading-indicator>
+
+        <a class="logo" [routerLink]="['/']"><img [src]="settings.get('branding.logo_dark')" alt="logo"></a>
+
+        <div class="general-error" *ngIf="errors.general">{{errors.general}}</div>
+
+        <div class="input-container">
+            <label for="email" class="hidden" trans>Email</label>
+            <input type="email" formControlName="email" id="email" required placeholder="Email" trans-placeholder>
+            <p class="error email-error" *ngIf="errors.email">{{errors.email}}</p>
+        </div>
+
+        <div class="input-container">
+            <label for="register_password" class="hidden" trans>Password</label>
+            <input type="password" formControlName="password" id="register_password" required placeholder="Password" trans-placeholder>
+            <p class="error password-error" *ngIf="errors.password">{{errors.password}}</p>
+        </div>
+
+        <div class="input-container">
+            <label for="register_password_confirmation" class="hidden" trans>Confirm Password</label>
+            <input type="password" formControlName="password_confirmation" id="register_password_confirmation" required placeholder="Confirm Password" trans-placeholder>
+        </div>
+
+        <div class="input-container" *ngIf="settings.get('envato.enable') && settings.get('envato.require_purchase_code')">
+            <label for="purchase_code" class="hidden" trans>Envato Purchase Code</label>
+            <input type="text" formControlName="purchase_code" id="purchase_code" required placeholder="Envato Purchase Code" trans-placeholder>
+            <p class="error purchase-code-error" *ngIf="errors.purchase_code">{{errors.purchase_code}}</p>
+        </div>
+
+        <div class="policy-row">
+            <mat-checkbox name="remember-me" *ngFor="let policy of registerPolicies" [formControlName]="policy.id" color="accent" required trans>
+                <span trans>I accept the</span>&ngsp;
+                <a [href]="policy.type === 'link' ? policy.action : (settings.getBaseUrl() + policy.action)" *ngIf="policy.action" target="_blank">
+                    <strong>{{policy.label}}</strong>
+                </a>
+                <strong *ngIf=!policy.action>{{policy.label}}</strong>
+            </mat-checkbox>
+        </div>
+
+        <div class="social-icons-and-register-row">
+            <div class="social-icons center" *ngIf="!settings.get('envato.enable')">
+                <button type="button" mat-icon-button (click)="socialAuth.loginWith('facebook')" *ngIf="settings.get('social.facebook.enable')" class="social-icon no-style facebook" [matTooltip]="'Login with facebook' | trans">
+                    <mat-icon svgIcon="facebook"></mat-icon>
+                </button>
+                <button type="button" mat-icon-button (click)="socialAuth.loginWith('google')" *ngIf="settings.get('social.google.enable')" class="social-icon no-style google" [matTooltip]="'Login with google' | trans">
+                    <mat-icon svgIcon="google"></mat-icon>
+                </button>
+                <button type="button" mat-icon-button (click)="socialAuth.loginWith('twitter')" *ngIf="settings.get('social.twitter.enable')" class="social-icon no-style twitter" [matTooltip]="'Login with twitter' | trans">
+                    <mat-icon svgIcon="twitter"></mat-icon>
+                </button>
+            </div>
+
+            <div class="register-button-container">
+                <button class="button primary register-button" mat-raised-button color="accent" type="submit" trans>Register</button>
+            </div>
+        </div>
+
+        <p class="info-row">
+            <span trans>Already have an account?</span>
+            <a class="login-link" [routerLink]="['/login']" trans>Login in here.</a>
+        </p>
+
+        <div class="big-social-auth-button" *ngIf="settings.get('envato.enable')">
+            <button type="button" mat-raised-button color="accent" (click)="socialAuth.loginWith('envato')">
+                <mat-icon svgIcon="envato-custom"></mat-icon>
+                <span trans>Login With Envato</span>
+            </button>
+        </div>
+    </div>
+</form>

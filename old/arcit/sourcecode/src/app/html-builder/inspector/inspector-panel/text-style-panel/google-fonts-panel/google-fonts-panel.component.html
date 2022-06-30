@@ -1,0 +1,24 @@
+<div class="header">
+    <div class="name" trans>Google Fonts</div>
+    <button class="close-button no-style" (click)="emitClosedEvent()">
+        <mat-icon svgIcon="close"></mat-icon>
+    </button>
+</div>
+
+<div class="input-container search">
+    <input type="search" [formControl]="searchControl" placeholder="Search..." trans-placeholder>
+</div>
+
+<div class="fonts">
+    <button class="no-style font" *ngFor="let font of filteredFonts[fontPage]" [style.fontFamily]="font.family" (click)="applyFont(font.family)">{{font.family}}</button>
+</div>
+
+<div class="pagination">
+    <button class="no-style previous-page" (click)="previousPage()" [matTooltip]="'Previous Page' | trans">
+        <mat-icon svgIcon="keyboard-arrow-left"></mat-icon>
+    </button>
+
+    <button class="no-style next-page" (click)="nextPage()" [matTooltip]="'Next Page' | trans">
+        <mat-icon svgIcon="keyboard-arrow-right"></mat-icon>
+    </button>
+</div>

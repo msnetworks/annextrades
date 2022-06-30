@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="f.css" type="text/css" rel="stylesheet" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="//api.bitrix24.com/api/v1/"></script>
+<script src="f.js"></script>
+</head>
+<body></body>
+</html>
+<script type="text/javascript">
+window.menuAppInstaller.makeHtml();
+
+BX24.init(function()
+{
+	window.menuApp.loadLang(function()
+	{
+		window.menuAppInstaller.init(BX24.installFinish);
+	});
+});
+</script>

@@ -1,0 +1,377 @@
+/*!
+* Plugin: jQuery AJAX-ZOOM, jquery.axZm.azGrid.css
+* Copyright: Copyright (c) 2010-2018 Vadim Jacobi
+* License Agreement: http://www.ajax-zoom.com/index.php?cid=download
+* Extension Version: 1.0
+* Extension Date: 2018-03-23
+* URL: http://www.ajax-zoom.com
+* Example: http://www.ajax-zoom.com/examples/example5.php
+*/
+
+/* Responsive grid */
+:root {
+	--azGrid-1: 100%;
+	--azGrid-2: 48%;
+	--azGrid-3: 32.3333333333%;
+	--azGrid-4: 24%;
+	--azGrid-5: 19%;
+	--azGrid-6: 15.666666667%;
+	--azGrid-7: 13.2857142%;
+	--azGrid-8: 11.5%;
+	--azGrid-9: 10.1111111111%;
+	--azGrid-10: 9%;
+	--azGrid-11: 8.09090909091%;
+	--azGrid-12: 7.33333333333%;
+	--azGrid-13: 6.69230769231%;
+	--azGrid-14: 6.14285714285%;
+	--azGrid-15: 5.66666666666%;
+	--azGrid-16: 5.25%;
+}
+
+ul.azGridThumb {
+	--azAR: 1;
+	box-sizing: border-box !important;
+	position: relative;
+	overflow: visible;
+	list-style: none;
+	padding: 0px;
+	margin: 0px;
+	white-space: normal !important;
+	font-size: 0px;
+	-moz-user-select: none;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	margin-right: -1%;
+}
+
+ul.azGridThumb li {
+	box-sizing: border-box !important;
+	margin: 0 1% 1% 0;
+	position: relative;
+	display: inline-block;
+	height: 0;
+	padding: 0;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+ul.azGridThumb li>div.wrap {
+	box-sizing: border-box !important;
+	border: #CCC 1px solid;
+	background-color: #FFF;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+ul.azGridThumb li.selected>div.wrap {
+	border: 1px solid #2379b5;
+}
+
+ul.azGridThumb img.thumb {
+	box-sizing: border-box !important;
+	position: absolute;
+	max-width: 100%;
+	max-height: 100%;
+	height: auto;
+	padding: 3%;
+	left: 0;
+	bottom: 0;
+	top: 0;
+	right: 0;
+	margin: auto;
+}
+
+ul.azGridThumb li.thumb-top img.thumb {
+	bottom: auto!important;
+}
+
+ul.azGridThumb div.descr {
+	box-sizing: border-box !important;
+	position: absolute;
+	color: #FFF;
+	text-align: center;
+	word-wrap: break-word;
+	font-size: 0.55vw;
+	width: 100%;
+	bottom: 0;
+}
+
+ul.azGridThumb div.descr>div {
+	box-sizing: border-box !important;
+	padding: 2px;
+	font-size: 10px;
+	background-color: rgba(0,0,0,0.5);
+}
+
+/* size of the thumbnails when thumbModel option is "grid" 
+ and thumbUlClassGrid option is e.g. "azGridThumb azGridThumb azGrid-8-xl azGrid-6-lg azGrid-6-md azGrid-4-sm azGrid-2-xs"
+ you have to define sizes (number of thumbs in a row) for ALL intervals!
+ Do not get confused with bottstrap, where for 12 columns grid system e.g. md-6 means 2 columns (12 / 6).
+*/
+
+/* old browsers */
+ul.azGrid-1-xxl li, ul.azGrid-1-xl li, ul.azGrid-1-lg li, ul.azGrid-1-md li, ul.azGrid-1-sm li, ul.azGrid-1-xs li,
+ul.azGrid-2-xxl li, ul.azGrid-2-xl li, ul.azGrid-2-lg li, ul.azGrid-2-md li, ul.azGrid-2-sm li, ul.azGrid-2-xs li,
+ul.azGrid-3-xxl li, ul.azGrid-3-xl li, ul.azGrid-3-lg li, ul.azGrid-3-md li, ul.azGrid-3-sm li, ul.azGrid-3-xs li,
+ul.azGrid-4-xxl li, ul.azGrid-4-xl li, ul.azGrid-4-lg li, ul.azGrid-4-md li, ul.azGrid-4-sm li, ul.azGrid-4-xs li,
+ul.azGrid-5-xxl li, ul.azGrid-5-xl li, ul.azGrid-5-lg li, ul.azGrid-5-md li, ul.azGrid-5-sm li, ul.azGrid-5-xs li,
+ul.azGrid-6-xxl li, ul.azGrid-6-xl li, ul.azGrid-6-lg li, ul.azGrid-6-md li, ul.azGrid-6-sm li, ul.azGrid-6-xs li,
+ul.azGrid-7-xxl li, ul.azGrid-7-xl li, ul.azGrid-7-lg li, ul.azGrid-7-md li, ul.azGrid-7-sm li, ul.azGrid-7-xs li,
+ul.azGrid-8-xxl li, ul.azGrid-8-xl li, ul.azGrid-8-lg li, ul.azGrid-8-md li, ul.azGrid-8-sm li, ul.azGrid-8-xs li,
+ul.azGrid-9-xxl li, ul.azGrid-9-xl li, ul.azGrid-9-lg li, ul.azGrid-9-md li, ul.azGrid-9-sm li, ul.azGrid-9-xs li,
+ul.azGrid-10-xxl li, ul.azGrid-10-xl li, ul.azGrid-10-lg li, ul.azGrid-10-md li, ul.azGrid-10-sm li, ul.azGrid-10-xs li,
+ul.azGrid-11-xxl li, ul.azGrid-11-xl li, ul.azGrid-11-lg li, ul.azGrid-11-md li, ul.azGrid-11-sm li, ul.azGrid-11-xs li,
+ul.azGrid-12-xxl li, ul.azGrid-12-xl li, ul.azGrid-12-lg li, ul.azGrid-12-md li, ul.azGrid-12-sm li, ul.azGrid-12-xs li,
+ul.azGrid-13-xxl li, ul.azGrid-13-xl li, ul.azGrid-13-lg li, ul.azGrid-13-md li, ul.azGrid-13-sm li, ul.azGrid-13-xs li,
+ul.azGrid-14-xxl li, ul.azGrid-14-xl li, ul.azGrid-14-lg li, ul.azGrid-14-md li, ul.azGrid-14-sm li, ul.azGrid-14-xs li,
+ul.azGrid-15-xxl li, ul.azGrid-15-xl li, ul.azGrid-15-lg li, ul.azGrid-15-md li, ul.azGrid-15-sm li, ul.azGrid-15-xs li,
+ul.azGrid-16-xxl li, ul.azGrid-16-xl li, ul.azGrid-16-lg li, ul.azGrid-16-md li, ul.azGrid-16-sm li, ul.azGrid-16-xs li {
+	width: 24%;
+	padding-bottom: 24%;
+	min-width: 32px;
+	min-height: 32px;
+}
+
+/* xs */
+@media (max-width: 575.98px) {
+	ul.azGridThumb.azGrid-1-xs {margin-right: 0;}
+	ul.azGridThumb.azGrid-2-xs {margin-right: -2%; margin-bottom: 2%;}
+
+	ul.azGrid-1-xs li {width: 100%; padding-bottom: 100%; margin-right: 0;}
+	ul.azGrid-2-xs li {width: 48%; padding-bottom: 48%; margin-right: 2%; margin-bottom: 2%;}
+	ul.azGrid-3-xs li {width: 32.3333333333%; padding-bottom: 32.3333333333%;}
+	ul.azGrid-4-xs li {width: 24%; padding-bottom: 24%;}
+	ul.azGrid-5-xs li {width: 19%; padding-bottom: 19%;}
+	ul.azGrid-6-xs li {width: 15.666666667%; padding-bottom: 15.666666667%;}
+	ul.azGrid-7-xs li {width: 13.2857142%; padding-bottom: 13.2857142%;}
+	ul.azGrid-8-xs li {width: 11.5%; padding-bottom: 11.5%;}
+	ul.azGrid-9-xs li {width: 10.1111111111%; padding-bottom: 10.1111111111%;}
+	ul.azGrid-10-xs li {width: 9%; padding-bottom: 9%;}
+	ul.azGrid-11-xs li {width: 8.09090909091%; padding-bottom: 8.09090909091%;}
+	ul.azGrid-12-xs li {width: 7.33333333333%; padding-bottom: 7.33333333333%;}
+	ul.azGrid-13-xs li {width: 6.69230769231%; padding-bottom: 6.69230769231%;}
+	ul.azGrid-14-xs li {width: 6.14285714285%; padding-bottom: 6.14285714285%;}
+	ul.azGrid-15-xs li {width: 5.66666666666%; padding-bottom: 5.66666666666%;}
+	ul.azGrid-16-xs li {width: 5.25%; padding-bottom: 5.25%;}
+
+	ul.azGrid-1-xs li {width: var(--azGrid-1); padding-bottom: calc(var(--azGrid-1) * var(--azAR)); margin-right: 0;}
+	ul.azGrid-2-xs li {width: var(--azGrid-2); padding-bottom: calc(var(--azGrid-2) * var(--azAR)); margin-right: 2%; margin-bottom: 2%;}
+	ul.azGrid-3-xs li {width: var(--azGrid-3); padding-bottom: calc(var(--azGrid-3) * var(--azAR));}
+	ul.azGrid-4-xs li {width: var(--azGrid-4); padding-bottom: calc(var(--azGrid-4) * var(--azAR));}
+	ul.azGrid-5-xs li {width: var(--azGrid-5); padding-bottom: calc(var(--azGrid-5) * var(--azAR));}
+	ul.azGrid-6-xs li {width: var(--azGrid-6); padding-bottom: calc(var(--azGrid-6) * var(--azAR));}
+	ul.azGrid-7-xs li {width: var(--azGrid-7); padding-bottom: calc(var(--azGrid-7) * var(--azAR));}
+	ul.azGrid-8-xs li {width: var(--azGrid-8); padding-bottom: calc(var(--azGrid-8) * var(--azAR));}
+	ul.azGrid-9-xs li {width: var(--azGrid-9); padding-bottom: calc(var(--azGrid-9) * var(--azAR));}
+	ul.azGrid-10-xs li {width: var(--azGrid-10); padding-bottom: calc(var(--azGrid-10) * var(--azAR));}
+	ul.azGrid-11-xs li {width: var(--azGrid-11); padding-bottom: calc(var(--azGrid-11) * var(--azAR));}
+	ul.azGrid-12-xs li {width: var(--azGrid-12); padding-bottom: calc(var(--azGrid-12) * var(--azAR));}
+	ul.azGrid-13-xs li {width: var(--azGrid-13); padding-bottom: calc(var(--azGrid-13) * var(--azAR));}
+	ul.azGrid-14-xs li {width: var(--azGrid-14); padding-bottom: calc(var(--azGrid-14) * var(--azAR));}
+	ul.azGrid-15-xs li {width: var(--azGrid-15); padding-bottom: calc(var(--azGrid-15) * var(--azAR));}
+	ul.azGrid-16-xs li {width: var(--azGrid-16); padding-bottom: calc(var(--azGrid-16) * var(--azAR));}
+}
+
+/* sm */
+@media (min-width: 576px) and (max-width: 767.98px) {
+	ul.azGridThumb.azGrid-1-sm {margin-right: 0;}
+	ul.azGridThumb.azGrid-2-sm {margin-right: -2%; margin-bottom: 2%;}
+
+	ul.azGrid-1-sm li {width: 100%; padding-bottom: 100%; margin-right: 0;}
+	ul.azGrid-2-sm li {width: 48%; padding-bottom: 48%; margin-right: 2%; margin-bottom: 2%;}
+	ul.azGrid-3-sm li {width: 32.3333333333%; padding-bottom: 32.3333333333%;}
+	ul.azGrid-4-sm li {width: 24%; padding-bottom: 24%;}
+	ul.azGrid-5-sm li {width: 19%; padding-bottom: 19%;}
+	ul.azGrid-6-sm li {width: 15.666666667%; padding-bottom: 15.666666667%;}
+	ul.azGrid-7-sm li {width: 13.2857142%; padding-bottom: 13.2857142%;}
+	ul.azGrid-8-sm li {width: 11.5%; padding-bottom: 11.5%;}
+	ul.azGrid-9-sm li {width: 10.1111111111%; padding-bottom: 10.1111111111%;}
+	ul.azGrid-10-sm li {width: 9%; padding-bottom: 9%;}
+	ul.azGrid-11-sm li {width: 8.09090909091%; padding-bottom: 8.09090909091%;}
+	ul.azGrid-12-sm li {width: 7.33333333333%; padding-bottom: 7.33333333333%;}
+	ul.azGrid-13-sm li {width: 6.69230769231%; padding-bottom: 6.69230769231%;}
+	ul.azGrid-14-sm li {width: 6.14285714285%; padding-bottom: 6.14285714285%;}
+	ul.azGrid-15-sm li {width: 5.66666666666%; padding-bottom: 5.66666666666%;}
+	ul.azGrid-16-sm li {width: 5.25%; padding-bottom: 5.25%;}
+
+	ul.azGrid-1-sm li {width: var(--azGrid-1); padding-bottom: calc(var(--azGrid-1) * var(--azAR)); margin-right: 0;}
+	ul.azGrid-2-sm li {width: var(--azGrid-2); padding-bottom: calc(var(--azGrid-2) * var(--azAR)); margin-right: 2%; margin-bottom: 2%;}
+	ul.azGrid-3-sm li {width: var(--azGrid-3); padding-bottom: calc(var(--azGrid-3) * var(--azAR));}
+	ul.azGrid-4-sm li {width: var(--azGrid-4); padding-bottom: calc(var(--azGrid-4) * var(--azAR));}
+	ul.azGrid-5-sm li {width: var(--azGrid-5); padding-bottom: calc(var(--azGrid-5) * var(--azAR));}
+	ul.azGrid-6-sm li {width: var(--azGrid-6); padding-bottom: calc(var(--azGrid-6) * var(--azAR));}
+	ul.azGrid-7-sm li {width: var(--azGrid-7); padding-bottom: calc(var(--azGrid-7) * var(--azAR));}
+	ul.azGrid-8-sm li {width: var(--azGrid-8); padding-bottom: calc(var(--azGrid-8) * var(--azAR));}
+	ul.azGrid-9-sm li {width: var(--azGrid-9); padding-bottom: calc(var(--azGrid-9) * var(--azAR));}
+	ul.azGrid-10-sm li {width: var(--azGrid-10); padding-bottom: calc(var(--azGrid-10) * var(--azAR));}
+	ul.azGrid-11-sm li {width: var(--azGrid-11); padding-bottom: calc(var(--azGrid-11) * var(--azAR));}
+	ul.azGrid-12-sm li {width: var(--azGrid-12); padding-bottom: calc(var(--azGrid-12) * var(--azAR));}
+	ul.azGrid-13-sm li {width: var(--azGrid-13); padding-bottom: calc(var(--azGrid-13) * var(--azAR));}
+	ul.azGrid-14-sm li {width: var(--azGrid-14); padding-bottom: calc(var(--azGrid-14) * var(--azAR));}
+	ul.azGrid-15-sm li {width: var(--azGrid-15); padding-bottom: calc(var(--azGrid-15) * var(--azAR));}
+	ul.azGrid-16-sm li {width: var(--azGrid-16); padding-bottom: calc(var(--azGrid-16) * var(--azAR));}
+}
+
+/* md */
+@media (min-width: 768px) and (max-width: 991.98px) {
+	ul.azGridThumb.azGrid-1-md {margin-right: 0;}
+	ul.azGridThumb.azGrid-2-md {margin-right: -2%; margin-bottom: 2%;}
+
+	ul.azGrid-1-md li {width: 100%; padding-bottom: 100%; margin-right: 0;}
+	ul.azGrid-2-md li {width: 48%; padding-bottom: 48%; margin-right: 2%; margin-bottom: 2%;}
+	ul.azGrid-3-md li {width: 32.3333333333%; padding-bottom: 32.3333333333%;}
+	ul.azGrid-4-md li {width: 24%; padding-bottom: 24%;}
+	ul.azGrid-5-md li {width: 19%; padding-bottom: 19%;}
+	ul.azGrid-6-md li {width: 15.666666667%; padding-bottom: 15.666666667%;}
+	ul.azGrid-7-md li {width: 13.2857142%; padding-bottom: 13.2857142%;}
+	ul.azGrid-8-md li {width: 11.5%; padding-bottom: 11.5%;}
+	ul.azGrid-9-md li {width: 10.1111111111%; padding-bottom: 10.1111111111%;}
+	ul.azGrid-10-md li {width: 9%; padding-bottom: 9%;}
+	ul.azGrid-11-md li {width: 8.09090909091%; padding-bottom: 8.09090909091%;}
+	ul.azGrid-12-md li {width: 7.33333333333%; padding-bottom: 7.33333333333%;}
+	ul.azGrid-13-md li {width: 6.69230769231%; padding-bottom: 6.69230769231%;}
+	ul.azGrid-14-md li {width: 6.14285714285%; padding-bottom: 6.14285714285%;}
+	ul.azGrid-15-md li {width: 5.66666666666%; padding-bottom: 5.66666666666%;}
+	ul.azGrid-16-md li {width: 5.25%; padding-bottom: 5.25%;}
+
+	ul.azGrid-1-md li {width: var(--azGrid-1); padding-bottom: calc(var(--azGrid-1) * var(--azAR)); margin-right: 0;}
+	ul.azGrid-2-md li {width: var(--azGrid-2); padding-bottom: calc(var(--azGrid-2) * var(--azAR)); margin-right: 2%; margin-bottom: 2%;}
+	ul.azGrid-3-md li {width: var(--azGrid-3); padding-bottom: calc(var(--azGrid-3) * var(--azAR));}
+	ul.azGrid-4-md li {width: var(--azGrid-4); padding-bottom: calc(var(--azGrid-4) * var(--azAR));}
+	ul.azGrid-5-md li {width: var(--azGrid-5); padding-bottom: calc(var(--azGrid-5) * var(--azAR));}
+	ul.azGrid-6-md li {width: var(--azGrid-6); padding-bottom: calc(var(--azGrid-6) * var(--azAR));}
+	ul.azGrid-7-md li {width: var(--azGrid-7); padding-bottom: calc(var(--azGrid-7) * var(--azAR));}
+	ul.azGrid-8-md li {width: var(--azGrid-8); padding-bottom: calc(var(--azGrid-8) * var(--azAR));}
+	ul.azGrid-9-md li {width: var(--azGrid-9); padding-bottom: calc(var(--azGrid-9) * var(--azAR));}
+	ul.azGrid-10-md li {width: var(--azGrid-10); padding-bottom: calc(var(--azGrid-10) * var(--azAR));}
+	ul.azGrid-11-md li {width: var(--azGrid-11); padding-bottom: calc(var(--azGrid-11) * var(--azAR));}
+	ul.azGrid-12-md li {width: var(--azGrid-12); padding-bottom: calc(var(--azGrid-12) * var(--azAR));}
+	ul.azGrid-13-md li {width: var(--azGrid-13); padding-bottom: calc(var(--azGrid-13) * var(--azAR));}
+	ul.azGrid-14-md li {width: var(--azGrid-14); padding-bottom: calc(var(--azGrid-14) * var(--azAR));}
+	ul.azGrid-15-md li {width: var(--azGrid-15); padding-bottom: calc(var(--azGrid-15) * var(--azAR));}
+	ul.azGrid-16-md li {width: var(--azGrid-16); padding-bottom: calc(var(--azGrid-16) * var(--azAR));}
+}
+
+/* lg */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+	ul.azGridThumb.azGrid-1-lg {margin-right: 0;}
+	ul.azGridThumb.azGrid-2-lg {margin-right: -2%; margin-bottom: 2%;}
+
+	ul.azGrid-1-lg li {width: 100%; padding-bottom: 100%; margin-right: 0;}
+	ul.azGrid-2-lg li {width: 48%; padding-bottom: 48%; margin-right: 2%; margin-bottom: 2%;}
+	ul.azGrid-3-lg li {width: 32.3333333333%; padding-bottom: 32.3333333333%;}
+	ul.azGrid-4-lg li {width: 24%; padding-bottom: 24%;}
+	ul.azGrid-5-lg li {width: 19%; padding-bottom: 19%;}
+	ul.azGrid-6-lg li {width: 15.666666667%; padding-bottom: 15.666666667%;}
+	ul.azGrid-7-lg li {width: 13.2857142%; padding-bottom: 13.2857142%;}
+	ul.azGrid-8-lg li {width: 11.5%; padding-bottom: 11.5%;}
+	ul.azGrid-9-lg li {width: 10.1111111111%; padding-bottom: 10.1111111111%;}
+	ul.azGrid-10-lg li {width: 9%; padding-bottom: 9%;}
+	ul.azGrid-11-lg li {width: 8.09090909091%; padding-bottom: 8.09090909091%;}
+	ul.azGrid-12-lg li {width: 7.33333333333%; padding-bottom: 7.33333333333%;}
+	ul.azGrid-13-lg li {width: 6.69230769231%; padding-bottom: 6.69230769231%;}
+	ul.azGrid-14-lg li {width: 6.14285714285%; padding-bottom: 6.14285714285%;}
+	ul.azGrid-15-lg li {width: 5.66666666666%; padding-bottom: 5.66666666666%;}
+	ul.azGrid-16-lg li {width: 5.25%; padding-bottom: 5.25%;}
+
+	ul.azGrid-1-lg li {width: var(--azGrid-1); padding-bottom: calc(var(--azGrid-1) * var(--azAR)); margin-right: 0;}
+	ul.azGrid-2-lg li {width: var(--azGrid-2); padding-bottom: calc(var(--azGrid-2) * var(--azAR)); margin-right: 2%; margin-bottom: 2%;}
+	ul.azGrid-3-lg li {width: var(--azGrid-3); padding-bottom: calc(var(--azGrid-3) * var(--azAR));}
+	ul.azGrid-4-lg li {width: var(--azGrid-4); padding-bottom: calc(var(--azGrid-4) * var(--azAR));}
+	ul.azGrid-5-lg li {width: var(--azGrid-5); padding-bottom: calc(var(--azGrid-5) * var(--azAR));}
+	ul.azGrid-6-lg li {width: var(--azGrid-6); padding-bottom: calc(var(--azGrid-6) * var(--azAR));}
+	ul.azGrid-7-lg li {width: var(--azGrid-7); padding-bottom: calc(var(--azGrid-7) * var(--azAR));}
+	ul.azGrid-8-lg li {width: var(--azGrid-8); padding-bottom: calc(var(--azGrid-8) * var(--azAR));}
+	ul.azGrid-9-lg li {width: var(--azGrid-9); padding-bottom: calc(var(--azGrid-9) * var(--azAR));}
+	ul.azGrid-10-lg li {width: var(--azGrid-10); padding-bottom: calc(var(--azGrid-10) * var(--azAR));}
+	ul.azGrid-11-lg li {width: var(--azGrid-11); padding-bottom: calc(var(--azGrid-11) * var(--azAR));}
+	ul.azGrid-12-lg li {width: var(--azGrid-12); padding-bottom: calc(var(--azGrid-12) * var(--azAR));}
+	ul.azGrid-13-lg li {width: var(--azGrid-13); padding-bottom: calc(var(--azGrid-13) * var(--azAR));}
+	ul.azGrid-14-lg li {width: var(--azGrid-14); padding-bottom: calc(var(--azGrid-14) * var(--azAR));}
+	ul.azGrid-15-lg li {width: var(--azGrid-15); padding-bottom: calc(var(--azGrid-15) * var(--azAR));}
+	ul.azGrid-16-lg li {width: var(--azGrid-16); padding-bottom: calc(var(--azGrid-16) * var(--azAR));}
+}
+
+/* xl */
+@media (min-width: 1200px) {
+	ul.azGridThumb.azGrid-1-xl {margin-right: 0;}
+	ul.azGridThumb.azGrid-2-xl {margin-right: -2%; margin-bottom: 2%;}
+
+	ul.azGrid-1-xl li {width: 100%; padding-bottom: 100%; margin-right: 0;}
+	ul.azGrid-2-xl li {width: 48%; padding-bottom: 48%; margin-right: 2%; margin-bottom: 2%;}
+	ul.azGrid-3-xl li {width: 32.3333333333%; padding-bottom: 32.3333333333%;}
+	ul.azGrid-4-xl li {width: 24%; padding-bottom: 24%;}
+	ul.azGrid-5-xl li {width: 19%; padding-bottom: 19%;}
+	ul.azGrid-6-xl li {width: 15.666666667%; padding-bottom: 15.666666667%;}
+	ul.azGrid-7-xl li {width: 13.2857142%; padding-bottom: 13.2857142%;}
+	ul.azGrid-8-xl li {width: 11.5%; padding-bottom: 11.5%;}
+	ul.azGrid-9-xl li {width: 10.1111111111%; padding-bottom: 10.1111111111%;}
+	ul.azGrid-10-xl li {width: 9%; padding-bottom: 9%;}
+	ul.azGrid-11-xl li {width: 8.09090909091%; padding-bottom: 8.09090909091%;}
+	ul.azGrid-12-xl li {width: 7.33333333333%; padding-bottom: 7.33333333333%;}
+	ul.azGrid-13-xl li {width: 6.69230769231%; padding-bottom: 6.69230769231%;}
+	ul.azGrid-14-xl li {width: 6.14285714285%; padding-bottom: 6.14285714285%;}
+	ul.azGrid-15-xl li {width: 5.66666666666%; padding-bottom: 5.66666666666%;}
+	ul.azGrid-16-xl li {width: 5.25%; padding-bottom: 5.25%;}
+
+	ul.azGrid-1-xl li {width: var(--azGrid-1); padding-bottom: calc(var(--azGrid-1) * var(--azAR)); margin-right: 0;}
+	ul.azGrid-2-xl li {width: var(--azGrid-2); padding-bottom: calc(var(--azGrid-2) * var(--azAR)); margin-right: 2%; margin-bottom: 2%;}
+	ul.azGrid-3-xl li {width: var(--azGrid-3); padding-bottom: calc(var(--azGrid-3) * var(--azAR));}
+	ul.azGrid-4-xl li {width: var(--azGrid-4); padding-bottom: calc(var(--azGrid-4) * var(--azAR));}
+	ul.azGrid-5-xl li {width: var(--azGrid-5); padding-bottom: calc(var(--azGrid-5) * var(--azAR));}
+	ul.azGrid-6-xl li {width: var(--azGrid-6); padding-bottom: calc(var(--azGrid-6) * var(--azAR));}
+	ul.azGrid-7-xl li {width: var(--azGrid-7); padding-bottom: calc(var(--azGrid-7) * var(--azAR));}
+	ul.azGrid-8-xl li {width: var(--azGrid-8); padding-bottom: calc(var(--azGrid-8) * var(--azAR));}
+	ul.azGrid-9-xl li {width: var(--azGrid-9); padding-bottom: calc(var(--azGrid-9) * var(--azAR));}
+	ul.azGrid-10-xl li {width: var(--azGrid-10); padding-bottom: calc(var(--azGrid-10) * var(--azAR));}
+	ul.azGrid-11-xl li {width: var(--azGrid-11); padding-bottom: calc(var(--azGrid-11) * var(--azAR));}
+	ul.azGrid-12-xl li {width: var(--azGrid-12); padding-bottom: calc(var(--azGrid-12) * var(--azAR));}
+	ul.azGrid-13-xl li {width: var(--azGrid-13); padding-bottom: calc(var(--azGrid-13) * var(--azAR));}
+	ul.azGrid-14-xl li {width: var(--azGrid-14); padding-bottom: calc(var(--azGrid-14) * var(--azAR));}
+	ul.azGrid-15-xl li {width: var(--azGrid-15); padding-bottom: calc(var(--azGrid-15) * var(--azAR));}
+	ul.azGrid-16-xl li {width: var(--azGrid-16); padding-bottom: calc(var(--azGrid-16) * var(--azAR));}
+}
+
+/* xxl (not needed to define) */
+@media (min-width: 1900px) and (min-height: 1020px) {
+	ul.azGridThumb.azGrid-1-xxl {margin-right: 0;}
+	ul.azGridThumb.azGrid-2-xxl {margin-right: -2%; margin-bottom: 2%;}
+
+	ul.azGrid-1-xxl li {width: 100%; padding-bottom: 100%; margin-right: 0;}
+	ul.azGrid-2-xxl li {width: 48%; padding-bottom: 48%; margin-right: 2%; margin-bottom: 2%;}
+	ul.azGrid-3-xxl li {width: 32.3333333333%; padding-bottom: 32.3333333333%;}
+	ul.azGrid-4-xxl li {width: 24%; padding-bottom: 24%;}
+	ul.azGrid-5-xxl li {width: 19%; padding-bottom: 19%;}
+	ul.azGrid-6-xxl li {width: 15.666666667%; padding-bottom: 15.666666667%;}
+	ul.azGrid-7-xxl li {width: 13.2857142%; padding-bottom: 13.2857142%;}
+	ul.azGrid-8-xxl li {width: 11.5%; padding-bottom: 11.5%;}
+	ul.azGrid-9-xxl li {width: 10.1111111111%; padding-bottom: 10.1111111111%;}
+	ul.azGrid-10-xxl li {width: 9%; padding-bottom: 9%;}
+	ul.azGrid-11-xxl li {width: 8.09090909091%; padding-bottom: 8.09090909091%;}
+	ul.azGrid-12-xxl li {width: 7.33333333333%; padding-bottom: 7.33333333333%;}
+	ul.azGrid-13-xxl li {width: 6.69230769231%; padding-bottom: 6.69230769231%;}
+	ul.azGrid-14-xxl li {width: 6.14285714285%; padding-bottom: 6.14285714285%;}
+	ul.azGrid-15-xxl li {width: 5.66666666666%; padding-bottom: 5.66666666666%;}
+	ul.azGrid-16-xxl li {width: 5.25%; padding-bottom: 5.25%;}
+
+	ul.azGrid-1-xxl li {width: var(--azGrid-1); padding-bottom: calc(var(--azGrid-1) * var(--azAR)); margin-right: 0;}
+	ul.azGrid-2-xxl li {width: var(--azGrid-2); padding-bottom: calc(var(--azGrid-2) * var(--azAR)); margin-right: 2%; margin-bottom: 2%;}
+	ul.azGrid-3-xxl li {width: var(--azGrid-3); padding-bottom: calc(var(--azGrid-3) * var(--azAR));}
+	ul.azGrid-4-xxl li {width: var(--azGrid-4); padding-bottom: calc(var(--azGrid-4) * var(--azAR));}
+	ul.azGrid-5-xxl li {width: var(--azGrid-5); padding-bottom: calc(var(--azGrid-5) * var(--azAR));}
+	ul.azGrid-6-xxl li {width: var(--azGrid-6); padding-bottom: calc(var(--azGrid-6) * var(--azAR));}
+	ul.azGrid-7-xxl li {width: var(--azGrid-7); padding-bottom: calc(var(--azGrid-7) * var(--azAR));}
+	ul.azGrid-8-xxl li {width: var(--azGrid-8); padding-bottom: calc(var(--azGrid-8) * var(--azAR));}
+	ul.azGrid-9-xxl li {width: var(--azGrid-9); padding-bottom: calc(var(--azGrid-9) * var(--azAR));}
+	ul.azGrid-10-xxl li {width: var(--azGrid-10); padding-bottom: calc(var(--azGrid-10) * var(--azAR));}
+	ul.azGrid-11-xxl li {width: var(--azGrid-11); padding-bottom: calc(var(--azGrid-11) * var(--azAR));}
+	ul.azGrid-12-xxl li {width: var(--azGrid-12); padding-bottom: calc(var(--azGrid-12) * var(--azAR));}
+	ul.azGrid-13-xxl li {width: var(--azGrid-13); padding-bottom: calc(var(--azGrid-13) * var(--azAR));}
+	ul.azGrid-14-xxl li {width: var(--azGrid-14); padding-bottom: calc(var(--azGrid-14) * var(--azAR));}
+	ul.azGrid-15-xxl li {width: var(--azGrid-15); padding-bottom: calc(var(--azGrid-15) * var(--azAR));}
+	ul.azGrid-16-xxl li {width: var(--azGrid-16); padding-bottom: calc(var(--azGrid-16) * var(--azAR));}
+}

@@ -1,0 +1,91 @@
+<style type="text/css"> 
+	.optionsTable {width: 100%; border-spacing: 0; border: 1px solid #AAAAAA; font-family: Tahoma, Geneva, sans-serif; font-size: 10pt;}
+	.optionsTable th {background-color: #D4D4D4; padding-top: 10px; padding-bottom: 10px; font-size:12pt; font-family: "Comic Sans MS", cursive, sans-serif;}
+	.optionsTable td, .optionsTable th{padding-left: 5px; padding-right: 5px;}
+	.optionsTable th{white-space: nowrap;}
+	.optionsTable td, .optionsTable th {vertical-align: top; line-height: 1.2em; text-align: left; border-bottom: 1px solid #AAAAAA; padding-top: 3px; padding-bottom: 8px;}
+	.optionsTable .subOpt td {border-bottom-width: 0; font-size: 12pt;}
+	.optionsTable tr.important {font-weight: bolder;}
+	.optionsTable td:nth-child(1) {border-right: #AAA 1px dotted;}
+	.optionsTable td:nth-child(2) {border-right: #AAA 1px dotted; word-break: break-all;}
+	.optionsTable ul, .optionsTable ol {padding-left: 14px; margin-top: 0}
+	.optionsTable li {margin-bottom: 5px; padding-left: 14px;}
+	.optionsTable tr:nth-child(odd) { background-color: #FDFDFD;}
+	.optionsTable tr:nth-child(even) { background-color: #FFFFFF;}
+	.optionsTable tr:last-child>td { border-bottom: none;}	
+	.optionsTable.sub th {padding-top: 3px; padding-bottom: 3px; font-size: 11pt;}
+	.optionsTable.sub td {line-height: 1em; padding-bottom: 2px; padding-top: 2px;}
+	.optionsSimilarExDescr {position: absolute; background-color: #eee; font-size: 9px; width: 100%; pointer-events: none; text-align: center; overflow: hidden;}
+	.optionsSimilarExLI {float: left; margin: 0 10px 10px 0; position: relative; border: #aaa 1px solid;}
+	.optionsHeader {color: #1a4a7a; font-size: 150%; margin: 0; padding: 20px 0px 5px 0px;}
+	.optionsTable pre, .optionsTable code {white-space: pre-wrap;}
+	.optionsText {}
+</style>
+
+<!-- $.openAjaxZoomInFancyBox - documentation -->
+<table class="optionsTable" >
+<tbody>
+	<tr><th>Option</th><th>Default</th><th>Description</th></tr>
+	<tr><td>axZmPath </td><td> 'auto' </td><td>Path to /axZm directory, e.g. /test/axZm/ </td></tr>
+	<tr><td>queryString </td><td> null </td><td>Single string which determines which images will be loaded <sup id="o_sup_1">1</sup> </td></tr>
+	<tr><td>loadingMsg </td><td> 'Loading, please wait...' </td><td>Wait message </td></tr>
+	<tr><td>axZmCallBacks </td><td> {} </td><td>AJAX-ZOOM has several callbacks, https://www.ajax-zoom.com/index.php?cid=docs#onBeforeStart </td></tr>
+	<tr><td>fullScreenApi </td><td> false </td><td>Try to open AJAX-ZOOM at browsers fullscreen mode, possible on modern browsers except IE < 10 and mobile </td></tr>
+	<tr><td>iframeMode </td><td> false </td><td>Enable iframe mode </td></tr>
+	<tr><td>iframe </td><td> false </td><td>Alias iframeMode </td></tr>
+	<tr><td>scrolling </td><td> 'no' </td><td>Scroll iframe </td></tr>
+	<tr><td>href </td><td> null </td><td>Alias queryString for iframes </td></tr>
+	
+	<tr><td>boxMargin </td><td> 30 </td><td> Margin of the box to the edge of the browser window</td></tr>
+	<tr><td>boxPadding </td><td> 10 </td><td> Box padding </td></tr>
+	<tr><td>boxCenterOnScroll </td><td> true </td><td> Put box in view when browser window scrolls while box is showing </td></tr>
+	<tr><td>boxOverlayShow </td><td> true </td><td>Show fancybox overlay </td></tr>
+	<tr><td>boxOverlayOpacity </td><td> 0.75 </td><td>Opacity of the overlay </td></tr>
+	<tr><td>boxOverlayColor </td><td> '#777' </td><td>Color of the overlay </td></tr>
+	<tr><td>boxTransitionIn </td><td> 'fade' </td><td>'elastic', 'fade' or 'none' </td></tr>
+	<tr><td>boxTransitionOut </td><td> 'fade' </td><td>'elastic', 'fade' or 'none' </td></tr>
+	<tr><td>boxSpeedIn </td><td> 300 </td><td>Transition speed when box appears </td></tr>
+	<tr><td>boxSpeedOut </td><td> 300 </td><td>Transition speed when box disappears </td></tr>
+	<tr><td>boxEasingIn </td><td> 'swing' </td><td>Easing function </td></tr>
+	<tr><td>boxEasingOut </td><td> 'swing' </td><td>Easing function </td></tr>
+	<tr><td>boxShowCloseButton </td><td> true </td><td>Show close button </td></tr>
+	<tr><td>boxEnableEscapeButton </td><td> true </td><td>Close box when the user hits Esc button </td></tr>
+	<tr><td>boxOnClosed </td><td> function(){} </td><td>Callback when the box is closed </td></tr>
+	<tr><td>boxOnComplete </td><td> function(){} </td><td>Callback when the box is opened </td></tr>
+
+</tbody>
+</table>
+
+<div style="clear: both; margin-top: 10px">
+	<sup id="o_sup_1">1</sup> Please note that by passing example=someNumber to AJAX-ZOOM over "queryString" some default settings from "/axZm/zoomConfig.inc.php" are overridden in "/axZm/zoomConfigCustom.inc.php" after elseif ($_GET['example'] == someNumber){ So if changes in "/axZm/zoomConfig.inc.php" have no effect look for the same options "/axZm/zoomConfigCustom.inc.php". 
+</div>
+
+<script type="text/javascript">
+if (window.jQuery){
+	$('.optionsTable:not(.methods) td:nth-child(2)').each(function(){
+ 		var txt = $.trim($(this).html());
+ 		if (txt == 'false' || txt == 'true'){
+ 			$(this).html('<span style="color: green">'+txt+'</span>');
+		} else if (txt == 'null') {
+			$(this).html('<span style="color: blue">'+txt+'</span>');
+		} 
+		else if (txt == 'function'){
+			$(this).html('<span style="color: #003c00">'+txt+'</span>');
+		}
+		//else if (txt.charAt(0) != '\'' && txt.charAt(0) != '{' && txt.charAt(0) != '['){
+		else if (parseInt(txt) == txt || parseFloat(txt) == txt){
+			$(this).html('<span style="color: red">'+txt+'</span>');
+		}
+	});
+
+	$('.optionsTable:not(.sub) td:nth-child(1)').each(function(){
+ 		var txt = $.trim($(this).html());
+ 		if (txt){$(this).parent().attr('id', 'pOpt_'+txt);}
+	});
+
+	if (window.optionsHeader){$('<div class="optionsHeader">'+window.optionsHeader+'</div>').insertBefore('.optionsTable:eq(0)');}
+	if (window.optionsText){$('<p class="optionsText">'+window.optionsText+'</p>').insertBefore('.optionsTable:eq(0)');}
+}
+</script>
+
+<div style="clear: both; height: 50px;"></div>

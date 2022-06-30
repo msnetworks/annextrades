@@ -1,0 +1,8 @@
+<div class="width-container" [ngClass]="livePreview.activeWidth" previewDragAndDrop>
+    <div class="highlights">
+        <context-box class="hidden" type="hover" #hoverBox></context-box>
+        <context-box class="hidden" type="selected" #selectedBox></context-box>
+    </div>
+    <iframe #iframe></iframe>
+    <div class="drag-overlay" #dragOverlay></div>
+</div>

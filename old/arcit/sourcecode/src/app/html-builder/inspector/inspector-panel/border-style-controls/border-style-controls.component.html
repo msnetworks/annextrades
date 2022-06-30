@@ -1,0 +1,21 @@
+<button type="button"
+        class="no-style border-color"
+        [style.borderColor]="borderColor"
+        (click)="openColorpickerPanel()"
+        [matTooltip]="'Border Color' | trans"
+        #colorButton
+></button>
+
+<div class="input-container">
+    <select name="border-style" id="border-style" [(ngModel)]="borderStyle" (ngModelChange)="applyBorderStyle()">
+        <option value="none" trans>None</option>
+        <option value="solid" trans>Solid</option>
+        <option value="dashed" trans>Dashed</option>
+        <option value="dotted" trans>Dotted</option>
+        <option value="double" trans>Double</option>
+        <option value="groove" trans>Groove</option>
+        <option value="ridge" trans>Ridge</option>
+        <option value="inset" trans>Inset</option>
+        <option value="outset" trans>Outset</option>
+    </select>
+</div>

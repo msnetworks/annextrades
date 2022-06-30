@@ -1,0 +1,26 @@
+<div class="toolbar"
+     cdkDrag
+     cdkDragHandle
+     cdkDragRootElement=".cdk-overlay-pane"
+     cdkDragBoundary="body"
+>
+    <div class="input-container theme-select-container">
+        <select name="editor-theme" id="editor-theme" [(ngModel)]="theme" (ngModelChange)="useTheme(theme)">
+            <option *ngFor="let theme of themes" [ngValue]="theme">{{theme}}</option>
+        </select>
+    </div>
+
+    <div class="type-buttons">
+        <button type="button" (click)="switchType('html')" [class.active]="activeTypeIs('html')"  mat-button>HTML</button>
+        <button type="button" (click)="switchType('css')" [class.active]="activeTypeIs('css')"  mat-button>CSS</button>
+        <button type="button" (click)="switchType('js')" [class.active]="activeTypeIs('js')"  mat-button>JS</button>
+    </div>
+
+    <div class="action-buttons">
+        <button type="button" mat-icon-button (click)="closeEditor()"><mat-icon svgIcon="close"></mat-icon></button>
+    </div>
+</div>
+
+<div class="editor-container">
+    <div class="editor" #editor></div>
+</div>

@@ -1,0 +1,103 @@
+<html>
+  <head>
+      <title>Chat Bot</title>
+      <meta name=viewport content="width=device-width, initial-scale=1">
+      <link rel="icon"type="image/png" href="https://annextrades.com/assets/images/annexis-emblem.png" >
+      <!-- CSS -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="assets/css/style.css">
+      <!-- Bootstrap -->
+      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+      <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+      <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+      
+
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row no-gutter">
+        <div class="col-md-12 col-lg-12" style="background-color: #37479a; color: #fff;">
+          <div class="row imm">
+            <div class="col-md-12 row" style="padding: 15px 15px 0px 15px;">
+              <p class="pull-left col-md-3"><a href="/"><img style="width:200px;" src="https://cdn.bitrix24.com/b13748455/landing/269/269f9f4bde8f5edb9907ff5bae6e72ce/Logo_header_180_1x.png" alt="" /></a></p>
+              <h5 class="text-center col-md-6">Join the Fast-Growing B2B Platform in America that will get you U.S. Customers!</h5>
+              <h4 class="text-right col-md-3"><a style="color: #fff;" href="https://join.annextrades.com"><i class="fa fa-cog"> <font class="desktop">How it works</font></i></a></h4>
+            </div>
+          </div>
+        </div>
+       
+        <div class="row">
+          <div class="col-md-7" style="padding: 45px;">
+            <div class="">
+              <h1 class=""><p style="text-align: left; letter-spacing: inherit;">
+                <p style="text-align: left; color: #333"><span style="font-size: 3rem; font-weight: 700;">Will you deliver?</span></p>
+                <font style="font-size: 1.2rem; color: rgb(73, 64, 62);">Millions of U.S. <span style="color: rgb(191, 54, 12);">Buyers</span>
+                are seeking new suppliers. <br> Become the next biggest online
+                <span style="color: rgb(191, 54, 12);">Indian supplier</span>
+                for <br> New U.S. Market.&nbsp;&nbsp;</font></p>
+              </h1>
+              <div class="" style="color: #37479a;"><br>
+                <div style="text-align: left;" align="center"><b>Want U.S. Buyers for your business?</b></div>
+                <div style="text-align: left;" align="center"><b><br></b></div>
+                <ul>
+                  <li>
+                    <span style="font-weight: bold;">Learn How...</span> 
+                    <span style="color: rgb(191, 54, 12);text-decoration-line: underline;">Watch the video</span> 
+                    to get all the details &amp; get started Now!
+                  </li>
+                  <li>Get started today with a fast-growing <b>Business-to-Business (B2B) Platform in America</b>. </li>
+                  <li>Start communicating with U.S. Buyers on our portal today and get sales. </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-12 container text-center">
+              <button type="button" class="" data-toggle="modal" data-target="#exampleModal" style="background: #fff; border: 0;">
+                <img src="https://annextrades.com/assets/images/ytframe.png" width="400px" alt="">
+              </button>
+
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" style="z-index: 100000;" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" style="width:600px;" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <iframe src="https://www.youtube.com/embed/MKCcJL05_r8?autoplay=0&controls=1&loop=0&mute=0&rel=0&start=0&html5=1&v=MKCcJL05_r8&enablejsapi=1&origin=https://join.annextrades.com" width="400px" height="250px" frameborder="0"></iframe>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="chat-title text-center">
+              <h4 class="chat-reps"><font><img src="https://annextrades.com/assets/images/sheela.jpeg" style="width: 40px; border-radius: 50px;">&nbsp;&nbsp; <b>Jack, ANNEXTrades Rep.</b></font></h4>
+            </div>
+            <mybot></mybot>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+      })
+    </script>
+
+    <!--JS-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
+  </body>
+</html>

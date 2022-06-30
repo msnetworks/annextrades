@@ -1,0 +1,23 @@
+window.menuMessage = {
+	TITLE_INSTALL: 'Настройка приложения',
+	INST_PAYMENT: 'Использовать цены:',
+	INST_WS: 'Первый день недели:',
+	INST_PAYMENT_CURRENCY: 'Валюта: ',
+	INST_PAYMENT_CURRENCY_DEF: 'руб',
+	INST_SET_ACCESS: 'Кто может управлять меню?',
+	INST_FINISH: 'Завершить настройку',
+	MENU_DISH_NAME: 'Название блюда',
+	MENU_DISH_PRICE: 'Цена',
+	MENU_DISH_ADD: 'добавить',
+	MENU_DISH_SAVE: 'сохранить',
+	MENU_DISH_SHARE: 'опубликовать',
+	MENU_DISH_SHARED: 'опубликовано',
+	MENU_DISH_SHARE_TITLE: 'Меню на #DATE#',
+	WD0: 'Воскресенье',
+	WD1: 'Понедельник',
+	WD2: 'Вторник',
+	WD3: 'Среда',
+	WD4: 'Четверг',
+	WD5: 'Пятница',
+	WD6: 'Суббота'
+};

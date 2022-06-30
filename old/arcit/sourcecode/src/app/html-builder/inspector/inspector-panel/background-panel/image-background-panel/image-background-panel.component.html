@@ -1,0 +1,46 @@
+<div class="header">
+    <div class="name" trans>Image Background</div>
+    <button class="close-button no-style" (click)="emitClosedEvent()">
+        <mat-icon svgIcon="close"></mat-icon>
+    </button>
+</div>
+
+<button type="button" class="upload-button" mat-raised-button color="accent" (click)="uploadImage()" trans>Upload Image</button>
+
+<div class="separator" trans>Textures</div>
+
+<div class="textures">
+    <button class="no-style texture" *ngFor="let texture of textures; let index = index;" (click)="emitSelectedEvent(getTextureUrl(index))">
+        <img [src]="getTextureUrl(index)">
+    </button>
+</div>
+
+<div class="separator" trans>Image Properties</div>
+
+<div class="image-properties">
+    <div class="repeat property-panel">
+        <div class="title" trans>Repeat</div>
+        <mat-radio-group class="controls" [(ngModel)]="backgroundRepeat" (ngModelChange)="applyStyle('backgroundRepeat', backgroundRepeat)">
+            <mat-radio-button value="no-repeat" trans>None</mat-radio-button>
+            <mat-radio-button value="repeat-x" trans>Horizontal</mat-radio-button>
+            <mat-radio-button value="repeat-y" trans>Vertical</mat-radio-button>
+            <mat-radio-button value="repeat" trans>All</mat-radio-button>
+        </mat-radio-group>
+    </div>
+
+    <div class="position property-panel">
+        <div class="title" trans>Position</div>
+        <div class="controls">
+            <button class="no-style box" [class.active]="backgroundPosition === 'top left'" (click)="applyStyle('backgroundPosition', 'top left')"></button>
+            <button class="no-style box" [class.active]="backgroundPosition === 'top center'" (click)="applyStyle('backgroundPosition', 'top center')"></button>
+            <button class="no-style box" [class.active]="backgroundPosition === 'top right'" (click)="applyStyle('backgroundPosition', 'top right')"></button>
+            <button class="no-style box" [class.active]="backgroundPosition === 'center center'" (click)="applyStyle('backgroundPosition', 'center center')"></button>
+            <button class="no-style box" [class.active]="backgroundPosition === 'center right'" (click)="applyStyle('backgroundPosition', 'center right')"></button>
+            <button class="no-style box" [class.active]="backgroundPosition === 'center left'" (click)="applyStyle('backgroundPosition', 'center left')"></button>
+            <button class="no-style box" [class.active]="backgroundPosition === 'bottom left'" (click)="applyStyle('backgroundPosition', 'bottom left')"></button>
+            <button class="no-style box" [class.active]="backgroundPosition === 'bottom center'" (click)="applyStyle('backgroundPosition', 'bottom center')"></button>
+            <button class="no-style box" [class.active]="backgroundPosition === 'bottom right'" (click)="applyStyle('backgroundPosition', 'bottom right')"></button>
+        </div>
+    </div>
+</div>
+

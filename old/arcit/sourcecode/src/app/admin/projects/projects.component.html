@@ -1,0 +1,53 @@
+<data-table [dataSource]="dataSource" itemsName="templates" matSort>
+    <button mat-raised-button color="accent" (click)="showCrupdateProjectModal()" *ngIf="currentUser.hasPermission('projects.create')" headerActions trans>Add</button>
+
+    <button mat-icon-button [matTooltip]="'Delete selected' | trans" (click)="maybeDeleteSelectedProjects()" headerSelectedActions *ngIf="currentUser.hasPermission('projects.delete')">
+        <mat-icon svgIcon="delete"></mat-icon>
+    </button>
+
+    <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="name" class="name-with-image" trans>Project</mat-header-cell>
+        <mat-cell *matCellDef="let project" class="name-with-image">
+            <img [src]="getProjectThumbnail(project)" alt="">
+            <span> {{project.name}} </span>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="user">
+        <mat-header-cell *matHeaderCellDef class="name-with-image" trans>User</mat-header-cell>
+        <mat-cell *matCellDef="let project" class="name-with-image">
+            <img [src]="project.users[0]?.avatar" alt="">
+            <span>{{project.users[0]?.display_name}}</span>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="published">
+        <mat-header-cell *matHeaderCellDef mat-sort-header trans>Published</mat-header-cell>
+        <mat-cell *matCellDef="let project"> {{project.published ? 'Yes' : 'No'}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="template">
+        <mat-header-cell *matHeaderCellDef trans>Template</mat-header-cell>
+        <mat-cell *matCellDef="let project"> {{project.template}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="framework">
+        <mat-header-cell *matHeaderCellDef trans>Framework</mat-header-cell>
+        <mat-cell *matCellDef="let project"> {{project.framework}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="created_at">
+        <mat-header-cell *matHeaderCellDef trans>Created At</mat-header-cell>
+        <mat-cell *matCellDef="let project"> {{project.created_at | formattedDate}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+        <mat-header-cell *matHeaderCellDef class="multiple-icons"></mat-header-cell>
+        <mat-cell *matCellDef="let project" class="multiple-icons">
+            <a mat-icon-button [routerLink]="['/builder', project.id]" [matTooltip]="'Edit project' | trans"><mat-icon svgIcon="edit"></mat-icon></a>
+            <button mat-icon-button (click)="showCrupdateProjectModal(project)" *ngIf="currentUser.hasPermission('projects.update')" [matTooltip]="'Update details' | trans">
+                <mat-icon svgIcon="settings"></mat-icon>
+            </button>
+        </mat-cell>
+    </ng-container>
+</data-table>

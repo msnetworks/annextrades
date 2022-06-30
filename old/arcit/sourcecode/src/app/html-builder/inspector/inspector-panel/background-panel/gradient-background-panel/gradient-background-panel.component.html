@@ -1,0 +1,10 @@
+<div class="header">
+    <div class="name" trans>Gradient Background</div>
+    <button class="close-button no-style" (click)="emitClosedEvent()">
+        <mat-icon svgIcon="close"></mat-icon>
+    </button>
+</div>
+
+<div class="previews">
+    <button class="preview no-style" *ngFor="let gradient of gradients" [style.background]="gradient" (click)="emitSelectedEvent(gradient)"></button>
+</div>

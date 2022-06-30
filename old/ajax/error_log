@@ -1,0 +1,2 @@
+[27-Sep-2016 09:06:56 America/Chicago] PHP Warning:  mysqli_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: NO) in /home/readymad/public_html/product/entrepreneur/ajax/config.php on line 8
+[27-Sep-2016 09:09:00 America/Chicago] PHP Warning:  mysqli_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: NO) in /home/readymad/public_html/product/entrepreneur/ajax/config.php on line 8

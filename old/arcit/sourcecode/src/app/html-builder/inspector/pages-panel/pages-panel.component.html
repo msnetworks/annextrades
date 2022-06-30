@@ -1,0 +1,50 @@
+<button class="new-page-button" mat-raised-button color="accent" [disabled]="loading" (click)="createNewPage()">
+    <mat-icon svgIcon="add"></mat-icon>
+    <span trans>New Page</span>
+</button>
+
+<div class="content-panel">
+    <div class="header" trans>Active Page</div>
+
+    <div class="input-container">
+        <select name="active-page" id="active-page" [(ngModel)]="selectedPage" (ngModelChange)="onPageSelected()">
+            <option [ngValue]="page" *ngFor="let page of activeProject.getPages()">{{page.name}}</option>
+        </select>
+    </div>
+
+    <div class="active-page-actions">
+        <button mat-button color="warn" [disabled]="!canDeleteSelectedPage() || loading" (click)="deleteSelectedPage()" [matTooltip]="'Delete' | trans" trans>Delete</button>
+        <button mat-button color="accent" [disabled]="loading" (click)="duplicateSelectedPage()" [matTooltip]="'Duplicate' | trans" trans>Duplicate</button>
+    </div>
+</div>
+
+<form class="page-options many-inputs content-panel" *ngIf="selectedPage" (ngSubmit)="updateSelectedPage()" ngNativeValidate>
+    <div class="header" trans>Page SEO Options</div>
+
+    <div class="input-container">
+        <label for="selected-page-name" trans>Page Name</label>
+        <input type="text" name="selected-page-name" id="selected-page-name" [(ngModel)]="updateModel.name" [disabled]="updateModel.name === 'index'" required>
+        <p class="error" *ngIf="errors.name">{{errors.name}}</p>
+    </div>
+
+    <div class="input-container">
+        <label for="selected-page-title" trans>Page Title</label>
+        <input type="text" name="selected-page-title" id="selected-page-title" [(ngModel)]="updateModel.title">
+        <p class="error" *ngIf="errors.title">{{errors.title}}</p>
+    </div>
+
+    <div class="input-container">
+        <label for="selected-page-description" trans>Page Description</label>
+        <textarea type="text" name="selected-page-description" id="selected-page-description" [(ngModel)]="updateModel.description"></textarea>
+        <p class="error" *ngIf="errors.description">{{errors.description}}</p>
+    </div>
+
+    <div class="input-container">
+        <label for="selected-page-keywords" trans>Page Keywords</label>
+        <input type="text" name="selected-page-keywords" id="selected-page-keywords" [(ngModel)]="updateModel.keywords">
+        <p trans>Separate each one with a comma.</p>
+        <p class="error" *ngIf="errors.keywords">{{errors.keywords}}</p>
+    </div>
+
+    <button type="submit" mat-raised-button color="accent" trans>Update</button>
+</form>

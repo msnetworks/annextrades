@@ -1,0 +1,77 @@
+<mat-accordion class="containers" cdkDropList (cdkDropListDropped)="reorder($event, 'container')">
+    <button class="no-style add-item-button" (click)="layoutPanel.createContainer(null, 'start')"><span trans>+ ADD CONTAINER</span></button>
+
+    <div class="container-drag-wrapper" cdkDrag [id]="container.id" *ngFor="let container of layoutPanel.containers; index as index">
+        <mat-expansion-panel class="container-panel mat-elevation-z" [expanded]="containerIsSelected(container)" (opened)="onPanelOpen(container)">
+            <mat-expansion-panel-header class="drag-handle" cdkDragHandle (mouseenter)="repositionHoverBox(container.node)" (mouseleave)="hideHoverBox()">
+                <mat-panel-title class="name">
+                    <span trans>Container</span> <span [innerHtml]="'&nbsp'"></span> <span>{{index + 1}}</span>
+                    <div *cdkDragPreview class="layout-drag-preview">
+                        <span trans>Container</span> <span [innerHtml]="'&nbsp'"></span> <span>{{index + 1}}</span>
+                    </div>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="container-config">
+                <div class="rows" cdkDropList (cdkDropListDropped)="reorder($event, 'row')">
+                    <button class="no-style add-item-button" (click)="layoutPanel.createRow(container.node, container.rows[0], 'start')"><span trans>+ ADD ROW</span></button>
+
+                    <div class="row-drag-wrapper" cdkDrag *ngFor="let row of container.rows; index as index">
+                        <div class="row drag-handle" cdkDragHandle (click)="layoutPanel.selectRow(row)" [class.selected]="layoutPanel.rowIsSelected(row)" (mouseenter)="repositionHoverBox(row)" (mouseleave)="hideHoverBox()">
+                            <div *cdkDragPreview class="layout-drag-preview"><span trans>Row</span> {{index + 1}}</div>
+                            <div class="row-name"><span trans>Row</span> {{index + 1}}</div>
+                            <div class="row-actions">
+                                <button class="no-style" [matTooltip]="'Modify' | trans" (click)="openInspectorPanel(row)">
+                                    <mat-icon svgIcon="edit"></mat-icon>
+                                </button>
+                                <button class="no-style" [matTooltip]="'Clone' | trans" (click)="cloneRow(row)">
+                                    <mat-icon svgIcon="file-copy"></mat-icon>
+                                </button>
+                                <button class="no-style" [matTooltip]="'Delete' | trans" (click)="removeItem(row)">
+                                    <mat-icon svgIcon="delete"></mat-icon>
+                                </button>
+                            </div>
+                        </div>
+
+                        <button class="no-style add-item-button" (click)="layoutPanel.createRow(container.node, row, 'after')"><span trans>+ ADD ROW</span></button>
+                    </div>
+                </div>
+
+                <ng-container *ngIf="layoutPanel.selectedRow">
+                    <column-presets [preset]="layoutPanel.selectedRow.preset" (selected)="layoutPanel.applyPreset($event)"></column-presets>
+
+                    <div class="current-columns" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="reorder($event, 'column')">
+                        <div class="column column-helper column-drag-wrapper drag-handle"
+                             cdkDrag
+                             *ngFor="let column of layoutPanel.selectedRow.columns"
+                             [style.width]="widthFromSpan(column.span)"
+                             (click)="layoutPanel.selectColumn(column.node)"
+                             [id]="column.id"
+                             [class.selected]="isSelected(column.node)"
+                             (mouseenter)="repositionHoverBox(column.node)"
+                             (mouseleave)="hideHoverBox()"
+                        >
+                            <span>{{column.span}}</span>
+                            <div class="layout-drag-preview" *cdkDragPreview>{{column.span}}</div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+
+            <mat-action-row>
+                <button class="no-style" [matTooltip]="'Modify' | trans" (click)="openInspectorPanel(container.node)">
+                    <mat-icon svgIcon="edit"></mat-icon>
+                </button>
+                <button class="no-style" [matTooltip]="'Clone' | trans" (click)="cloneContainer(container)">
+                    <mat-icon svgIcon="file-copy"></mat-icon>
+                </button>
+                <button class="no-style" [matTooltip]="'Delete' | trans" (click)="removeItem(container.node)">
+                    <mat-icon svgIcon="delete"></mat-icon>
+                </button>
+            </mat-action-row>
+        </mat-expansion-panel>
+
+        <button class="no-style add-item-button hide-text" (click)="layoutPanel.createContainer(container.node, 'after')">
+            <span trans>+ ADD CONTAINER</span>
+        </button>
+    </div>
+</mat-accordion>

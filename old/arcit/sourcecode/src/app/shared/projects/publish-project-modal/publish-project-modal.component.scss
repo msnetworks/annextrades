@@ -1,0 +1,45 @@
+@import "../../../../scss/_variables";
+
+:host {
+  display: block;
+  width: $modal-default-width;
+  max-width: 100%;
+}
+
+.project-url {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid mat-color($app-foreground, divider-lighter);
+
+  > a {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 500;
+    font-size: 1.5rem;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  > mat-slide-toggle {
+    margin-left: auto;
+  }
+}
+
+.inline-inputs {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 20px;
+
+  .input-container {
+    max-width: 200px;
+  }
+
+  .mat-slide-toggle {
+    margin-left: auto;
+  }
+}

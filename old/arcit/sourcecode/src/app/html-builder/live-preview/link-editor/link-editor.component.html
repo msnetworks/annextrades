@@ -1,0 +1,75 @@
+<mat-tab-group color="accent" [dynamicHeight]="true" (selectedTabChange)="resetModel()">
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <span trans>Url</span>
+        </ng-template>
+
+        <form (ngSubmit)="setUrl()" ngNativeValidate>
+            <div class="input-container">
+                <input type="url" name="url" [(ngModel)]="hrefModel" placeholder="Enter website url..." trans-placeholder required>
+            </div>
+
+            <div class="buttons">
+                <button (click)="close()" type="button" mat-button trans>Cancel</button>
+                <button [disabled]="!hrefModel" type="submit" mat-raised-button color="accent" trans>Change</button>
+            </div>
+        </form>
+    </mat-tab>
+
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <span trans>Page</span>
+        </ng-template>
+
+        <mat-list role="list">
+            <mat-list-item class="page-list-item" (click)="hrefModel= page.name" [class.selected]="hrefModel === page.name" role="listitem" *ngFor="let page of activeProject.getPages()">
+                {{page.name}}
+            </mat-list-item>
+        </mat-list>
+
+        <div class="buttons">
+            <button (click)="close()" type="button" mat-button trans>Cancel</button>
+            <button [disabled]="!hrefModel" (click)="setPageLink()" mat-raised-button color="accent" trans>Change</button>
+        </div>
+    </mat-tab>
+
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <span trans>Download</span>
+        </ng-template>
+
+        <form class="many-inputs" (ngSubmit)="setDownload()" ngNativeValidate>
+            <div class="input-container">
+                <label for="name" trans>Name</label>
+                <input type="text" id="name" name="download" [(ngModel)]="downloadName" required>
+            </div>
+
+            <div class="input-container">
+                <label for="download" trans>Url</label>
+                <input type="url" name="download" id="download" [(ngModel)]="hrefModel" required>
+            </div>
+
+            <div class="buttons">
+                <button (click)="close()" type="button" mat-button trans>Cancel</button>
+                <button [disabled]="!hrefModel" type="submit" mat-raised-button color="accent" trans>Change</button>
+            </div>
+        </form>
+    </mat-tab>
+
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <span trans>Email</span>
+        </ng-template>
+
+        <form (ngSubmit)="setEmail()" ngNativeValidate>
+            <div class="input-container">
+                <input type="email" name="email" [(ngModel)]="hrefModel" placeholder="Enter email address..." trans-placeholder required>
+            </div>
+
+            <div class="buttons">
+                <button (click)="close()" type="button" mat-button trans>Cancel</button>
+                <button [disabled]="!hrefModel" type="submit" mat-raised-button color="accent" trans>Change</button>
+            </div>
+        </form>
+    </mat-tab>
+</mat-tab-group>

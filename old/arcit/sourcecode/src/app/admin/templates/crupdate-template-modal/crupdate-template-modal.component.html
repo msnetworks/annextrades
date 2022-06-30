@@ -1,0 +1,65 @@
+<div class="modal-header">
+    <h2 class="modal-title" mat-dialog-title *ngIf="updating" trans>Update Template Details</h2>
+    <h2 class="modal-title" mat-dialog-title *ngIf="!updating" trans>Create a New Template</h2>
+    <button type="button" (click)="close()" class="close-button no-style icon-button"><mat-icon svgIcon="close"></mat-icon></button>
+</div>
+
+<form autocomplete="off" (ngSubmit)="confirm()" ngNativeValidate>
+    <div class="many-inputs mat-dialog-content" mat-dialog-content>
+        <div class="input-container">
+            <label for="name" trans>Name</label>
+            <input type="text" id="name" name="name" [(ngModel)]="model.display_name" required>
+            <div class="error" *ngIf="errors.display_name">{{errors.display_name}}</div>
+        </div>
+
+        <div class="input-container">
+            <label for="framework" trans>Framework</label>
+            <select id="framework" name="framework" [(ngModel)]="model.framework">
+                <option [ngValue]="null" trans>None</option>
+                <option value="bootstrap-4" trans>Bootstrap 4</option>
+                <option value="bootstrap-3" trans>Bootstrap 3</option>
+            </select>
+            <p trans>Select "none" if it's not bootstrap template, or if bootstrap files are already included in the template.</p>
+            <div class="error" *ngIf="errors.framework">{{errors.framework}}</div>
+        </div>
+
+        <div class="input-container">
+            <label for="theme" trans>Theme</label>
+            <select id="theme" name="theme" [(ngModel)]="model.theme">
+                <option [ngValue]="null" trans>None</option>
+                <option [ngValue]="theme.name" *ngFor="let theme of themes">{{theme.name}}</option>
+            </select>
+            <div class="error" *ngIf="errors.theme">{{errors.theme}}</div>
+        </div>
+
+        <div class="input-container">
+            <label for="category" trans>Category</label>
+            <select id="category" name="category" [(ngModel)]="model.category" required>
+                <option [ngValue]="category" *ngFor="let category of allCategories">{{category}}</option>
+            </select>
+            <div class="error" *ngIf="errors.category">{{errors.category}}</div>
+        </div>
+
+        <div class="input-container">
+            <label for="template-file" trans>Template Zip</label>
+            <input type="file" name="template-file" id="template-file" #templateInput (change)="setFile('template', templateInput.files)" [required]="!updating" accept="application/zip">
+            <p trans>Zip of template files. Must contain index.html file which will be used as default page.</p>
+            <p trans>(Optional) CSS and JS that should appear in builder code editors should be in "css/styles.css" and "js/scripts.js" files.</p>
+            <div class="error" *ngIf="errors.template">{{errors.template}}</div>
+        </div>
+
+        <div class="input-container">
+            <label for="thumbnail" trans>Thumbnail</label>
+            <input type="file" name="thumbnail" id="thumbnail" #thumbInput (change)="setFile('thumbnail', thumbInput.files)" [required]="!updating" accept="image/*">
+            <div class="error" *ngIf="errors.template">{{errors.thumbnail}}</div>
+        </div>
+    </div>
+
+    <div class="buttons right mat-dialog-actions" mat-dialog-actions>
+        <button (click)="close()" type="button" mat-button class="button cancel" trans>Cancel</button>
+        <button type="submit" class="button primary" mat-raised-button color="accent" [disabled]="loading">
+            <span *ngIf="updating" trans>Update Template</span>
+            <span *ngIf="!updating" trans>Create Template</span>
+        </button>
+    </div>
+</form>

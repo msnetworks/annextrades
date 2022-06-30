@@ -1,0 +1,55 @@
+<div class="toolbar">
+    <div class="controls-group flex-group">
+        <div class="input-container">
+            <select name="font-size" id="font-size" (change)="execCommand('fontSize', $event.target.value)">
+                <option *ngFor="let size of styles.sizes" [ngValue]="size">{{size}}</option>
+            </select>
+        </div>
+
+        <div class="input-container">
+            <select name="font-family" id="font-family" (change)="execCommand('fontName', $event.target.value)">
+                <option *ngFor="let family of styles.fonts" [ngValue]="family.css">{{family.name}}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="controls-group">
+        <button class="italic" mat-icon-button [matTooltip]="'Bold' | trans" (click)="execCommand('bold')" [class.active]="commandIsActive('bold')"><mat-icon svgIcon="format-bold"></mat-icon></button>
+        <button class="italic" mat-icon-button [matTooltip]="'Italic' | trans" (click)="execCommand('italic')" [class.active]="commandIsActive('italic')"><mat-icon svgIcon="format-italic"></mat-icon></button>
+        <button class="underline" mat-icon-button [matTooltip]="'Underline' | trans" (click)="execCommand('underline')" [class.active]="commandIsActive('underline')"><mat-icon svgIcon="format-underlined"></mat-icon></button>
+        <button class="strike" mat-icon-button [matTooltip]="'Strikethrough' | trans" (click)="execCommand('strikethrough')" [class.active]="commandIsActive('strikethrough')"><mat-icon svgIcon="format-strikethrough"></mat-icon></button>
+    </div>
+
+    <div class="controls-group">
+        <button mat-icon-button (click)="togglePanel('link')" [class.active]="linkPanelIsOpen" [matTooltip]="'Add Link' | trans" [disabled]="!shouldEnableLinkBtn()">
+            <mat-icon svgIcon="link"></mat-icon>
+        </button>
+    </div>
+
+    <div class="controls-group text-align">
+        <button mat-icon-button (click)="execCommand('justifyLeft')" [class.active]="commandIsActive('justifyLeft')" [matTooltip]="'Align left' | trans">
+            <mat-icon svgIcon="format-align-left"></mat-icon>
+        </button>
+        <button mat-icon-button (click)="execCommand('justifyCenter')" [class.active]="commandIsActive('justifyCenter')" [matTooltip]="'Align center' | trans">
+            <mat-icon svgIcon="format-align-center"></mat-icon>
+        </button>
+        <button mat-icon-button (click)="execCommand('justifyRight')" [class.active]="commandIsActive('justifyRight')" [matTooltip]="'Align right' | trans">
+            <mat-icon svgIcon="format-align-right"></mat-icon>
+        </button>
+    </div>
+
+    <div class="controls-group">
+        <button mat-icon-button [matTooltip]="'Add Icon' | trans" (click)="togglePanel('icons')" [class.active]="iconsPanelIsOpen"><mat-icon svgIcon="insert-emoticon"></mat-icon></button>
+    </div>
+</div>
+
+<form class="link-panel" *ngIf="linkPanelIsOpen" (ngSubmit)="createLink()" ngNativeValidate>
+    <div class="input-container">
+        <input type="url" name="inline-editor-link" [(ngModel)]="linkModel" required placeholder="Enter url..." trans-placeholder>
+    </div>
+    <button type="submit" mat-raised-button color="accent" trans>Add</button>
+</form>
+
+<div class="icons-panel" *ngIf="iconsPanelIsOpen">
+    <button mat-icon-button (click)="insertIcon(icon)" *ngFor="let icon of styles.icons" [ngClass]="icon"></button>
+</div>

@@ -28,6 +28,7 @@ class FrontendController extends Controller
 {
     public function __construct()
     {
+        ini_set('max_execution_time', '0');
         $this->auth_guests();
         if(isset($_SERVER['HTTP_REFERER'])){
             $referral = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST);

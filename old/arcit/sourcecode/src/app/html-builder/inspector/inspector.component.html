@@ -1,0 +1,64 @@
+<nav class="inspector-nav mat-elevation-z3">
+    <a class="back-button" [matTooltip]="'Dashboard' | trans" routerLink="/dashboard">
+        <mat-icon svgIcon="keyboard-arrow-left"></mat-icon>
+    </a>
+
+    <div class="panel-nav">
+        <button mat-button class="panel-nav-item" [class.active]="inspector.activePanelIs('layout')" (click)="inspector.togglePanel('layout')">
+            <mat-icon svgIcon="web-design-custom"></mat-icon>
+            <span class="name" trans>Layout</span>
+        </button>
+        <button mat-button class="panel-nav-item" [class.active]="inspector.activePanelIs('elements')" (click)="inspector.togglePanel('elements')">
+            <mat-icon svgIcon="puzzle-custom"></mat-icon>
+            <span class="name" trans>Elements</span>
+        </button>
+        <button mat-button class="panel-nav-item" [class.active]="inspector.activePanelIs('inspector')" (click)="inspector.togglePanel('inspector')">
+            <mat-icon svgIcon="brush-custom"></mat-icon>
+            <span class="name" trans>Inspector</span>
+        </button>
+        <button mat-button class="panel-nav-item" [class.active]="inspector.activePanelIs('pages')" (click)="inspector.togglePanel('pages')">
+            <mat-icon svgIcon="documents-custom"></mat-icon>
+            <span class="name" trans>Pages</span>
+        </button>
+        <button mat-button class="panel-nav-item" [class.active]="inspector.activePanelIs('settings')" (click)="inspector.togglePanel('settings')">
+            <mat-icon svgIcon="settings-custom"></mat-icon>
+            <span class="name" trans>Settings</span>
+        </button>
+        <button mat-button class="panel-nav-item" (click)="toggleCodeEditor()" [disabled]="!currentUser.hasPermission('editors.enable')">
+            <mat-icon svgIcon="source-code-custom"></mat-icon>
+            <span class="name" trans>Code Edtr</span>
+        </button>
+    </div>
+
+    <div class="panel-nav undo-nav">
+        <button class="panel-nav-item" mat-button [disabled]="!undoManager.canUndo()" (click)="undoManager.undo()">
+            <mat-icon svgIcon="undo"></mat-icon>
+            <span class="name" trans>Undo</span>
+        </button>
+        <button class="panel-nav-item" mat-button [disabled]="!undoManager.canRedo()" (click)="undoManager.redo()">
+            <mat-icon svgIcon="redo"></mat-icon>
+            <span class="name" trans>Redo</span>
+        </button>
+    </div>
+</nav>
+
+<div class="inspector-content">
+    <div class="panel-container">
+        <elements-panel [class.hidden]="!inspector.activePanelIs('elements')"></elements-panel>
+        <inspector-panel [class.hidden]="!inspector.activePanelIs('inspector')"></inspector-panel>
+        <layout-panel [class.hidden]="!inspector.activePanelIs('layout')"></layout-panel>
+        <pages-panel [class.hidden]="!inspector.activePanelIs('pages')"></pages-panel>
+        <settings-panel [class.hidden]="!inspector.activePanelIs('settings')"></settings-panel>
+    </div>
+
+    <device-switcher #deviceSwitcher></device-switcher>
+
+    <div class="actions">
+        <mat-progress-bar mode="indeterminate" *ngIf="activeProject.saving" color="accent"></mat-progress-bar>
+        <button (click)="openPreview()" [disabled]="activeProject.saving" mat-button [matTooltip]="'Preview' | trans"><mat-icon svgIcon="visibility"></mat-icon></button>
+        <button (click)="downloadProject()" [disabled]="!currentUser.hasPermission('projects.download')" mat-button [matTooltip]="'Download' | trans"><mat-icon svgIcon="file-download"></mat-icon></button>
+        <button (click)="openPublishProjectModal()" [disabled]="!currentUser.hasPermission('projects.publish')" mat-button [matTooltip]="'Publish' | trans"><mat-icon svgIcon="publish"></mat-icon></button>
+        <button (click)="toggleDeviceSwitcher()" mat-button [matTooltip]="'Change device' | trans"><mat-icon svgIcon="phone-android"></mat-icon></button>
+        <button (click)="saveProject()" [disabled]="activeProject.saving" mat-button [matTooltip]="'Save project' | trans"><mat-icon svgIcon="save"></mat-icon></button>
+    </div>
+</div>

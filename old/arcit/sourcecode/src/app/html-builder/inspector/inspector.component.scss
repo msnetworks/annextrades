@@ -1,0 +1,232 @@
+@import "variables";
+
+inspector {
+  display: flex;
+  position: relative;
+  z-index: 3;
+  box-shadow: 1px 0 2px rgba(0,0,0,.5);
+  overflow: hidden;
+  width: $inspector-width;
+  height: 100%;
+  flex-shrink: 0;
+
+  @media screen and (max-width: $medium) {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .mat-expansion-panel {
+    margin-bottom: 10px;
+    border: 1px solid mat-color($app-foreground, divider);
+
+    &.mat-expanded {
+      background-color: mat-color($app-background, card);
+
+      .mat-expansion-panel-header {
+        border-bottom: 1px solid mat-color($app-foreground, divider);
+        background-color: mat-color($app-background, raised-button);
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+    }
+
+    .mat-expansion-panel-header {
+      background-color: mat-color($app-background, card);
+      overflow: hidden;
+
+      .mat-expansion-panel-header-title {
+        color: inherit;
+        font-weight: 500;
+        text-transform: capitalize;
+        font-size: 1.4rem;
+      }
+
+      .mat-expansion-indicator {
+        padding-bottom: 5px;
+
+        &:after {
+          color: inherit;
+        }
+      }
+    }
+
+    .mat-expansion-panel-body {
+      margin: 8px;
+      padding: 0;
+      overflow: hidden;
+    }
+  }
+
+  .input-container {
+    input, select, textarea {
+      display: block;
+      width: 100%;
+      margin: 0 0 5px;
+      border-color: mat-color($app-foreground, divider);
+      background-color: mat-color($app-background, card);
+      color: inherit;
+    }
+  }
+
+  .inspector-nav {
+    position: relative;
+    z-index: 2;
+    width: 70px;
+    flex: 0 0 70px;
+    height: 100%;
+    background-color: mat-color($app-background, card);
+    color: mat-color($app-foreground, secondary-text);
+    text-align: center;
+    padding: 20px 0;
+
+    .back-button {
+      color: inherit;
+    }
+
+    .panel-nav {
+      margin-top: 50px;
+
+      .panel-nav-item {
+        cursor: pointer;
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+        padding: 12px 0;
+        min-width: 0;
+        line-height: initial;
+
+        &[disabled] {
+          color: mat-color($app-foreground, hint-text);
+          cursor: initial;
+        }
+
+        &.active {
+          color: mat-color($app-accent, default);
+        }
+
+        &:hover:not([disabled]):not(.active) {
+          background-color: mat-color($app-background, hover);
+        }
+
+        .mat-button-focus-overlay {
+          background-color: transparent;
+        }
+
+        mat-icon {
+          display: inline-block;
+          width: 30px;
+          height: 30px;
+        }
+
+        .name {
+          display: block;
+          font-size: 1.1rem;
+          font-weight: 700;
+          letter-spacing: 0.5px;
+          margin-top: 5px;
+        }
+      }
+
+      @media screen and (max-height: 600px) {
+        margin-top: 10px;
+
+        .panel-nav-item {
+          padding: 8px 0;
+        }
+
+        .mat-icon {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+
+    > .undo-nav {
+      position: absolute;
+      bottom: 15px;
+      width: 100%;
+
+      @media screen and (max-height: 800px) {
+        display: none;
+      }
+
+      .panel-nav-item {
+        padding: 5px 0;
+
+        .name {
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .back-button .mat-icon {
+      color: inherit;
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  .inspector-content {
+    flex: 1 1 auto;
+    height: 100%;
+    color: mat-color($app-foreground, secondary-text);
+    position: relative;
+    min-width: 0;
+
+    .panel-container {
+      position: relative;
+      height: calc(100% - 50px);
+      padding: 15px;
+      background-color: mat-color($app-background, background);
+      overflow: auto;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      position: relative;
+      border-top: 1px solid mat-color($app-foreground, divider);
+      background: mat-color($app-background, card);
+      height: 50px;
+
+      .mat-progress-bar {
+        position: absolute;
+        top: -5px;
+        left: 0;
+      }
+
+      .mat-button {
+        line-height: 50px;
+        border-right: 1px solid mat-color($app-foreground, divider);
+        min-width: 20%;
+        border-radius: 0;
+        
+        svg {
+          display: block;
+        }
+
+        &:last-of-type {
+          border-right: none;
+        }
+      }
+    }
+  }
+
+  .content-panel {
+    background-color: mat-color($app-background, card);
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 15px;
+    color: mat-color($app-foreground, text);
+    @include mat-elevation(1);
+
+    .header {
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+  }
+}

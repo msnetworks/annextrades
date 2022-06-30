@@ -1,0 +1,113 @@
+@import "variables";
+
+.auth-page {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-color: mat-color($app-background, background);
+
+  .auth-panel {
+    position: relative;
+    max-width: 90%;
+    width: 400px;
+    padding: 30px 35px;
+    background-color: mat-color($app-background, card);
+    border: 1px solid mat-color($app-foreground, divider);
+    border-radius: 4px;
+
+    .general-error {
+      padding: 8px 0;
+      color: mat-color($app-warn);
+      text-align: center;
+    }
+
+    .color-secondary {
+      color: mat-color($app-foreground, secondary-text);
+    }
+
+    .social-icons {
+      flex: 0 0 50%;
+      height: 36px;
+      padding: 3px 0 0;
+    }
+
+    .logo {
+      display: block;
+      width: 100%;
+      margin: 0 auto 30px;
+      min-height: 41px;
+
+      img {
+        display: block;
+        margin: auto;
+        width: 200px;
+      }
+    }
+
+    .big-social-auth-button {
+      width: 100%;
+      text-align: center;
+
+      button {
+        line-height: 48px;
+        width: 100%;
+      }
+
+      svg {
+        display: block;
+      }
+    }
+
+    .input-container {
+      position: relative;
+
+      input {
+        font-size: 1.5rem;
+        font-weight: 500;
+        letter-spacing: .5px;
+        height: 47px;
+        padding: 6px 12px;
+        background-color: mat-color($app-background, card);
+        color: inherit;
+      }
+
+      .error {
+        position: absolute;
+        top: 0;
+        left: 100%;
+        margin: 0;
+        padding: 0 20px;
+        white-space: nowrap;
+        background-color: mat-color($app-warn);
+        color: mat-color($app-warn, default-contrast);
+        line-height: 45px;
+        max-width: 350px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        @media only screen and (max-width: $medium) {
+          position: static;
+          padding: 0;
+          background-color: inherit;
+          color: mat-color($app-warn);
+          line-height: initial;
+          max-width: 100%;
+          margin: 8px 0 0;
+        }
+      }
+
+      .forgot-password {
+        cursor: pointer;
+        position: absolute;
+        right: 13px;
+        top: 14px;
+        z-index: 2;
+
+        &:hover {
+          color: mat-color($app-foreground, link);
+        }
+      }
+    }
+  }
+}

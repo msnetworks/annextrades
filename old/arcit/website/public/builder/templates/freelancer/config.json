@@ -1,0 +1,11 @@
+{
+    "name": "Freelancer",
+    "category": "Portfolio",
+    "framework": "bootstrap-3",
+    "libraries": [
+        "classy",
+        "animated-header",
+        "jquery-easing",
+        "bootstrap-validation"
+    ]
+}

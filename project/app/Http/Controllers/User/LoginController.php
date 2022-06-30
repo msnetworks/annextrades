@@ -44,8 +44,13 @@ class LoginController extends Controller
         // Check If Email is verified or not
           if(Auth::guard('web')->user()->email_verified == 'No')
           {
+            if (Auth::guard('web')->user()->is_vendor == '1') {
+              return response()->json(route('front.pricing'));
+
+            }else{
             Auth::guard('web')->logout();
             return response()->json(array('errors' => [ 0 => 'Your Email is not Verified!' ]));   
+            }
           }
 
           if(Auth::guard('web')->user()->ban == 1)

@@ -1,0 +1,119 @@
+:root {
+  --ck-color-toolbar-background: #ffffff;
+
+  --ck-border-radius: 4px;
+  --ck-inner-shadow: none;
+  --ck-focus-ring: 1px solid transparent;
+
+  --ck-font-face: -apple-system, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, "Segoe UI", Roboto, sans-serif;
+  --ck-font-size-base: 14px;
+  --ck-line-height-base: 1.8;
+
+  --ck-icon-size: 16px;
+
+  --ck-color-button-default-active-shadow: transparent;
+  --ck-color-button-on-active-shadow: transparent;
+  --ck-color-button-action-active-shadow: transparent;
+  --ck-color-switch-button-inner-shadow: transparent;
+
+  --ck-color-button-default-background: transparent;
+  --ck-color-button-default-hover-background: hsl(0, 0%, 0%, 0.04);
+  --ck-color-button-default-active-background: hsl(0, 0%, 0%, 0.08);
+  --ck-color-button-default-disabled-background: transparent;
+
+  --ck-color-button-on-background: hsl(0, 0%, 0%, 0.08);
+  --ck-color-button-on-hover-background: hsl(0, 0%, 0%, 0.12);
+  --ck-color-button-on-active-background: hsl(0, 0%, 0%, 0.16);
+  --ck-color-button-on-disabled-background: hsl(0, 0%, 0%, 0.08);
+
+  --ck-drop-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.16);
+  --ck-color-list-button-on-background: var(--ck-color-button-on-background);
+  --ck-color-list-button-on-background-focus: var(--ck-color-button-on-hover-background);
+  --ck-color-list-button-on-text: inherit;
+
+  --ck-color-engine-placeholder-text: #999999;
+}
+
+.ck.ck-editor {
+  border-radius: 4px;
+  border: 1px solid #e3e3e3;
+}
+
+.ck.ck-editor__main > .ck-editor__editable:not(.ck-focused) {
+  border-color: transparent;
+}
+
+.ck.ck-editor__editable_inline {
+  padding: 0 12px 40px;
+  overflow: visible;
+}
+
+.ck.ck-editor__editable_inline > :first-child {
+  margin-top: 0.5em;
+}
+
+.ck.ck-toolbar {
+  padding: 0 8px;
+  border-color: transparent;
+}
+
+.ck.ck-sticky-panel .ck-sticky-panel__content_sticky {
+  box-shadow: 0 1px 0 #e3e3e3;
+}
+
+.ck.ck-toolbar .ck.ck-toolbar__separator {
+  margin-top: 11px;
+  margin-bottom: 11px;
+  margin-left: calc(var(--ck-spacing-large) - var(--ck-spacing-small));
+  margin-right: var(--ck-spacing-large);
+}
+
+.ck.ck-button.ck-on .ck.ck-icon,
+.ck.ck-button.ck-on .ck.ck-icon * {
+  fill: #333333;
+}
+
+.ck.ck-icon,
+.ck.ck-icon * {
+  color: #777777;
+}
+
+.ck.ck-dropdown .ck-button.ck-dropdown__button .ck-button__label,
+.ck.ck-dropdown.ck-heading-dropdown .ck-dropdown__button .ck-button__label {
+  width: 3em;
+}
+
+.ck.ck-button.ck-dropdown__button.ck-button_with-text,
+a.ck.ck-button.ck-dropdown__button.ck-button_with-text {
+  padding: var(--ck-spacing-tiny);
+  padding-left: var(--ck-spacing-small);
+}
+
+.ck.ck-dropdown__panel {
+  border: none;
+  border-radius: 4px;
+}
+
+.ck.ck-dropdown.ck-heading-dropdown .ck-dropdown__panel .ck-list__item {
+  min-width: 160px;
+}
+
+.ck-heading-dropdown > .ck.ck-button .ck-button__label {
+  color: #777777;
+}
+
+.ck-content hr {
+  border-width: 2px 0 0;
+  border-color: #dfdfdf;
+}
+
+/* Fix IME broken issue */
+.ck-content .table table td > span,
+.ck-content .table table th > span {
+  display: block;
+}
+
+/* Fix tooltip misalignment  */
+.ck.ck-tooltip.ck-tooltip_s .ck-tooltip__text::after {
+  top: calc(1px - var(--ck-tooltip-arrow-size));
+}

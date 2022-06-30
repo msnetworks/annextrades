@@ -1,0 +1,21 @@
+<div class="spacing top-spacing"></div>
+<div class="spacing left-spacing"></div>
+<div class="spacing right-spacing"></div>
+<div class="spacing bottom-spacing"></div>
+
+<div class="context-box-toolbar">
+    <button class="no-style action-button edit-button" (click)="editNode()">
+        <mat-icon svgIcon="edit"></mat-icon>
+    </button>
+    <div class="element-name context-box-drag-handle">
+        <mat-icon svgIcon="drag-handle"></mat-icon>
+        <span class="column-name">{{getDisplayName()}}</span>
+    </div>
+    <button class="no-style action-button delete-button" (click)="deleteNode()">
+        <mat-icon svgIcon="close"></mat-icon>
+    </button>
+</div>
+
+<button class="no-style action-button resize-button" elementResizer>
+    <mat-icon svgIcon="enlarge-custom"></mat-icon>
+</button>

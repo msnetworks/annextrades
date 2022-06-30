@@ -1,0 +1,46 @@
+<div class="font-family-container" #googleFontsOrigin>
+    <div class="input-container">
+        <select name="font-family" id="font-family" [(ngModel)]="styles.fontFamily" (ngModelChange)="applyTextStyle('fontFamily')">
+            <option value="" trans>Font</option>
+            <option [ngValue]="font.css" *ngFor="let font of baseFonts">{{font.name}}</option>
+        </select>
+    </div>
+
+    <button class="no-style google-fonts-button" type="button" (click)="openGoogleFontsPanel()" [matTooltip]="'Google fonts' | trans">
+        <mat-icon svgIcon="google-custom"></mat-icon>
+    </button>
+</div>
+
+<div class="text-decorations">
+    <div class="buttons">
+        <button class="no-style italic" (click)="toggleTextStyle('fontStyle', 'italic')" [class.active]="textStyleIs('fontStyle', 'italic')">I</button>
+        <button class="no-style underline" (click)="toggleTextStyle('textDecoration', 'underline')" [class.active]="textStyleIs('textDecoration', 'underline')">U</button>
+        <button class="no-style strike" (click)="toggleTextStyle('textDecoration', 'line-through')" [class.active]="textStyleIs('textDecoration', 'line-through')">S</button>
+        <button class="no-style overline" (click)="toggleTextStyle('textDecoration', 'overline')" [class.active]="textStyleIs('textDecoration', 'overline')">O</button>
+    </div>
+    <div class="input-container">
+        <select id="font-weight" name="font-weight" [(ngModel)]="styles.fontWeight" (ngModelChange)="applyTextStyle('fontWeight')">
+            <option *ngFor="let weight of fontWeights" [value]="weight">{{weight}}</option>
+        </select>
+    </div>
+</div>
+
+<div class="font-styles">
+    <div class="input-container font-size">
+        <input name="font-size" type="number" min="1" max="999" [(ngModel)]="styles.fontSize" (ngModelChange)="applyTextStyle('fontSize')" [matTooltip]="'font size' | trans">
+    </div>
+
+    <div class="text-align">
+        <button class="no-style" (click)="toggleTextStyle('textAlign', 'left')" [class.active]="textStyleIs('textAlign', 'left')" [matTooltip]="'align left' | trans">
+            <mat-icon svgIcon="format-align-left"></mat-icon>
+        </button>
+        <button class="no-style" (click)="toggleTextStyle('textAlign', 'center')" [class.active]="textStyleIs('textAlign', 'center')" [matTooltip]="'align center' | trans">
+            <mat-icon svgIcon="format-align-center"></mat-icon>
+        </button>
+        <button class="no-style" (click)="toggleTextStyle('textAlign', 'right')" [class.active]="textStyleIs('textAlign', 'right')" [matTooltip]="'align right' | trans">
+            <mat-icon svgIcon="format-align-right"></mat-icon>
+        </button>
+    </div>
+</div>
+
+<div class="text-color" #origin (click)="openColorpickerPanel(origin)" [style.backgroundColor]="styles.color" [matTooltip]="'Text color' | trans"></div>

@@ -57,7 +57,7 @@ class VendorController extends Controller
     {
         $user = Auth::user();  
         //get_data
-        $all_categories = DB::table('categories_us')->orderBy('name','asc')->get()->toArray();
+        $all_categories = DB::table('categories_us')->orderBy('id','desc')->get()->toArray();
         $selected_categories = DB::table('vendor_category_notifications')->select('category_id')->where('vendor_id',$user->id)->get()->toArray();
         $total_selected_categories = array();
         foreach($selected_categories as $cat){
@@ -87,15 +87,11 @@ class VendorController extends Controller
     {
         $user = Auth::user();  
         //get_data
-        $all_states = DB::table('government_contracts')
-                        ->select('state')
-                        ->distinct('state')
-                        ->orderBy('state','ASC')
-                        ->get()->toArray();
-        $selected_states = DB::table('vendor_location_notifications')->select('state')->where('vendor_id',$user->id)->get()->toArray();
+        $all_states = DB::table('us_states')->orderBy('id','asc')->get()->toArray();
+        $selected_states = DB::table('vendor_location_notifications')->select('state_id')->where('vendor_id',$user->id)->get()->toArray();
         $total_selected_states = array();
         foreach($selected_states as $state){
-            $total_selected_states[] = $state->state;
+            $total_selected_states[] = $state->state_id;
         }
         //set_data
         $data['all_states'] = $all_states;
@@ -104,8 +100,8 @@ class VendorController extends Controller
     }
 
     public function save_location_notification(Request $request){
-        if (DB::table('vendor_location_notifications')->where('vendor_id', $request->vendor_id)->where('state', $request->state)->count() == 0) {   
-            $insert = DB::table('vendor_location_notifications')->insert(['vendor_id' => $request->vendor_id, 'state' => $request->state]);
+        if (DB::table('vendor_location_notifications')->where('vendor_id', $request->vendor_id)->where('state_id', $request->state_id)->count() == 0) {   
+            $insert = DB::table('vendor_location_notifications')->insert(['vendor_id' => $request->vendor_id, 'state_id' => $request->state_id]);
             echo "Location successfully subscribed. Thankyou!";
         } else {
             echo "Already exist in your subscription list.";
@@ -173,7 +169,7 @@ class VendorController extends Controller
                         unlink(public_path().'/assets/images/users/'.$data->photo);
                     }
                 }            
-            $input['photo'] = $name;
+                $input['photo'] = $name;
             } 
 
         $data->update($input);
@@ -386,6 +382,97 @@ class VendorController extends Controller
                     $sub->status = 1;
                     $sub->save();
                     
+                    if ($user->email_verified != 'Yes') {
+                        $subject_email = 'Verify your email address.';
+                        $msg_email ="
+                            <!DOCTYPE html>
+                                <html xmlns='http://www.w3.org/1999/xhtml' lang='en-GB'>
+                                    <head>
+                                    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+                                    <title>ANNEXTrades</title>
+                                    <meta name='viewport' content='width=device-width, initial-scale=1.0'/>
+                                    
+                                    <style type='text/css'>
+                                        a[x-apple-data-detectors] {color: inherit !important;}
+                                    </style>
+                                    
+                                    </head>
+                                    <body style='margin: 0; padding: 0;'>
+                                        <table role='presentation'  cellpadding='0' cellspacing='0' width='100%'>
+                                            <tr>
+                                                <td style='padding: 20px 0 30px 0;'>
+                                            
+                                                    <table align='center' cellpadding='0' cellspacing='0' style='border-collapse: collapse; '>
+                                                        <tr>
+                                                            <td align='left' bgcolor='#fff' style='padding: 15px 0 15px 0;'>
+                                                            <img src='https://demo.annextrades.com/assets/images/1630056782logo.png' alt='ANNEXTrades' width='150' style='display: block;' />
+                                                            </td>
+                                                        </tr>
+                                                        
+                                                        <tr>
+                                                            <td bgcolor='#ffffff' align='center' style='padding: 40px 30px 40px 30px;'>
+                                                            <table border='0' cellpadding='0' cellspacing='0' width='100%' style='border-collapse: collapse;'>
+                                                                <tr height='85px'>
+                                                                    <td align='center' style='font-family: Arial, sans-serif; margin: 30px;'>
+                                                                        <img src='https://annextrades.com/assets/images/annexis-emblem.png' alt='ANNEXTrades' width='50px' style='display: block;' />
+                                                                    </td>
+                                                                </tr>
+                                                                <tr height='85px'>
+                                                                    <td align='center' style='font-family: Arial, sans-serif; margin: 30px;'>
+                                                                    <h1 style='font-size: 24px; color: #292936 !important; margin: 0;' align='center'>Verify Your Email Address</h1>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr >
+                                                                    <td align='center' style='color: #292936; background: #ebebff; font-family: Arial, sans-serif;'>
+                                                                        <h1 style='font-size: 20px; color: #292936 !important; margin: 0;' align='center'>$user->email</h1>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align='left' style='color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 24px; padding: 20px 0 30px 0;'>
+                                                                        <p style='font-size: 16px; margin: 0;'>Hello $user->name <br>
+                                                                            As an extra security check, this is to verify your identify. Please verify this is the correct email address for your ANNEXTrades account.
+                                                                        </p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align='center' style='color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 24px; padding: 20px 0 30px 0;'>
+                                                                        <a href=".url('user/register/verify/'.$user->verification_link)."><button style='padding: 15px 24px; color: #fff; background: #ff5500; font-weight: 600; border: 0px; border-radius: 30px;'>CONFIRM EMAIL</button></a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align='left' style='color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 24px; padding: 20px 0 30px 0;'>
+                                                                        <p style='font-size: 16px; margin: 0;'>
+                                                                            If this is not you, please disregard this email. Thank you.
+                                                                        </p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td height='55' align='left' style='color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 24px; padding: 20px 0 30px 0;'>
+                                                                        <p align='center'>
+                                                                            <b>Your Bridge to Expansion & Increased Market Share</b>
+                                                                        </p>
+                                                                    </td>
+                                                                </tr>
+                                                                <!--tr> 
+                                                                    <td height='70'>
+                                                                        <small style='font-family:Helvetica, Arial, sans-serif; font-size:10px; color:#4d4d4e;'>Confidentiality Notice: This e-mail message, including any attachments, is for the sole use of the intended recipient(s) and may contain confidential and privileged information. Any unauthorized review, use, disclosure or distribution of this information is prohibited, and may be punishable by law. If this was sent to you in error, please notify the sender by reply e-mail and destroy all copies of the original message. Please consider the environment before printing this e-mail.</small>
+                                                                    </td>
+                                                                </tr-->
+                                                            </table>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </body>
+                            </html>
+                        ";
+                    }else{
+                        $subject_email = '';
+                        $msg_email = "";
+                    }
+
                     if($settings->is_smtp == 1)
                     {
                     $data = [
@@ -398,7 +485,13 @@ class VendorController extends Controller
                         'onumber' => "",
                     ];    
                     $mailer = new GeniusMailer();
-                    $mailer->sendAutoMail($data);        
+                    $mailer->sendAutoMail($data);  
+                    if ($user->email_verified != 'Yes') {
+                        $headers = "MIME-Version: 1.0" . "\r\n";
+                        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+                        $headers .= "From: ".$settings->from_name."<".$settings->from_email.">";
+                        mail($user->email,$subject_email,$msg_email,$headers);
+                    }       
                     }
                     else
                     {
@@ -406,9 +499,16 @@ class VendorController extends Controller
                         $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
                     $headers .= "From: ".$settings->from_name."<".$settings->from_email.">";
                     mail($user->email,'Your Vendor Account Activated','Your Vendor Account Activated Successfully. Please Login to your account and build your own shop.',$headers);
+                    
+                    if ($user->email_verified != 'Yes') {
+                        mail($user->email,$subject_email,$msg_email,$headers);
                     }
-
-                    return redirect()->route('vendor-dashboard')->with('success','Vendor Account Activated Successfully');
+                }
+                if ($user->email_verified != 'Yes') {
+                    return redirect()->route('user-dashboard')->with('success','Vendor Account Successfully Registered. Verification email was sent to '.$user->email.'. Please check Inbox and Spam folder. Click on the provided link to complete verification and proceed to next step.');
+                }else{
+                    return redirect()->route('vendor-dashboard')->with('success','Vendor Account Activated Successfully.');
+                }
 
     }
    

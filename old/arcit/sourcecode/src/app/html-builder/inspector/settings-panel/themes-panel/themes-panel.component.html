@@ -1,0 +1,8 @@
+<div class="themes">
+    <button (click)="applyTheme()" *ngIf="themeIsActive()" class="remove-button" mat-raised-button color="warn" trans>Remove</button>
+
+    <div class="theme" *ngFor="let theme of themes" (click)="applyTheme(theme)" [class.disabled]="loader.isVisible()" [class.active]="themeIsActive(theme)">
+        <img [src]="getThumbnailUrl(theme)">
+        <div class="name">{{theme.name}}</div>
+    </div>
+</div>
