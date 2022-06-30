@@ -1,0 +1,68 @@
+<div #contextMenu class="context-menu">
+
+    <button class="context-menu-item" [disabled]="!canSelectParent()" (click)="selectParent()">
+        <mat-icon class="mat-icon" svgIcon="arrow-upward"></mat-icon>
+        <span trans>Select Parent</span>
+    </button>
+    <button class="context-menu-item" [disabled]="!canSelectChild()" (click)="selectChild()">
+        <mat-icon class="mat-icon" svgIcon="arrow-downward"></mat-icon>
+        <span trans>Select Child</span>
+    </button>
+
+    <div class="separator"></div>
+
+    <button class="context-menu-item" (click)="cut()">
+        <mat-icon class="mat-icon" svgIcon="content-cut"></mat-icon>
+        <span trans>Cut</span>
+        <span class="alt-text">Ctrl+Shift+X</span>
+    </button>
+    <button class="context-menu-item" (click)="copy()">
+        <mat-icon class="mat-icon" svgIcon="file-copy"></mat-icon>
+        <span trans>Copy</span>
+        <span class="alt-text">Ctrl+Shift+C</span>
+    </button>
+    <button class="context-menu-item" [disabled]="!canPaste()" (click)="paste()">
+        <mat-icon class="mat-icon" svgIcon="content-paste"></mat-icon>
+        <span trans>Paste</span>
+        <span class="alt-text">Ctrl+Shift+V</span>
+    </button>
+    <button class="context-menu-item" (click)="remove()">
+        <mat-icon class="mat-icon" svgIcon="delete"></mat-icon>
+        <span trans>Delete</span>
+        <span class="alt-text">Del</span>
+    </button>
+    <button class="context-menu-item" (click)="duplicate()">
+        <mat-icon class="mat-icon" svgIcon="flip-to-back"></mat-icon>
+        <span trans>Duplicate</span>
+    </button>
+
+    <button class="context-menu-item" (click)="move('up')">
+        <mat-icon class="mat-icon" svgIcon="keyboard-arrow-up"></mat-icon>
+        <span trans>Move Up</span>
+        <span class="alt-text">Arrow Up</span>
+    </button>
+    <button class="context-menu-item" (click)="move('down')">
+        <mat-icon class="mat-icon" svgIcon="keyboard-arrow-down"></mat-icon>
+        <span trans>Move Down</span>
+        <span class="alt-text">Arrow Down</span>
+    </button>
+
+    <div class="separator"></div>
+
+    <button class="context-menu-item" [disabled]="!undoManager.canUndo()" (click)="undo()">
+        <mat-icon class="mat-icon" svgIcon="undo"></mat-icon>
+        <span trans>Undo</span>
+        <span class="alt-text">Ctrl+Z</span>
+    </button>
+    <button class="context-menu-item" [disabled]="!undoManager.canRedo()" (click)="redo()">
+        <mat-icon class="mat-icon" svgIcon="redo"></mat-icon>
+        <span trans>Redo</span>
+        <span class="alt-text">Ctrl+Y</span>
+    </button>
+
+    <div class="separator"></div>
+
+    <button class="context-menu-item" (click)="viewSourceCode()">
+        <span class="indent" trans>View Source</span>
+    </button>
+</div>

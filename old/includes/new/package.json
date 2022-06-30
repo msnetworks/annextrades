@@ -1,0 +1,14 @@
+{
+    "name": "webpacks",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "build": "Webpack --mode development"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+      "webpack": "^4.39.3"
+    }
+  }

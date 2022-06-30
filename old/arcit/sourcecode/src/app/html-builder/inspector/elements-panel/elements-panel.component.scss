@@ -1,0 +1,41 @@
+@import "variables";
+
+elements-panel {
+  display: block;
+
+  .mat-expansion-panel {
+    border-radius: 4px;
+
+    .mat-expansion-panel-body {
+      margin: 0;
+    }
+  }
+
+  .elements-grid {
+    .element {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      padding: 15px;
+      border-bottom: 1px solid mat-color($app-foreground, divider-lighter);
+      cursor: move;
+
+      &:hover {
+        background-color: mat-color($app-background, hover);
+      }
+
+      .mat-icon {
+        display: block;
+        width: 26px;
+        height: 26px;
+        color: mat-color($app-foreground, secondary-text);
+      }
+
+      .name {
+        text-transform: uppercase;
+        font-size: 1.1rem;
+        margin-left: 8px;
+      }
+    }
+  }
+}

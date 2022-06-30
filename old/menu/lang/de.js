@@ -1,0 +1,23 @@
+﻿window.menuMessage = {
+	TITLE_INSTALL: 'Konfiguration',
+	INST_PAYMENT: 'Preise benutzen:',
+	INST_WS: 'Der erste Tag der Woche:',
+	INST_PAYMENT_CURRENCY: 'Währung:',
+	INST_PAYMENT_CURRENCY_DEF: 'EUR',
+	INST_SET_ACCESS: 'Zugriffsrechte für Verwaltung:',
+	INST_FINISH: 'Konfiguration abschließen',
+	MENU_DISH_NAME: 'Name der Speise',
+	MENU_DISH_PRICE: 'Preis',
+	MENU_DISH_ADD: 'hinzufügen',
+	MENU_DISH_SAVE: 'speichern',
+	MENU_DISH_SHARE: 'veröffentlichen',
+	MENU_DISH_SHARED: 'veröffentlicht',
+	MENU_DISH_SHARE_TITLE: 'Speisekarte für #DATE#',
+	WD0: 'Sonntag',
+	WD1: 'Montag',
+	WD2: 'Dienstag',
+	WD3: 'Mittwoch',
+	WD4: 'Donnerstag',
+	WD5: 'Freitag',
+	WD6: 'Samstag'
+};

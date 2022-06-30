@@ -1,0 +1,19 @@
+@import "variables";
+
+drag-visual-helper {
+  display: block;
+  position: fixed;
+  bottom: -50px;
+  left: -100px;
+  pointer-events: none;
+  background-color: mat-color($app-background, card);
+  color: mat-color($app-foreground, text);
+  max-height: 40px;
+  border-radius: 2px;
+  padding: 10px;
+  text-align: center;
+  @include mat-elevation(4);
+  font-size: 1.5rem;
+  text-transform: capitalize;
+  z-index: 10;
+}

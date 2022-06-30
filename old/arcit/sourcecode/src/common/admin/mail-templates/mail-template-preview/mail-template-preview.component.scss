@@ -1,0 +1,130 @@
+@import "variables";
+
+:host {
+  display: block;
+  position: relative;
+  flex: 0 0 50%;
+  border: 1px solid mat-color($app-foreground, divider);
+  border-left: none;
+  background-color: mat-color($app-background, dialog);
+  overflow: auto;
+  padding: 15px;
+}
+
+iframe {
+  border: none;
+  width: 100%;
+  padding-left: 43px;
+}
+
+.header {
+  display: flex;
+  border-bottom: 1px solid mat-color($app-foreground, divider);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  font-family: arial,sans-serif;
+
+  .title {
+    display: flex;
+    align-items: center;
+    flex: 1 1 auto;
+
+    .text {
+      font-size: 1.7rem;
+      color: mat-color($app-foreground, text);
+      padding-right: 10px;
+    }
+  }
+
+  .actions {
+    margin-right: auto;
+    color: mat-color($app-foreground, icon);
+
+    .mat-icon {
+      width: 16px;
+      height: 16px;
+      margin-right: 5px;
+    }
+  }
+}
+
+.toolbar {
+  display: flex;
+  margin-bottom: 12px;
+
+  .user {
+    display: flex;
+
+    img {
+      width: 32px;
+      height: 32px;
+    }
+
+    .meta {
+      margin-left: 12px;
+      color: mat-color($app-foreground, text);
+      font-size: 12.8px;
+
+      .username {
+        font-weight: bold;
+      }
+
+      .info {
+        color: mat-color($app-foreground, secondary-text);
+
+        .mat-icon {
+          width: 12px;
+          height: 12px;
+          border: 1px solid mat-color($app-foreground, divider-lighter);
+          border-radius: 2px;
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+
+  .actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+
+    .date {
+      margin-right: 3px;
+    }
+
+    .star-icon {
+      color: mat-color($app-foreground, hint-text);
+    }
+
+    .buttons {
+      display: flex;
+      height: 30px;
+      background-color: mat-color($app-background, background);
+      border: 1px solid mat-color($app-foreground, divider);
+      border-radius: 2px;
+      margin-left: 3px;
+      color: mat-color($app-foreground, icon);
+
+      .reply {
+        padding: 0 8px;
+        border-right: 1px solid mat-color($app-foreground, divider);
+
+        .mat-icon {
+          width: 18px;
+          height: 18px;
+          padding-top: 4px;
+        }
+      }
+
+      .more {
+        padding: 0 8px;
+
+        .mat-icon {
+          width: 16px;
+          height: 16px;
+          padding-top: 7px;
+        }
+      }
+    }
+  }
+}

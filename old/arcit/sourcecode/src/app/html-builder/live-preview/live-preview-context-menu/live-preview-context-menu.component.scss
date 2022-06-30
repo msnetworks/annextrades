@@ -1,0 +1,13 @@
+@import "variables";
+
+live-preview-context-menu {
+  display: block;
+}
+
+.context-menu-origin {
+  position: fixed;
+  width: 1px;
+  height: 1px;
+  visibility: hidden;
+  pointer-events: none;
+}

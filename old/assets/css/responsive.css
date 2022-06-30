@@ -1,0 +1,154 @@
+@media (min-width: 1801px) and (max-width: 5000px) {
+.container{max-width:1700px;}
+}
+
+@media (min-width: 1500px) and (max-width: 1800px) {
+.slider-fashion-inner .owl-item {
+/* width: 373px!important; */
+}
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+.header {
+    position: sticky !important;
+}
+.navigationbar .navbar-nav li a {
+    font-size: 14px;
+    color: #1d1c1c!important;
+}
+.subscribe-form-group .form-group {
+    margin-top: 38px;
+}
+.info-left-image img {
+    width: 100%;
+}
+.slider-fashion-inner .owl-item {
+   /* width: 337px!important; */
+}
+.left-slider-title h2 {
+    font-size: 31px;
+    line-height: 53px;
+}
+}
+
+@media (min-width: 300px) and (max-width: 767px) {
+	.tell-uswhtyouneed {
+    position: unset;
+}
+img.bg-lft-bg {
+    width: 100%;
+}
+.info-left-image img {
+    width: 100%;
+}
+#products .owl-nav button.owl-next, #services .owl-nav button.owl-next {
+    right: 0px;
+    display: none;
+}
+.header {
+    position: unset;
+}
+.banner-inner h1 {
+    line-height: 52px;
+    font-size: 34px;
+}
+.owl-carousel .owl-item img {
+    min-height: 362px;
+}
+.subscribe-form-group .form-group {
+    margin-top: 35px;
+}
+.info-right h2 {
+    font-size: 41px;
+}
+.left-slider-title h2 {
+    font-size: 30px;
+    line-height: 47px;
+}
+.slider-fashion-inner {
+    padding: 0px 2px;
+}
+.product-slider {
+    padding: 13px 13px 60px;
+}
+#products .owl-nav button.owl-prev, #services .owl-nav button.owl-prev {
+    display: none;
+}
+.try-it-free-btn {
+    padding: 15px 35px;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+.banner-inner {
+    top: 9%;
+}
+a.btn-all-pro {
+    padding: 13px 21px;
+    margin-top: 1px;
+}
+.tell-uswhtyouneed {
+    padding: 14% 0%;
+    margin: 14px 0px;
+}
+.info-right {
+    padding-left: 0px;
+}
+.info-section {
+    margin-top: 39px;
+}
+.looking-services {
+    padding: 24% 0%;
+    margin: 0px 0px;
+}
+.navigationbar .navbar-nav li a {
+    font-size: 14px;
+    color: #1d1c1c!important;
+}
+.navigationbar .navbar-nav li a {
+    font-size: 14px;
+    color: #1d1c1c!important;
+    font-weight: 500;
+    transition: all ease 1s;
+}
+a.nav-link.btn-style.btn-color {
+    margin-bottom: 20px;
+}
+#owl-fashion-men button.owl-prev, #featured button.owl-prev, #business button.owl-prev,
+#owl-fashion-men .owl-next, #featured button.owl-next, #business button.owl-next {
+    display: none;
+}
+.tell-uswhtyouneed {
+    background-size: cover;
+}
+.try-it-free p {
+    font-size: 16px;
+}
+.try-it-free {
+    padding: 5px;
+}
+.l-s-inner h3 {
+    margin-bottom: -15px;
+    font-size: 28px;
+    min-height: 107px;
+}
+.annexis-inner-box p {
+    background: rgba(255,255,255,0.7);
+    padding: 17px;
+}
+.after-banner-nav {
+    padding-top: 36px;
+}
+.annexis-inner-box h3 {
+    background: #fff;
+    padding: 10px;
+}
+button.subscribe-btn {
+    position: unset;
+    margin: 0px auto 0px;
+    display: block;
+}
+}

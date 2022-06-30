@@ -1,0 +1,43 @@
+@import "variables";
+
+templates-panel {
+  display: block;
+  background-color: mat-color($app-background, background);
+  height: 100%;
+  width: 300px;
+  box-sizing: inherit;
+
+  .templates {
+    padding: 15px;
+
+    .template {
+      margin-bottom: 20px;
+      cursor: pointer;
+      background-color: mat-color($app-background, card);
+      @include mat-elevation-transition;
+      @include mat-elevation(2);
+      border-radius: 4px;
+      overflow: hidden;
+
+      &.disabled {
+        pointer-events: none;
+        opacity: 0.7;
+      }
+
+      &:hover {
+        @include mat-elevation(8);
+      }
+
+      .name {
+        padding: 10px 0;
+        text-align: center;
+      }
+
+      img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+}

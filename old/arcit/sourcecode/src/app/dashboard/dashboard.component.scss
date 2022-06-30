@@ -1,0 +1,196 @@
+@import "../../scss/variables";
+
+:host {
+  display: block;
+  min-height: 100vh;
+  background-color: mat-color($app-background, background);
+}
+
+:host-context(.be-dark-mode) .page-header {
+  background-color: var(--be-background);
+}
+
+.page-header {
+  background-color: mat-color($app-primary, default);
+  color: #fff;
+
+  material-navbar {
+    background-color: transparent;
+
+    .logo-container {
+      max-height: 48%;
+      margin-right: 20px;
+    }
+  }
+
+  .input-container label {
+    color: inherit;
+  }
+}
+
+.header-body {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  display: flex;
+  align-items: center;
+
+  .inputs {
+    display: flex;
+    align-items: center;
+  }
+
+  .input-container {
+    margin-right: 20px;
+  }
+
+  input, select {
+    background-color: #fff;
+    color: rgba(0, 0, 0, 0.87);
+  }
+
+  .actions {
+    margin-left: auto;
+  }
+
+  .upgrade-button {
+    margin-right: 20px;
+  }
+
+  @media only screen and (max-width: $medium) {
+    padding: 25px 0;
+
+    .inputs {
+      display: none;
+    }
+
+    .actions {
+      margin: 0 auto;
+    }
+  }
+}
+
+.ad-host-top {
+  margin-top: 35px;
+}
+
+.ad-host-bottom {
+  margin-bottom: 35px;
+}
+
+.mat-tab-group {
+  margin-top: 40px;
+}
+
+.projects {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  overflow: hidden;
+  width: 100%;
+
+  .project {
+    .footer {
+      display: flex;
+      align-items: center;
+      padding: 22px;
+      border-top: 1px solid mat-color($app-foreground, divider-lighter);
+
+      .title {
+        flex: 1 1 auto;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-right: 15px;
+      }
+
+      .name {
+        font-size: 1.6rem;
+        font-weight: 500;
+      }
+
+      .updated {
+        font-size: 1rem;
+        color: mat-color($app-foreground, secondary-text);
+      }
+
+      .url {
+        display: block;
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+        color: mat-color($app-foreground, secondary-text);
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      .actions {
+        margin-left: auto;
+        color: mat-color($app-foreground, icon);
+      }
+    }
+  }
+}
+
+// DOMAINS //
+
+.domains-tab, .domains {
+  margin-top: 25px;
+}
+
+.domain {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  background-color: mat-color($app-background, card);
+  @include mat-elevation(1);
+
+  .host {
+    font-size: 1.7rem;
+  }
+
+  .date {
+    color: mat-color($app-foreground, secondary-text);
+  }
+}
+
+.domain-project {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+  font-size: 1.5rem;
+
+  img {
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+    margin-right: 10px;
+    flex-shrink: 0;
+  }
+}
+
+.domain-content {
+  flex: 1 1 auto;
+}
+
+.domain-actions {
+  flex-shrink: 0;
+}
+
+.project-menu-item {
+  display: flex;
+  align-items: center;
+  line-height: 50px;
+  height: 50px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+  img {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    margin-right: 10px;
+    flex-shrink: 0;
+  }
+}

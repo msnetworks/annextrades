@@ -1,0 +1,61 @@
+<div class="modal-header">
+    <h2 class="modal-title" mat-dialog-title trans>Publish Project</h2>
+    <button type="button" (click)="close()" class="close-button no-style icon-button">
+        <mat-icon svgIcon="close"></mat-icon>
+    </button>
+</div>
+
+<form (ngSubmit)="confirm()" ngNativeValidate>
+
+    <div class="project-url">
+        <a [href]="getProjectUrl()" target="_blank">{{getProjectUrl(true)}}</a>
+        <mat-slide-toggle color="accent" name="ssl" [checked]="!!data.project.published" [disabled]="loading" (change)="toggleProjectState($event)" trans>Public</mat-slide-toggle>
+    </div>
+
+    <div class="mat-dialog-content many-inputs" mat-dialog-content>
+        <ng-container *ngIf="settings.get('publish.allow_credential_change')">
+            <div class="input-container">
+                <label for="host" trans>Host</label>
+                <input type="text" name="host" id="host" [(ngModel)]="ftpDetails.host" required>
+                <p class="error" *ngIf="errors.host">{{errors.host}}</p>
+            </div>
+
+            <div class="input-container">
+                <label for="username" trans>Username</label>
+                <input type="text" name="username" id="username" [(ngModel)]="ftpDetails.username" required>
+                <p class="error" *ngIf="errors.username">{{errors.username}}</p>
+            </div>
+
+            <div class="input-container">
+                <label for="password" trans>Password</label>
+                <input type="password" name="password" id="password" [(ngModel)]="ftpDetails.password" required>
+                <p class="error" *ngIf="errors.password">{{errors.password}}</p>
+            </div>
+
+            <div class="input-container">
+                <label for="directory" trans>Directory</label>
+                <input type="text" name="directory" id="directory" [(ngModel)]="ftpDetails.directory" placeholder="(Optional)" trans-placeholder>
+                <p class="error" *ngIf="errors.directory">{{errors.directory}}</p>
+            </div>
+
+            <div class="inline-inputs">
+                <div class="input-container">
+                    <label for="port" trans>Port</label>
+                    <input type="number" name="port" id="port" [(ngModel)]="ftpDetails.port" required>
+                    <p class="error" *ngIf="errors.port">{{errors.port}}</p>
+                </div>
+
+                <mat-slide-toggle color="accent" name="ssl" [(ngModel)]="ftpDetails.ssl">SSL</mat-slide-toggle>
+            </div>
+        </ng-container>
+    </div>
+
+    <mat-progress-bar mode="indeterminate" *ngIf="loading" color="accent"></mat-progress-bar>
+
+    <div class="error no-input-error" *ngIf="errors['*']">{{errors['*']}}</div>
+
+    <div class="buttons right mat-dialog-actions" mat-dialog-actions>
+        <button (click)="close()" type="button" mat-button class="button cancel cancel-button" trans>Cancel</button>
+        <button type="submit" mat-raised-button color="accent" class="button primary submit-button" [disabled]="loading" trans>Publish</button>
+    </div>
+</form>

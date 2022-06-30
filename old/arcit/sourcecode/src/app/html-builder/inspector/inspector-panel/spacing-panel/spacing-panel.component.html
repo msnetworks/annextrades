@@ -1,0 +1,43 @@
+<div class="side-controls">
+    <button class="no-style side-control all-control" (click)="toggleSide('all')">
+        <side-control-border type="all" [active]="isSideEnabled('all')"></side-control-border>
+    </button>
+
+    <button class="no-style side-control top-control" (click)="toggleSide('top')">
+        <side-control-border [type]="type === 'borderRadius' ? 'top-left' : 'top'" [active]="isSideEnabled('top')"></side-control-border>
+    </button>
+    <button class="no-style side-control right-control" (click)="toggleSide('right')">
+        <side-control-border [type]="type === 'borderRadius' ? 'bottom-left' : 'right'" [active]="isSideEnabled('right')"></side-control-border>
+    </button>
+    <button class="no-style side-control bottom-control" (click)="toggleSide('bottom')">
+        <side-control-border [type]="type === 'borderRadius' ? 'top-right' : 'bottom'" [active]="isSideEnabled('bottom')"></side-control-border>
+    </button>
+    <button class="no-style side-control left-control" (click)="toggleSide('left')">
+        <side-control-border [type]="type === 'borderRadius' ? 'bottom-right' : 'left'" [active]="isSideEnabled('left')"></side-control-border>
+    </button>
+</div>
+
+<mat-slider min="1" [max]="max" step="1" color="accent" (input)="applySpacingForEnabledSides($event.value)" [value]="sliderValue" [disabled]="!enabledSides.length"></mat-slider>
+
+<ng-content></ng-content>
+
+<div class="side-inputs">
+    <div class="input-container all-input">
+        <input type="number" min="1" max="999" [(ngModel)]="spacing.all" (ngModelChange)="applySpacingToAllSides()">
+    </div>
+
+    <div class="side-inputs-inner" [ngClass]="type">
+        <div class="input-container top-input">
+            <input type="number" min="1" max="999" [(ngModel)]="spacing.top" (ngModelChange)="applySpacing('top')">
+        </div>
+        <div class="input-container left-input">
+            <input type="number" min="1" max="999" [(ngModel)]="spacing.left" (ngModelChange)="applySpacing('left')">
+        </div>
+        <div class="input-container right-input">
+            <input type="number" min="1" max="999" [(ngModel)]="spacing.right" (ngModelChange)="applySpacing('right')">
+        </div>
+        <div class="input-container bottom-input">
+            <input type="number" min="1" max="999" [(ngModel)]="spacing.bottom" (ngModelChange)="applySpacing('bottom')">
+        </div>
+    </div>
+</div>

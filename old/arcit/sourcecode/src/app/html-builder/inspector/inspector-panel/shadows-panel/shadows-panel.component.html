@@ -1,0 +1,32 @@
+
+<div class="sliders">
+    <div class="slider-container" *ngFor="let slider of sliders">
+        <ng-container *ngIf="slider !== 'spread' || props.type === 'boxShadow'">
+            <div class="title">{{slider}}</div>
+            <div class="inner-container">
+                <mat-slider color="accent" min="0" [max]="slider == 'angle' ? 360 : 20" step="1" (input)="applyStyle(slider, $event.value, false)" [(ngModel)]="props[slider]"></mat-slider>
+                <div class="input-container">
+                    <input type="number" [(ngModel)]="props[slider]" min="1" [max]="slider == 'angle' ? 360 : 20">
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>
+
+<div class="types">
+    <button class="no-style color-button" (click)="openColorpickerPanel()" #colorButton trans>Color</button>
+
+    <div class="input-container box-shadow">
+        <select name="shadow-type" id="shadow-type" [(ngModel)]="props.type" (ngModelChange)="applyStyle('type', props.type)">
+            <option value="boxShadow" trans>Box</option>
+            <option value="textShadow" trans>Text</option>
+        </select>
+    </div>
+
+    <div class="input-container text-shadow">
+        <select name="shadow-inset" id="shadow-inset" [(ngModel)]="props.inset" (ngModelChange)="applyStyle('inset', props.inset)">
+            <option [ngValue]="false" trans>Outter</option>
+            <option [ngValue]="true" trans>Inner</option>
+        </select>
+    </div>
+</div>

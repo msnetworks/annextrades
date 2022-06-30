@@ -1,0 +1,100 @@
+<div class="header">
+    <div class="title" trans>Site Builder</div>
+    <div class="subtitle" trans>Configure the site builder and user dashboard settings.</div>
+</div>
+
+<form class="body many-inputs" (submit)="saveSettings()" ngNativeValidate>
+
+    <mat-tab-group color="accent" animationDuration="0">
+        <mat-tab [label]="'General' | trans">
+            <div class="tab-content many-inputs">
+                <div class="setting-toggle-container">
+                    <mat-slide-toggle name="builder.enable_subdomains" id="builder.enable_subdomains"
+                                      [(ngModel)]="state.client['builder.enable_subdomains']" trans>Subdomains
+                    </mat-slide-toggle>
+                    <p>
+                        <span trans>Should user projects be accessible via subdomain on your site.</span>&ngsp;
+                        <a class="hover-underline" href="https://support.vebto.com/help-center/articles/5/9/156/custom-domains#sub-domain" *ngIf="!settings.get('common.site.hide_docs_button')" target="_blank" trans>Learn More.</a>
+                    </p>
+                </div>
+
+                <div class="setting-toggle-container">
+                    <mat-slide-toggle name="builder.enable_custom_domains" id="builder.enable_custom_domains"
+                                      [(ngModel)]="state.client['builder.enable_custom_domains']" trans>Custom Domains
+                    </mat-slide-toggle>
+                    <p>
+                        <span trans>Should users be able to attach their own custom domains to their projects.</span>&ngsp;
+                        <a class="hover-underline" href="https://support.vebto.com/help-center/articles/5/9/156/custom-domains#custom-domains" *ngIf="!settings.get('common.site.hide_docs_button')" target="_blank" trans>Learn More.</a>
+                    </p>
+                </div>
+
+                <div class="input-container">
+                    <label for="builder.google_fonts_api_key" trans>Google Fonts API Key</label>
+                    <input name="builder.google_fonts_api_key" id="builder.google_fonts_api_key" type="text"
+                           [(ngModel)]="state.client['builder.google_fonts_api_key']">
+                </div>
+
+                <div class="input-container">
+                    <label for="template_categories" trans>Template Categories</label>
+                    <chip-input
+                            id="template_categories"
+                            name="template_categories"
+                            [(ngModel)]="categories"
+                            placeholder="+New Category..."
+                            trans-placeholder
+                    ></chip-input>
+                </div>
+            </div>
+        </mat-tab>
+
+        <mat-tab [label]="'Publishing' | trans">
+           <div class="tab-content">
+               <div class="setting-toggle-container">
+                   <mat-slide-toggle name="publish.allow_credential_change" id="publish.allow_credential_change"
+                                     [(ngModel)]="state.client['publish.allow_credential_change']" trans>FTP Publish Credentials
+                   </mat-slide-toggle>
+                   <p trans>Allow users to change FTP publish credentials.</p>
+               </div>
+
+               <div class="error-group many-inputs">
+                   <h2 trans>Default FTP credentials for publish dialog</h2>
+                   <div class="input-container">
+                       <label for="host" trans>Host</label>
+                       <input type="text" name="host" id="host" [(ngModel)]="defaultPublishCredentials.host">
+                   </div>
+
+                   <div class="input-container">
+                       <label for="username" trans>Username</label>
+                       <input type="text" name="username" id="username" [(ngModel)]="defaultPublishCredentials.username">
+                   </div>
+
+                   <div class="input-container">
+                       <label for="password" trans>Password</label>
+                       <input type="password" name="password" id="password"
+                              [(ngModel)]="defaultPublishCredentials.password">
+                   </div>
+
+                   <div class="input-container">
+                       <label for="directory" trans>Directory</label>
+                       <input type="text" name="directory" id="directory" [(ngModel)]="defaultPublishCredentials.directory"
+                              placeholder="(Optional)" trans-placeholder>
+                   </div>
+
+                   <div class="input-container">
+                       <label for="port" trans>Port</label>
+                       <input type="number" name="port" id="port" [(ngModel)]="defaultPublishCredentials.port">
+                   </div>
+
+                   <mat-slide-toggle color="accent" class="custom-control" name="ssl" [(ngModel)]="defaultPublishCredentials.ssl">SSL</mat-slide-toggle>
+               </div>
+           </div>
+        </mat-tab>
+    </mat-tab-group>
+
+    <button mat-raised-button color="accent" class="button primary update-button" type="submit"
+            [disabled]="loading$ | async" trans>Update
+    </button>
+    <mat-progress-bar mode="indeterminate" color="accent" *ngIf="loading$ | async"></mat-progress-bar>
+</form>
+
+<loading-indicator [isVisible]="loading$ | async" class="overlay"></loading-indicator>

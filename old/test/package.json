@@ -1,0 +1,11 @@
+{
+  "name": "myworld",
+  "version": "17.0.1",
+  "description": "this is for test firebase",
+  "main": "index.js",
+  "scripts": {
+    "test": "start"
+  },
+  "author": "",
+  "license": "ISC"
+}

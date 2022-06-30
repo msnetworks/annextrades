@@ -1,0 +1,8 @@
+.ck-content .teditor-inline-image.image {
+	display: inline-table;
+  margin: 0 5px;
+}
+
+.ck-content .teditor-inline-image.image.image_resized {
+	display: inline-block;
+}

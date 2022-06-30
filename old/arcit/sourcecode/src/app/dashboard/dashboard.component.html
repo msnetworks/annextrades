@@ -1,0 +1,133 @@
+<div class="page-header">
+    <material-navbar menuPosition="dashboard" [container]="true"></material-navbar>
+
+    <div class="header-body container">
+        <form class="inputs" [formGroup]="models">
+            <div class="input-container">
+                <label for="search-query" trans>Search</label>
+                <input type="text" formControlName="query" id="search-query">
+            </div>
+
+            <div class="input-container">
+                <label for="project-status" trans>Status</label>
+                <select formControlName="published" id="project-status">
+                    <option value="all" trans>All</option>
+                    <option [ngValue]="1" trans>Published</option>
+                    <option [ngValue]="0" trans>Unpublished</option>
+                </select>
+            </div>
+
+            <div class="input-container">
+                <label for="project-order" trans>Sort</label>
+                <select formControlName="order" id="project-order">
+                    <option value="created_at|desc" trans>Newest</option>
+                    <option value="created_at|asc" trans>Oldest</option>
+                    <option value="name|desc" trans>A-Z</option>
+                    <option value="name|asc" trans>Z-A</option>
+                </select>
+            </div>
+        </form>
+
+        <div class="actions">
+            <ng-container *ngIf="settings.get('billing.enable')">
+                <a class="upgrade-button" mat-raised-button color="accent" routerLink="/billing/subscription"
+                   *ngIf="currentUser.isSubscribed()">
+                    <mat-icon svgIcon="flash-on"></mat-icon>
+                    <span trans>Manage Subscription</span>
+                </a>
+                <a class="upgrade-button" mat-raised-button color="accent" routerLink="/billing/upgrade"
+                   *ngIf="!currentUser.isSubscribed()">
+                    <mat-icon svgIcon="flash-on"></mat-icon>
+                    <span trans>Upgrade to Premium</span>
+                </a>
+            </ng-container>
+            <a class="new-project-button" mat-raised-button color="accent" routerLink="/dashboard/projects/new" trans>New Project</a>
+        </div>
+    </div>
+</div>
+
+<section class="be-container">
+    <ad-host slot="ads.dashboard_top" class="ad-host-top"></ad-host>
+
+    <mat-tab-group color="accent" animationDuration="0">
+        <mat-tab [label]="'Projects' | trans">
+            <div class="projects template-grid tab-content">
+                <div class="project template-grid-item" *ngFor="let project of projects$ | async">
+                    <img [src]="getProjectImage(project)" (click)="openBuilder(project)" alt="{{project.name}} image">
+                    <div class="footer">
+                        <div class="title">
+                            <div class="name" (click)="openBuilder(project)">{{project.name}}</div>
+                            <a class="url" [href]="getProjectUrl(project)" target="_blank">{{getProjectUrl(project, true)}}</a>
+                            <div class="updated">{{project.created_at | formattedDate}}</div>
+                        </div>
+                        <div class="actions">
+                            <button type="button" [matMenuTriggerFor]="menu" mat-icon-button>
+                                <mat-icon svgIcon="more-vert"></mat-icon>
+                            </button>
+                            <mat-menu #menu="matMenu">
+                              <button mat-menu-item (click)="openBuilder(project)" trans>Edit</button>
+                              <a [href]="getProjectUrl(project)" target="_blank" mat-menu-item trans>Preview</a>
+                                <button mat-menu-item (click)="openPublishProjectModal(project)" [disabled]="!currentUser.hasPermission('projects.publish')" trans>Publish</button>
+                                <button mat-menu-item (click)="deleteProjectWithConfirmation(project)" trans>Delete</button>
+                            </mat-menu>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <no-results-message *ngIf="!(projects$ | async).length">
+                <span primary-text *ngIf="models.controls.query.value" trans>Not matching projects found.</span>
+                <span primary-text *ngIf="!models.controls.query.value"
+                      trans>You have not created any projects yet.</span>
+                <span secondary-text *ngIf="!models.controls.query.value" trans>Nothing to show. <a
+                        routerLink="/dashboard/projects/new" trans>Create a project?</a></span>
+            </no-results-message>
+        </mat-tab>
+
+        <mat-tab [label]="'Domains' | trans" *ngIf="settings.get('builder.enable_custom_domains') && currentUser.hasPermission('custom_domains.create')">
+            <div class="domains-tab tab-content">
+                <button type="button" mat-raised-button color="accent" (click)="openConnectDomainModal()" trans>Connect Domain</button>
+
+                <ul class="domains">
+                    <li class="domain" *ngFor="let domain of domains$ | async">
+                        <div class="domain-content">
+                            <div class="host">{{domain.host}}</div>
+                            <div class="date">{{domain.created_at | formattedDate}}</div>
+                            <div *ngIf="domain.resource" class="domain-project">
+                                <img [src]="getProjectImage(domain.resource)" alt="">
+                                <div class="name">{{domain.resource.name}}</div>
+                            </div>
+                            <div *ngIf="!domain.resource" class="domain-project" trans>
+                                This domain is not attached to any project.
+                            </div>
+                        </div>
+                        <div class="domain-actions">
+                            <button type="button" [matMenuTriggerFor]="menu" mat-icon-button>
+                                <mat-icon svgIcon="more-vert"></mat-icon>
+                            </button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item [matMenuTriggerFor]="projects" trans>Change Project</button>
+                                <button mat-menu-item (click)="maybeRemoveDomain(domain)" trans>Remove</button>
+                            </mat-menu>
+                            <mat-menu #projects="matMenu">
+                                <div mat-menu-item *ngFor="let project of projects$ | async" class="project-menu-item" (click)="attachDomainToProject(project, domain)">
+                                    <img [src]="getProjectImage(project)" alt="">
+                                    <div class="project-name">{{project.name}}</div>
+                                </div>
+                            </mat-menu>
+                        </div>
+                    </li>
+                </ul>
+
+                <no-results-message *ngIf="!(domains$ | async).length">
+                    <span primary-text trans>Nothing to show.</span>
+                    <span secondary-text trans>You have not attached any domains yet.</span>
+                </no-results-message>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+
+    <ad-host slot="ads.dashboard_bottom" class="ad-host-bottom"></ad-host>
+</section>
+
+<loading-indicator [isVisible]="loading$ | async" class="overlay"></loading-indicator>

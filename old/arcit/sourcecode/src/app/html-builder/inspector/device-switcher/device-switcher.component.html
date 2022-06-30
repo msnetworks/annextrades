@@ -1,0 +1,41 @@
+<mat-tab-group color="accent" [dynamicHeight]="true" [selectedIndex]="selectedIndex" (selectedTabChange)="switchDevice($event)" #tabs>
+    <mat-tab>
+        <ng-template mat-tab-label><mat-icon svgIcon="phone-android"></mat-icon></ng-template>
+
+        <div class="device-description">
+            <mat-icon svgIcon="phone-android"></mat-icon>
+            <div class="name" trans>Phone</div>
+            <div class="size">768px and Smaller</div>
+        </div>
+    </mat-tab>
+
+    <mat-tab>
+        <ng-template mat-tab-label><mat-icon svgIcon="tablet-android"></mat-icon></ng-template>
+
+        <div class="device-description">
+            <mat-icon svgIcon="tablet-android"></mat-icon>
+            <div class="name" trans>Tablet</div>
+            <div class="size">768px - 992px</div>
+        </div>
+    </mat-tab>
+
+    <mat-tab>
+        <ng-template mat-tab-label><mat-icon svgIcon="laptop-chromebook"></mat-icon></ng-template>
+
+        <div class="device-description">
+            <mat-icon svgIcon="laptop-chromebook"></mat-icon>
+            <div class="name" trans>Laptop</div>
+            <div class="size">992px - 1200px</div>
+        </div>
+    </mat-tab>
+
+    <mat-tab>
+        <ng-template mat-tab-label><mat-icon svgIcon="desktop-windows"></mat-icon></ng-template>
+
+        <div class="device-description">
+            <mat-icon svgIcon="desktop-windows"></mat-icon>
+            <div class="name" trans>Desktop</div>
+            <div class="size">1200px and Larger</div>
+        </div>
+    </mat-tab>
+</mat-tab-group>

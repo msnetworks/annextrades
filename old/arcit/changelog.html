@@ -1,0 +1,441 @@
+<h2>2020 April 22 - Version 2.2.1</h2>
+
+<h4>New Features</h4>
+<ul>
+    <li>Added new notification system.</li>
+    <li>Added configurable GDPR cookie notice.</li>
+    <li>Added configurable confirmation policies to register page.</li>
+    <li>Added chunked uploading. This allows BeMusic to upload large files in smaller chunks for better upload reliability and avoid server max file size limits.</li>
+    <li>Added support for XSendFile and XAcceleratedResponse for reducing server RAM and CPU usage when previewing or downloading files.</li>
+    <li>Added resumable uploads functionality.</li>
+</ul>
+
+<h4>Enhancements</h4>
+<ul>
+    <li>Builder images can now be stored on cloud services (s3, digitalocean, backblaze etc.)</li>
+    <li>Improved link manager positioning on mobile.</li>
+    <li>Specific plans can now be hidden from upgrade and pricing pages.</li>
+    <li>Device switcher will now disable options that can't be toggled on current screen size.</li>
+    <li>Project owner can now be changed from admin area.</li>
+    <li>Proration amount on subscription changes to more expensive plan on same interval will now be charged immediately instead of next billing cycle on stripe to prevent abuse.</li>
+    <li>Added validation to check whether x-accel or x-sendfile is setup on the server before enabling that setting in Architect.</li>
+    <li>Clicking "edit" button while icon is selected in builder will now open icon selector for replacing that icon.</li>
+    <li>Updated several built-in templates to latest versions and bootstrap 4.</li>
+    <li>Improved performance when downloading large files.</li>
+    <li>Account confirmation email can now be resent from login page and admin area.</li>
+    <li>Localization settings page will now show all available timezones.</li>
+    <li>Redirect user from "billing/pricing" to "billing/upgrade" url if they are already logged in or subscribed.</li>
+    <li>Public uploads (like user avatars) can now be stored on cloud services (s3, digitalocean, backblaze etc.).</li>
+</ul>
+
+<h4>Bug Fixes</h4>
+<ul>
+    <li>Background image uploading will now work properly.</li>
+    <li>Pathname will now be striped from url when building sub-domain urls for projects.</li>
+    <li>Fixed an issue where preview button would generate incorrect url sometimes.</li>
+    <li>Fixed an issue where 403 error would be shown on some hosting providers when trying to load project in the builder.</li>
+    <li>User subscription page will now correctly show parent and not base plan price.</li>
+    <li>Fixed a few translation issues.</li>
+    <li>Fixed an issue where projects with accented characters in the name preview would not work sometimes.</li>
+    <li>Fixed font size input in text style panel.</li>
+    <li>Added admin and custom page navbar positions to menu manager.</li>
+    <li>Properly delete user projects after user is deleted.</li>
+    <li>Corrected a few visual issues with dropdowns across the site.</li>
+    <li>Chart legend items will now wrap to new line if there's not enough space.</li>
+    <li>A number of other smaller fixes and improvements.</li>
+</ul>
+
+
+<h2>2019 December 02 - Version 2.2.0</h2>
+
+<h4>New Features</h4>
+<ul>
+    <li>Added a landing page along with landing page editor in admin area.</li>
+    <li>Added dark & light mode as well as multiple theme functionality.</li>
+    <li>Data tables in admin area now have a number of built-in filters for easier data management.</li>
+    <li>Users can now attach custom domains to their projects.</li>
+    <li>Maximum number of projects can now be specified for user, role or plan.</li>
+    <li>Default FTP credentials for publish project dialog can now be specified from settings page.</li>
+</ul>
+
+<h4>Enhancements</h4>
+<ul>
+    <li>Link editor will now be better positioned depending on the available screen space.</li>
+    <li>Updated project preview appearance in user dashboard.</li>
+    <li>Admin area is now fully responsive.</li>
+    <li>Custom HTML can now be entered from "admin -> appearance > custom code" page.</li>
+    <li>Builder sidebar now can be toggled on or off on mobile.</li>
+    <li>"Admin > ads" page will now show a preview of where specific ad will appear on site.</li>
+    <li>Improved html code formatting in the code editor.</li>
+    <li>Various file uploads that are no longer used will now be periodically deleted.</li>
+    <li>More templates on "new project" page will now be loaded when user scrolls down.</li>
+    <li>User default avatars will now be generated automatically based on their email address.</li>
+    <li>Template uploader in admin area will now accept more folder structures for templates.</li>
+    <li>"iframe" and "script" tags are not supported in custom pages.</li>
+</ul>
+
+<h4>Bug Fixes</h4>
+<ul>
+    <li>Completely rebuilt appearance editor "colors" section, which will fix a number of issues with changing default colors.</li>
+    <li>Fixed an issue where user would not be editable sometimes from "admin > users" page.</li>
+    <li>Creating new page in builder will now correctly set that page SEO options.</li>
+    <li>"View Source" button will now correctly highlight code for corresponding element.</li>
+    <li>Fixed a few issues with duplicating existing pages.</li>
+    <li>Fixed a few text lines that were not translatable.</li>
+    <li>Fixed a few issues with "position" option in attributes panel.</li>
+    <li>Fixed an issue where template name was not changeable sometimes.</li>
+    <li>Prevent html and body tags from being deleted via del keybind.</li>
+    <li>Fixed an issue where downloaded project would sometimes still have asset urls pointing to live site.</li>
+</ul>
+
+
+
+
+<h2>2019 April 14 - Version 2.1.5</h2>
+<h4>New Features</h4>
+<ul>
+    <li>Added a new, simpler installer.</li>
+    <li>Added 5 new templates.</li>
+    <li>Elements and images can now be resized via resize handle.</li>
+    <li>Element background (image or color) can now be removed.</li>
+</ul>
+
+<h4>Enhancements</h4>
+<ul>
+    <li>Updated "New Project" page design.</li>
+    <li>Updated subscription page design.</li>
+    <li>Billing plans now accept floats as amount (for example 5.99)</li>
+    <li>Templates will now be ordered by creation/update date.</li>
+    <li>Code editor dialog is now draggable.</li>
+    <li>Amazon S3 storage method endpoint can now be changed via settings page.</li>
+    <li>Menu for custom pages can now be created via menu manager.</li>
+    <li>External link added via menu manager will now open in new browser page.</li>
+    <li>Menu manager "route" type items now support query parameters.</li>
+    <li>Google "mobile friendly" tests should now fully pass.</li>
+    <li>Settings page will now validate most newly entered settings.</li>
+    <li>Google analytics .p12 file can now be uploaded from settings page.</li>
+</ul>
+
+<h4>Bug Fixes</h4>
+<ul>
+    <li>Index page will now always be selected by default when opening new project.</li>
+    <li>Fixed an issue that sometimes prevented pages from being renamed.</li>
+    <li>Fixed an issue where paypal plans would not be synced sometimes when switching between sandbox and live mode.</li>
+    <li>Template categories should now be removable in "Admin -> Settings -> Builder" page.</li>
+    <li>Properly redirect user to project dashboard after successful subscription.</li>
+    <li>Fixed an issue with some words not being translatable.</li>
+    <li>Validation messages will now be translated when locale is not set to english.</li>
+    <li>Undo/Redo functionality should now work properly with style changes (background, color, shadow etc.)</li>
+    <li>Currencies with longer symbols will no longer overlap subscription plan name.</li>
+    <li>User subscriptions in admin area will now be searchable.</li>
+    <li>It should not be possible to set homepage to blank page anymore from settings.</li>
+    <li>Sitename entered in "admin > appearance > general" page will now affect emails.</li>
+    <li>Properly resize wide logos in navbar on mobile.</li>
+    <li>Fixed an issue where user permissions could not be updated from admin area sometimes.</li>
+    <li>Menu item reordering via drag and drop should now work properly in menu manager.</li>
+    <li>"Add item" panel in menu manager should now work safari.</li>
+</ul>
+
+
+<h2>2018 November 22 - Version 2.1.2</h2>
+<h4>Bug Fixes</h4>
+<ul>
+    <li>Fix an issue where default users role would not have correct permissions after installation.</li>
+    <li>Fix an issue with pages panel sometimes not showing page meta tags.</li>
+</ul>
+
+<h2>2018 October 07 - Version 2.1.1</h2>
+<h4>Bug Fixes</h4>
+<ul>
+    <li>Fix an issue with paypal sometimes starting in sandbox mode, even if live mode is enabled.</li>
+    <li>Fix an issue where appearance colors editor live preview would not work on subdomain.</li>
+    <li>Improve installer compatibility with MariaDB.</li>
+</ul>
+
+<h2>2018 September 24 - Version 2.1.0</h2>
+<h4>New Features</h4>
+<ul>
+    <li>New built in contact page with google recaptcha integration.</li>
+    <li>New files page in admin area for inspecting and deleting uploaded files..</li>
+    <li>Custom translation lines can now be added from "admin > translations" page.</li>
+</ul>
+
+<h4>Bug Fixes</h4>
+<ul>
+    <li>Correctly reset project active page, when switching between different projects.</li>
+    <li>Fix templates with window.load listener.</li>
+    <li>Close inline text editor when navigating from builder to another page.</li>
+    <li>Added templates permissions to permission select panel in admin area.</li>
+    <li>Prevent paypal popup from getting blocked by some browsers.</li>
+    <li>Fix an issue with settings sometimes to persisting properly in admin area.</li>
+    <li>Allow tooltip translation.</li>
+    <li>Correct several visual issues with builder UI.</li>
+    <li>Fix page keywords, title and description not saving.</li>
+    <li>Prevent "index" page from being deleted.</li>
+    <li>Fix builder framework not changing to "none" sometimes.</li>
+    <li>Prevent project preview window from being blocked on some browsers.</li>
+    <li>Properly apply new template to project without a page reload.</li>
+    <li>Fix new project creation from admin area.</li>
+    <li>Don't delete whole element when editing element text and pressing "del" key.</li>
+    <li>Give blank new projects min height, allowing elements to be drag and dropped properly.</li>
+</ul>
+
+<h4>Enhancements</h4>
+<ul>
+    <li>Preselect current element color in builder color pickers.</li>
+    <li>Enable sorting of templates in admin area table.</li>
+    <li>Allow template selecting when creating project from admin area.</li>
+    <li>Load more templates in "new project" page via infinite scroll (if more templates exist).</li>
+    <li>Truncate element name in context boxes if there's not enough space to display action buttons.</li>
+    <li>Truncate long project names so action buttons are not hidden in dashboard.</li>
+    <li>Add action and method fields for default form component.</li>
+    <li>Improve upgrade page layout on mobile devices.</li>
+    <li>New 404 page design.</li>
+    <li>Always open active page preview when clicking "preview" button in builder.</li>
+</ul>
+
+<h2>2018 May 03 - Version 2.0.6</h2>
+<h4>Bug Fixes</h4>
+<ul>
+    <li>Prevent custom elements from loading twice when navigating between multiple projects.</li>
+    <li>Fixed several issues with incorrect template path generation on some servers.</li>
+    <li>Fixed an issue with adding custom pages to menus via menu manager.</li>
+    <li>Fixed an issue with billing plans sometimes not being updatable from admin area.</li>
+    <li>Fixed an issue with installation on some older database versions.</li>
+</ul>
+
+<h4>Enhancements</h4>
+<ul>
+    <li>Some improvements to subdomain routing for user sites.</li>
+    <li>Added support for new stripe billing API.</li>
+</ul>
+
+<h2>2018 March 09 - Version 2.0.4</h2>
+<h4>Bug Fixes</h4>
+<ul>
+    <li>Corrected a few issues with email confirmation during registration.</li>
+    <li>Close code editor when going back to dashboard from the builder.</li>
+    <li>Make subscription created from admin area cancelable and resumable by user.</li>
+    <li>Corrected an issue with wrong paths being generated on some windows machines.</li>
+    <li>Prevent error if user is trying to login with two social auth services that have same username.</li>
+    <li>Fixed issue with project creation, when selected template has “framework” set to “none”.</li>
+    <li>Fixed template search in admin area &gt; templates page.</li>
+    <li>Make sure new template folder name is formatted properly.</li>
+</ul>
+
+<h4>Enhancements</h4>
+<ul>
+    <li>Added google fonts api key field in settings page for specifying your own key.</li>
+    <li>Added a way to specify custom template categories from settings page.</li>
+    <li>Properly handle paypal pop-up window close when user does not approve payment.</li>
+    <li>Add “None” option in builder template settings panel.</li>
+</ul>
+
+<h2>2018 March 06 – Version 2.0.3</h2>
+<h4>Bug Fixes</h4>
+<ul>
+    <li>Setting custom page as homepage in admin area should now work properly.</li>
+    <li>Fixed an issue with adding groups to user in admin area.</li>
+    <li>Fixed several issues with uploading new template .zip files.</li>
+</ul>
+
+<h4>Enhancements</h4>
+<ul>
+    <li>Improved account settings page responsive design at laptop breakpoint.</li>
+</ul>
+
+<h2>2018 March 05 – Version 2.0.2</h2>
+<h4>Bug Fixes</h4>
+<ul>
+    <li>show validation errors when creating or updating user from admin area.</li>
+    <li>fixed row and column drag and drop in layout panel.</li>
+    <li>renamed “projects.export” permission to “projects.publish” in admin area.</li>
+    <li>fixed an issue with project thumbnails sometimes not working in admin area “projects” page.</li>
+    <li>corrected height of code editor modal.</li>
+    <li>fixed subscriptions page sometimes not working in admin area.</li>
+    <li>fixed a number of issues that occured in builder on various older browser versions.</li>
+</ul>
+
+<h4>Enhancements</h4>
+<ul>
+    <li>assign bootstrap 4 framework to blank projects by default.</li>
+    <li>make sure blank project canvas has full height of builder window.</li>
+    <li>make builder element names translatable.</li>
+    <li>show project owner in admin area projects page.</li>
+</ul>
+
+<h2>2018 March 04 – Version 2.0.1</h2>
+<h4>Bug Fixes</h4>
+<ul>
+    <li>Properly apply theme generated via appearance editor to all sections on the site.</li>
+    <li>Fixed some issues with migrating from older versions.</li>
+    <li>Don’t push action to undo manager, if that action can’t be properly undone due to error.</li>
+    <li>Allow user to log in after logout without page reload.</li>
+    <li>Fixed issue with builder themes sometimes not loading.</li>
+    <li>Prevent last paypal step from throwing error when in browser incognito mode.</li>
+    <li>Make account settings page accessible.</li>
+</ul>
+
+<h4>Enhancements</h4>
+<ul>
+    <li>Loading screen will now prevent any actions until builder is fully loaded.</li>
+    <li>Show a notification to user after successful registration.</li>
+</ul>
+
+<h2>2018 March 02 – Version 2.0.0</h2>
+<h4>New Features</h4>
+<ul>
+    <li>Added optional integrated subscriptions and billing functionality using stripe and paypal.</li>
+    <li>Added new Layouts panel for managing containers, rows and columns.</li>
+    <li>Added support for bootstrap 4 framework.</li>
+    <li>Redesigned builder, dashboard and admin area using google’s material design language.</li>
+    <li>Added integrated google analytics page in admin area.</li>
+    <li>New templates can now be added by uploading a .zip file from admin area.</li>
+    <li>Added page editor in admin area for creating custom pages (faq, terms of service, contact etc)</li>
+    <li>Site can now be translated and new localizations created directly from admin area.</li>
+    <li>Added mail templates editor for modifying welcome, forgot password and other emails.</li>
+    <li>Added several ad slots that can be filled in from admin area.</li>
+    <li>Added appearance editor for editing architect site design, uploading logos, adding custom css/js and more.</li>
+    <li>Added menu manager for creating and modifying dashboard and admin menus.</li>
+    <li>Added social login (google, twitter, facebook)</li>
+    <li>Added password reset functionality.</li>
+    <li>Added account settings page for users.</li>
+</ul>
+
+<h4>Enhancements</h4>
+<ul>
+    <li>Improved overall performance and load speed.</li>
+    <li>Rebuilt uesrs, groups and permissions functionality and updated corresponding admin area pages.</li>
+    <li>Upgraded all underlying libraries to latest versions.</li>
+    <li>Pages in builder are now fully interactable, so things like sliders will work properly.</li>
+    <li>Preview button in builder will now open an actual live site in new browser tab.</li>
+    <li>Dashboard and new project page are now responsive.</li>
+    <li>Simplified projects and templates filesystem structures.</li>
+    <li>User project files, images, templates and other uploads can now be stored on external services (s3, rackspace etc) instead of local server.</li>
+    <li>Improved undo/redo functionality for element re-ordering via drag and drop.</li>
+    <li>Updated context boxes design and positioning.</li>
+    <li>Added undo functionality for changing element classes via inspector.</li>
+    <li>Improved padding/margin panels functionality.</li>
+</ul>
+
+<h4>Bug Fixes</h4>
+<ul>
+    <li>Many bugs have been fixed as architect has been re-coded from scratch.</li>
+</ul>
+
+<h2>2017 April 20 – Version 1.8.2</h2>
+<ul>
+    <li>Changed keybinds for copying/pasting/cutting editor elements, regular text can now be properly copy/pasted via keybinds from outside architect.</li>
+    <li>Fixed an issue with thumbnails for custom templates not being generated correctly.</li>
+    <li>Fixed an issue with wrong image being deleted from media manager sometimes when clicking delete button.</li>
+</ul>
+
+<h2>2016 December 12 – Version 1.8.1</h2>
+<ul>
+    <li>Fixed an issue with some architect functionality not working if PUT or DELETE requests were disabled on server.</li>
+    <li>Fixed an issue with settings not saving properly sometimes.</li>
+    <li>Fixed an issue with default image element showing non existing image sometimes.</li>
+    <li>Fixed several issues with installer that would occur with various edge server configurations and restrictions.</li>
+    <li>Several other small bugfixes.</li>
+</ul>
+
+<h2>2016 April 18 – Version 1.8</h2>
+<ul>
+    <li>Fixed an issue with user registration sometimes not working.</li>
+    <li>Fixed an issue with user creation from users panel sometimes not working.</li>
+</ul>
+
+<h2>2016 February 13 – Version 1.7</h2>
+<ul>
+    <li>Export panel will now show an up to date images/html/css at all times.</li>
+    <li>Different users can now create a project with same name.</li>
+    <li>Hitting delete key when element text is being edited now ill not delete the whole element.</li>
+    <li>Fixed undo/redo buttons in context menu.</li>
+    <li>Fixed an issue where saving current project as template would not work properly.</li>
+    <li>Fixed an issue where header images and other styles would not be changeable on some templates.</li>
+    <li>Implemented a new installer that will try to automatically correct a number of common server issues.</li>
+    <li>Project create modal will now be focused when opened.</li>
+</ul>
+
+<h2>2015 November 23  – Version 1.6</h2>
+<ul>
+    <li>Tables context menu will now have several options to add and remove rows and columns.</li>
+    <li>Fixed an issue where preview button would sometimes not work on subsequent opens.</li>
+    <li>Fixed an issue where style changing from inspector panel would not work on some elements properly.</li>
+    <li>Fixed an issue where responsive video would not get exported properly sometimes.</li>
+    <li>Fixed an issue where users wouldn't get properly logged in after registration.</li>
+</ul>
+
+<h2>2015 September 20 – Version 1.5</h2>
+<ul>
+    <li>Fixed an issue where users sometimes would not be properly logged out without a full page refresh.</li>
+    <li>Fixed an issue with media manager not working properly on some servers.</li>
+    <li>Fixed an issue with icons manager not working properly on some servers.</li>
+    <li>Fixed an issue with linker sometimes displaying behind the browser window.</li>
+    <li>Fixed an issue with default language configuration option not working.</li>
+    <li>Fixed an issue with part of background panel sometimes not being visible.</li>
+    <li>Fixed an issue with element select box icons sometimes dropping to new line.</li>
+    <li>Corrected some issues that occurred if architect was installed in a sub-directory.</li>
+    <li>Fixed an issue with links to assets sometimes being stripped out from custom templates.</li>
+</ul>
+<h2>2015 July 11 – Version 1.4</h2>
+<ul>
+    <li>Completely redesigned the UI of architect.</li>
+    <li>Integrated code editors will now be draggable and resizable.</li>
+    <li>Fixed an issue with keybinds for undo and redo not working.</li>
+    <li>Fixed an issue with architect not installing properly if mysql database is in strict mode.</li>
+    <li>Fixed an issue with preview sometimes not working properly when navigating between pages.</li>
+    <li>Fixed an issue where libraries would not be exported properly if project had no custom javascript.</li>
+    <li>Fixed an issue with exporting project that had accented characters in their names.</li>
+    <li>Fixed an issue with google fonts not being properly exported.</li>
+    <li>Project preview images should now properly update after changes have been made.</li>
+    <li>Repositioned 'edit columns' button so it isn't in the way of clicking other buttons now.</li>
+    <li>Fixed an issue with 'filled database details manually' checkbox not working during installation.</li>
+</ul>
+<h2>2015 March 28 – Version 1.3</h2>
+<ul>
+    <li>Added 10 new templates.</li>
+    <li>Added new free dragging mode for ultimate freedom in element positioning. Enable/Disable from settings panel.</li>
+    <li>Fixed an issue with project preview not always displaying changes.</li>
+    <li>FTP details (except password) will now be remembered for project publishing.</li>
+    <li>Fixed several issues with exporting and previewing responsive video element.</li>
+    <li>Fixed an issue with users not being creatable by admin if registration is disabled.</li>
+    <li>Improved menu items duplication. Select a menu item &gt; select list item from breadcrumbs &gt; right click&gt; duplicate.</li>
+    <li>Fixed issues with project exporting that occured on some shared hostings.</li>
+    <li>Improved project preview performance.</li>
+    <li>Fixed an issue with project html and css not saving properly from pages panel.</li>
+    <li>Fixed an issue with save/publish buttons disappearing on smaller screens.</li>
+    <li>Loading icon will now be shown until content is fully loaded.</li>
+    <li>Added some missing translations.</li>
+    <li>Fixed an issue with window not scrolling properly when dragging element against top edge.</li>
+    <li>Corrected a problem with scroll bar not appearing on screens with smaller height.</li>
+    <li>Fixed a bug with project preview when architect is installed in a sub-domain.</li>
+    <li>Fixed a bug with preset textures not working when architect is installed in a sub-domain.</li>
+    <li>Fixed a bug where image editor was not working on firefox if used from media manager.</li>
+</ul>
+<h2>2015 February 1 – Version 1.2</h2>
+<ul>
+    <li>Added new users management page.</li>
+    <li>Added permissions to various parts of architect like projects, themes, templates creation, deletion etc.</li>
+    <li>User registration can now be disabled from user management page.</li>
+    <li>Corrected a problem with theme creation and deletion.</li>
+    <li>Some fixes to installation when running older versions of PHP and MySQL.</li>
+    <li>Fixed a bug that prevented publishing of projects on PHP versions lower then 5.4</li>
+</ul>
+<h2>2015 January 11 – Version 1.1.1</h2>
+<ul>
+    <li>Fixed some problems that occurred when using a sub-domain to host architect.</li>
+    <li>Added a confirmation to project deletion.</li>
+    <li>Corrected some bugs with installation introduced in last update.</li>
+    <li>Added some missing translations.</li>
+    <li>Fixed a problem with exporting to FTP not working properly on some servers.</li>
+</ul>
+<h2>2015 January 10 – Version 1.1</h2>
+<ul>
+    <li>Architect is now fully translatable and supports multiple languages.</li>
+    <li>Navigation bar will now have a language switcher if there is more then 1 translation present.</li>
+    <li>New projects will now always have a placeholder image.</li>
+    <li>Added a favicon.</li>
+    <li>Column editor will now work properly with bootstrap column offsets.</li>
+    <li>Performance improvements.</li>
+</ul>

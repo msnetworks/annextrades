@@ -1,0 +1,35 @@
+@import "../../../scss/variables";
+
+html-builder {
+  display: flex;
+  height: 100vh;
+  position: relative;
+
+  mat-drawer-container {
+    flex: 1 1 auto;
+    height: 100%;
+
+    @media screen and (max-width: $medium) {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+  }
+
+  loading-indicator.overlay {
+    background-color: mat-color($app-background, card);
+  }
+
+  .mobile-toggle-button {
+    display: none;
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    z-index: 3;
+
+    @media screen and (max-width: $medium) {
+      display: block;
+    }
+  }
+}

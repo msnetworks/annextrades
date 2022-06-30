@@ -1,0 +1,113 @@
+@import "variables";
+
+spacing-panel {
+  display: block;
+
+  .side-controls {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 5px;
+
+    .side-control {
+      width: 25px;
+      height: 25px;
+      border: 1px solid mat-color($app-foreground, divider);
+      background-color: mat-color($app-background, raised-button);
+      margin-right: 5px;
+      position: relative;
+
+      &.all-control {
+        border-color: mat-color($app-foreground, divider);
+        margin-right: auto;
+
+        &.active {
+          border-color: mat-color($app-foreground, divider-lighter);
+        }
+      }
+
+      &.top-control {
+        border-top-color: mat-color($app-foreground, divider);
+
+        &.active {
+          border-top-color: mat-color($app-foreground, divider-lighter);
+        }
+      }
+
+      &.right-control {
+        border-right-color: mat-color($app-foreground, divider);
+
+        &.active {
+          border-right-color: mat-color($app-foreground, divider-lighter);
+        }
+      }
+
+      &.bottom-control {
+        border-bottom-color: mat-color($app-foreground, divider);
+
+        &.active {
+          border-bottom-color: mat-color($app-foreground, divider-lighter);
+        }
+      }
+
+      &.left-control {
+        border-left-color: mat-color($app-foreground, divider);
+
+        &.active {
+          border-left-color: mat-color($app-foreground, divider-lighter);
+        }
+      }
+    }
+  }
+  
+  .side-inputs {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 115px;
+
+    input {
+      border: 2px solid mat-color($app-foreground, divider);
+      background-color: mat-color($app-background, card);
+      height: 100%;
+      text-align: center;
+    }
+
+    > .all-input {
+      flex: 0 0 49%;
+      width: 49%;
+    }
+
+    > .side-inputs-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      flex: 0 0 49%;
+      width: 49%;
+
+      &.borderRadius {
+        > .input-container {
+          width: 48%;
+          height: 55px;
+        }
+
+        > .right-input, > .left-input {
+          margin: 0 0 5px;
+        }
+
+      }
+
+      > .input-container {
+        height: 36px;
+      }
+
+      > .right-input, > .left-input {
+        width: 49%;
+        margin: 3px 0 3px;
+      }
+    }
+  }
+
+  .mat-slider {
+    width: 100%;
+  }
+}

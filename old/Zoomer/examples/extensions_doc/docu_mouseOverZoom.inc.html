@@ -1,0 +1,304 @@
+<style type="text/css">
+	.optionsTable {width: 100%; border-spacing: 0; border: 1px solid #AAAAAA; font-family: Tahoma, Geneva, sans-serif; font-size: 10pt;}
+	.optionsTable th {background-color: #D4D4D4; padding-top: 10px; padding-bottom: 10px; font-size:12pt; font-family: "Comic Sans MS", cursive, sans-serif;}
+	.optionsTable td, .optionsTable th{padding-left: 5px; padding-right: 5px;}
+	.optionsTable th{white-space: nowrap;}
+	.optionsTable td, .optionsTable th {vertical-align: top; line-height: 1.2em; text-align: left; border-bottom: 1px solid #AAAAAA;  padding-top: 3px; padding-bottom: 8px;}
+	.optionsTable .subOpt td {border-bottom-width: 0; font-size: 12pt;}
+	.optionsTable tr.important {font-weight: bolder;}
+	.optionsTable ul, .optionsTable ol {padding-left: 14px; margin-top: 0}
+	.optionsTable li {margin-bottom: 5px; padding-left: 14px;}
+	.optionsTable tr:nth-child(odd) { background-color: #FDFDFD;}
+	.optionsTable tr:nth-child(even) { background-color: #FFFFFF;}
+	.optionsTable tr:last-child>td { border: none }	
+	.optionsSimilarExDescr {position: absolute; background-color: #eee; font-size: 9px; width: 100%; pointer-events: none; text-align: center; overflow: hidden;}
+	.optionsSimilarExLI {float: left; margin: 0 10px 10px 0; position: relative; border: #aaa 1px solid;}
+	.optionsHeader {color: #1a4a7a; font-size: 150%; margin: 0; padding: 20px 0px 5px 0px;}
+	.optionsTable pre, .optionsTable code {white-space: pre-wrap;}
+	.optionsText {}
+</style>
+
+<table class="optionsTable">
+	<tr><th>Value</th><th>Default</th><th>Description</th></tr>
+	<tr><td>axZmPath</td><td>'auto'</td><td>
+		Path to AJAX-ZOOM, e.g. '/zoomTest/axZm/'; 
+		'auto' might not always work so if you experience any difficulties 
+		please set the path manually as first.
+	</td></tr>
+	
+	<tr><td>divID</td><td>''</td><td>DIV (container) ID for mouseover zoom</td></tr>
+	<tr><td>galleryDivID</td><td>''</td><td>DIV (container) id of the gallery, set to false to disable gallery</td></tr>
+	<tr><td>hideGalleryOneImage</td><td>true</td><td>Ver. 4.2.1+ Instantly hide gallery if there is only one image or one 360/3D</td></tr>
+
+	<tr><td>galleryAxZmThumbSlider</td><td>true</td><td>Use $.axZmThumbSlider on gallery thumbnails or not</td></tr>
+	<tr><td>galleryAxZmThumbSliderParam</td><td>{}</td><td>$.axZmThumbSlider parametrs if "galleryAxZmThumbSlider" is enabled; 
+	for full list of options see under: 
+	<a href="../axZm/extensions/axZmThumbSlider/" target="_blank">/axZm/extensions/axZmThumbSlider/</a> or 
+	<a href="https://www.ajax-zoom.com/axZm/extensions/axZmThumbSlider" target="_blank">https://www.ajax-zoom.com/axZm/extensions/axZmThumbSlider/</a>
+	</td></tr>
+	<tr><td>thumbW</td><td>50</td><td>Gallery thumb width</td></tr>
+	<tr><td>thumbH</td><td>80</td><td>Gallery thumb height</td></tr>
+	<tr><td>thumbRetina</td><td>true</td><td>Ver. 4.2.1+ double resolution of the thumb image</td></tr>
+	
+	<tr><td>images</td><td>{}</td>
+	<td>
+		Object containing absolte paths to the master images, optional with titles. Start with 1, not 0. 
+		Your master image "img" can be as big as you want, it never loads into cache 
+		You can also protect the directory with .htaccess or other http access restrictions. 
+		
+		<pre class='brush: js;'>
+		images: {
+			1: {
+				img: "/pic/fashion_001.jpg", 
+				title: "Test Title 1"
+			},
+			2: {
+				img: "/pic/fashion_002.jpg", 
+				title: "Test Title 2"
+			},
+			3: {
+				img: "/pic/fashion_003.jpg", 
+				title: "Test Title 3"
+			}
+		}
+		</pre>
+		
+		Alternatively you can link to your static images with these keys: <br /> <br />
+		<ul>
+			<li>"zoom" - big mouseover image </li>
+			<li>"preview" - preview image </li>
+			<li>"thumb" - image for the gallery </li>
+			<li>"img" - your master image is needed anyway to open AJAX-ZOOM on click; this image can be in a directory with restricted access over http;</li>
+			<li>"title" - optional title</li>
+		</ul>
+		<br /> <br />
+		So the images object would look like this:
+		<pre class='brush: js;'>
+		images: {
+			1: {
+				zoom: "/cache/fashion_001_1200x1200.jpg",
+				preview: "/cache/fashion_001_350x400.jpg",
+				thumb: "/cache/fashion_001_80x100.jpg"
+				img: "/pic/fashion_001.jpg", 
+				title: "Test Title 1"
+			},
+			2: {
+				zoom: "/cache/fashion_002_1200x1200.jpg",
+				preview: "/cache/fashion_002_350x400.jpg",
+				thumb: "/cache/fashion_002_80x100.jpg",
+				img: "/pic/fashion_002.jpg", 
+				title: "Test Title 2"
+			},
+			3: {
+				zoom: "/cache/fashion_003_1200x1200.jpg",
+				preview: "/cache/fashion_003_350x400.jpg",
+				thumb: "/cache/fashion_003_80x100.jpg",
+				img: "/pic/fashion_003.jpg", 
+				title: "Test Title 3"
+			}
+		}
+		</pre>
+		 
+		In case "zoom", "preview" and "thumb" are not defined, AJAX-ZOOM will generate these images out of "img" instantly on-the-fly.
+		
+		 <br /> <br />
+		 
+		 Ver. 4.2.1 + images can be an array, e.g. 	
+		<pre class='brush: js;'>
+			images: [
+				{	img: "/pic/fashion_001.jpg", 
+					title: "Test Title 1"
+				},
+				{	img: "/pic/fashion_002.jpg", 
+					title: "Test Title 2"
+				},
+				{	img: "/pic/fashion_003.jpg", 
+					title: "Test Title 3"
+				}
+			]
+		</pre>
+		 
+	</td></tr>
+	
+	<tr><td>firstImageToLoad</td><td>1</td><td>Image from "images" option which should be loaded at first; see also "images360firstToLoad" option below</td></tr>
+
+	<tr><td>images360</td><td>{}</td>
+	<td>
+		Ver. 4.2.1+ object or an array with paths to the folders which contain 360 degree images; 
+		mostly you would want to add only one 360 spin but the "images360" object can contain as many as you like; 
+		
+		<pre class='brush: js;'>
+		images360: {
+			1: {
+				path: "/pic/zoom3d/Uvex_Occhiali", 
+				position: "first"
+			}
+		}
+		</pre>
+		
+		Other possible keys are: <br /> <br />
+		<ul>
+			<li>"thumb" - direct link to thumb image displayed in the gallery. In case "thumb" is not present AJAX-ZOOM will internally request first image of your 360 and generate the thumb. 
+				You can disable this by setting "images360Thumb" option below to false so you will only get a 360 degree icon which is ok too.
+			</li>
+			<li>"thumbImg" - instead of "thumb" you can also directly link to an image under "path" out of which AJAX-ZOOM will generate the gallery thumb</li>
+			<li>"title" - optional title</li>
+			<li>"hotspotFilePath" - optional path to the file which contains data for hotspots. For more information see 
+				<a href="example33.php">example33.php</a>
+			</li>
+			<li>"spinReverse" - reverse the direction of the spin</li>
+			<li>"spinDemoTime" - time in ms during which AJAX-ZOOM will make one turn</li>
+			<li>"anyThingElse..." - any other key see "images360Opt" below</li>
+		</ul>
+	</td></tr>
+	
+	<tr><td>images360firstToLoad</td><td>false</td><td>Ver. 4.2.1+ in case present load 360 from "images360" first and not an image from "images"</td></tr>
+	<tr><td>images360Opt</td><td>[]</td><td>Ver. 4.2.1+ 
+		Some (not all) options from '/axZm/zoomConfig.inc.php' and '/axZm/zoomConfigCustom.inc.php' 
+		can be set during runtime or in 'onBeforeStart' AJAX-ZOOM callback. 
+		"images360Opt" is a list of what possibly could be set in "images360" objects, e.g. ['spinReverseZ', 'spinWhilePreload'] and so on. 
+		Default is: ['spinReverse', 'spinReverseZ', 'spinBounce', 'spinDemoRounds', 'spinDemoTime', 'spinWhilePreload']
+	</td></tr>
+	<tr><td>images360Thumb</td><td>false</td><td>Ver. 4.2.1+ Show first image of the spin as thumb</td></tr>
+	<tr><td>images360Preview</td><td>true</td><td>Ver. 4.2.1+ Normally plain images are opened in some kind of lightbox or fullscreen;
+		By setting this option to true the 360's will load into "divID" at first and can be expanded to fullscreen.
+	</td></tr>
+	<tr><td>images360PreviewResponsive</td><td>true</td><td>Ver. 4.2.1+ this option is set to true for convinience reasons; 
+		In case your "divID" has fixed width and height, set <code>$zoom['config']['picDim']</code> option in '/axZm/zoomConfigCustom.inc.php' 
+		after <code>elseif ($_GET['example'] == 'mouseOverExtension360'){</code> 
+	</td></tr>
+	<tr><td>images360examplePreview</td><td>'mouseOverExtension360'</td><td>Ver. 4.2.1+ 
+		In case "images360Preview" is set to true, the value of this parameter will be sent to AJAX-ZOOM as "options set" (example=mouseOverExtension360)
+	</td></tr>
+	
+	
+	
+	<tr><td>preloadMouseOverImages</td><td>false</td><td>Preload all preview and mouseover images, possible values: false, true, 'oneByOne' </td></tr>
+	<tr><td>noImageAvailableClass</td><td>'axZm_mouseOverNoImage'</td><td>
+		Ver. 4.2.1+ In case there are no images in "images", nor there are any in "images360", a div with some image as background can be appended to the 
+		container and receive this options value as css class
+	</td></tr>
+	
+	<tr class="important"><td>width</td><td>'auto'</td><td>Width of the preview image or 'auto' (depending on parent container size - "divID", see above); this is also the value which will be passed to your AJAX-ZOOM imaging server to generate this image on-the-fly.</td></tr>
+	<tr class="important"><td>height</td><td>'auto'</td><td>Height of the preview image or 'auto' (depending on parent container size - "divID", see above); this is also the value which will be passed to your AJAX-ZOOM imaging server to generate this image on-the-fly.</td></tr>
+	
+	<tr><td>mouseOverZoomWidth</td><td>1200</td><td>
+		Max width of the image that will be shown in the zoom window; 
+		this is the value which will be passed to your AJAX-ZOOM imaging server to generate this image on-the-fly. 
+		To set the width of the fly out window see <b>"zoomWidth"</b> under "mouseOverZoomParam".
+	</td></tr>
+	<tr><td>mouseOverZoomHeight</td><td>1200</td><td>
+		Max height of the image that will be shown in the zoom window; 
+		this is the value which will be passed to your AJAX-ZOOM imaging server to generate this image on-the-fly.
+		To set the height of the fly out window see <b>"zoomHeight"</b> under "mouseOverZoomParam".
+	</td></tr>
+	
+	<tr><td>ajaxZoomOpenMode</td><td>'fancyboxFullscreen'</td><td>Ver. 4.1.5+ Determines how AJAX-ZOOM 
+	is opened when the user clicks on preview images / lens, 
+	possible values: 'fullscreen' (see also "fullScreenApi" option below), 'fancyboxFullscreen', 'fancybox', 'colorbox'; 
+	By editing $.mouseOverZoomInit you can extend the plugin to be used with different types of modal boxes to load AJAX-ZOOM into. 
+	</td></tr>
+
+ 	<tr><td>fancyBoxParam</td><td>{}</td><td>If fancybox is used in "ajaxZoomOpenMode" option, Fancybox options</td></tr>
+	<tr><td>colorBoxParam</td><td>{}</td><td>If colorbox is used in "ajaxZoomOpenMode" option, Colorbox options</td></tr>
+
+	<tr><td>example</td><td>'mouseOverExtension'</td><td>Ver. 4.1.5+ configuration set which is passed to ajax-zoom when ajaxZoomOpenMode is 'fullscreen'</td></tr>
+	<tr><td>exampleFancyboxFullscreen</td><td>'mouseOverExtension'</td><td>Ver. 4.1.5+ configuration set which is passed to ajax-zoom when ajaxZoomOpenMode is 'fancyboxFullscreen'</td></tr>
+	<tr><td>exampleFancybox</td><td>'modal'</td><td>Ver. 4.1.5+ configuration set which is passed to ajax-zoom when ajaxZoomOpenMode is 'fancybox'</td></tr>
+	<tr><td>exampleColorbox</td><td>'modal'</td><td>Ver. 4.1.5+ configuration set which is passed to ajax-zoom when ajaxZoomOpenMode is 'colorbox'</td></tr>
+	
+	<tr><td>disableScrollAnm</td><td>true</td><td>Ver. 4.2.1+ disable animation while zooming with AJAX-ZOOM</td></tr>
+	<tr><td>fullScreenApi</td><td>false</td><td>Try to open AJAX-ZOOM at browsers fullscreen mode, possible on modern browsers except IE < 10 and mobile</td></tr>
+	<tr><td>axZmCallBacks</td><td>{}</td><td>AJAX-ZOOM has several callbacks, https://www.ajax-zoom.com/index.php?cid=docs#onBeforeStart</td></tr>
+
+	
+	<tr><td>quality</td><td>90</td><td>Jpeg quality of the preview image and </td></tr>
+	<tr><td>qualityZoom</td><td>80</td><td>Jpeg quality of the zoom image shown in the flyout window</td></tr>
+	
+	<tr><td>onLoad</td><td>null</td><td>Callback function</td></tr>
+	<tr><td>onImageChange</td><td>null</td><td>Callback function</td></tr>
+	<tr><td>onMouseOver</td><td>null</td><td>Callback function</td></tr>
+	<tr><td>onMouseOut</td><td>null</td><td>Callback function</td></tr>
+	
+	<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+	
+	<tr><td>spinner</td><td>true</td><td>Use ajax loading spinner without gif files etc</td></tr>
+	<tr><td>spinnerParam</td><td>{}</td><td>Spinner options, for more info see: https://fgnass.github.com/spin.js/</td></tr>
+
+	<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+	<tr class="subOpt"><td>mouseOverZoomParam</td><td>{}</td><td>JS object containing specific options to this mouseover zoom, see below:</td></tr>
+	<tr><td colspan="3">
+		
+		<table class="optionsTable">
+			<tr><th>Value</th><th>Default</th><th>Description</th></tr>
+			<tr><td>position</td><td>'right'</td><td>Position of the flyout zoom window, possible values: 'inside', 'top', 'right', 'bottom', 'left'</td></tr>
+			<tr><td>posAutoInside</td><td>150</td><td>applies when width (left, right) or height (top, bottom) of zoom window are less than this px value (zoomWidth || zoomHeight are set to auto); if zoomWidth || zoomHeight are fixed, applies when zoom window is out of page border</td></tr>
+			<tr><td>autoFlip</td><td>120</td><td>Flip right to left and bottom to top if less than int px value or false to disable</td></tr>
+			<tr><td>biggestSpace</td><td>false</td><td>Overrides position option and instantly chooses the direction, disables autoFlip; playes nicely when zoomWidth and zoomHeight are set to 'auto'</td></tr>
+			<tr><td>zoomFullSpace</td><td>false</td><td>Uses full screen height (does not align to the map / disables adjustY) if position is right or left || uses full screen width (does not align to the map / disables adjustX) if position is top or bottom</td></tr>
+			<tr class="important"><td>zoomWidth</td><td>'auto'</td><td>Width of the zoom window e.g. 540 or 'auto' or Ver. 4.1.5+ jQuery selector|correction value, e.g. '#refWidthTest|+20'; 
+			so if you want to have a width of the zoom window same as for example a responsive container to the right (so it is fully covered) 
+			and max possible height, then define the id of this container to the right, 
+			e.g. 'myArticleData', set "zoomWidth" to '#myArticleData|+10' and "zoomHeight" to 'auto'.
+			</td></tr>
+			<tr class="important"><td>zoomHeight</td><td>'auto'</td><td>Height of the zoom window e.g. 375, or 'auto' or or Ver. 4.1.5+ jQuery selector|correction value, e.g. '#refWidthTest|+20'</td></tr>
+			<tr><td>autoMargin</td><td>15</td><td>If zoomWidth or zoomHeight are set to 'auto', the margin to the edge of the screen</td></tr>
+			<tr><td>adjustX</td><td>15</td><td>Horizontal margin of the zoom window</td></tr>
+			<tr><td>adjustY</td><td>-1</td><td>Vertical margin of the zoom window</td></tr>
+			<tr><td>lensOpacity</td><td>0.30</td><td>Opacity of the selector lens</td></tr>
+			<tr><td>zoomAreaBorderWidth</td><td>1</td><td>Border thickness of the zoom window</td></tr>
+			<tr><td>galleryFade</td><td>300</td><td>Speed of inner fade or false</td></tr>
+			<tr><td>shutterSpeed</td><td>150</td><td>Speed of shutter fadein or false; applies only if image proportions are different from container</td></tr>
+			<tr><td>showFade</td><td>300</td><td>Speed of fade in for mouse over</td></tr>
+			<tr><td>hideFade</td><td>300</td><td>Speed of fade out for mouse over</td></tr>
+			<tr><td>flyOutSpeed</td><td>false</td><td>Ver. 4.0.10+ speed for flyout or false to disable</td></tr>
+			<tr><td>flyOutTransition</td><td>'linear'</td><td>Ver. 4.0.10+ transition of the flyout</td></tr>
+			<tr><td>flyOutOpacity</td><td>0.6</td><td>Ver. 4.0.10+ initial opacity for flyout</td></tr>
+			<tr><td>flyBackSpeed</td><td>false</td><td>Ver. 4.0.10+ speed for fly back or false to disable</td></tr>
+			<tr><td>flyBackTransition</td><td>'linear'</td><td>Ver. 4.0.10+ transition of the fly back</td></tr>
+			<tr><td>flyBackOpacity</td><td>'0.2'</td><td>Ver. 4.0.10+ final opacity of fly back</td></tr>
+			<tr><td>smoothMove</td><td>2</td><td>Integer bigger than 1 indicates smoother movements; set 0 to disable</td></tr>
+			<tr><td>tint</td><td>false</td><td>Color value around the lens or false</td></tr>
+			<tr><td>tintOpacity</td><td>0.5</td><td>Opacity of the area around the lens when tint is not false</td></tr>
+			<tr><td>showTitle</td><td>true</td><td>Enable / disable title on zoom window</td></tr>
+			<tr><td>titleOpacity</td><td>0.5</td><td>Opacity of the title container</td></tr>
+			<tr><td>titlePosition</td><td>'top'</td><td>Position of the title, top or bottom</td></tr>
+			<tr><td>cursorPositionX</td><td>0.5</td><td>Cursor over lens  horizontal offset, 0.5 is middle</td></tr>
+			<tr><td>cursorPositionY</td><td>0.55</td><td>Cursor over lens vertical offset, 0.5 is middle</td></tr>
+			<tr><td>touchClickAbort</td><td>500</td><td>Ver. 4.1.5+ time in ms after which click is aborted without touch movement and mousehover is initialized</td></tr>
+			
+			<tr><td>loading</td><td>true</td><td>Display loading information, CSS .mouseOverLoading</td></tr>
+			<tr><td>loadingMessage</td><td>'Loading...'</td><td>Loading message, not needed, can be just the spinner - see below</td></tr>
+			<tr><td>loadingWidth</td><td>90</td><td>Width of loading container</td></tr>
+			<tr><td>loadingHeight</td><td>20</td><td>Height of loading container</td></tr>
+			<tr><td>loadingOpacity</td><td>1.0</td><td>Opacity of the loading container (the transparent background is set via png image on default, see css class)</td></tr>
+			
+			<tr><td>zoomHintEnable</td><td>true</td><td>
+				Ver. 4.2.1+ Enable zoom icon which disappears on mouse hover; css class .axZm_mouseOverZoomHint; 
+				If you want to change the position or the icon simply change the css class;
+				</td></tr>
+			<tr><td>zoomHintText</td><td>'Zoom'</td><td>Ver. 4.2.1+ Text which will be appended next to the icon enabled by "zoomHintEnable"</td></tr>
+			
+		</table>
+		
+	</td></tr>
+
+</table>
+
+
+<script type="text/javascript">	 
+if (window.jQuery){
+ 	$('.optionsTable:not(.methods) td:nth-child(2)').each(function(){
+ 		var txt = $.trim($(this).html());
+ 		if (txt == 'false' || txt == 'true'){
+ 			$(this).html('<span style="color: green">'+txt+'</span>');
+		} else if (txt == 'null') {
+			$(this).html('<span style="color: blue">'+txt+'</span>');
+		} else if (txt.charAt(0) != '\'' && txt.charAt(0) != '{'){
+			$(this).html('<span style="color: red">'+txt+'</span>');
+		}
+	});	
+	if (window.optionsHeader){$('<div class="optionsHeader">'+window.optionsHeader+'</div>').insertBefore('.optionsTable:eq(0)');}
+	if (window.optionsText){$('<p class="optionsText">'+window.optionsText+'</p>').insertBefore('.optionsTable:eq(0)');}
+}
+</script>

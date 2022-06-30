@@ -1,0 +1,59 @@
+<div class="visibility-controls">
+    <button mat-icon-button (click)="changeVisibility('xs')" [class.active]="visibilityClasses.indexOf('hidden-xs') > -1" [matTooltip]="'Hide on mobile' | trans">
+        <mat-icon svgIcon="phone-android"></mat-icon>
+    </button>
+    <button mat-icon-button (click)="changeVisibility('sm')" [class.active]="visibilityClasses.indexOf('hidden-sm') > -1" [matTooltip]="'Hide on tablet' | trans">
+        <mat-icon svgIcon="tablet-android"></mat-icon>
+    </button>
+    <button mat-icon-button (click)="changeVisibility('md')" [class.active]="visibilityClasses.indexOf('hidden-md') > -1" [matTooltip]="'Hide on laptop' | trans">
+        <mat-icon svgIcon="laptop-chromebook"></mat-icon>
+    </button>
+    <button mat-icon-button (click)="changeVisibility('lg')" [class.active]="visibilityClasses.indexOf('hidden-lg') > -1" [matTooltip]="'Hide on desktop' | trans">
+        <mat-icon svgIcon="desktop-windows"></mat-icon>
+    </button>
+</div>
+
+<div class="inputs">
+    <ng-container *ngFor="let key of getElAttributeKeys(customAttributes)">
+        <div class="input-container">
+            <label [for]="key">{{key}}</label>
+
+            <select [name]="key" [id]="key" *ngIf="!customAttributes[key].text" [ngModel]="customAttributes[key].value" (ngModelChange)="callElementOnChange(key, $event)">
+                <option *ngFor="let listItem of customAttributes[key].list" [ngValue]="listItem.value">{{listItem.name}}</option>
+            </select>
+
+            <input [name]="key" [id]="key" *ngIf="customAttributes[key].text" [ngModel]="customAttributes[key].value" (ngModelChange)="callElementOnChange(key, $event)">
+        </div>
+    </ng-container>
+
+    <div class="input-container">
+        <label for="position" trans>Position</label>
+        <select name="position" id="position" [(ngModel)]="position" (ngModelChange)="changeElPosition($event)">
+            <option value="none" trans>None</option>
+            <option value="pull-left" trans>Left</option>
+            <option value="pull-right" trans>Right</option>
+            <option value="center-block" trans>Center</option>
+        </select>
+    </div>
+
+    <div class="input-container">
+        <label for="id" trans>ID</label>
+        <input type="text" name="id" id="id" [(ngModel)]="id" (ngModelChange)="changeElId($event)">
+    </div>
+
+    <mat-chip-list #chipList class="input-container" [selectable]="false">
+        <label for="class" trans>Class</label>
+        <input placeholder="+New Class..."
+               trans-placeholder
+               id="class"
+               [matChipInputFor]="chipList"
+               [matChipInputAddOnBlur]="true"
+               (matChipInputTokenEnd)="addClass([$event.value]); $event.input.value = ''"/>
+        <ng-container *ngFor="let className of classes">
+            <mat-chip *ngIf="!shouldClassBeHidden(className)" (removed)="removeClass([className])" [removable]="true">
+                {{className}}
+                <mat-icon svgIcon="cancel" matChipRemove></mat-icon>
+            </mat-chip>
+        </ng-container>
+    </mat-chip-list>
+</div>

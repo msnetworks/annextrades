@@ -1,0 +1,1 @@
+The style.css file will be loaded depending on the value of "buttonSet" option defined in config file. 

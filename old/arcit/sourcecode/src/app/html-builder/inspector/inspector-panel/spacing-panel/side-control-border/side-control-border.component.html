@@ -1,0 +1,27 @@
+<span class="side-control-border-inner top-border"
+      [class.active]="active"
+      [class.enable]="type === 'top' || type === 'all'"
+      [class.enable-before]="type === 'top-left'"
+      [class.enable-after]="type === 'top-right'"
+></span>
+
+<span class="side-control-border-inner left-border"
+      [class.active]="active"
+      [class.enable]="type === 'left' || type === 'all'"
+      [class.enable-before]="type === 'top-left'"
+      [class.enable-after]="type === 'bottom-left'"
+></span>
+
+<span class="side-control-border-inner bottom-border"
+      [class.active]="active"
+      [class.enable]="type === 'bottom' || type === 'all'"
+      [class.enable-before]="type === 'bottom-left'"
+      [class.enable-after]="type === 'bottom-right'"
+></span>
+
+<span class="side-control-border-inner right-border"
+      [class.active]="active"
+      [class.enable]="type === 'right' || type === 'all'"
+      [class.enable-before]="type === 'top-right'"
+      [class.enable-after]="type === 'bottom-right'"
+></span>

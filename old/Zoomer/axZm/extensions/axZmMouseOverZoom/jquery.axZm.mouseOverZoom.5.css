@@ -1,0 +1,1121 @@
+/*!
+* Extension: jQuery AJAX-ZOOM, /axZm/axZmMouseOverZoom/extensions/jquery.axZm.mouseOverZoom.5.css
+* Copyright: Copyright (c) 2010-2020 Vadim Jacobi
+* License Agreement: https://www.ajax-zoom.com/index.php?cid=download
+* Extension Version: 5.4.2
+* Extension Date: 2020-02-13
+* URL: https://www.ajax-zoom.com
+* Documentation: https://www.ajax-zoom.com/examples/example32.php
+*/
+
+/* On default it is black */
+body:-webkit-full-screen {background-color: #FFF;}
+body:-moz-full-screen {background-color: #FFF;}
+body:-ms-full-screen {background-color: #FFF;}
+body:-o-full-screen {background-color: #FFF;}
+body:full-screen {background-color: #FFF;}
+
+/* Temporal aspect Ratio of 1:1 before mouseover is triggered */
+.axZm_mouseOverAspectRatio {
+	width: 100%;
+	position: relative;
+}
+
+.axZm_mouseOverAspectRatio:before {
+	content: "";
+	display: block;
+	/* aspect Ratio of 1:1, 150% would be 1:1.5 */
+	padding-top: 100%;
+}
+
+.axZm_mouseOverAspectRatio > div {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+}
+
+.axZm_mouseOverAspectRatio > div > span {
+	display: block;
+	padding: 10px;
+	box-sizing: border-box;
+	vertical-align: middle;
+	font-size: 150%;
+	color: #AAA;
+	text-align: center;
+	height: 100%;
+}
+
+.axZm_mouseOverAspectRatio > div > span:before {
+	content: "";
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+}
+
+.axZm_mouseOverWithGalleryContainer {
+	position: relative;
+	width: 100%;
+	margin: 0;
+	margin-bottom: 20px;
+	text-align: left;
+}
+
+.axZm_mouseOverWithGalleryUnset .axZm_mouseOverZoomContainerWrap,
+.axZm_mouseOverWithGalleryUnset .axZm_mouseOverZoomContainer {
+	/*height: 100%;*/
+}
+
+.axZm_mouseOverWithGalleryContainer_dots {
+	margin-bottom: 60px;
+}
+
+.axZm_mouseOverZoomContainer {
+	position: relative;
+	box-sizing: content-box !important;
+	border: none !important;
+}
+
+.axZm_mouseOverZoomContainerWrap {
+	position: relative;
+	background-color: #FFF;
+	left: 0;
+	top: 0;
+	border: #AAA 1px solid;
+}
+
+.axZm_mouseOverZoomContainerWrap_left {
+	/*margin-left: 80px;*/
+	margin-right: 0;
+}
+
+.axZm_mouseOverZoomContainerWrap_right {
+	/*margin-right: 80px;*/
+	margin-left: 0;
+}
+
+.axZm_mouseOverZoomContainerWrap_top {
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+}
+
+.axZm_mouseOverZoomContainerWrap_bottom {
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+}
+
+.axZm_mouseOverGallery {
+	position: relative;
+	min-height: 50px;
+	z-index: 1;
+}
+
+.axZm_mouseOverGallery li,
+*[id^='axZm_mouseOverZoomGallerySlider'] li {
+	transition: all 0.2s ease-in;
+	-moz-transition-property: none !important;
+	-moz-transform: none !important;
+}
+
+.axZm_mouseOverGallery_bottom {
+	position: relative !important;
+	width: 100% !important;
+	/*height: 76px;*/
+	margin-top: 25px;
+	left: 0;
+}
+
+.axZm_mouseOverGallery_bottom.axZm_mouseOverGallery_dots {
+	margin-top: 50px;
+}
+
+.axZm_mouseOverGallery_top {
+	position: relative !important;
+	width: 100% !important;
+	margin-bottom: 10px;
+	height: 76px;
+}
+
+.axZm_mouseOverGallery_left {
+	position: absolute !important;
+	left: 0;
+	top: 0;
+	width: 72px;
+	height: 100% !important;
+}
+
+.axZm_mouseOverGallery_right {
+	position: absolute !important;
+	right: 0;
+	top: 0;
+	width: 72px;
+	height: 100% !important;
+}
+
+.axZm_mouseOverDotNavi {
+	position: absolute;
+	left: 0;
+	top: 105%;
+	top: calc(100% + 30px);
+	z-index: 1001;
+	display: block;
+	width: 100%;
+	height: auto;
+	text-align: center;
+}
+
+.axZm_mouseOverDotNavi>div {
+	display: inline-block !important;
+	box-sizing: border-box;
+	background-clip: padding-box;
+	text-decoration: none;
+	border-radius: 50%;
+	border: solid 1px #AAA;
+	background-color: transparent;
+	width: 5%;
+	max-width: 12px;
+	margin: 0 1% 0 1%;
+	cursor: pointer;
+}
+
+.axZm_mouseOverDotNavi>div:before {
+	content: "";
+	display: block;
+	padding-top: 100%; /* initial ratio of 1:1*/
+}
+
+.axZm_mouseOverDotNavi>div.selected {
+	border-color: #0191FF;
+	background-color: #0191FF;
+	border-width: 0;
+}
+
+.axZm_mouseOverLensMsg {
+	position: absolute;
+	font-family: arial;
+	font-size: 12px;
+	color: rgba(255,255,255,0.8);
+	top: 50%;
+	left: 0;
+	width: 100%;
+	padding: 0;
+	margin-top: -5px;
+	text-align: center;
+	pointer-events: none;
+}
+
+/* This is the moving lens square underneath the mouse pointer. */
+.axZm_mouseOverLens {
+	/* border "outside" */
+	/* border: 5px solid rgba(0, 0, 0, 0.50); */
+
+	/* border "inside" */
+	/* box-shadow: inset 0px 0px 0px 5px rgba(0, 0, 0, 0.50); */
+
+	overflow: hidden !important;
+	background-color: rgba(0, 0, 0, 0.2);
+	background-image: url(img/zoom-fullscreen-white_tr80-empty-140.png);
+
+	/*
+	background-color: rgba(255, 255, 255, 0.2);
+	background-image: url(img/zoom-fullscreen-black-tr50-140.png);
+	-webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+	*/
+
+	box-sizing: content-box !important;
+	background-repeat: no-repeat !important;
+	background-position: center center;
+	background-size: 70px 70px;
+
+	background-image: url(img/mousetrap-fullscreen_tr_black_30.png)\9;
+	background-color: transparent\9;
+	background-size: initial\9;
+	cursor: url(../../icons/zoom-in.cur), pointer;
+}
+
+.axZm_mouseOverLensFilter {
+	background-image: url(img/zoom-fullscreen-black-tr50-empty-140.png);
+	background-image: none\9;
+	background-color: transparent;
+	box-shadow: none;
+	border: 1px solid rgba(0,0,0,0.5);
+}
+.axZm_mouseOverLensFilter .axZm_mouseOverLensMsg {
+	color: rgba(0,0,0,0.8);
+	/* text-shadow: 0px 0px 2px rgba(255, 255, 255, 1); */
+}
+
+.axZm_mouseOverLens_blur{}
+.axZm_mouseOverLens_grayscale{}
+.axZm_mouseOverLens_lighten{}
+.axZm_mouseOverLens_darken{}
+.axZm_mouseOverLens_sepia{}
+.axZm_mouseOverLens_invert{}
+.axZm_mouseOverLens_saturate{}
+.axZm_mouseOverLens_custom {
+	-webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+}
+
+.axZm_mouseOverNone {
+	border: 1px solid #AAA;
+	background-image: none;
+	background-repeat: repeat;
+	cursor: crosshair;
+}
+
+.axZm_mouseOverInside {
+	cursor: url(../../icons/zoom-in.cur), pointer;
+}
+
+.axZm_mouseOverTrap {
+	background-image: url(../../icons/empty.gif);
+	cursor: pointer;
+}
+
+/* Flyout zoom window */
+.axZm_mouseOverFlyOut {
+	border-color: #AAA;
+	border-style: solid;
+	/* border-width is set over option - "zoomAreaBorderWidth" */
+	background-color: #FFF;
+	box-shadow: 1px 1px 2px #818181;
+	-webkit-box-shadow: 1px 1px 2px #818181;
+	-moz-box-shadow: 1px 1px 2px #818181;
+}
+
+.axZm_mouseOverTitle {
+	width: 100%;
+	height: auto;
+}
+
+.axZm_mouseOverTitle_inner {
+	box-sizing: content-box;
+	height: auto;
+}
+
+.axZm_mouseOverTitle_text {
+	font-family: Arial;
+	text-align: left;
+	font-size: 12px;
+	padding: 5px;
+}
+
+/* This is for the title text. */
+.axZm_mouseOverFlyOut .axZm_mouseOverTitle {
+	position: absolute !important;
+	left: 0;
+	width: 100%;
+	height: auto;
+}
+
+.axZm_mouseOverFlyOut .axZm_mouseOverTitle_inner {
+	position: relative !important;
+	width: 100%;
+	height: auto;
+	left: 0;
+	top: 0;
+	border: none;
+	background-color: rgba(0,0,0,0.4);
+	background-image: url(../../icons/tr_black_40.png)/9;
+	background-color: transparent/9;
+}
+
+.axZm_mouseOverFlyOut .axZm_mouseOverTitle_text {
+	font-family: Arial;
+	text-align: left;
+	font-size: 12px;
+	color: #FFF;
+	padding: 5px;
+}
+
+.axZm_mouseOverTitleParentAbove {
+	position: absolute !important;
+	width: 100%;
+	height: 0px !important;
+	overflow: visible !important;
+	z-index: 99;
+}
+
+.axZm_mouseOverTitleParentAbove .axZm_mouseOverTitle {
+	position: absolute !important;
+	bottom: 0 !important;
+	width: 100%;
+	height: auto;
+
+}
+
+.axZm_mouseOverTitleParentAbove .axZm_mouseOverTitle_inner {
+	position: relative !important;
+	width: 100%;
+	height: auto;
+	background-color: rgba(255,255,255,1);
+	background-image: none;
+	margin-bottom: 5px;
+	left: 0;
+	top: 0;
+	margin-left: -1px;
+	border: rgba(170,170,170,1) 1px solid;
+}
+
+.axZm_mouseOverTitleParentAbove .axZm_mouseOverTitle_text {
+	font-family: Arial;
+	text-align: left;
+	font-size: 12px;
+	color: #000;
+	padding: 5px;
+}
+
+/* This is the loading message. */
+.axZm_mouseOverLoading {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%,-50%);
+	-ms-transform: translate(-50%,-50%);
+	transform: translate(-50%,-50%);
+	padding: 5px;
+	background-color: rgba(0,0,0,0.5);
+	text-align: right;
+	font: Arial;
+	font-size: 12px;
+	line-height: 20px;
+	color: #FDFDFD;
+	border-radius: 5px;
+	z-index: 5;
+	pointer-events: none;
+}
+
+.axZm_mouseOverLoadingText {
+	position: relative;
+	margin-left: 30px;
+}
+
+/* Arrows placed over mouseover zoom */
+.axZm_mouseOverPrevNextArrows {
+	position: absolute;
+	display: none;
+	box-sizing: content-box !important;
+	overflow: hidden;
+	font-size: 22px;
+	color: red;
+	padding: 24px 4px 24px 4px;
+	top: 50%;
+	z-index: 9999;
+	width: 32px;
+	height: 32px;
+	margin-top: -40px;
+	cursor: pointer;
+	background-repeat: no-repeat;
+}
+
+.axZm_mouseOverPrevNextArrows.hover {
+	background-color: rgba(230,230,230,0.35);
+}
+
+.axZm_mouseOverPrevNextArrowsBelow {
+	z-index: 1 !important;
+	visibility: hidden;
+}
+
+.axZm_mouseOverPrevNextArrowsRight {
+	right: 0px; /* could be also negative */
+	padding-right: 0;
+	border-radius: 3px 0 0 3px;
+}
+
+.axZm_mouseOverPrevNextArrowsLeft {
+	left: 0px;
+	padding-left: 0;
+	border-radius: 0 3px 3px 0;
+}
+
+.axZm_mouseOverPrevNextArrowsRightInner {
+	background-image: url(img/next-horizontal.png);
+	background-image: url(img/next-horizontal-ie.png)\9;
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	background-color: transparent;
+	position: relative;
+	/* left: 4px;*/
+	width: 32px;
+	height: 32px;
+	pointer-events: none;
+	overflow: hidden;
+	background-size: 128px 32px ;
+	transform: translateX(0%);
+	transition: transform 0.5s;
+}
+
+.axZm_mouseOverPrevNextArrowsRightInner.hover {
+	background-position: -32px 0;
+}
+
+.axZm_mouseOverPrevNextArrowsRightInner.down {
+	background-position: -64px 0;
+}
+
+.axZm_mouseOverPrevNextArrowsLeftInner {
+	background-image: url(img/prev-horizontal.png);
+	background-image: url(img/prev-horizontal-ie.png)\9;
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	background-color: transparent;
+	position: relative;
+	width: 32px;
+	height: 32px;
+	/* left: -4px;*/
+	pointer-events: none;
+	overflow: hidden;
+	background-size: 128px 32px ;
+	transform: translateX(0%);
+	transition: transform 0.5s;
+}
+
+.axZm_mouseOverPrevNextArrowsLeftInner.hover {
+	background-position: -32px 0;
+}
+
+.axZm_mouseOverPrevNextArrowsLeftInner.down {
+	background-position: -64px 0;
+}
+
+.axZm_mouseOverPrevNextArrowsRightOff {
+	transform: translateX(120%);
+}
+
+.axZm_mouseOverPrevNextArrowsLeftOff {
+	transform: translateX(-120%);
+}
+
+.axZm_mouseOverNoSel {
+	-ms-touch-action: pan-y;
+	touch-action: pan-y;
+	-ms-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+	-ms-touch-select: none;
+	touch-select: none;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-tap-highlight-color: transparent;
+}
+
+.axZm_mouseOverWrapper {
+	-ms-touch-action: pan-y;
+	touch-action: pan-y;
+	-ms-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+	-ms-touch-select: none;
+	touch-select: none;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-tap-highlight-color: transparent;
+	box-sizing: content-box;
+	width: 100%;
+	height: 100%;
+}
+
+.axZm_mouseOverWrapper div {
+	box-sizing: content-box;
+}
+
+.axZm_mouseOverWrapper img{
+	max-width: none !important;
+	max-height: none !important;
+	display: inline;
+}
+
+.axZm_mouseOverImg {
+	overflow: hidden;
+}
+
+.axZm_mouseOverImg img {
+	position: relative !important;
+}
+
+.axZm_mouseOverImgPrev,
+.axZm_mouseOverImgNext {
+	position: absolute !important;
+	overflow: visible !important;
+	top: 0 !important;
+	left: 0 !important;
+	width: 100%;
+	height: 100%;
+	opacity: 0.9999;
+}
+
+.axZm_mouseOverImgPrev {
+	margin-left: -100%;
+	margin-left: calc(-100% - 1px);
+}
+
+.axZm_mouseOverImgNext {
+	margin-left: 100%;
+	margin-left: calc(100% + 1px);
+}
+
+.axZmThumbSlider_wrap>ul>li {
+	overflow: hidden !important;
+}
+
+.axZm_mouseOverZoomCropSlider .axZmThumbSlider_wrap>ul>li {
+	overflow: visible !important;
+}
+
+.axZm_mouseOverImgImgNext,
+.axZm_mouseOverImgImgPrev {
+	margin: auto;
+}
+
+.axZm_mouseOverImg,
+.axZm_mouseOverEffect,
+.axZm_tempFadeImage {
+	width: 100%;
+	height: 100%;
+	line-height: 0px;
+	margin: 0;
+	padding: 0;
+	font-size: 0px;
+	vertical-align: middle;
+	text-align: center;
+	/*ie7 - do not remove*/
+	display: inline-block; zoom: 1; *display: inline;
+}
+
+.axZm_mouseOverImg img,
+.axZm_mouseOverEffect img,
+.axZm_tempFadeImage img {
+	vertical-align: middle;
+	pointer-events: none;
+	max-width: 100% !important;
+	max-height: 100% !important;
+	padding: 0;
+	margin: 0;
+}
+
+.axZm_mouseOverImg span.vAlign,
+.axZm_mouseOverEffect span.vAlign,
+.axZm_tempFadeImage span.vAlign {
+	display: inline-block; zoom: 1; *display: inline;
+	vertical-align: middle;
+	height: 100%;
+}
+
+.axZm_mouseOverEffect > img.blur {
+	filter: blur(1px);
+	-webkit-filter: blur(1px);
+}
+
+.axZm_mouseOverEffect > img.grayscale {
+	filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
+	filter: gray; /* IE6-9 */
+	-webkit-filter: grayscale(100%);
+}
+
+.axZm_mouseOverEffect > img.darken {
+	-webkit-filter: brightness(50%);
+	filter: brightness(50%);
+}
+
+.axZm_mouseOverEffect > img.lighten {
+	-webkit-filter: opacity(50%);
+	filter: opacity(50%);
+}
+
+.axZm_mouseOverEffect > img.sepia {
+	-webkit-filter: sepia(100%);
+	filter: sepia(100%);
+}
+
+.axZm_mouseOverEffect > img.invert {
+	-webkit-filter: invert(1);
+	filter: invert(1);
+}
+
+.axZm_mouseOverEffect>img.saturate {
+	-webkit-filter: saturate(8);
+	filter: saturate(8);
+}
+
+.axZm_mouseOverEffect > img.custom {
+	filter: grayscale(100%) blur(2px);
+	-webkit-filter: grayscale(100%) blur(2px);
+}
+
+.axZm_mouseOverZoomHint {
+	position: absolute;
+	z-index: 7;
+	top: 3px;
+	left: 3px;
+	width: 30px;
+	height: 16px;
+	line-height: 16px;
+	padding-left: 20px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #3D3D3D;
+	font-size: 11px;
+	background-image: url(img/zoom-hint-32.png);
+	background-image: url(img/zoom-hint-16.png)\9;
+	background-position: left center;
+	background-repeat: no-repeat;
+	background-size: 16px 16px ;
+}
+
+.axZm_mouseOverZoomMsg {
+	position: relative;
+	z-index: 1;
+	top: 4px;
+	height: 0;
+	overflow-y: visible;
+	line-height: 11px;
+	text-align: center;
+	width: 100%;
+	left: 0;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #3D3D3D;
+	font-size: 11px;
+}
+
+.axZm_mouseOverZoomMsg.axZm_mouseOverZoomMsg360 {
+	position: absolute;
+	top: 100%;
+	margin-top: 4px;
+}
+
+/* no image available */
+.axZm_mouseOverNoImage {
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	background-color: #E3E3E3;
+	background-image: url(../../icons/no-image-available.png);
+	background-size: 100px 100px;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.axZm_mouseOverSpinWrapper {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1000;
+	background-color: transparent;
+	overflow: hidden;
+}
+
+.axZm_mouseOverSpinWrapper.axZmMode {
+	height: 100%;
+	position: relative;
+}
+
+.axZm_mouseOverSpinWrapper.axZm_mouseOver360:not(.axZmMode) {
+
+}
+
+.axZm_mouseOverSpinWrapper.axZm_mouseOverVideo:not(.axZmMode) {
+	pointer-events: none;
+}
+
+.axZm_mouseOverNoMargin {
+	margin: 0 !important;
+}
+
+/* Thumbnails for gallery */
+.axZm_mouseOverThumb {
+	/* Empty class needed as identifier, do not put anything in it*/
+}
+
+.azThumb {
+	position: relative;
+	overflow: visible;
+	list-style: none;
+	padding: 0px;
+	margin: 0px;
+	white-space: normal !important;
+	font-size: 0px;
+	-moz-user-select: none;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	margin-right: -10px; /* compensate for last margin right of the thumb */
+}
+
+/* List items with image inside */
+.azThumb li {
+	position: relative;
+	width: 120px; /* fixed width */
+	height: 120px; /* fixed height */
+	line-height: 0px;
+	margin: 0px 10px 10px 0px; /* space between thumbs*/
+	padding: 0px;
+	/* float: left !important;*/
+	cursor: pointer;
+	font-size: 0px;
+	vertical-align: middle;
+	text-align: center;
+	border: 1px solid #AAA;
+	/* border-radius: 5px 5px 5px 5px; /* optional */
+	/*
+	box-shadow: 1px 1px 3px 0px rgba(50, 50, 50, 0.1);
+	*/
+	background-color: #FFF;
+	background-position: center center;
+	background-repeat: no-repeat;
+	/* background-size: contain; /* would stretch the image to fit the width and height */
+
+	/*ie7 - do not remove*/
+	display: inline-block; zoom: 1; *display: inline;
+}
+
+.azThumb li.selected {
+	border: 1px solid #0191ff;
+}
+
+/* This class will be added to the image inside li element */
+.azThumb li img.thumb {
+	margin: auto;
+	padding: 0;
+	vertical-align: middle;
+	pointer-events: none;
+	max-width: 100% !important;
+	max-height: 100% !important;
+}
+
+/* This class is for helper span to vertically align images as fix for Transitional doctype */
+.azThumb li span.vAlign {
+	display: inline-block; zoom: 1; *display: inline;
+	vertical-align: middle;
+	height: 100%;
+}
+
+.azThumb li div.spinOverl,
+.axZmThumbSlider li div.spinOverl,
+.azThumb li div.spinOverlImg,
+.axZmThumbSlider li div.spinOverlImg,
+.azThumb li div.videoOverl,
+.axZmThumbSlider li div.videoOverl,
+.azThumb li div.videoOverlImg,
+.axZmThumbSlider li div.videoOverlImg {
+	display: block;
+	position: absolute;
+	background-repeat: no-repeat;
+	background-position: center center;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	cursor: pointer;
+	z-index: 1;
+	pointer-events: none;
+}
+
+.azThumb li div.spinOverl,
+.axZmThumbSlider li div.spinOverl {
+	background-image: url(../../icons/360_zoom_overl.png);
+}
+
+.azThumb li div.spinOverlImg,
+.axZmThumbSlider li div.spinOverlImg {
+	background-image: url(../../icons/360_zoom_overl_img.png);
+}
+
+.azThumb li div.videoOverl,
+.axZmThumbSlider li div.videoOverl {
+	background-image: url(../../icons/video_zoom_overl.png);
+}
+
+.azThumb li div.videoOverlImg,
+.axZmThumbSlider li div.videoOverlImg {
+	background-image: url(../../icons/video_zoom_overl_img.png);
+}
+
+.azVideoThumb{
+
+}
+
+.azThumb li > div.descr {
+	position: absolute;
+	color: #000;
+	width: 100%;
+	text-align: center;
+	word-wrap: break-word;
+	font-family: Tahoma, Arial;
+	font-size: 10px;
+	text-shadow: 0px 0px 2px rgba(150,150,150,1);
+	height: 10px;
+	line-height: 10px;
+	bottom: -12px;
+	left: 0;
+}
+
+.axZm_mouseOverZoomGallerySlider {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background-color: #FFF;
+}
+
+.axZm_mouseOverZoomGallerySlider .axZmThumbSlider li {
+	border-radius: 0;
+}
+
+.axZm_mouseOverZoomGallerySlider .axZmThumbSlider li img.thumb {
+	border-radius: 0;
+}
+
+/* Crop slider */
+.axZm_mouseOverZoomCropSlider {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background-color: #EEE;
+}
+
+/* Crop slider round thumbnails */
+.axZm_mouseOverZoomCropSlider li {
+	border-radius: 50% !important;
+}
+
+.axZm_mouseOverZoomCropSlider li.horizontal,
+.axZm_mouseOverZoomCropSlider li.vertical {
+	border-color: transparent;
+	transform: scale(1.0) rotate(0.00001deg);
+	transition: all 0.2s ease-in;
+	-moz-transition-property: none !important;
+	-moz-transform: none !important;
+}
+.axZm_mouseOverZoomCropSlider li.horizontal.mousehover,
+.axZm_mouseOverZoomCropSlider li.vertical.mousehover {
+	border-color: #FFF;
+	-webkit-box-shadow: 0 0 0 1px #FFF;
+	box-shadow: 0 0 0 1px #FFF;
+}
+
+/*
+.axZmThumbSlider li>div.azThumbImgWrapRound{
+	overflow: hidden;
+	-webkit-mask-image: -webkit-radial-gradient(circle, white, black);
+	mask-image: radial-gradient(circle, white, black);
+}
+
+.axZm_mouseOverZoomCropSlider li.horizontal>div.azThumbImgWrapRound>img.thumb,
+.axZm_mouseOverZoomCropSlider li.vertical>div.azThumbImgWrapRound>img.thumb{
+	-webkit-image-rendering: optimize-quality;
+	image-rendering: optimize-quality;
+	transform: scale(1.0) rotate(0.00001deg);
+	transition: all 0.2s ease-out;
+}
+
+.axZm_mouseOverZoomCropSlider li.horizontal.mousehover>div.azThumbImgWrapRound>img.thumb,
+.axZm_mouseOverZoomCropSlider li.vertical.mousehover>div.azThumbImgWrapRound>img.thumb{
+	transform: scale(1.25) rotate(0.00001deg);
+	transition: all 1s ease-in;
+}
+
+.axZm_mouseOverZoomCropSlider li.horizontal.selected>div.azThumbImgWrapRound>img.thumb,
+.axZm_mouseOverZoomCropSlider li.vertical.selected>div.azThumbImgWrapRound>img.thumb{
+	transform: scale(1.25) rotate(0.00001deg);
+	transition: all 0.2s ease-in;
+});
+*/
+
+.axZm_mouseOverZoomCropSlider .axZmThumbSlider li.vertical.selected,
+.axZm_mouseOverZoomCropSlider .axZmThumbSlider li.horizontal.selected {
+	border-color: #0191ff;
+	-webkit-box-shadow: 0 0 0 1px #0191ff;
+	box-shadow: 0 0 0 1px #0191ff;
+	transform: scale(1) rotate(0.00001deg);
+	transition: all 0.2s ease-in;
+}
+
+.axZm_mouseOverZoomCropSlider div.label {
+	position: absolute;
+	padding: 0px;
+	width: 100%;
+	left: 0;
+	bottom: -14px;
+	font-family: Tahoma, Arial;
+	color: #000000;
+	font-size: 10px;
+	line-height: 12px;
+	min-height: 1px;
+	text-align: center;
+	white-space: normal;
+	text-shadow: 0px 0px 2px rgba(150,150,150,1);
+	overflow: hidden;
+}
+
+.axZmThumbSliderIcon {
+	height: 15px !important;
+	pointer-events: none;
+	position: absolute;
+	right: 1px;
+	top: 1px;
+	width: auto !important;
+}
+
+.azVideoIframe {
+	width: 100%;
+	height: 100%;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: #FFF;
+	pointer-events: auto;
+	position: absolute;
+	z-index: 1001;
+	max-width: 100%;
+	max-height: 80%;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: auto;
+	margin-bottom: auto;
+}
+
+body>#fancybox-wrap #zFsO .azVideoIframe,
+body>#zFsO .azVideoIframe {
+	max-width: 90%;
+}
+
+@media only screen and (max-width: 736px) {
+	.azVideoIframe {
+		margin-bottom: 0;
+		max-width: 100%;
+	}
+
+	body>#fancybox-wrap #zFsO .azVideoIframe,
+	body>#zFsO .azVideoIframe {
+		margin-bottom: auto;
+		max-width: 100%;
+	}
+}
+
+.azVideoIframeLoading {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 1002;
+	pointer-events: none;
+}
+
+.azVideoHtml5 {
+	background: #000;
+}
+
+.azVideoHtml5 video {
+	cursor: pointer;
+}
+
+.azVideoHtml5 .vjs-big-play-button {
+	margin: auto;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+}
+
+.azTempLoading {
+	width: 100%;
+	height: 100%;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: #FFF;
+	position: absolute;
+	z-index: 1002;
+}
+
+.azTempHidden {
+	visibility: hidden !important;
+}
+
+.axZm_mouseOverTempHidden .axZm_mouseOverTrap,
+.axZm_mouseOverTempHidden .axZm_mouseOverInside,
+.axZm_mouseOverTempHidden .axZm_mouseOverLens {
+	cursor: url("../../icons/openhand.cur"), move !important;
+}
+
+
+.axZm_mouseOverTempHidden.axZm_mouseOverTempMove .axZm_mouseOverTrap,
+.axZm_mouseOverTempHidden.axZm_mouseOverTempMove .axZm_mouseOverInside,
+.axZm_mouseOverTempHidden.axZm_mouseOverTempMove .axZm_mouseOverLens {
+	cursor: url("../../icons/closedhand.cur"), move !important;
+}
+
+.axZm_mouseOverTempMove * {
+	cursor: url("../../icons/closedhand.cur"), move !important;
+}
+
+.axZm_mouseOverTempHidden .axZm_mouseOverZoomHint,
+.axZm_mouseOverTempHidden img.axZm_mouseOverImgImg,
+.axZm_mouseOverTempHidden .axZm_mouseOverFlyOut,
+.axZm_mouseOverTempHidden .axZm_mouseOverLens,
+.axZm_mouseOverTempHidden .axZm_mouseOverLensFilter {
+	visibility: hidden !important;
+}
+
+.fancybox-opened .fancybox-skin {
+	-webkit-box-shadow: none !important;
+	-moz-box-shadow: none !important;
+	box-shadow: none !important;
+}
+
+.fancybox-bg {
+	display: none !important;
+}
+
+#fancybox-close {
+	top: -12px !important;
+	right: -22px !important;
+	width: 32px !important;
+	height: 32px !important;
+	background: #FFF url('img/close-3D3D3D-rect-FFFFFF-64.png') !important;
+	background: #FFF url('img/close-3D3D3D-rect-FFFFFF-32.png') !important/9;
+	background-size: 32px 32px !important;
+	/*box-shadow: 1px 1px 3px 0px rgba(50,50,50,0.1);*/
+}
+
+#fancybox-close:hover {
+	background: #FFF url('img/close-EA0000-rect-FFFFFF-64.png') !important;
+	background: #FFF url('img/close-EA0000-rect-FFFFFF-32.png') !important/9;
+	background-size: 32px 32px !important;
+}
+
+/* Fancybox 2 tweak */
+.fancybox-skin .fancybox-item.fancybox-close {
+	z-index: 100000001;
+}
+
+.azShakeAnm {
+	animation: azShakeAnm 0.2s cubic-bezier(.81,.04,.22,.99) both;
+	transform: translate3d(0, 0, 0);
+	backface-visibility: hidden;
+	perspective: 1000px;
+}
+
+@keyframes azShakeAnm {
+	33% {transform: translate3d(3%, 0, 0);}
+	66% {transform: translate3d(-3%, 0, 0);}
+	/*
+	10%, 90% {transform: translate3d(-1%, 0, 0);}
+	20%, 80% {transform: translate3d(2%, 0, 0);}
+	30%, 70% {transform: translate3d(-3%, 0, 0);}
+	40%, 60% {transform: translate3d(4%, 0, 0);}
+	50% {transform: translate3d(-5%, 0, 0);}
+	*/
+}
+
+#zFsO.azVideoBlend #zoomLayer {
+	background-color: #000!important;
+}

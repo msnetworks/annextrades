@@ -1,0 +1,157 @@
+/**
+* Plugin: jQuery AJAX-ZOOM, jquery.axZm.360Gallery.css
+* Copyright: Copyright (c) 2010-2019 Vadim Jacobi
+* License Agreement: https://www.ajax-zoom.com/index.php?cid=download
+* Extension Version: 3.6
+* Extension Date: 2019-08-06
+* URL: https://www.ajax-zoom.com
+* Example: https://www.ajax-zoom.com/examples/example29.php
+*/
+
+.azVideoIframe {
+	background: url(../icons/ajax-loader-map-white.gif) no-repeat center center;
+	width: 100%;
+	height: 100%;
+	background-color: #FFF;
+	position: relative;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.azAjaxFrame {
+	background: url(../icons/ajax-loader-map-white.gif) no-repeat center center;
+}
+
+.azAjaxFrameAct {
+	width: 100%;
+	height: 100%;
+	z-index: 1001;
+	background-color: #FFF;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	position: absolute;
+	overflow: auto;
+}
+
+.azVideoIframeNoBack {
+	background-image: none !important;
+}
+
+.azNoImage{
+	background-color: #e3e3e3;
+	background-image: url("../icons/no-image-available.png");
+	background-position: center center;
+	background-repeat: no-repeat;
+	height: 100%;
+	width: 100%;
+	z-index: 1;
+}
+
+#customBtn_mCustomBtn1,
+#customBtn_mCustomBtn2,
+#axZm_zoomCornerFsc {
+	z-index: 1002 !important;
+}
+
+/* Div where we put the gallery at fullscreen mode */
+#axZmFsSpaceTop,
+#axZmFsSpaceTopTempRemove {
+	/*border-bottom: 1px solid #404040;*/
+	background-color: #4c4c4c;
+	overflow: hidden;
+}
+
+/* Div where we put the gallery at fullscreen mode */
+#axZmFsSpaceBottom,
+#axZmFsSpaceBottomTempRemove {
+	/*border-top: 1px solid #404040;*/
+	background-color: #4c4c4c;
+	overflow: hidden;
+}
+
+/* 360 Gallery thumbs */
+.spinGallery_temp {
+	position: relative;
+	color: gray;
+	padding: 10px;
+}
+
+.axZmThumbSlider li.horizontal.selected {
+	background-color: transparent;
+	border: 1px solid transparent;
+	box-shadow: 0 0 4px #000;
+}
+.axZmThumbSlider li {
+	background-color: transparent;
+	border: 1px solid transparent;
+}
+
+.axZmThumbSliderDescription {
+	position: absolute;
+	bottom: 0px;
+	left: 0;
+	font-size: 8px;
+	text-align: center;
+	color: #444;
+	width: 100%;
+	line-height: 10px;
+	/*height: 15px;*/
+	/*overflow: hidden;*/
+}
+
+.axZmThumbSliderIcon {
+	height: 15px;
+	width: auto;
+	pointer-events: none;
+	position: absolute;
+	top: 1px;
+	right: 1px;
+}
+
+/* CSS for thumbs when axZmThumbSlider is not used*/
+.azThumb {
+	-moz-user-select: none;
+	font-size: 0;
+	list-style: none outside none;
+	margin: 0;
+	padding: 0;
+	white-space: normal !important;
+}
+.azThumb li {
+	background-color: #f9f9f9;
+	background-position: center center;
+	background-repeat: no-repeat;
+	border: 1px solid #cccccc;
+	border-radius: 5px;
+	cursor: pointer;
+	position: relative;
+	display: inline-block; zoom: 1; *display: inline;
+	float: left !important;
+	font-size: 0;
+	height: 70px;
+	line-height: 0;
+	margin: 0 10px 10px 0;
+	padding: 5px;
+	text-align: center;
+	vertical-align: middle;
+	width: 70px;
+}
+.azThumb li.selected {
+	border: 1px solid #0191FF;
+	background-color: #DDDDDD;
+	-moz-box-shadow: 0 0 4px #0191FF;
+	-webkit-box-shadow: 0 0 4px #0191FF;
+	box-shadow: 0 0 4px #0191FF;
+}
+.azThumb li img.thumb {
+	max-height: 100% !important;
+	max-width: 100% !important;
+	vertical-align: middle;
+}
+.azThumb li span.vAlign {
+	display: inline-block; zoom: 1; *display: inline;
+	height: 100%;
+	vertical-align: middle;
+}

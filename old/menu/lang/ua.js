@@ -1,0 +1,23 @@
+window.menuMessage = {
+	TITLE_INSTALL: 'Налаштування застосунку',
+	INST_PAYMENT: 'Використовувати ціни:',
+	INST_WS: 'Перший день тижня:',
+	INST_PAYMENT_CURRENCY: 'Валюта: ',
+	INST_PAYMENT_CURRENCY_DEF: 'грн',
+	INST_SET_ACCESS: 'Хто може керувати меню?',
+	INST_FINISH: 'Завершити налаштування',
+	MENU_DISH_NAME: 'Назва страви',
+	MENU_DISH_PRICE: 'Ціна',
+	MENU_DISH_ADD: 'додати',
+	MENU_DISH_SAVE: 'зберегти',
+	MENU_DISH_SHARE: 'опублікувати',
+	MENU_DISH_SHARED: 'опубліковано',
+	MENU_DISH_SHARE_TITLE: 'Меню на #DATE#',
+	WD0: 'Неділя',
+	WD1: 'Понеділок',
+	WD2: 'Вівторок',
+	WD3: 'Середа',
+	WD4: 'Четвер',
+	WD5: 'П\'ятниця',
+	WD6: 'Субота'
+};

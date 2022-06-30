@@ -1,0 +1,82 @@
+{
+  "name": "@mycolorway/teditor",
+  "version": "0.0.1",
+  "description": "Rich text editor for tower.im",
+  "main": "dist/teditor.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node dev-server.js"
+  },
+  "files": [
+    "src",
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mycolorway/teditor.git",
+    "directory": "packages/@mycolorway/teditor"
+  },
+  "keywords": [
+    "editor",
+    "wysiwyg",
+    "rich text",
+    "tower"
+  ],
+  "author": "farthinker <farthinker@gmail.com>",
+  "license": "GPL-2.0-or-later",
+  "bugs": {
+    "url": "https://github.com/mycolorway/teditor/issues"
+  },
+  "homepage": "https://github.com/mycolorway/teditor#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@ckeditor/ckeditor5-alignment": "^16.0.0",
+    "@ckeditor/ckeditor5-basic-styles": "^16.0.0",
+    "@ckeditor/ckeditor5-block-quote": "^16.0.0",
+    "@ckeditor/ckeditor5-clipboard": "^16.0.0",
+    "@ckeditor/ckeditor5-core": "^16.0.0",
+    "@ckeditor/ckeditor5-editor-classic": "^16.0.0",
+    "@ckeditor/ckeditor5-editor-decoupled": "^16.0.0",
+    "@ckeditor/ckeditor5-engine": "^16.0.0",
+    "@ckeditor/ckeditor5-enter": "^16.0.0",
+    "@ckeditor/ckeditor5-font": "^16.0.0",
+    "@ckeditor/ckeditor5-heading": "^16.0.0",
+    "@ckeditor/ckeditor5-horizontal-line": "^16.0.0",
+    "@ckeditor/ckeditor5-image": "^16.0.0",
+    "@ckeditor/ckeditor5-indent": "^16.0.0",
+    "@ckeditor/ckeditor5-inspector": "^1.4.0",
+    "@ckeditor/ckeditor5-link": "^16.0.0",
+    "@ckeditor/ckeditor5-list": "^16.0.0",
+    "@ckeditor/ckeditor5-paragraph": "^16.0.0",
+    "@ckeditor/ckeditor5-paste-from-office": "^16.0.0",
+    "@ckeditor/ckeditor5-remove-format": "^16.0.0",
+    "@ckeditor/ckeditor5-table": "^16.0.0",
+    "@ckeditor/ckeditor5-theme-lark": "^16.0.0",
+    "@ckeditor/ckeditor5-typing": "^16.0.0",
+    "@ckeditor/ckeditor5-ui": "^16.0.0",
+    "@ckeditor/ckeditor5-undo": "^16.0.0",
+    "@ckeditor/ckeditor5-upload": "^16.0.0",
+    "@ckeditor/ckeditor5-utils": "^16.0.0",
+    "@ckeditor/ckeditor5-widget": "^16.0.0"
+  },
+  "devDependencies": {
+    "@ckeditor/ckeditor5-dev-utils": "^12.0.5",
+    "@ckeditor/ckeditor5-dev-webpack-plugin": "^8.0.5",
+    "eslint": "^6.3.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-loader": "^3.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.1.5",
+    "postcss-loader": "^3.0.0",
+    "raw-loader": "^3.1.0",
+    "regenerator-runtime": "^0.13.3",
+    "style-loader": "^1.0.0",
+    "terser-webpack-plugin": "^1.4.1",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-middleware": "^3.7.0"
+  }
+}

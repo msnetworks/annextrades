@@ -1,0 +1,16 @@
+@import "variables";
+
+pages-panel {
+  display: block;
+
+  .active-page-actions {
+    color: mat-color($app-foreground, secondary-text);
+    text-align: right;
+  }
+
+  .new-page-button {
+    width: 100%;
+    height: 45px;
+    margin-bottom: 15px;
+  }
+}

@@ -1,0 +1,99 @@
+@import "variables";
+
+text-style-panel {
+  display: block;
+
+  .text-decorations, .font-styles {
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 0;
+
+    .input-container {
+      width: 80px;
+
+      select, input {
+        height: 35px;
+        padding: 8px;
+        margin: 0;
+      }
+    }
+
+    button {
+      flex: 0 0 35px;
+      width: 35px;
+      height: 33px;
+      font-weight: 500;
+      text-align: center;
+      background-color: mat-color($app-background, raised-button);
+      border: 1px solid mat-color($app-foreground, divider);
+      border-radius: 4px;
+      margin-right: 4px;
+
+      .mat-icon {
+        margin: 0 auto;
+      }
+
+      &.active {
+        color: mat-color($app-accent, default);
+      }
+
+      &.italic {
+        font-style: italic;
+      }
+
+      &.underline {
+        text-decoration: underline;
+      }
+
+      &.overline {
+        text-decoration: overline;
+      }
+
+      &.strike {
+        text-decoration: line-through;
+      }
+
+      &.underline {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .text-decorations .buttons {
+    display: flex;
+    align-items: center;
+  }
+
+  .font-family-container {
+    height: 38px;
+    display: flex;
+
+    select {
+      height: 100%;
+      padding: 8px;
+    }
+
+    .google-fonts-button {
+      margin-left: 10px;
+      flex: 0 0 50px;
+      width: 50px;
+      height: 36px;
+      background-color: mat-color($app-background, raised-button);
+      border: 1px solid mat-color($app-foreground, divider);
+      border-radius: 4px;
+      text-align: center;
+
+      .mat-icon {
+        vertical-align: middle;
+      }
+    }
+  }
+
+  .text-color {
+    height: 35px;
+    background-color: mat-color($app-background, background);
+    border: 1px solid mat-color($app-foreground, divider);
+    border-radius: 4px;
+    cursor: pointer;
+  }
+}

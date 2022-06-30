@@ -1,0 +1,29 @@
+@import "variables";
+
+link-editor {
+  display: block;
+  background-color: mat-color($app-background, card);
+  @include mat-elevation(4);
+
+  .mat-tab-body-content {
+    padding: 15px;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+  }
+
+  .page-list-item {
+    cursor: pointer;
+
+    &:hover {
+      background-color: mat-color($app-background, background);
+    }
+
+    &.selected {
+      background-color: mat-color($app-background, hover);
+    }
+  }
+}

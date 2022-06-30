@@ -1,0 +1,6 @@
+<div class="templates">
+    <div class="template" *ngFor="let template of templates" (click)="applyTemplate(template)" [class.disabled]="loading">
+        <img [src]="getThumbnailUrl(template)">
+        <div class="name">{{template?.config?.name || template.name}}</div>
+    </div>
+</div>

@@ -1,0 +1,464 @@
+<style type="text/css"> 
+	.optionsTable, .optionsTable * {box-sizing: border-box;}
+	.optionsTable {width: 100%; border-spacing: 0; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
+	.optionsTable tbody[data-az_options_head].active th{background-color: #337AB7; border-color: #337AB7 !important; color: #FFF;}
+	.optionsTable tbody[data-az_options_head] th i {margin-right: 10px; top: 0px; color: #9E9E9E;}
+	.optionsTable tbody[data-az_options_head].active th i{color: #FFF;}
+	.optionsTable td {transition: background-color .15s ease;}
+	.optionsTable th {white-space: nowrap;}
+	.optionsTable td, .optionsTable th {padding-left: 5px; padding-right: 5px; vertical-align: top; text-align: left; padding-top: 3px; padding-bottom: 8px; border-bottom: 1px solid #DDD;}
+	.optionsTable th {background-color: #EEE; padding-top: 10px; padding-bottom: 10px; font-size: 16px; font-weight: bold;}
+	.optionsTable th.optionsTabCat {cursor: pointer; background-color: #EEE; padding-top: 10px; padding-bottom: 10px; font-weight: normal; font-size:16px; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
+
+	.optionsTable ul, .optionsTable ol {padding-left: 14px; margin-top: 0;}
+	.optionsTable li {margin-bottom: 5px; padding-left: 14px;}
+	.optionsTable tbody tr:nth-child(odd) { background-color: #F9F9F9;}
+	.optionsTable tbody tr:nth-child(even) { background-color: #FFF;}
+	.optionsTable .removed {text-decoration: line-through;}
+	.optionsTable .optionsType {text-align: right; font-size: 8pt; font-weight: bold; position: relative; color: #777; top: -3px; right: -2px; float: right; margin-left: 20px; margin-bottom: 11pt;min-width: 100px;}
+	.optionsTable tr td:last-child {border-right: #DDD 1px solid;}
+	.optionsTable tr th:last-child {border-right: #DDD 1px solid;}
+	.optionsTable tr td:first-child {border-left: #DDD 1px solid;}
+	.optionsTable tr th:first-child {border-left: #DDD 1px solid;}
+	.optionsTable tbody:first-child tr:first-child th {border-top: #DDD 1px solid;}
+
+	.optionsTable .az_highlight_tr, .optionsTable .az_highlight_tr td {background-color: yellow; transition: background-color .15s ease;}
+	.optionsTable .optionsDefaultHeading {font-weight: bold; margin-top: 20px;}
+	.optionsTable pre:not([class*="language-"]) {border-radius: 0; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; box-shadow: none; margin-top: 0; white-space: pre-wrap;}
+	.optionsTable code:not([class*="language-"]) {border-top: #DDD 1px solid; border-right: #DDD 1px solid; border-bottom: #DDD 1px solid; white-space: pre-wrap; padding-left: 2px; padding-right: 2px; tab-size: 2;}
+
+	@media only screen and (max-width: 1024px){
+		.optionsTable {border-top: #DDD 1px solid;}
+		.optionsTable tbody tr:nth-child(odd) {background-color: #FFF;}
+		.optionsTable,.optionsTable>tbody,.optionsTable>tbody>tr>th,.optionsTable>tbody>tr>td,.optionsTable>tbody>tr {display: block;}
+		.optionsTable>tbody>tr>th:not(.optionsTabCat) {display: none;}
+		.optionsTable>tbody>tr>td {position: relative; padding-left: 100px;}
+		.optionsTable>tbody>tr>td:nth-of-type(1), .optionsTable>tbody>tr>td:nth-of-type(2), 
+		.optionsTable>tbody>tr>td:nth-of-type(3) {border-bottom: 1px solid #DDD;}
+		.optionsTable tr>td:nth-of-type(1){padding-bottom: 5px; padding-top: 5px;}
+		.optionsTable tr>td:nth-of-type(2){border-bottom: none; border-left: #DDD 1px solid; border-right: #DDD 1px solid;}
+		.optionsTable>tbody>tr.subOpt>td{background-color: #D4D4D4; color: #000;}
+		.optionsTable>tbody>tr>td[colspan="3"] {background-color: #FFF !important;}
+		.optionsTable>tbody>tr>td:before {position: absolute; top: 3px; left: 3px;width: 90px; white-space: nowrap;}
+		.optionsTable tr:nth-child(2n+1) {background-color: #FFF;}
+		.optionsTable>tbody>tr>td:nth-of-type(1) {word-break: break-all; background-color: #EEE; font-size:18px; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; border-left: #DDD 1px solid; border-right: #DDD 1px solid;}
+		.optionsTable>tbody>tr>td:nth-of-type(3) {overflow-x: hidden; border-left: #DDD 1px solid;}
+		.optionsTable>tbody>tr>td:nth-of-type(1):before { content: "";}
+		.optionsTable>tbody>tr>td:nth-of-type(2):before { content: "Default:";}
+		.optionsTable>tbody>tr>td:nth-of-type(3):before { content: "Description:";}
+	}
+</style>
+
+<!-- $.azThumbGallery - documentation -->
+<div style="overflow-x: auto;">
+<table class="optionsTable" >
+<tbody>
+	<tr><th>Option</th><th>Default</th><th>Description</th></tr>
+</tbody>
+<tbody>
+	<tr><td>axZmPath </td><td> 'auto' </td><td>
+		The path to the "/axZm" folder, e.g. /test/axZm/
+	</td></tr>
+	<tr><td>folderSelect </td><td> 'select' </td><td> 
+		The look of navigation for subfolders. 
+		Only useable if "zoomDir" is defined (not with "zoomData").  
+		Possible values: "select", "folders", "imgFolders" or false
+	</td></tr>
+	<tr><td>zoomDir </td><td> null </td><td>
+		A path to subfolders with images; 
+		If "folderSelect" is set to false, then you can define the path directly to some folder with images.
+	</td></tr>
+	<tr><td>firstFolder </td><td> null </td><td>
+		After page loads, select from which "zoomDir" subfolder the thumbnails should load first.
+		As an integer (index of subfolder) or string (name of the subfolder). 
+		If nothing is defined and there is no hash value (see "setHash" option below), the first subfolder loads first.
+	</td></tr>
+	<tr><td>zoomData </td><td> null </td><td> 
+		As an alternative to the "zoomDir" option, where all images from a folder or subfolders are loading, you can define several images from different folders. 
+		The value of the "zoomData" option can be CSV string separated with "|".
+	</td></tr>
+	<tr><td>folderIconPrefix </td><td> 'folder_icon_' </td><td>
+		This option applies if the value of the "folderSelect" option is "folders". 
+		The value of this option is the prefix of an icon image located in "/axZm/icons" directory. 
+		On default, the three icons are: folder_icon_close.png, folder_icon_close_over.png, folder_icon_open.png
+	</td></tr>
+	<tr><td>imgFoldersSettings </td><td> {} </td><td> 
+		This option applies only if the value of the "folderSelect" option is "imgFolders".
+		<table class="optionsTable sub" style="margin-top: 10px;">
+		<tbody>
+			<tr><th>Option</th><th>Default</th><th>Description</th></tr>
+			<tr><td>thumbNumber </td><td> 3 </td><td>amount of icons to show, max 3 </td></tr>
+			<tr><td>thumbWidth </td><td> 32</td><td>width of the icons </td></tr>
+			<tr><td>thumbHeight </td><td> 32 </td><td>height of the icons </td></tr>
+			<tr><td>thumbRetina </td><td> true </td><td>true doubles the resolution of the thumbnails images </td></tr>
+			<tr><td>thumbQual </td><td> 100 </td><td>jpg quality of the thumbnail image</td></tr>
+			<tr><td>thumbMode </td><td> 'contain' </td><td>possible values: "contain", "cover" or false</td></tr>
+			<tr><td>thumbsCache </td><td> true </td><td>cache thumbnails </td></tr>
+			<tr><td>thumbOpacity </td><td> 1.0 </td><td>opacity </td></tr>
+		</tbody>
+		</table>
+	</td></tr>
+	<tr><td>folderNameFunc </td><td> function </td><td>
+		This is a "filter" function for the titles of the subfolders. 
+		The first argument passed to the function is the name of the subfolder from the file system.
+		This input string can be changed and returned in a different way. 
+		On default, this function makes first letter uppercase, replaces _ (underscore) to empty space and truncates the resulting string to max. 15 characters. 
+		If you do not want to have any changes, simply set folderNameFunc to <code>function(input){return input;}</code>
+	</td></tr>
+	<tr><td>axZmCallBacks </td><td> {} </td><td>
+		AJAX-ZOOM has several callbacks, 
+		<a href="https://www.ajax-zoom.com/index.php?cid=docs#onBeforeStart" rel="nofollow">https://www.ajax-zoom.com/index.php?cid=docs#onBeforeStart</a>. 
+		If you want to extend the functionality of the AJAX-ZOOM viewer by using those callbacks, you can define them in this object.
+	</td></tr>
+	<tr><td>fullScreenApi </td><td> false </td><td>
+		Try to open AJAX-ZOOM at browsers fullscreen mode, possible on modern browsers except for IE < 10 and mobile 
+	</td></tr>
+	<tr><td>setHash </td><td> false </td><td> 
+		Set location hash when users navigate between the folders. 
+		Setting the location hash results in switching between folders when the user hits the back browser button. 
+		Also if the location address is copied with the hash, the folder in the hash opens as first.
+	</td></tr>
+	<tr><td>thumbModel </td><td> 'grid' </td><td> 
+		Type of thumbnails layout. 
+		Possible values are 'grid' and 'fixed'. 
+		<br>When "fixed", the "thumbWidth" and "thumbHeight" options determine a fixed size of the thumbnails.
+		<br>When "grid", the size is determined depending on the resolution, width of the parent container and the number of thumbnails, which should display in one row. 
+		You can define the numbers in the "thumbUlClassGrid" option.
+	</td></tr>
+	<tr><td>thumbGridAspectRatio </td><td> 1.0 </td><td> 
+		Aspect ratio of the thumbnails if "thumbModel" is "grid". 
+		"thumbUlClassGrid" must contain azGridThumb class. 
+		For e.g. 16:9 format set 1.7777777777, for 2:1 -> 2.0
+	</td></tr>
+	<tr><td>thumbGridTop </td><td> false </td><td> 
+		Align image at the top position within the thumbnails container. 
+		This option might be useful if you define the descriptions for the thumbnails.
+	</td></tr>
+	<tr><td>thumbUlClassGrid </td><td> 'azGridThumb azGrid-10-xxl azGrid-8-xl azGrid-6-lg azGrid-6-md azGrid-4-sm azGrid-2-xs' </td><td> 
+		Class for the UL element, when "thumbModel" option value is "grid". 
+		On default, you can choose from predefined azGrid-[1-16]-[xs, sm, md, lg, xl, xxl]. 
+		It has not much to do with bootstrap. 
+		However, the breakpoints are set the same as they are in Bootstrap 3, 4. 
+		The number after <code>azGrid-</code> determines how many thumbnails you would like to see in one row 
+		and the xs, sm, md, lg or xl letters determine the interval of screen resolutions. 
+		The default screen width breakpoints are:
+		<ul>
+			<li>xs: under 576 pixels</li>
+			<li>sm: from 576 to 768 pixels</li>
+			<li>md: from 768 to 992 pixels</li>
+			<li>lg: from 992 to 1200 pixels</li>
+			<li>xl: over 1200 pixels</li>
+			<li>xxl: over 1900 pixels width and over 1020 pixels height</li>
+		</ul>
+		That is sufficient to cover any resolution. 
+		Thus, <code>azGrid-8-xl</code> means 8 thumbnails in one row at a screen width of more than 1200 pixels. 
+		<code>azGrid-6-lg</code> menas 6 thumbnails in one row at screen width between 992 to 1200 pixels etc. 
+		The CSS can be changed and extended. 
+		When defining the "thumbUlClassGrid" option values using <code>azGrid-x-y</code> CSS classes, 
+		please cover all possible intervals (xs, sm, md, lg, xl) like it is set on default, whereby xxl is not required.
+	</td></tr>
+	<tr><td>thumbUlClassFixed </td><td> 'azFixedThumb' </td><td> 
+		CSS class for the UL element, when "thumbModel" option value is "fixed".
+	</td></tr>
+	<tr><td>thumbGridSizes </td><td> [...] </td><td> 
+		Possible physical sizes of the thumbnail images, when the "thumbModel" option value is "grid". 
+		The script instantly chooses the right size depending on pixel density and thumbnails size. 
+		The array contains objects with "w", "h" and "q" properties.
+		<pre><code class="language-javascript">
+[
+	{"w": 100, "h": 100, "q": 90},
+	{"w": 200, "h": 200, "q": 90},
+	{"w": 400, "h": 400, "q": 80},
+	{"w": 600, "h": 600, "q": 75}
+]
+		</code></pre>
+		"w" is the width, "h" is the height and "q" is the jpeg quality. 
+		The thumbnails are genereted instantly.
+	</td></tr>
+	<tr><td>thumbWidth </td><td> 120 </td><td>
+		The width of the thumbnail image, when the value of "thumbModel" option is "fixed".
+	</td></tr>
+	<tr><td>thumbHeight </td><td> 120 </td><td>
+		The height of the thumbnail image, when the value of "thumbModel" option is "fixed". 
+	</td></tr>
+	<tr><td>thumbRetina </td><td> true </td><td>
+		Doubles the resolution of the thumbnails images for high DPI screens, 
+		when the value of "thumbModel" option is "fixed".
+	</td></tr>
+	<tr><td>thumbsCache </td><td> true </td><td>
+		Cache thumbnails.
+	</td></tr>
+	<tr><td>thumbQual </td><td> 90 </td><td>
+		The jpg quality of the thumbnail images.
+	</td></tr>
+	<tr><td>thumbMode </td><td> false </td><td>
+		Geometry of the thumbnails. 
+		Possible values are: "contain", "cover" or false
+	</td></tr>
+	<tr><td>thumbBackColor </td><td> '#FFFFFF' </td><td>
+		Background color of the thumbnails if "thumbMode" is set to "contain".
+	</td></tr>
+	<tr><td>thumbPadding </td><td> null </td><td>
+		Quickly overwrite the CSS padding of the thumbnails, 
+		when the value of "thumbModel" option is "fixed".
+	</td></tr>
+	<tr><td>thumbMarginRight </td><td> null </td><td>
+		Integer or null. 
+		Quickly overwrite the CSS margin to the right of the thumbs, 
+		when the value of "thumbModel" option is "fixed".
+	</td></tr>
+	<tr><td>thumbMarginBottom </td><td> null </td><td>
+		The value can be an integer or null. 
+		Quickly overwrite the CSS margin to the bottom of the thumbs, 
+		when the value of "thumbModel" option is "fixed".
+	</td></tr>
+	<tr><td>thumbCss </td><td> {} </td><td>
+		Quickly add any CSS by extending the style attribute (inline CSS) for the thumbnails.
+	</td></tr>
+	<tr><td>thumbPreloadingImg </td><td> 'ajax-loader-map-white.gif' </td><td>
+		Image located in /axZm/icons directory, which will appear before the thumbs are loaded, when the value of "thumbModel" option is "fixed". 
+		This is a legacy option.
+	</td></tr>
+	<tr><td>thumbPreloadingClass </td><td> 'azThumbPreLoader' </td><td>
+		Layer with CSS class, which will appear before the thumbs are loaded, when the value of "thumbModel" option is "grid".
+	</td></tr>
+	<tr><td>thumbDescrObj</td><td> {} </td><td>
+		An object that contains thumbnail descriptions, e.g.: 
+		<pre><code class="language-javascript">
+		{
+			"image1.jpg": "test 1",
+			"image2.jpg": "test 2"
+		}
+		</code></pre>
+
+		Instead of writing out image names, you can also reference them by the index starting from one, e.g.
+		<pre><code class="language-javascript">
+		{
+			1: "test 1",
+			2: "test 2"
+		}
+		</code></pre>
+	</td></tr>
+
+	<tr><td>thumbDescr </td><td> [] </td><td>
+		This option is an alternative or amendment to the "thumbDescrObj" option. 
+		The option is an array, and it may contain these elements: "fileName", "thumbDescr", "fullDescr". 
+		The values for "thumbDescr" and "fullDescr" are returned from request to AJAX-ZOOM. 
+		On default, "thumbDescr" returns resolution of the original image. 
+		It is adjustable in /axZm/zoomConfig.inc.php or a 
+		<a href="https://www.ajax-zoom.com/index.php?cid=blog&article=options_config&lang=en" target="_blank">different configuration file</a> 
+		by setting the <code>$zoom['config']['galleryThumbDesc']</code> and <code>$zoom['config']['galleryThumbFullDesc']</code> AJAX-ZOOM core configuration options. 
+		You can see the usage of this option in example11.
+	</td></tr>
+
+	<tr><td>thumbDescrJoin </td><td> '&lt;br>' </td><td>
+		If the return from "thumbDescrObj" and "thumbDescr" has more than one element, they are split by this string.
+	</td></tr>
+	<tr><td>thumbDescrTruncate </td><td> false </td><td>
+		Truncate the resulting description by the number of chars that you define in this option and add [...] at the end. 
+		Set to false to disable truncating. 
+	</td></tr>
+	<tr><td>thumbsPerPage </td><td> null </td><td>
+		In case the number of thumbnails exceeds the "thumbsPerPage" value, the extension appends "page numbers" (pagination) under the container with the thumbnails. 
+		Set to null to disable pagination.
+	</td></tr>
+	<tr><td>thumbsPerPageResponsive </td><td> null </td><td>
+		If this option is activated, the number of thumbnails per page depends on screen size. 
+		The exact values are defined in the "thumbsPerPageNumber" option. 
+		If enabled, the "thumbsPerPage" option overrides the "thumbsPerPageResponsive" option and makes the amount of the thumbnails in a row not responsive.
+	</td></tr>
+	<tr><td>thumbsPerPageRows</td><td> 1 </td><td>
+		The number of rows if "thumbsPerPageResponsive" option is active. 
+		Depending on the resolution, the number of thumbnails in each row is defined by the "thumbsPerPageNumber" option.
+	</td></tr>
+	<tr><td>thumbsPerPageNumber </td><td> {...} </td><td>
+		An object that contains pairs of keys and values representing the screen resolution breakpoints and number of thumbnails when "thumbsPerPageResponsive" option is enabled.
+		Default value: 
+		<pre><code class="language-javascript">
+		{
+			"xs": 4,
+			"sm": 8,
+			"md": 12,
+			"lg": 12,
+			"xl": 16,
+			"xxl": 20
+		}
+		</code></pre>
+	</td></tr>
+	<tr><td>thumbsPerPageBreakPoints </td><td> [...] </td><td>
+		Array, containing arrays with breakpoint and javascript function, defining the range of screen resolution. 
+		The "w" and "h" arguments are passed to the functions, which represent the width and height of the current browser's window size.
+		The default values match the predefined CSS grid, see "thumbUlClassGrid" option: 
+		<pre><code class="language-javascript">
+			[
+				["xs", function(w, h) {
+					// max-width: 575.98px,
+					return w < 576;
+				}],
+				["sm", function(w, h) {
+					// min-width: 576px) and (max-width: 767.98px
+					return w >= 576 && w < 768
+				}],
+				["md", function(w, h) {
+					// min-width: 768px) and (max-width: 991.98px
+					return w >= 768 && w < 992
+				}],
+				["lg", function(w, h) {
+					// (min-width: 992px) and (max-width: 1199.98px)
+					return w >= 992 && w < 1200
+				}],
+				["xl", function(w, h) {
+					// (min-width: 1200px)
+					return w >= 1200;
+				}],
+				["xxl", function(w, h) {
+					// (min-width: 1900px) and (min-height: 1020px)
+					return w >= 1900 && h > 1020 
+				}]
+			]
+		</code></pre>
+	</td></tr>
+	<tr><td>pageNavPosition</td><td> 'bottom' </td><td>
+		Position of the pagination container.
+		Possible values are: "bottom" ot "top".
+	</td></tr>
+	<tr><td>thumbsContainer </td><td> 'thumbsParentContainer' </td><td>
+		The ID of the container where into thumbnails should be inserted. 
+		The container can be responsive or adaptive.
+	</td></tr>
+	<tr><td>selectContainer </td><td> 'selectParentContainer' </td><td>
+		The ID of the container where into the folders navigation (see "folderSelect" option) should be inserted. 
+		The container can be responsive or adaptive.
+	</td></tr>
+	<tr><td>ajaxZoomOpenMode </td><td> 'fullscreen' </td><td>
+		This option determines how AJAX-ZOOM should open when the user clicks on an image thumbnail. 
+		Possible values: 
+		<ul style="margin-top: 10px">
+			<li>'fullscreen' - AJAX-ZOOM opens at fullscreen mode, see also "fullScreenApi" option</li>
+			<li>'fancyboxFullscreen' - AJAX-ZOOM opens in the responsive Fancybox. Fancybox is a commonly used lightbox jQuery plugin</li>
+			<li>'fancybox' - AJAX-ZOOM opens in a regular fixed width and height Fancybox</li>
+			<li>'colorbox' - AJAX-ZOOM opens in Colorbox with fixed width and height. Colorbox used to be another popular lightbox plugin</li>
+			<li>'zoomSwitch' - In case "embedMode" is enabled, which means that AJAX-ZOOM opens next to the container with the thumbnails, 
+				clicking on the thumb switches the image within AJAX-ZOOM viewer. 
+				This value is set instantly if "embedMode" is enabled.
+			</li>
+		</ul>
+	</td></tr>
+	<tr><td>openModeEnforceFullscreen </td><td> 1024 </td><td>
+		Instantly set "ajaxZoomOpenMode" to fullscreen if the width of the device is below or equal to this value. 
+		Does not apply / have no effect, if "embedMode" is enabled.
+	</td></tr>
+	<tr><td>exampleFullscreen </td><td> 'mouseOverExtension' </td><td>
+		Configuration set <sup><a href="#o_sup_2">2</a></sup>, which is passed to AJAX-ZOOM when "ajaxZoomOpenMode" is 'fullscreen' 
+	</td></tr>
+	<tr><td>exampleFancyboxFullscreen </td><td> 'mouseOverExtension' </td><td>
+		Configuration set <sup><a href="#o_sup_2">2</a></sup>, which is passed to AJAX-ZOOM when "ajaxZoomOpenMode" is 'fancyboxFullscreen'
+	</td></tr>
+	<tr><td>exampleFancybox </td><td> 'modal' </td><td>
+		Configuration set <sup><a href="#o_sup_2">2</a></sup>, which is passed to AJAX-ZOOM when "ajaxZoomOpenMode" is 'fancybox' 
+	</td></tr>
+	<tr><td>exampleColorbox </td><td> 'modal' </td><td>
+		Configuration set <sup><a href="#o_sup_2">2</a></sup>, which is passed to AJAX-ZOOM when "ajaxZoomOpenMode" is 'colorbox'
+	</td></tr>
+	<tr><td>fancyBoxParam </td><td> {} </td><td>
+		If Fancybox is used in "ajaxZoomOpenMode" option, this object represents the Fancybox options .
+	</td></tr>
+	<tr><td>colorBoxParam </td><td> {} </td><td>
+		If colorbox is used in "ajaxZoomOpenMode" option, this object represents the Colorbox options .
+	</td></tr>
+
+	<tr><td>embedMode </td><td> false </td><td>
+		Display AJAX-ZOOM next to the thumbs. 
+		Please see below this list to find out in which examples this option applies.
+	</td></tr>
+	<tr><td>embedDivID </td><td> '' </td><td>
+		This option applies when "embedMode" is enabled. 
+		The value is the ID of a container where the script should append the AJAX-ZOOM viewer. 
+		In case the "embedDivID" is a responsive container, please set "embedResponsive" to true!
+	</td></tr>
+	<tr><td>embedResponsive </td><td> true </td><td> 
+		If "embedDivID" is responsive, you should enable this option. 
+	</td></tr>
+	<tr><td>embedMapInThumb </td><td> true </td><td> 
+		Show AJAX-ZOOM "image map" in place of selected thumbnail. 
+		Needs $.axZm.embedMapParent set via JS or $zoom['config']['embedMapParent'] in PHP file. 
+		See <a href="https://www.ajax-zoom.com/examples/example16.php" rel="nofollow">example16</a> to view the effect. 
+	</td></tr>
+	<tr><td>embedExample </td><td> 9 </td><td>
+		Configuration set <sup><a href="#o_sup_1">1</a></sup> which is passed to AJAX-ZOOM when "embedMode" is enabled
+	</td></tr>
+	<tr><td>embedZoomSwitchAnm </td><td> 'SwipeHorz' </td><td>
+		When the user clicks on a thumbnail, the image inside AJAX-ZOOM switches with one of the following effects: 
+		"Center", "Top", "Right", "Bottom", "Left", "StretchVert", "StretchHorz", "SwipeHorz", "SwipeVert", "Vert", "Horz"; 
+	</td></tr>
+	<tr><td>embedZoomSwitchSpeed </td><td> 300 </td><td> 
+		Set speed (duration) of switching. 
+		This option overrides the following AJAX-ZOOM internal options: 
+		galleryFadeInSpeed, galleryInnerFade, gallerySlideSwipeSpeed. 
+		Set the value to "embedZoomSwitchSpeed" to diable this overriding.
+	</td></tr>
+	<tr><td>embedSwitchWithPage </td><td> true </td><td>
+		If "thumbsPerPage" is activated and page numbers are present, then clicking on the page number switches to the first image shown on that page.
+	</td></tr>
+	<tr><td>embedFirstImage </td><td> 1 </td><td>
+		When gallery loads first, the index (number) or a file name which should load first. 
+		See also the "firstFolder" option.
+	</td></tr>
+	<tr><td colspan="3" style="text-align: right;">Last updated: 2019-02-08 </td></tr>
+</tbody>
+</table>
+</div>
+<div style="clear: both; margin-top: 10px;">
+	<sup id="o_sup_1">1</sup> examples where $.azThumbGallery is used:<br>
+	<style type="text/css">
+		#azGridThumbOtherExamples {
+			--azAR: 0.66;
+		}
+		#azGridThumbOtherExamples li img.thumb {
+			top: auto;
+		}
+	</style>
+	<ul id="azGridThumbOtherExamples" class="azGridThumb azGrid-6-xxl azGrid-6-xl azGrid-6-lg azGrid-6-md azGrid-6-sm azGrid-3-xs">
+		<li><div class="wrap"><div class="optionsSimilarExDescr">example5.php</div><a href="example5.php"><img src="example_files/img/image-zoom_5.jpg" class="thumb" alt=""></a></div></li>
+		<li><div class="wrap"><div class="optionsSimilarExDescr">example7.php</div><a href="example7.php"><img src="example_files/img/image-zoom_7.jpg" class="thumb" align="left" alt=""></a></div></li>
+		<li><div class="wrap"><div class="optionsSimilarExDescr">example8.php</div><a href="example8.php"><img src="example_files/img/image-zoom_8.jpg" class="thumb" align="left" alt=""></a></div></li>
+		<li><div class="wrap"><div class="optionsSimilarExDescr">example11.php</div><a href="example11.php"><img src="example_files/img/image-zoom_11.jpg" class="thumb" align="left" alt=""></a></div></li>
+		<li><div class="wrap"><div class="optionsSimilarExDescr">example16.php</div><a href="example16.php"><img src="example_files/img/image-zoom_16.jpg" class="thumb" align="left" alt=""></a></div></li>
+		<li><div class="wrap"><div class="optionsSimilarExDescr">example21.php</div><a href="example21.php"><img src="example_files/img/image-zoom_21.jpg" class="thumb" align="left" alt=""></a></div></li>
+	</ul>
+</div>
+
+<div style="clear: both; margin-top: 10px">
+	<sup id="o_sup_2">2</sup> you will find the respective configuration set in /axZm/zoomConfigCustom.inc.php after<br>
+	<code>elseif ($_GET['example'] == [someValue])</code><br>
+	There you can change existing options or copy from /axZm/zoomConfig.inc.php other options to change the values. 
+</div>
+
+<script type="text/javascript">
+if (window.jQuery){
+	$('.optionsTable:not(.methods) td:nth-child(2)').each(function(){
+		var txt = $.trim($(this).html());
+		if (txt == 'false' || txt == 'true') {
+			$(this).html('<span style="color: green">'+txt+'</span>');
+		} else if (txt == 'null') {
+			$(this).html('<span style="color: blue">'+txt+'</span>');
+		} else if (txt == 'function'){
+			$(this).html('<span style="color: #003c00">'+txt+'</span>');
+		} else if (txt && txt.charAt(0) != '\'' && (txt.charAt(0) == '{' || txt.charAt(0) == '[')) {
+			$(this).html('<span style="color: #00008B">'+txt+'</span>');
+		} else if (parseInt(txt) == txt){
+			$(this).html('<span style="color: red">'+txt+'</span>');
+		}
+	});
+
+	$('.optionsTable:not(.sub) td:nth-child(1)').each(function(){
+		var txt = $.trim($(this).html());
+		if (txt){$(this).parent().attr('id', 'pOpt_'+txt);}
+	});
+
+	if (window.optionsHeader){$('<div class="optionsHeader">'+window.optionsHeader+'</div>').insertBefore('.optionsTable:eq(0)');}
+	if (window.optionsText){$('<p class="optionsText">'+window.optionsText+'</p>').insertBefore('.optionsTable:eq(0)');}
+}
+</script>
+
+<div style="clear: both; height: 50px;"></div>

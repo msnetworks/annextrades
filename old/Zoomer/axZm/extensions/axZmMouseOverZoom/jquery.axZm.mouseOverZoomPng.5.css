@@ -1,0 +1,28 @@
+/*!
+* Extension: jQuery AJAX-ZOOM, /axZm/extensions/axZmMouseOverZoom/jquery.axZm.mouseOverZoomPng.5.css
+* Copyright: Copyright (c) 2010-2020 Vadim Jacobi
+* License Agreement: https://www.ajax-zoom.com/index.php?cid=download
+* Extension Version: 5.4.2
+* Extension Date: 2020-02-13
+* URL: https://www.ajax-zoom.com
+* Documentation: https://www.ajax-zoom.com/examples/example32.php
+*/
+
+.axZm_mouseOverWithGalleryContainer .axZm_zoomContainer,
+.axZm_mouseOverWithGalleryContainer .axZmFsSpace,
+.axZm_mouseOverWithGalleryContainer .zFsO,
+.axZm_mouseOverWithGalleryContainer .axZm_mouseOverSpinWrapper,
+.axZm_mouseOverWithGalleryContainer .azTempLoading,
+.axZm_mouseOverWithGalleryContainer .axZm_mouseOverZoomContainerWrap,
+.axZm_mouseOverWithGalleryContainer .axZm_mouseOverZoomCropSlider,
+.axZm_spinPreloadContainer{
+	background-color: transparent !important;
+}
+.axZm_mouseOverWithGalleryContainer .axZm_spinPreloadContainer{
+	background-image: none !important;
+}
+/*
+.axZm_mouseOverZoomContainerWrap{
+	border-width: 0;
+}
+*/

@@ -1,0 +1,112 @@
+/*!
+* Plugin: jQuery AJAX-ZOOM, jquery.axZm.imageCropLoad.css
+* Copyright: Copyright (c) 2010-2019 Vadim Jacobi
+* License Agreement: http://www.ajax-zoom.com/index.php?cid=download
+* Extension Version: 2.12
+* Extension Date: 2019-03-09
+* URL: https://www.ajax-zoom.com
+*/
+
+/*
+.clearfix:after {content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0;}	 
+.clearfix {display: inline-block;}
+html[xmlns] .clearfix {display: block;}
+* html .clearfix {height: 1%;}
+*/
+
+/* On default it is black */
+body:-webkit-full-screen  {background-color: #FFFFFF;} 
+body:-moz-full-screen {background-color: #FFFFFF;} 
+body:-ms-full-screen {background-color: #FFFFFF;} 
+body:-o-full-screen {background-color: #FFFFFF;} 
+body:full-screen {background-color: #FFFFFF;} 
+
+.azThumbCrop{
+	position: relative;
+	overflow: visible;
+	list-style: none;
+	padding: 0px;
+	margin: 0px;
+	white-space: normal !important;
+	font-size: 0px;
+	-moz-user-select: none;
+	-webkit-touch-callout: none; 
+	-webkit-user-select: none;
+	margin-right: -10px; /* compensate for last margin right of the thumb */
+}
+
+/* List items with image inside */
+.azThumbCrop li {
+	position: relative;
+	width: 120px; /* fixed width */
+	height: 120px; /* fixed height */
+	line-height: 0px;
+	margin: 0px 10px 10px 0px; /* space between thumbs*/
+	padding: 5px;
+	/*float: left !important;*/
+	cursor: pointer;
+	font-size: 0px;
+	vertical-align: middle; 
+	text-align: center;
+
+	border: 1px solid #AAAAAA;
+	border-radius: 5px 5px 5px 5px; /* optional */
+	/*
+	-webkit-box-shadow: 1px 1px 3px 0px rgba(50, 50, 50, 0.1);
+	-moz-box-shadow: 1px 1px 3px 0px rgba(50, 50, 50, 0.1);
+	box-shadow: 1px 1px 3px 0px rgba(50, 50, 50, 0.1);
+	*/
+	background-color: #FFFFFF;
+	background-position: center center;
+	background-repeat: no-repeat;
+	/* background-size: contain; /* would stretch the image to fit the width and height */
+
+	/*ie7 - do not remove*/
+	display: inline-block; zoom: 1; *display: inline;
+}
+
+.azThumbCrop li.selected {
+	border: 1px solid #2379B5;
+}
+
+.azThumbCrop li.hover {
+	border: 1px solid #757575;
+	-webkit-box-shadow: 1px 1px 3px 0px rgba(50, 50, 50, 0.5);
+	-moz-box-shadow: 1px 1px 3px 0px rgba(50, 50, 50, 0.5);
+	box-shadow: 1px 1px 3px 0px rgba(50, 50, 50, 0.5);
+}
+
+/* This class will be added to the image inside li element */
+.azThumbCrop li img.thumb {
+	vertical-align: middle;
+	pointer-events: none;
+	max-width: 100% !important;
+	max-height: 100% !important;
+}
+
+/* This class is for helper span to vertically align images as fix for Transitional doctype */
+.azThumbCrop li span.vAlign {
+	display: inline-block; zoom: 1;  *display: inline;
+	vertical-align: middle;
+	height: 100%;
+}
+
+.azThumbCrop li div.descr {
+	position: absolute;
+	color: #000000;
+	width: 100%;
+	text-align: center;
+	word-wrap: break-word;
+	font-family: Tahoma, Arial;
+	font-size: 10px;
+	text-shadow: 0px 0px 2px rgba(150, 150, 150, 1);
+	height: 10px;
+	line-height: 10px;
+	bottom: -12px;
+	left: 0;
+}
+
+.azThumbCrop li.selected div.descr{
+	color: #2379B5;
+	text-shadow: 0px 0px 2px rgba(255, 255, 255, 1);
+}

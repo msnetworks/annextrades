@@ -1,0 +1,448 @@
+<style type="text/css"> 
+	.optionsTable {width: 100%; border-spacing: 0; border: 1px solid #AAAAAA; font-family: Tahoma, Geneva, sans-serif; font-size: 10pt;}
+	.optionsTable th {background-color: #D4D4D4; padding-top: 10px; padding-bottom: 10px; font-size:12pt; font-family: "Comic Sans MS", cursive, sans-serif;}
+	.optionsTable td, .optionsTable th{padding-left: 5px; padding-right: 5px;}
+	.optionsTable th{white-space: nowrap;}
+	.optionsTable td, .optionsTable th {vertical-align: top; line-height: 1.2em; text-align: left; border-bottom: 1px solid #AAAAAA; padding-top: 3px; padding-bottom: 8px;}
+	.optionsTable .subOpt td {border-bottom-width: 0; font-size: 12pt;}
+	.optionsTable tr.important {font-weight: bolder;}
+	.optionsTable td:nth-child(1) {border-right: #AAA 1px dotted;}
+	.optionsTable td:nth-child(2) {border-right: #AAA 1px dotted; word-break: break-all;}
+	.optionsTable ul, .optionsTable ol {padding-left: 14px; margin: 0 0 0 20px;}
+	.optionsTable ul {list-style-type: square;}
+	.optionsTable li {margin-bottom: 5px; padding-left: 14px; line-height: 0.85em;}
+	.optionsTable tr:nth-child(odd) { background-color: #FDFDFD;}
+	.optionsTable tr:nth-child(even) { background-color: #FFFFFF;}
+	.optionsTable tr:last-child>td { border-bottom: none;}	
+	.optionsTable.sub th {padding-top: 3px; padding-bottom: 3px; font-size: 11pt;}
+	.optionsTable.sub td {line-height: 1em; padding-bottom: 2px; padding-top: 2px;}
+	.optionsTable pre {padding: 0 0 0 20px; margin: 5px 0px 5px 0px; tab-size: 4; -moz-tab-size: 4; line-height: 0.85em; white-space: pre-wrap;}
+	.optionsTable code {font-size: 9pt; font-family: monospace; white-space: pre-wrap;}
+	.optionsTable .mono {font-family: monospace;}
+	.optionsSimilarExDescr {position: absolute; background-color: #eee; font-size: 9px; width: 100%; pointer-events: none; text-align: center; overflow: hidden;}
+	.optionsSimilarExLI {float: left; margin: 0 10px 10px 0; position: relative; border: #aaa 1px solid;}
+	.optionsHeader {color: #1a4a7a; font-size: 150%; margin: 0; padding: 20px 0px 5px 0px;}
+	.optionsText {}
+</style>
+
+<!-- $.axZm360Gallery - documentation -->
+<table class="optionsTable">
+<tbody>
+	<tr><th>Option</th><th>Default</th><th>Description</th></tr>
+	
+	<tr><td>axZmPath </td><td> 'auto' </td><td>Path to /axZm directory, e.g. /test/axZm/ </td></tr>
+	<tr><td>gallery3dDir </td><td> '' </td><td> 
+		Path to the folder where in subfolders are images for several 360s/3D
+		So if under this path there are any other subfolders, 
+		then the first image will be loaded into the gallery. 
+		Do not use "gallery3dDir" and "galleryData" at the same time.
+	</td></tr>
+	
+	<tr><td>first3dDir </td><td> '' </td><td>
+		Path under gallery3dDir to the folder with 360 or 3D which will be loaded first
+	</td></tr>
+
+	<tr><td>example3dDir </td><td> 17 </td><td>
+		Configuration set value which is passed to ajax-zoom, e.g. 17 or "spinIpad"
+		some default settings from /axZm/zoomConfig.inc.php are overridden in 
+		/axZm/zoomConfigCustom.inc.php after elseif ($_GET['example'] == 17){
+	</td></tr>	
+
+	<tr><td>galleryData </td><td> '' </td><td>
+		While "gallery3dDir" option simply loads many 360s or 3D from a given folder, 
+		with "galleryData" option you can precisely define which 360s or 3D have to beloaded. 
+		Additionally you can also define regular 2D images and videos located at some 
+		straming platform like youtube, iframed content or load content over ajax, e.g.
+<pre><code>
+galleryData: [
+	['imageZoom', '/pic/zoom/animals/animals_014.jpg'],
+	['imageZoom', '/pic/zoom/boutique/boutique_015.jpg'],
+	['imageZoom', '/pic/zoom/boutique/boutique_013.jpg'],
+	['image360', '/pic/zoom3d/Nike_Running'],
+	['image360', '/pic/zoom3d/Teva'],
+	['image360', '/pic/zoom3d/nike'],
+	['imageZoom', '/pic/zoom/boutique/boutique_014.jpg'],
+	['imageZoom', '/pic/zoom/boutique/boutique_015.jpg'],
+	['youtube', 'q57I1n4s5Hg'],
+	['vimeo', '78673338'],
+	['dailymotion', 'x144odn']
+]
+</code></pre>
+		As you can see in the code example above, galleryData is of type array, 
+		containing other arrays for each element. 
+		The first array value is data type, the second is link. Possible data types are: 
+		<ul style="margin-top: 10px;">
+			<li><span class="mono">'imageZoom'</span> - path to the image without https:// and without domain</li>
+			<li><span class="mono">'image360'</span> - path to the folder containing 360 or 3D images without https:// and without domain</li>
+			<li><span class="mono">'youtube'</span> - video ID</li>
+			<li><span class="mono">'vimeo'</span> - video ID</li>
+			<li><span class="mono">'dailymotion'</span> - video ID</li>
+			<li><span class="mono">'ajax'</span> - path to the file which should be loaded over AJAX request</li>
+			<li><span class="mono">'iframe'</span> - path to the file which should be set as src of the iframe</li>
+		</ul>
+		If data type is of type 'ajax', the third value can be a function which will be executed when ajax content is loaded (callback). 
+		<br><br>
+		
+		"image360" is data type for both, 360 and 3D images. 
+		The only difference between regular 360 spin and 3D multirow is that original images are placed in subfolders of the target folder. 
+		E.g. the target folder is "/pic/zoomVR/nike"; Now if it is 3D multirow and not one row 360, 
+		then images of each row are placed in subfolders of the target path, 
+		e.g. /pic/zoomVR/nike/0, /pic/zoomVR/nike/15, /pic/zoomVR/nike/30, /pic/zoomVR/nike/45, /pic/zoomVR/nike/60, /pic/zoomVR/nike/75, /pic/zoomVR/nike/90; 
+		It is not important how these subfolders are named and you also do not need to define these subfolder names anywhere. 
+		AJAX-ZOOM will instantly detect them and procede all the images in them. 
+		<br><br>
+		
+		Every image must have an unique filename!!! 
+		This is also the case if images are prepared for completly different 360s or 3D; 
+		If all your sourceimages happen to have the same filenames (e.g. spin001.jpg, spin002.jpg, [...], spin036.jpg), 
+		you could then prefix each image of a spin e.g. with the product ID or something else logical to ensure this uniqueness, e.g.<br>
+		/360_source_images/123/123_spin001.jpg,<br>
+		/360_source_images/123/123_spin002.jpg,<br>
+		/360_source_images/123/123_spin003.jpg,<br>
+		[...],<br>
+		/360_source_images/123/123_spin036.jpg <br>
+	</td></tr>	
+	
+	<tr><td>firstToLoad </td><td> null </td><td>
+		What should be loaded at first if "galleryData" option is used - 
+		null (first item in "galleryData"), name of 360, text, video or "imageZoom" for regular images.
+	</td>
+
+	<tr><td>prevNextAllData </td><td> {} </td><td> 
+	Object containing some settings to enable previous / next button to switch 
+	not only between images, but also images and 360/3d; at time 
+	videos and external content is not supported in fullscreen mode.
+	<pre><code>
+{
+	enabled: false,
+	next: {file: '[buttonSet]/zoombutton_slide_vert_next', ext: 'png', w: 20, h: 100},
+	prev: {file: '[buttonSet]/zoombutton_slide_vert_prev', ext: 'png', w: 20, h: 100},
+	posNext: {right: 0, top: '50%', marginTop: -50, position: 'absolute', zIndex: 5},
+	posPrev: {left: 0, top: '50%', marginTop: -50, position: 'absolute', zIndex: 5}
+}
+</code></pre>
+	</td>	
+	
+	<tr><td>galleryHotspots </td><td> {} </td><td>
+ 		AJAX-ZOOM supports "hotspots" which can be optionally loaded for 
+ 		3D/360 or 2D (plain images). Hotspots can be configured manually in 
+ 		<a href="example33.php">example33.php</a> which produces a separate 
+ 		JS file with all possible settings. If you have already done this 
+ 		you can define which of these JS hotspot files will be loaded 
+ 		together with your content, e.g.
+<pre><code>
+galleryData: [
+	['animals_014.jpg', '../pic/hotspotJS/animals_014.js'],
+	['bike360', '../pic/hotspotJS/bike.js']
+]
+</code></pre>
+		the first property would be for an individual image, the second is for a 360 (only the folder name). 
+		Since hotspots can be defined for a gallery (set of many images) in one JS file 
+		and all the 2D images are loaded in this plugin as gallery too, 
+		you can also define one path to this JS file with the property name "2D", e.g. 
+<pre><code>
+galleryData: [
+	['2D', '../pic/hotspotJS/animals.js'],
+	['bike360', '../pic/hotspotJS/bike.js']
+]
+</code></pre>
+	</td></tr>	
+	
+	
+	<tr><td>exampleData </td><td> 'spinAnd2D' </td><td>
+		Configuration set value which is passed to ajax-zoom when using "galleryData"; 
+		some default settings from /axZm/zoomConfig.inc.php are overridden in 
+		/axZm/zoomConfigCustom.inc.php after elseif ($_GET['example'] == 'spinAnd2D'){...;
+		additionally to $_GET['example'], image360 is passed over query string as a paramter 
+		when 360 or 3D are loaded, so it is available in the config file as $_GET['image360'] 
+		and the configuration set can be differed from plain images.
+	</td></tr>	
+	
+	<tr><td>zoomSwitchAnm </td><td> 'SwipeHorz' </td><td>
+		When clicked on the thumbs the image inside AJAX-ZOOM will be switched with one of the following effects, 
+		possible values: "Center", "Top", "Right", "Bottom", "Left", "StretchVert", "StretchHorz", "SwipeHorz", "SwipeVert", "Vert", "Horz" 
+	</td></tr>
+	
+	<tr><td>zoomSwitchSpeed </td><td> 300 </td><td>
+		Speed of switching between images in the gallery. 
+	</td></tr>	
+
+	<tr><td>azOptions </td><td> {} </td><td>
+		Not all but some of the AJAX-ZOOM options which are normally set in zoomConfig.inc.php and zoomConfigCustom.inc.php 
+		can be set directly as js var in onBeforeStart AJAX-ZOOM callback. 
+		The property of the object is the name of the option and value its correstponding value.
+	</td></tr>	
+
+	<tr><td>divID </td><td> 'axZmPlayerContainer' </td><td>
+		The ID of the element (placeholder) where AJAX-ZOOM has to be inserted into
+	</td></tr>	
+	
+	<tr><td>embedResponsive </td><td> false </td><td>
+		If "divID" is responsive, set this to true
+	</td></tr>	
+
+	<tr><td>spinGalleryContainerID </td><td> 'spinGalleryContainer' </td><td>
+		Parent container of "spinGalleryID"
+	</td></tr>	
+
+	<tr><td>spinGalleryID </td><td> 'spinGallery' </td><td>
+		Container where thumbs gallery will be loaded into
+	</td></tr>	
+	
+	<tr><td>spinGallery_tempID </td><td> 'spinGallery_temp' </td><td>
+		Temp container which some text which will be removed just before gallery appears.
+	</td></tr>	
+	
+	<tr><td>spinGalleryLoadCallback </td><td> 'onSpinPreloadEnd' </td><td>
+		Possible values: "onSpinPreloadEnd" or "onLoad"; 
+		"onLoad" would make sense if you configure $zoom['config']['spinNoInit'] to be enabled, 
+		so the user needs to click somewhere to load all other images of 360/3D;
+	</td></tr>	
+
+	<tr><td>backgroundColor </td><td> '#FFFFFF' </td><td>
+		Background color of the player, possible values: #hex color or "auto".  
+		If "auto" AJAX-ZOOM will try to determin the background color. 
+		Use "auto" only if you have e.g. black and white on different 360s.
+	</td></tr>	
+
+	<tr><td>checkReverse </td><td> true </td><td>
+		Set true to check spinReverse / spinReverseZ settings upon the below options - "toReverseArr" and "toReverseArrZ"
+	</td></tr>	
+	
+	<tr><td>toReverseArr </td><td> [] </td><td>
+		Array with folder names where <a href="https://www.ajax-zoom.com/index.php?cid=docs#spinReverse" target="_blank">spinReverse</a> option should be applied
+	</td></tr>	
+
+	<tr><td>toReverseArrZ </td><td> [] </td><td>
+		Array with folder names where <a href="https://www.ajax-zoom.com/index.php?cid=docs#spinReverseZ" target="_blank">spinReverseZ</a> option should be applied
+	</td></tr>	
+	
+	<tr><td>toBounceArr </td><td> [] </td><td>
+		Array with folder names where <a href="https://www.ajax-zoom.com/index.php?cid=docs#spinBounce" target="_blank">spinBounce</a> option should be set to "bounce". 
+	</td></tr>
+
+	<tr><td>fullScreenApi </td><td> false </td><td>
+		Try to open AJAX-ZOOM at browsers fullscreen mode if available (requestFullScreen)
+	</td></tr>	
+	
+	<tr><td>thumbsAtFullscreen </td><td> false</td><td>
+		Show 360 thumb gallery at fullscreen mode, possible values: "bottom", "top", "left", "right" or false; 
+		Please note that if you have different content e.g. 360/3D, regular images or video, this option will not work 
+		(not implementet yet). It only works for the same content types - if you have only 360/3D or only 2D;
+	</td></tr>	
+
+	<tr><td>axZmThumbSlider </td><td> true </td><td>
+		Use $.axZmThumbSlider extension for the thumbs, set false to disable. 
+		Requires: <br>
+		/axZm/extensions/axZmThumbSlider/skins/default/jquery.axZm.thumbSlider.css <br> 
+		/axZm/extensions/axZmThumbSlider/lib/jquery.axZm.thumbSlider.js
+	</td></tr>
+
+	<tr><td>axZmThumbSliderParam </td><td> {} </td><td>
+		Options passed to $.axZmThumbSlider
+		For more information see <a href="../axZm/extensions/axZmThumbSlider" target="_blank">/axZm/extensions/axZmThumbSlider/</a>, 
+		e.g. 
+<pre><code>
+axZmThumbSliderParam: {
+	btn: false,
+	orientation: 'vertical',
+	scrollbar: true,
+	scrollbarMargin: 5
+}
+</code></pre>
+	</td></tr>	
+	
+	<tr><td>axZmCallBacks </td><td> {} </td><td>
+		Object with AJAX-ZOOM callbacks, 
+		<a href="https://www.ajax-zoom.com/index.php?cid=docs#onBeforeStart" target="_blank">https://www.ajax-zoom.com/index.php?cid=docs#onBeforeStart</a>, 
+		e.g 
+<pre><code>
+axZmCallBacks: {
+	onLoad: function(){
+		console.log('onLoad fired');
+	},
+	onSpinPreloadEnd: function(){
+		console.log('spin preloaded');
+	}
+}
+</code></pre>
+	</td></tr>	
+	
+	
+	<tr><td>axZmPar </td><td> '' </td><td>
+		Additional parameter which can be passed to AJAX-ZOOM
+	</td></tr>	
+	
+	<!-- <tr><th colspan="3">Thumbs</th></tr> -->
+	<tr><td>thumbWidth </td><td> 120 </td><td>Width of the thumbnail image </td></tr>
+	<tr><td>thumbHeight </td><td> 120 </td><td>Height of the thumbnail image </td></tr>
+	<tr><td>thumbRetina </td><td> true </td><td>true will double the resolution of the thumbnails images but keep "thumbWidth" and "thumbHeight" on screen </td></tr>
+	<tr><td>thumbsCache </td><td> true </td><td>Cache thumbnails </td></tr>
+	<tr><td>thumbQual </td><td> 90 </td><td>jpg quality of the thumbnail image </td></tr>
+	<tr><td>thumbMode </td><td> false </td><td>possible values: "contain", "cover" or false</td></tr>
+	<tr><td>thumbBackColor </td><td> '#FFFFFF' </td><td>Background color of the thumb if "thumbMode" is set to "contain"</td></tr>
+	<tr><td>thumbPadding </td><td> null </td><td>Quickly overwrite the css padding of the thumbs </td></tr>
+	<tr><td>thumbMarginRight </td><td> null </td><td>Quickly overwride the css margin to the right of the thumbs </td></tr>
+	<tr><td>thumbMarginBottom </td><td> null </td><td>Quickly overwride the css margin to the bottom of the thumbs </td></tr>
+	<tr><td>thumbCss </td><td> {} </td><td>Quickly overwride any other CSS </td></tr>
+	<tr><td>thumbPreloadingImg </td><td> 'ajax-loader-map-white.gif' </td><td>Image located in /axZm/icons directory which will appear before the thumbs are loaded </td></tr>
+
+	<tr><td>thumbDescr </td><td> true </td><td>
+		Show thumb description, if true and thumbDescrObj is not defined, then for 360/3D number of frames will be shown.
+	</td></tr>		
+	
+	<tr><td>thumbDescrObj </td><td> {} </td><td>
+		Object containing descriptions of the thumbs, e.g. 
+<pre><code>
+thumbDescrObj: {
+	boutique_014.jpg: 'Image 1',
+	q57I1n4s5Hg: 'Video 1',
+	Uvex_Occhiali '360 object 1'
+}
+</code></pre>
+	</td></tr> 
+
+	<tr><td>thumbImgObj </td><td> {} </td><td>
+		Alternativly to dynamically generated thumbs you can define a list of thumbs. 
+		"thumbWidth" and "thumbHeight" options still determin the css of the thumbs. E.g.
+<pre><code>
+thumbImgObj: {
+	boutique_014.jpg: '/images/thumb_dbVSGr3.jpg',
+	q57I1n4s5Hg: '/images/thumb_mBOG8CL.jpg',
+	Uvex_Occhiali '/images/thumb_LWgFmgn.jpg'
+}
+</code></pre>
+	</td></tr>	
+	
+	<tr><td>thumbIcon </td><td> true </td><td>
+		Show 360, 3D or some other icon for the thumbs
+	</td></tr>	
+	
+	<tr><td>thumbIconFile </td><td> {..} </td><td>
+		Filenames for icons located in /axZm/icons directory, default: 
+<pre><code>
+thumbIconFile: {
+	'360': '360_2.png',
+	'3D': '3d_2.png',
+	'2D': '',
+	'youtube': 'youtube_icon.png',
+	'vimeo': 'vimeo_icon_1.png',
+	'dailymotion': 'video_icon.png'
+}
+</code></pre>
+	</td></tr>	
+
+	<tr><td>videoThumb </td><td> {..} </td><td>
+		Paths for video thumbs. Depending on the video streaming platform images will be retieved instantly, default:
+<pre><code>
+videoThumb: {
+	youtube: {
+		url: 'https://i1.ytimg.com/vi/',
+		img: 'mqdefault'
+	},
+	vimeo: {
+		url: 'https://vimeo.com/api/v2/video/',
+		img: 'thumbnail_medium'
+	},
+	dailymotion: {
+		url: 'https://api.dailymotion.com/video/',
+		img: 'thumbnail_480_url'
+	}
+}
+</code></pre>	
+Notes: dailymotion acceppts only https, does not work on IE8, IE9 if not in https mode
+	</td></tr>	
+	
+	<tr><td>videoUrl </td><td> {..} </td><td>
+		Url for the videos, default: 
+<pre><code>
+videoUrl: {
+	youtube: 'https://www.youtube-nocookie.com/embed/',
+	vimeo: 'https://player.vimeo.com/video/',
+	dailymotion: 'https://www.dailymotion.com/embed/video/'
+}
+</code></pre>
+	</td></tr>	
+	
+	<tr><td>videoSettings </td><td> {..} </td><td>
+		Parameters which are passed to the video players, defaults: 
+<pre><code>
+videoSettings: {
+	youtube: {
+		autoplay: 0,
+		controls: 1,
+		loop: 0,
+		rel: 0,
+		showinfo: 0,
+		theme: 'light',
+		html5: 1
+	},
+	vimeo: {
+		autoplay: 0,
+		byline: 0,
+		portrait: 0
+	},
+	dailymotion: {
+		autoplay: 0,
+		logo: 0,
+		quality: 720,
+		related: 0
+	}
+}
+</code></pre>
+
+		for more information see: 
+		<ul>
+			<li><a href="https://developers.google.com/youtube/player_parameters" rel="nofollow" target="_blank">https://developers.google.com/youtube/player_parameters</a></li>
+			<li><a href="https://developer.vimeo.com/player/embedding" rel="nofollow" target="_blank">https://developer.vimeo.com/player/embedding</a></li>
+			<li><a href="https://developer.dailymotion.com/documentation#player-parameters" rel="nofollow" target="_blank">https://developer.dailymotion.com/documentation#player-parameters</a></li>
+		</ul>
+	</td></tr>
+	<tr><td colspan="3" style="text-align: right;">$.axZm360Gallery documentation last updated: 2015-06-11</td></tr>
+</tbody>
+</table>
+
+<div style="clear: both;">
+	<sup id="o_sup_1">1</sup> examples where $.axZm360Gallery is used:<br>
+	<ul style="list-style: none; display: inline-block; padding: 0; margin: 0">
+		<li class="optionsSimilarExLI"><div class="optionsSimilarExDescr">example15.php</div><a href="example15.php"><img src="https://www.ajax-zoom.com/pic/layout/image-zoom_15.jpg" style="width: 100px; height: auto;" align="left" alt=""></a></li>
+		<li class="optionsSimilarExLI"><div class="optionsSimilarExDescr">example15_gallery_clean.php</div><a href="example15_gallery_clean.php"><img src="https://www.ajax-zoom.com/pic/layout/image-zoom_15_gallery_clean.jpg" style="width: 100px; height: auto;" align="left" alt=""></a></li>
+		<li class="optionsSimilarExLI"><div class="optionsSimilarExDescr">example24.php</div><a href="example24.php"><img src="https://www.ajax-zoom.com/pic/layout/image-zoom_24.jpg" style="width: 100px; height: auto;" align="left" alt=""></a></li>
+		<li class="optionsSimilarExLI"><div class="optionsSimilarExDescr">example29.php</div><a href="example29.php"><img src="https://www.ajax-zoom.com/pic/layout/image-zoom_29.jpg" style="width: 100px; height: auto;" align="left" alt=""></a></li>
+	</ul> 
+</div>
+
+<div style="clear: both; margin-top: 10px">
+	<sup id="o_sup_2">2</sup> you will find the respective configuration set in /axZm/zoomConfigCustom.inc.php after<br>
+	<code>elseif ($_GET['example'] == [someValue])</code><br>
+	There you can change existing options or copy from /axZm/zoomConfig.inc.php other options to change their values. 
+</div>
+
+<script type="text/javascript">
+if (window.jQuery){
+	$('.optionsTable:not(.methods) td:nth-child(2)').each(function(){
+ 		var txt = $.trim($(this).html());
+ 		if (txt == 'false' || txt == 'true'){
+ 			$(this).html('<span style="color: green">'+txt+'</span>');
+		} else if (txt == 'null') {
+			$(this).html('<span style="color: blue">'+txt+'</span>');
+		} 
+		else if (txt == 'function'){
+			$(this).html('<span style="color: #003c00">'+txt+'</span>');
+		}
+		else if (txt.charAt(0) != '\'' && txt.charAt(0) != '{' && txt.charAt(0) != '['){
+			$(this).html('<span style="color: red">'+txt+'</span>');
+		}
+
+	});
+	
+	$('.optionsTable:not(.sub) td:nth-child(1)').each(function(){
+ 		var txt = $.trim($(this).html());
+ 		if (txt){$(this).parent().attr('id', 'pOpt_'+txt);}
+	});	
+	
+	if (window.optionsHeader){$('<div class="optionsHeader">'+window.optionsHeader+'</div>').insertBefore('.optionsTable:eq(0)');}
+	if (window.optionsText){$('<p class="optionsText">'+window.optionsText+'</p>').insertBefore('.optionsTable:eq(0)');}
+}
+
+</script>

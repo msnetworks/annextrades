@@ -1,0 +1,235 @@
+/******************************************************************************
+#                      PHP Authorize.net Payment Terminal v2.3
+#******************************************************************************
+#      Author:     CriticalGears
+#      Email:      info@criticalgears.io
+#      Website:    http://www.criticalgears.io
+#	
+#
+#      Version:    2.3
+#      Copyright:  (c) 2012 - CriticalGears.io
+#      
+#*******************************************************************************/
+	
+	
+    /**** MAIN STYLES ****/
+    @import url("https://fonts.googleapis.com/css?family=Montserrat");
+     body {
+         font-size:16px;  
+         font-family: 'Montserrat'; 
+         color:#069; 
+         /* background:url(../images/bg.png) repeat; */
+        }
+        @media (min-width: 1300px){
+            .col-md-6 {
+                -ms-flex: 0 0 50% !important;
+                flex: 0 0 50% !important;
+                max-width: 50% !important;
+            }
+        }
+     .wrapper {  
+         padding:15px; 
+         margin-top:20px; 
+        }
+     h1 {font-size:18px;}
+    .pppro_footer { width:100%; margin:0 auto; text-align:right; padding-top:15px;}
+
+    .form_container h1 { 
+        font-size:28px; 
+        font-weight:bold;
+        text-shadow: 1px 1px 0 white; 
+        text-align:left; 
+        width:100%; 
+        margin:0 auto; 
+        padding-bottom:20px; 
+        color:#666; 
+        font-family:    'Montserrat'; 
+        padding-top:30px;}
+    .clr { clear:both;}
+
+    /**** PROCESSING PAGE (REDIRECTION) ****/
+    .wait_msg { font-size:16px; }
+
+
+    /**** ACCORDIONS STYLING ****/
+    #accordion {width: 100%;
+        border:1px solid #EEE; 
+        color:#000; 
+        background-color:#FFF;	}
+    /* accordion header */
+    #accordion h2 {
+        background:#e4e4e4;
+        margin:15;
+        text-align:left;
+        padding:15px;
+        font-size:18px;
+        font-weight:bold;
+        color:#000;
+        border:1px solid #fff;		
+        border-bottom:1px solid #ddd;
+        cursor:pointer;
+        text-shadow: 1px 1px 0 white;
+    }
+    /* currently active header */
+    #accordion h2.current {	
+        cursor:default;
+        background-color:#EEE;
+    }
+    /* accordion pane */
+    #accordion .pane {
+        border:1px solid #fff; 
+        border-width:0 2px;  
+        padding:15px;	 
+        color:#000; 
+        /* font-size:12px; */ 
+        text-align:left;
+    }
+    .ui-widget { width:100%;}
+    .ui-widget .ui-state-error, .ui-widget .ui-state-error p, .ui-widget .ui-state-highlight, .ui-widget .ui-state-highlight p, .ui-widget .ui-state-info, .ui-widget .ui-state-info p { font-size:13px; text-align:left;}
+    .ui-widget .ui-state-info { 
+        padding-top: 10px !important; 
+        padding-bottom: 10px !important;
+    }
+    /**** FORM STYLING ****/
+    .pppt_form label { 
+        float:left; 
+        width:140px; 
+        font-size:13px; 
+        font-weight:bold; 
+        text-align:right; 
+        padding:4px 5px 0 0;
+    }
+    .pppt_form .long-field { 
+        float:left; 
+        -webkit-border-radius: 3px;
+        -khtml-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        width:245px;
+        height:30px;
+        padding-left:5px;
+        border:1px solid #666666;
+        background-color:#F8F8F8;
+        margin-bottom:8px;
+    }
+    .pppt_form .long-field:hover { 
+        border:1px solid #CCC;
+    }
+    .pppt_form .long-field:focus {
+         border:1px solid #6B1289;
+        }
+    .pppt_form .small-field { 
+        float:left; 
+        -webkit-border-radius: 3px;
+        -khtml-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        width:100px;
+        height:30px;
+        padding-left:5px;
+        border:1px solid #666666;
+        background-color:#F8F8F8;
+        margin-bottom:8px; 
+        margin-right:10px;
+    }
+    .pppt_form .small-field:hover { 
+        border:1px solid #CCC;
+    }
+    .pppt_form .small-field:focus { 
+        border:1px solid #6B1289;
+    }
+    .pppt_form .lft-field { 
+        float:left; 
+        margin-right:10px; 
+        margin-bottom:8px;
+    }
+    .pppt_form .card-cont {
+        float: left;
+        display: inline-block;
+        min-height: 34px;
+    }
+    .pppt_form .paypal { 
+        margin-top: 6px;
+    }
+    .pppt_form .submit-btn { 
+        margin:0 auto; 
+        width:119px; 
+        margin-top:15px;
+    }
+
+
+    /******* HINT STYLING ********/
+    .hint { 
+        width:450px; 
+        height:300px; 
+        background-color:#FFF; 
+        font-family: 'Montserrat'; 
+        font-size:12px; 
+        color:#000; 
+        text-align:center; 
+        margin:0; 
+        padding:10px;
+    }
+    .hint p { 
+        margin:10px 0 10px 0; 
+        text-align:center;
+    }
+
+    .error { 
+        color:red; 
+        padding:3px 0 0 5px; 
+        font-weight: bold; 
+        display: inline-block;
+    }
+
+    .submit-btn input[disabled] {
+        cursor: no-drop;
+        opacity: 0.6;
+    }
+    .g-recaptcha {
+        padding-left: 145px;
+    }
+
+    @media only screen  and (min-width : 0px)  and (max-width : 650px){
+        .form_container h1 {
+            width: auto;
+        }
+        #accordion {
+            width: auto;
+        }
+        .pppt_form .long-field {
+
+            width: 100% !important;
+        }
+        .pppt_form label {
+            display: block;
+            width: 140px;
+            text-align: left;
+            float: none;
+        }
+        .pppt_form .small-field {
+
+            width: 42%;
+        }
+        .pppt_form select{
+
+        }
+        .pppro_footer{
+            width: auto;
+        }
+        .hint{
+            width: 300px;
+        }
+        .hint img{
+            width: 300px;
+        }
+        .delim{
+            clear: both;
+            display: block;
+        }
+        .g-recaptcha {
+            padding-left: 0;
+            width: 304px;
+            margin: 0 auto;
+        }
+    }

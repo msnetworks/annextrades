@@ -1,0 +1,150 @@
+/**
+* Plugin: jQuery AJAX-ZOOM, jquery.axZm.hoverThumb.css
+* Copyright: Copyright (c) 2010-2018 Vadim Jacobi
+* License Agreement: http://www.ajax-zoom.com/index.php?cid=download
+* Extension Version: 1.9
+* Extension Date: 2018-03-10
+* URL: http://www.ajax-zoom.com
+* Demo: http://www.ajax-zoom.com/examples/example6.php
+*/
+
+.clearfix:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+}
+.clearfix { display: inline-block; }
+/* start commented backslash hack \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+
+.azHoverThumb {
+	display: none;
+	cursor: pointer;
+	vertical-align: middle;
+	position: absolute;
+	max-width: 100%;
+	max-height: 100%;
+}
+
+/* Class for instant wraping the image */
+.azHoverThumbImgWrap {
+	float: left;
+	padding: 0;
+	width: 100%;
+	box-sizing: border-box !important;
+	background-color: #ddd;
+	margin-bottom: 20px;
+	position: relative;
+	-ms-content-zooming: none;
+	-ms-touch-action: pan-y;
+	touch-action: pan-y;
+	-ms-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+	-ms-touch-select: none;
+	touch-select: none;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-tap-highlight-color: transparent;
+}
+
+.azHoverThumbWrap {
+	width: 100%;
+	height: 100%;
+	display: block;
+	position: relative;
+	overflow: hidden;
+	background-image: url(../icons/ajax-loader-hoverThumb.gif);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-color: transparent;
+	cursor: pointer;
+	-ms-content-zooming: none;
+	-ms-touch-action: pan-y;
+	touch-action: pan-y;
+	-ms-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+	-ms-touch-select: none;
+	touch-select: none;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-tap-highlight-color: transparent;
+}
+
+.azHoverThumbWrapNb{
+	background-image: none !important;
+}
+
+.azHoverThumbTrap{ 
+	width: 98%;
+	height: 98%;
+	left: 1%;
+	top: 1%;
+	display: block;
+	position: absolute;
+	background-color: transparent;
+	cursor: pointer;
+	z-index: 2;
+}
+
+.azHoverThumbOverlay {
+	position: absolute;
+	cursor: pointer;
+	top:0;
+	left:0;
+	bottom:0;
+	right:0;
+	display: none;
+	background-image:url(../icons/zoom_64.png);
+	background-size: 32px 32px;
+	background-repeat: no-repeat;
+	background-position: center;
+	pointer-events: none;
+}
+
+.azHoverThumbDescr {
+	position: absolute;
+	pointer-events: none;
+	padding: 3px;
+	bottom: 0;
+	z-index: 1;
+	background-color: transparent;
+	color: #FFF;
+	font-family: Tahoma, Arial;
+	font-size: 11px;
+}
+
+.azHoverIframeClose {
+	position: absolute;
+	height: 30px;
+	line-height: 28px;
+	border-left: 3px #FFF solid;
+	border-bottom: 3px #FFF solid;
+	top: -16px;
+	padding-left: 10px;
+	background-color: #1e1c1b;
+	background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAACaSURBVHja3NM9CsMwDIZhHaBDht7/JhlKCCFDKB0z9hD+WV6riwdX9RCVLK1Ak+ABf5JFVeXMlt8CgQcwxxgHMRVCuAAjsHvAWVUVWFu0Yrc62w6DKaUBWFvUYPec8/UwKCIfKDC1mIiIC7Soxb4C6zOnBnzL1AXazGymLrC3gN6iPGcz9jIz6OIBd2BrMYMupZTnH/3lM/o1AIRhn02t38MRAAAAAElFTkSuQmCC');
+	background-repeat: no-repeat;
+	background-position: right center;
+	padding-right: 24px;
+	color: #FFF;
+	text-align: right;
+	right: 0;
+	cursor: pointer;
+	z-index: 3;
+}
+
+.azHoverIframeClose:hover {
+	background-color: #266FA0;
+	/*
+	text-decoration: underline;
+	background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAMVJREFUeNpi/P//PwM1ARMDlQHVDWRB5uzR0r4IpL4AsbfLtasf0OR4gNRGIJYByqkT60KQYVZAvBNogACaYVuB2AmqhjgXglwGMgyIzaCGugPpP1DD7ID4AhC74zOQET2WoS6DGXoKiH8BsQ3UMFegd9+QZCAWQxmINQxfLP+BugwGfkHFSE82SBEA8+YppDAVIMlAJMNgEeAKjQSiDUV34UZkw0BhBk2PyIZuJ8VAGSA+hx4BSIaeAGIpkmN5eBcOAAEGAIZZUi5snH2EAAAAAElFTkSuQmCC');
+	*/
+}

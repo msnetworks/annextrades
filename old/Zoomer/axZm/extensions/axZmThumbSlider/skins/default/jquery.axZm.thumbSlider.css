@@ -1,0 +1,836 @@
+/*!
+* Plugin: jQuery AJAX-ZOOM, jquery.axZm.thumbSlider.css
+* Copyright: Copyright (c) 2010-2019 Vadim Jacobi
+* License Agreement: http://www.ajax-zoom.com/index.php?cid=download
+* Extension Version: 3.2
+* Extension Date: 2019-02-28
+* URL: http://www.ajax-zoom.com
+* Demo: http://www.ajax-zoom.com/axZm/extensions/axZmThumbSlider
+*/
+
+
+/* Class attached to UL element */
+.axZmThumbSlider {
+	list-style: none;
+	padding: 0px;
+	margin: 0px;
+	position: absolute;
+	white-space: nowrap !important;
+	font-size: 0px;
+	z-index: 1;
+	-moz-user-select: none;
+	-webkit-touch-callout: none; 
+	-webkit-user-select: none;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-tap-highlight-color: transparent;
+}
+
+/* List items with image inside */
+.axZmThumbSlider li {
+	position: relative;
+	float: none;
+	cursor: pointer;
+	line-height: 0px;
+	font-size: 0px;
+	vertical-align: middle; 
+	text-align: center;
+
+	border: 1px solid #CCCCCC;
+	border-radius: 5px 5px 5px 5px; /* optional */
+
+	background-color: #FFF; /* #F9F9F9 */
+	background-position: center center;
+	background-repeat: no-repeat;
+
+	/* background-size: contain; /* would stretch the image to fit the width and height */
+
+	/*ie7 - do not remove*/
+	display: inline-block; zoom: 1; *display: inline;
+}
+
+.axZmThumbSlider li.hiddenFirst{
+	visibility: hidden;
+}
+
+.axZmThumbSlider li>div.azThumbImgWrap{
+	position: relative;
+	overflow: hidden !important;
+	width: 100%;
+	height: 100%;
+	border-radius: inherit;
+}
+
+.axZmThumbSlider li>div.azThumbImgWrapRound{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	border-radius: inherit;
+	/*-webkit-mask-image: -webkit-radial-gradient(circle, white, black);
+	mask-image: radial-gradient(circle, white, black);*/
+}
+.axZmThumbSlider li>div.azThumbImgWrapRound>img.thumb{
+	border-radius: inherit;
+}
+
+/* This class will be added to the image inside li element */
+.axZmThumbSlider li img.thumb {
+	display: inline;
+	vertical-align: middle;
+	margin: auto;
+}
+
+.axZmThumbSlider li img.defaultSize {
+	max-width: 100% !important;
+	max-height: 100% !important;
+	margin: auto;
+}
+
+/* This class is for helper span to vertically align images as fix for Transitional doctype */
+.axZmThumbSlider li span.vAlign {
+	display: inline-block; zoom: 1; *display: inline;
+	vertical-align: middle;
+	height: 100%;
+}
+
+/* Horizontal items */
+.axZmThumbSlider li.horizontal {
+	margin: 5px 5px 5px 5px; /* space between thumbs*/
+	padding: 0px !important;
+
+	width: 120px; /* fixed width */
+	height: 120px; /* fixed height */
+	line-height: 118px;
+}
+
+.axZmThumbSlider li.horizontal.mousehover{
+	/*
+	box-shadow: 0 0 0 1px #AAAAAA;
+	*/
+	border-color: #AAA;
+}
+
+/* Horizontal items selected */
+.axZmThumbSlider li.horizontal.selected {
+	border: 1px solid #AAA; 
+	background-color: #FFF; /* #DDDDDD */
+	/*margin: 4px 4px 0px 4px; /* prevent jumps when border wide on selected is different */
+	box-shadow: 0 0 0 1px #AAA;
+}
+
+/* this "selector" (like :first-child) will be added with JS to support older IE < 9 */
+.axZmThumbSlider li.horizontal.first {
+	margin-left: 10px !important;
+}
+
+/* IE hack: all browsers except IE6- and IE7+ quirks */
+html>body .axZmThumbSlider li.horizontal.first.selected {
+	/* margin-left: 9px; /* prevent jumps when border wide on selected is different */
+}
+
+/* this "selector" (like :last-child) will be added with JS to support older IE < 9 */
+.axZmThumbSlider li.horizontal.last {
+	margin-right: 10px !important; 
+}
+
+/* IE hack: all browsers except IE6- and IE7+ quirks */
+html>body .axZmThumbSlider li.horizontal.last.selected {
+	/* margin-right: 9px; /* prevent jumps when border wide on selected is different */
+}
+
+.axZmThumbSlider li{
+	box-sizing: content-box !important;
+}
+
+/* vertical element style */
+.axZmThumbSlider li.vertical {
+	margin: 10px 0px 10px 5px; /* space between thumbs*/
+	padding: 0px !important;
+	width: 120px; /* fixed width */
+	height: 120px; /* fixed height */
+	line-height: 118px;
+}
+
+.axZmThumbSlider li.vertical.mousehover{
+	/* box-shadow: 0 0 0 1px #AAAAAA; */
+	border-color: #AAA;
+}
+
+/* Vertical items selected */
+.axZmThumbSlider li.vertical.selected {
+	border: 1px solid #AAA; 
+	/* margin: 4px 4px 0px 4px; /* prevent jumps when border wide on selected is different */
+	box-shadow: 0 0 0 1px #AAA;
+}
+
+/* this "selector" (like :first-child) will be added with JS to support older IE < 9 */
+.axZmThumbSlider li.vertical.first {
+	margin-top: 10px !important;
+}
+
+/* IE hack: all browsers except IE6- and IE7+ quirks */
+html>body .axZmThumbSlider li.vertical.first.selected {
+	/* margin-left: 9px; /* prevent jumps when border wide on selected is different */
+}
+
+/* this "selector" (like :last-child) will be added with JS to support older IE < 9 */
+.axZmThumbSlider li.vertical.last {
+	margin-bottom: 10px !important;
+}
+
+/* IE hack: all browsers except IE6- and IE7+ quirks */
+html>body .axZmThumbSlider li.vertical.last.selected {
+	/* margin-right: 9px; /* prevent jumps when border wide on selected is different */
+}
+
+.axZmThumbSlider li.vertical.lastdescr {
+	margin-bottom: 22px !important;
+}
+
+.axZmThumbSlider li.multicolumn{
+	float: left;
+	margin: 5px 5px 5px 5px;
+}
+
+.axZmThumbSlider.multicolumn{
+	padding: 5px 0px 5px 5px;
+}
+
+/* Debug slide number */
+.axZmThumbSlider .debugNumbers {
+	box-sizing: border-box !important;
+	position: absolute; /* When other ellements are added to the thumb (li) they should be positioned absolute*/
+	left: 2px;
+	top: 2px;
+	border-radius: 50%;
+
+	min-width: 20px;
+	min-height: 12px;
+	line-height: 12px;
+	padding: 4px;
+
+	font-size: 10px;
+	text-align: center;
+	font-weight: bolder;
+	background-color: #B22222;
+	color: white;
+}
+
+/* label on or below li element */
+.axZmThumbSlider div.label {
+	position: absolute; /* When other ellements are added to the thumb (li) they should be positioned absolute*/
+	box-sizing: border-box !important;
+	-moz-box-sizing: border-box !important;
+	-webkit-box-sizing: border-box !important;
+	left: 0px;
+	bottom: 0px;
+	font-family: arial;
+	font-weight: bolder;
+	overflow: hidden!important; 
+	width: 100%;
+	min-height: 1px;
+	padding: 3px 3px 3px 3px;
+	background-color: rgba(255,255,255,0.5);
+	color: #000000;
+	font-size: 11px;
+	line-height: 12px;
+	text-align: center;
+	white-space: normal;
+	border-radius: 0 0 5px 5px;
+}
+
+/* Content mode default, can be overriden by "contentClass" option passed to plugin */
+.axZmThumbSlider_content{
+	position: absolute;
+	padding: 3px 25px 7px 10px;
+	background-color: #FDFDFD;
+	margin: 0px !important;
+	z-index: 1;	
+}
+.axZmThumbSlider_content p{
+	/* example styling all p in content slider*/
+	/*
+	padding: 10px;
+	background-color: olive;
+	color: white;
+	border-radius: 5px;
+	*/
+}
+
+/* Wrapper */
+.axZmThumbSlider_wrap{
+	box-sizing: border-box !important;
+	-moz-box-sizing: border-box !important;
+	-webkit-box-sizing: border-box !important;
+
+	/* 
+	Please note: 
+		1. The distance to buttons is set by margins of the buttons, e.g.
+			axZmThumbSlider_button.left{
+				margin-right: 20px;
+			}
+		
+		2. Padding (distance from thumbs to the edge of this container) 
+			is set by the margins of the thumbs, e.g.
+			.axZmThumbSlider li.horizontal {
+				margin: 5px 0px 0px 10px; 
+			}
+	*/
+}
+
+.axZmThumbSlider_wrap.vertical.centerThumbsNoScrollbar > ul.axZmThumbSlider > li {
+	margin-left: auto!important;
+	margin-right: auto!important;
+}
+
+.axZmThumbSlider_wrap.horizontal.centerThumbsNoScrollbar > ul.axZmThumbSlider:before {
+	content: "";
+	display: inline-block;
+	vertical-align: middle;
+	height: 100%;
+}
+
+.axZmThumbSlider_wrap.horizontal.centerThumbsNoScrollbar > ul.axZmThumbSlider > li {
+	margin-bottom: 0!important;
+	margin-top: 0!important;
+}
+
+.axZmThumbSlider_wrap.horizontal{
+	border-top: #AAAAAA solid 1px;
+	border-bottom: #AAAAAA solid 1px;
+	/*
+	background-color: #EEEEEE;
+	border:  #AAAAAA solid 1px;
+	border-radius: 5px 5px 5px 5px;
+	*/
+}
+
+.axZmThumbSlider_wrap.vertical{
+	border-left: #AAAAAA solid 1px;
+	border-right: #AAAAAA solid 1px;
+}
+
+/* Test adding a class by defining "wrapClass" option of the plugin */
+.axZmThumbSlider_wrap_custom{
+	background-color: transparent;
+	/*
+	border-radius: 5px 5px 5px 5px;
+	background: rgb(222,239,255);
+	*/
+}
+.axZmThumbSlider_wrap_custom.horizontal{
+}
+.axZmThumbSlider_wrap_custom.vertical{
+}
+
+/* Shared botton styles */
+/*
+.axZmThumbSlider_button:before {
+	content: '';
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+}
+*/
+
+.axZmThumbSlider_button {
+	position: absolute !important;
+	z-index: 3;
+
+
+	box-sizing: border-box !important;
+	-moz-box-sizing: border-box !important;
+	-webkit-box-sizing: border-box !important;
+
+	cursor: pointer;
+
+	/* Text related css */
+	text-align: center;
+	vertical-align: middle;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 24px !important;
+	font-family: monospace;
+	-moz-user-select: none;
+	-khtml-user-select: none;	
+	-webkit-touch-callout: none; 
+
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-tap-highlight-color: transparent;
+
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.axZmThumbSlider_button.ready {
+	border: 1px solid #AAAAAA;
+	background-color: #CCCCCC;
+	color: #828282;
+}
+
+/* Mouseover style */  
+.axZmThumbSlider_button.hover {
+	border: 1px solid #AAAAAA;
+	background-color: #B5B5B5;
+	color: #FFFFFF;
+}
+
+/* Style for pressed button */
+.axZmThumbSlider_button.press {
+	border: 1px solid #AAAAAA;
+	background-color: #ADADAD;
+	color: #FFFFFF;
+}
+
+/* Style for disabled button */  
+.axZmThumbSlider_button.disabled {
+	border: 1px solid #AAAAAA;
+	background-color: #EEEEEE;
+	color: #F4F4F4;
+	cursor: default;
+	text-shadow: 0 -1px 1px #888888, 0 1px 1px #FFFFFF;
+
+	/* uncomment if you want to hide the button when it is disabled */
+	/* visibility: hidden; */
+}
+
+.axZmThumbSlider_button.az_hidden {
+	visibility: hidden;
+}
+
+.axZmThumbSlider_button.az_start {
+	opacity: 0;
+}
+
+/****************************/
+/**** Horizontal buttons ****/
+/****************************/
+
+/* Left horizontal button */
+.axZmThumbSlider_button.left {
+	left: 0px; /*do not change*/
+	top: 0px;
+
+	height: 100%; /* can be set as px value as well */
+	line-height: 120px; /* adjust this value to support <= IE7 */
+	width: 24px; /* px value */
+	/* margin-right: 20px; /* distance from button to scroll area */
+	border-radius: 5px 0px 0px 5px; /* optional */
+}
+
+.axZmThumbSlider_button.left.ready{
+	background-image: url(img/left_ready.png);
+}
+.axZmThumbSlider_button.left.hover{
+	background-image: url(img/left_hover.png);
+}
+.axZmThumbSlider_button.left.press{
+	background-image: url(img/left_press.png);
+}
+.axZmThumbSlider_button.left.disabled{
+	background-image: url(img/left_disabled.png);
+}
+
+
+/* Right horizontal button */
+.axZmThumbSlider_button.right {
+	right: 0px; /* do not change */
+	top: 0px;
+	height: 100%; /* can be set as px value as well */
+	line-height: 120px; /* adjust this value to support <= IE7 */
+	width: 24px; /* px value */
+	/* margin-left: 20px; /* distance from button to scroll area */
+	border-radius: 0px 5px 5px 0px; /* optional */
+}
+
+.axZmThumbSlider_button.right.ready{
+	background-image: url(img/right_ready.png);
+}
+.axZmThumbSlider_button.right.hover{
+	background-image: url(img/right_hover.png);
+}
+.axZmThumbSlider_button.right.press{
+	background-image: url(img/right_press.png);
+}
+.axZmThumbSlider_button.right.disabled{
+	background-image: url(img/right_disabled.png);
+}
+
+/**************************/
+/**** Vertical buttons ****/
+/**************************/  
+
+/* Top vertical button. */
+.axZmThumbSlider_button.top {	
+	top: 0px; /* do not change */
+
+	height: 24px; /* px value */
+	line-height: 24px;
+	width: 100%; /* can be set as px value as well */
+
+	/* margin-bottom: 20px; /* distance from button to scroll area */
+	border-radius: 5px 5px 0px 0px; /* optional */
+}
+.axZmThumbSlider_button.top.ready{
+	background-image: url(img/up_ready.png);
+}
+.axZmThumbSlider_button.top.hover{
+	background-image: url(img/up_hover.png);
+}
+.axZmThumbSlider_button.top.press{
+	background-image: url(img/up_press.png);
+}
+.axZmThumbSlider_button.top.disabled{
+	background-image: url(img/up_disabled.png);
+}
+
+/* Bottom vertical button. */
+.axZmThumbSlider_button.bottom {
+	bottom: 0px; /* do not change */
+
+	height: 24px; /* px value */
+	line-height: 24px; /* px value */
+	width: 100%; /* can be set as px value as well */
+	/* margin-top: 20px; /* distance from button to scroll area */
+	border-radius: 0px 0px 5px 5px; /* optional */
+}
+
+.axZmThumbSlider_button.bottom.ready{
+	background-image: url(img/down_ready.png);
+}
+.axZmThumbSlider_button.bottom.hover{
+	background-image: url(img/down_hover.png);
+}
+.axZmThumbSlider_button.bottom.press{
+	background-image: url(img/down_press.png);
+}
+.axZmThumbSlider_button.bottom.disabled{
+	background-image: url(img/down_disabled.png);
+}
+
+
+/****************************************************
+	Example of alternative button design with images 
+	The class name is passed as an option to plugin
+	
+	$(selector).axZmThumbSlider({
+		btnClass: 'axZmThumbSlider_button_new',
+		btnLeftText: null,
+		btnRightText: null,
+		btnTopText: null,
+		btnBottomText: null
+	});
+/****************************************************/
+
+/*
+.axZmThumbSlider_button_new:before {
+	content: '';
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+}
+*/
+
+.axZmThumbSlider_button_new {
+	position: absolute !important;
+	z-index: 3;
+
+	box-sizing: border-box !important;
+	-moz-box-sizing: border-box !important;
+	-webkit-box-sizing: border-box !important;
+
+	cursor: pointer;	
+	background-repeat: no-repeat;
+}
+
+.axZmThumbSlider_button_new.ready {
+	 background-position: 0 0;
+}
+
+/* Mouseover style */  
+.axZmThumbSlider_button_new.hover {
+	background-position: -32px 0;
+}
+
+/* Style for pressed button */
+.axZmThumbSlider_button_new.press {
+	background-position: -64px 0;
+}
+
+/* Style for disabled button */  
+.axZmThumbSlider_button_new.disabled {
+	background-position: -96px 0;
+	/* uncomment if you want to hide the button when it is disabled */
+	/* visibility: hidden; */
+}
+
+.axZmThumbSlider_button_new.az_hidden {
+	visibility: hidden;
+}
+
+.axZmThumbSlider_button_new.az_start {
+	opacity: 0;
+}
+
+/****************************/
+/**** Horizontal buttons ****/
+/****************************/
+
+/* Left horizontal button */
+.axZmThumbSlider_button_new.left {
+	left: 0px; /*do not change*/
+	top: 50%;
+	margin-top: -16px; /* half of fixed height*/
+
+	height: 32px; /* can be set as px value as well */
+	line-height: 32px; /* adjust this value to support <= IE7 */
+	width: 32px; /* px value */
+	margin-right: 20px; /* distance from button to scroll area */
+	margin-left: 10px;
+	background-size: 128px 32px;
+	background-image: url(img/prev-horizontal.png);
+	background-image: url(img/prev-horizontal-ie.png)\9;
+}
+
+/* Right horizontal button */
+.axZmThumbSlider_button_new.right {
+	right: 0px; /* do not change */
+	top: 50%;
+	margin-top: -16px; /* half of fixed height*/
+
+	height: 32px; /* can be set as px value as well */
+	line-height: 32px; /* adjust this value to support <= IE7 */
+	width: 32px; /* px value */
+	margin-left: 20px; /* distance from button to scroll area */
+	margin-right: 10px;
+	background-size: 128px 32px;
+	background-image: url(img/next-horizontal.png);
+	background-image: url(img/next-horizontal-ie.png)\9;
+}
+
+/**************************/
+/**** Vertical buttons ****/
+/**************************/  
+
+/* Top vertical button. */
+.axZmThumbSlider_button_new.top {
+	top: 0px; /* do not change */
+	left: 50%; 
+	margin-left: -16px;
+
+	height: 32px; /* px value */
+	line-height: 32px;
+	width: 32px; /* can be set as px value as well */
+
+	margin-bottom: 20px; /* distance from button to scroll area */
+	background-size: 128px 32px;
+	background-image: url(img/prev-vertical.png);
+	background-image: url(img/prev-vertical-ie.png)\9;
+}
+
+/* Bottom vertical button. */
+.axZmThumbSlider_button_new.bottom {
+	bottom: 0px; /* do not change */
+	left: 50%; 
+	margin-left: -16px;
+
+	height: 32px; /* px value */
+	line-height: 32px;
+	width: 32px; /* can be set as px value as well */
+
+	margin-top: 20px; /* distance from button to scroll area */
+	background-size: 128px 32px;
+	background-image: url(img/next-vertical.png);
+	background-image: url(img/next-vertical-ie.png)\9;
+}
+
+/* Scrollbars */
+.axZmThumbSlider_scrollbar{
+	position: absolute;
+	display: block;
+	z-index: 2;
+}
+
+/* Horizontal scrollbar */
+.axZmThumbSlider_scrollbar.horizontal{
+	width: 100%;
+	height: 16px;
+	bottom: 0;
+	left: 0;
+}
+
+.axZmThumbSlider_scrollbar.horizontal .dragContainer{
+	position: absolute;
+	overflow: hidden;
+	bottom: 0;
+	height: auto;
+	left: 0;
+	right: 0;
+	top: 0;
+	margin-left: 24px;
+	margin-right: 24px;
+	cursor: default;
+}
+
+.axZmThumbSlider_scrollbar.horizontal .track{
+	position: absolute;
+	width: 100%;
+	background-color: #EEEEEE;
+	/*border-radius: 10px;*/
+	height: 7px;
+	margin-top: 5px;
+}
+
+.axZmThumbSlider_scrollbar.horizontal .scrollbar{
+	position: absolute;
+	z-index: 2;
+	width: 100px; /* will be set instantly*/
+	height: 100%;
+	cursor: pointer;
+	background-color: transparent;
+}
+
+.axZmThumbSlider_scrollbar.horizontal .bar{
+	position: relative;
+	height: 5px;
+	width: 100%;
+	border-radius: 5px;
+	margin: 6px auto;
+	cursor: pointer;
+	background-color: #8A8A8A;
+	box-sizing: border-box !important;
+	-moz-box-sizing: border-box !important;
+	-webkit-box-sizing: border-box !important;
+}
+
+
+/* Vertical scrollbar */
+.axZmThumbSlider_scrollbar.vertical{
+	width: 16px;
+	height: 100%;
+	top: 0;
+	right: 0;
+}
+
+.axZmThumbSlider_scrollbar.vertical .dragContainer{
+	position: absolute;
+	overflow: hidden;
+	bottom: 0;
+	height: auto;
+	left: 0;
+	right: 0;
+	top: 0;
+	margin: 24px 0;
+}
+
+.axZmThumbSlider_scrollbar.vertical .track{
+	position: absolute;
+	height: 100%;
+	/*border-radius: 10px;*/
+	background-color: #EEEEEE;
+	width: 7px;
+	margin: 0 5px;
+}
+
+.axZmThumbSlider_scrollbar.vertical .scrollbar{
+	position: absolute;
+	z-index: 2;
+	width: 100%;
+	height: 10px; /* will be set instantly*/
+	cursor: pointer;
+}
+
+.axZmThumbSlider_scrollbar.vertical .bar{
+	position: relative;
+	height: 100%;
+	width: 5px;
+	border-radius: 10px;
+	margin: auto 6px;
+	cursor: pointer;
+	background-color: #8A8A8A;
+}
+
+
+/* Thin horizontal scrollbar example */
+.axZmThumbSlider_scrollbar_thin{
+	position: absolute;
+	display: block;
+	z-index: 2;
+}
+
+.axZmThumbSlider_scrollbar_thin.horizontal{
+	width: 100%;
+	height: 16px;
+	left: 0;
+	bottom: -7px;
+}
+
+.axZmThumbSlider_scrollbar_thin.horizontal .dragContainer{
+	position: absolute;
+	overflow: hidden;
+	bottom: 0;
+	height: auto;
+	left: 0;
+	right: 0;
+	top: 0;
+	margin-left: 24px;
+	margin-right: 24px;
+	cursor: default;
+}
+
+.axZmThumbSlider_scrollbar_thin.horizontal .track{
+	position: absolute;
+	width: 100%;
+	background-color: #AAAAAA;
+	/*border-radius: 2px;*/
+	height: 1px;
+	margin-top: 8px;
+}
+
+.axZmThumbSlider_scrollbar_thin.horizontal .scrollbar{
+	position: absolute;
+	z-index: 2;
+	width: 100px;
+	height: 100%;
+	cursor: pointer;
+	background-color: transparent;
+}
+
+.axZmThumbSlider_scrollbar_thin.horizontal .bar{
+	position: relative;
+	width: 100%;
+	height: 2px;
+	margin: 7px auto;
+	cursor: pointer;
+	background-color: red;
+}
+
+.axZmThumbSlider_description{
+	position: absolute;
+	bottom: 0px;
+	left: 0;
+	font-size: 8px;
+	text-align: center;
+	color: #444;
+	width: 100%;
+	line-height: 10px;
+	/*height: 15px;*/
+	/*overflow: hidden;*/
+}
+
+.axZmThumbSlider_touchLayer {
+	cursor: pointer;
+	-ms-touch-action: pan-y;
+	touch-action: pan-y;
+
+	-ms-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+	-ms-touch-select: none;
+
+	touch-select: none;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-tap-highlight-color: transparent; 
+}

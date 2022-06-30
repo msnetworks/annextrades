@@ -1,0 +1,41 @@
+<data-table [dataSource]="dataSource" itemsName="templates" matSort>
+    <button mat-raised-button color="accent" (click)="showCrupdateTemplateModal()" *ngIf="currentUser.hasPermission('templates.create')" headerActions trans>Add</button>
+
+    <button mat-icon-button [matTooltip]="'Delete selected' | trans" (click)="maybeDeleteSelectedTemplates()" headerSelectedActions *ngIf="currentUser.hasPermission('templates.delete')">
+        <mat-icon svgIcon="delete"></mat-icon>
+    </button>
+
+    <ng-container matColumnDef="image">
+        <mat-header-cell *matHeaderCellDef trans>Thumbnail</mat-header-cell>
+        <mat-cell *matCellDef="let template"> <img [src]="getTemplateThumbnail(template)"> </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header trans>Name</mat-header-cell>
+        <mat-cell *matCellDef="let template"> {{template.config.display_name || template.config.name}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="category">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="config.category" trans>Category</mat-header-cell>
+        <mat-cell *matCellDef="let template"> {{template.config.category}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="color">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="config.color" trans>Color</mat-header-cell>
+        <mat-cell *matCellDef="let template"> {{template.config.color}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="theme">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="config.theme" trans>Theme</mat-header-cell>
+        <mat-cell *matCellDef="let template"> {{template.config.theme}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let template">
+            <button mat-icon-button (click)="showCrupdateTemplateModal(template)" *ngIf="currentUser.hasPermission('templates.update')" [matTooltip]="'Edit template' | trans">
+                <mat-icon svgIcon="edit"></mat-icon>
+            </button>
+        </mat-cell>
+    </ng-container>
+</data-table>

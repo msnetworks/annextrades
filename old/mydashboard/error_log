@@ -1,0 +1,10 @@
+[27-May-2020 02:22:50 America/Chicago] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/careeredgeinstit/public_html/student_login/student_profile.php on line 83
+[27-May-2020 02:28:29 America/Chicago] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/careeredgeinstit/public_html/student_login/student_profile.php on line 85
+[10-Jun-2020 07:38:24 UTC] PHP Warning:  mysqli_connect(): (08004/1040): Too many connections in /home/careeredgeinstit/public_html/admin_login/connect.php on line 2
+[10-Jun-2020 07:38:25 UTC] PHP Warning:  mysqli_error() expects exactly 1 parameter, 0 given in /home/careeredgeinstit/public_html/admin_login/connect.php on line 2
+[08-Aug-2020 10:41:46 UTC] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/careeredgeinstit/public_html/student_login/index.php on line 197
+[08-Aug-2020 10:42:07 UTC] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/careeredgeinstit/public_html/student_login/index.php on line 197
+[24-Aug-2020 04:37:40 UTC] PHP Warning:  mysqli_connect(): (HY000/1040): Too many connections in /home/careeredgeinstit/public_html/admin_login/connect.php on line 2
+[24-Aug-2020 04:37:41 UTC] PHP Warning:  mysqli_error() expects exactly 1 parameter, 0 given in /home/careeredgeinstit/public_html/admin_login/connect.php on line 2
+[24-Aug-2020 04:37:53 UTC] PHP Warning:  mysqli_connect(): (HY000/1040): Too many connections in /home/careeredgeinstit/public_html/admin_login/connect.php on line 2
+[24-Aug-2020 04:37:53 UTC] PHP Warning:  mysqli_error() expects exactly 1 parameter, 0 given in /home/careeredgeinstit/public_html/admin_login/connect.php on line 2

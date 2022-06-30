@@ -1,0 +1,814 @@
+/*!
+* Plugin: jQuery AJAX-ZOOM, jquery.axZm.batch.css
+* Copyright: Copyright (c) 2010-2019 Vadim Jacobi
+* License Agreement: http://www.ajax-zoom.com/index.php?cid=download
+* Extension Version: 2.5
+* Extension Date: 2019-06-01
+* URL: https://www.ajax-zoom.com
+* Documentation: https://www.ajax-zoom.com/index.php?cid=docs
+*/
+
+body {
+	margin:0px;
+	padding:0px;
+	overflow:hidden;
+	background-color: #fff;
+}
+html {
+	margin:0px; 
+	padding:0px;
+	overflow: hidden;
+	border: 0; font-family: Tahoma, Arial;
+	font-size: 12px;
+}
+
+form {
+	padding:0px;
+	margin:0px;
+}
+
+p, li {
+	line-height: 1.15em;
+}
+
+input[type=checkbox] {
+	margin: 1px 0 0 0;
+}
+
+.checkBoxFolder {
+	padding:0px;
+	margin: 2px 0 0 2px;
+}
+
+.batchSelect {
+	max-width: 80%;
+	max-width: calc(100% - 120px);
+	color: #000;
+	font-size: 11px;
+	min-height: 20px;
+	vertical-align: middle;
+	position: relative;
+	top: -1px;
+}
+
+.batchSelect option {
+	padding: 0;
+	line-height: 1em;
+	min-height: 1em;
+	font-size: 11px;
+	vertical-align: middle;
+}
+
+.opt_0 {
+	background-color: #FFF;
+}
+
+.opt_1 {
+	background-color: #E0E0E0;
+	font-weight: bolder;
+}
+
+.opt_2 {
+	background-color: #F5F5F5;
+}
+
+.opt_3 {
+	background-color: #FAFAFA;
+}
+
+.opt_4 {
+	background-color: #FCFBFB;
+}
+
+.opt_5 {
+	background-color: #FDFDFD;
+}
+
+
+.batchButton {
+	margin-right: 7px;
+	margin-bottom: 7px;
+}
+
+#buttonChangeHomeDir {
+	padding: 0 3px 0 3px;
+}
+
+#filesNavbar .batchButton {
+	margin-right: 5px;
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+
+
+.batchMainFrame {
+	overflow: hidden;
+}
+
+.mainInnerFrame {
+	overflow-x: hidden;
+}
+
+.leftFrameParent { }
+.rightFrameParent { }
+
+.leftFrameParent > .panel,
+.leftFrameParent > .panel > .panel-footer,
+.rightFrameParent > .panel,
+.rightFrameParent > .panel > .panel-footer {
+	border-radius: 0;
+}
+
+
+.leftFrame {
+	width: 100%;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	background-color: #fdfdfd;
+}
+
+.rightFrameFoot {}
+.leftFrameInnerHead { }
+
+table.leftFrameFolder {
+	width: 100%;
+}
+
+table.leftFrameFolder tbody tr:nth-child(odd) {
+	background-color: #f3f3cd;
+}
+
+table.leftFrameFolder tbody tr {
+	cursor: pointer;
+}
+
+table.leftFrameFolder tbody tr:nth-child(even) {
+	background-color: #ffffe6;
+}
+
+table.leftFrameFolder thead tr th {
+	background-color: #fff;
+	text-align: left;
+	vertical-align: middle;
+	font-weight: bolder;
+	font-family: Tahoma, Arial;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	border-left: 0px solid #fff;
+	border-top: 1px solid transparent;
+}
+
+table.leftFrameFolder tbody tr td {
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #dedeb6;
+	border-left: 0px solid #fff;
+	border-top: 1px solid transparent;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+table.leftFrameFolder tbody tr td:nth-child(2) {
+	padding-left: 5px;
+}
+
+table.leftFrameFolder i{
+	font-size: 140%;
+	cursor: pointer;
+}
+
+table.leftFrameFolder i.fa-level-up {
+	font-size: 100%;
+}
+
+table.leftFrameTable i {
+	font-size: 140%;
+}
+
+table.leftFrameTable i.fa-picture-o {
+	color: #337ab7;
+	cursor: pointer;
+}
+
+table.leftFrameTable i.fa-trash-o {
+	color: #337ab7;
+	cursor: pointer;
+}
+
+.batchReload {
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.dirLoaderSpin {
+	animation: imgPrevDiv_loading 1s linear infinite;
+}
+
+#dirLoader {
+	visibility: hidden;
+	margin-right: 10px;
+}
+
+.oneClick td {
+	background-color: #eee;
+}
+
+table.leftFrameTable {width: 100%;}
+table.leftFrameTable tbody tr:nth-child(odd) {
+	background-color: #eee;
+}
+
+table.leftFrameTable tbody tr:nth-child(even) {
+	background-color: #fff;
+}
+
+table.leftFrameTable thead tr th {
+	background-color: #fff;
+	text-align: left;
+	vertical-align: middle;
+	font-weight: bolder;
+	font-family: Tahoma, Arial;
+	font-size: 11px;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	border-left: 0px solid #fff;
+	border-top: 1px solid transparent;
+}
+
+table.leftFrameTable tbody tr td {
+	font-size: 11px;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	border-left: 0px solid #fff;
+	border-top: 1px solid transparent;
+}
+
+table.leftFrameTable tbody tr td i.fa-check-circle,
+table.batchProcessTable tbody tr td i.fa-check-circle {
+	color: #4cae4c;
+}
+
+table.leftFrameTable tbody tr td i.fa-ban,
+table.batchProcessTable tbody tr td i.fa-ban {
+	color: #d43f3a;
+}
+
+table.leftFrameTable tbody tr td i.fa-check-circle-o, 
+table.batchProcessTable tbody tr td i.fa-check-circle-o {
+	color: #999;
+}
+
+.batchProgressBar {
+	position: absolute;
+	z-index: 1;
+	width: 0px;
+	height: 5px;
+	background-color: #4cae4c;
+	bottom: 0;
+	left: 0;
+}
+
+.batchProcessText {
+	position: absolute;
+	z-index: 2;
+}
+
+.batchProcess {
+	width: 100%;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	background-color: #fdfdfd;
+}
+
+.batchProcess .alert {
+	background-color: #fff;
+}
+
+.batchProcess pre {
+	line-height: 1.05em;
+}
+
+.footerRow {
+	text-align: right;
+	
+}
+
+.footerCheckBoxes {
+	border-bottom: #ddd 1px solid;
+	padding-bottom: 10px;
+	margin-left: -10px;
+	margin-right: -10px;
+	margin-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.footerRow button {
+	min-width: 135px;
+}
+
+.footerRow i {
+	margin-right: 3px;
+}
+
+table.batchProcessTable {
+	width: 100%;
+	border-top: 1px solid #ccc;
+}
+
+table.batchProcessTable thead tr th {
+	background-color: #fff;
+	text-align: left;
+	vertical-align: middle;
+	font-weight: bolder;
+	font-family: Tahoma, Arial;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	border-top: 1px solid #fff;
+}
+
+table.batchProcessTable tbody tr td {
+	text-align: center;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	border-top: 1px solid #fff;
+}
+
+table.batchProcessTable tbody tr td i {
+	font-size: 140%;
+}
+
+.processMsg {
+
+}
+
+.batchInfo {
+
+}
+
+.batchInfo ul {
+	list-style-type:disc;
+	padding-left: 15px;
+}
+
+.batchInfo li {
+	margin-bottom: 7px;
+}
+
+.batchInfo h2:nth-child(1),
+.batchInfo h3:nth-child(1),
+.batchInfo h4:nth-child(1) {
+	margin-top: 5px;
+}
+
+.imgPrevDiv1 {
+	border: 1px #ccc solid;
+	position: absolute;
+	z-index: 11;
+	background-color: #fff;
+}
+
+.imgPrevDiv1 > img {
+	width: auto;
+	height: auto;
+	margin: 10px 0px 0px 10px;
+}
+
+.imgPrevDiv2 {
+	position: absolute;
+	font-size: 9px;
+	right: 0; 
+	bottom: 0;
+	z-index: 12;
+	padding: 2px 3px 2px 5px;
+	background-color: #fff;
+}
+
+.batchSettings {
+	display: none;
+}
+
+.imgPrevDiv {
+	position: absolute;
+	z-index: 999999999999999;
+	box-shadow: 0px 0px 4px #818181;
+}
+
+@keyframes imgPrevDiv_loading {
+	to {transform: rotate(360deg);}
+}
+
+.imgPrevDiv_loading:before {
+	content: '';
+	box-sizing: border-box !important;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 30px;
+	height: 30px;
+	margin-top: -15px;
+	margin-left: -15px;
+	border-radius: 50%;
+	border: 2px solid #ccc;
+	border-top-color: #2379b5;
+	animation: imgPrevDiv_loading .6s linear infinite;
+}
+
+.imgLoading {
+	content: '';
+	box-sizing: border-box !important;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 16px;
+	height: 16px;
+	margin-top: -8px;
+	margin-left: -8px;
+	border-radius: 50%;
+	border: 2px solid #ccc;
+	border-top-color: #2379b5;
+	animation: imgPrevDiv_loading .6s linear infinite;
+}
+
+.fileHover {
+	background-color: #3399cc!important;
+	color: #fff!important;
+	cursor: pointer;
+}
+
+.fileHover td {
+	color: #fff!important;
+}
+
+.fileHover i {
+	color: #fff!important;
+}
+
+#infoSettings {
+	font-size: 8pt;
+}
+
+#infoSettings > tbody > tr {
+	border-bottom: #ddd 1px solid;
+}
+
+#infoSettings > tbody > tr:nth-child(odd) {
+	background-color: #EEE;
+}
+
+#infoSettings > tbody > tr:nth-child(even) {
+	background-color: #fff;
+}
+
+#infoSettings td {
+	vertical-align: top;
+	padding: 3px;
+}
+
+#infoSettings > tbody table{
+	background-color: #fff;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+#infoSettings > tbody table th {
+	padding: 3px;
+}
+
+#infoSettings .btn {
+	position: relative;
+	margin-left: 10px;
+}
+
+.folderIcon {
+	cursor: pointer;
+	color: #e0bf0d;
+}
+
+#buttonSelectAllImagesClone,
+#buttonSelectAllFoldersClone {
+	cursor: pointer;
+	font-size: 1em;
+}
+
+.breadcrumbCotainer {
+
+}
+
+#bci {
+	line-height: 2em;
+	color: #444;
+	font-size: 12px;
+}
+
+#bci a, a:active {
+	text-decoration: none;
+	color: #444;
+	padding: 3px 5px 3px 5px;
+}
+
+#bci a:hover {
+	color: #000;
+	background-color: #EEEEEE;
+}
+
+#batchList .table {
+	margin-bottom: 0;
+}
+
+#batchList .table td,
+#batchList .table th,
+table#processTable td,
+table#processTable th,
+#batchFilesInfoTableResults .table td,
+#batchFilesInfoTableResults .table th {
+	padding: 1px 2px 1px 2px;
+	vertical-align: middle;
+	line-height: 1.15em;
+	font-size: 11px;
+}
+
+#batchList .table th,
+table#processTable th,
+#batchFilesInfoTableResults th {
+	font-size: 13px;
+	line-height: 1.42857143;
+}
+
+#batchList .iconWidth,
+#processTable .iconWidth {
+	width: 24px;
+	text-align: center;
+}
+
+@media (min-width: 1400px) {
+	.container {
+		width: 1370px;
+	}
+}
+
+@media (max-width: 1399px) {
+	#filesNavbar .navbar-header {
+		display: none;
+	}
+}
+
+@media (min-width: 1600px) {
+	.container {
+		width: 1570px;
+	}
+}
+
+@media (min-width: 1900px) {
+	.container {
+		width: 1870px;
+	}
+}
+
+.batchMainFrame .alert {
+	border-radius: 0;
+}
+
+.batchMainFrame .panel-heading {
+	padding: 5px;
+	text-align: right;
+	height: 32px;
+	position: relative;
+	background-color: #337ab7; /*#555*/
+	color: #fff;
+	margin-left: -1px;
+	margin-right: -1px;
+	margin-top: -1px;
+	border-radius: 0;
+	border-width: 0;
+}
+
+.folderUpLine td,
+.folderHomeLine td {
+	font-size: 14px!important;
+	line-height: 1.42857143!important;
+}
+
+#leftFrameFolder .folderHomeLine {
+	background-color: #fff;
+	cursor: default;
+}
+
+#leftFrameFolder .folderHomeLine i:not(.fa-check-square-o) {
+	font-size: 1em;
+	cursor: default;
+	color: #777;
+}
+
+.breakWords {
+	text-align: left!important;
+	padding-left: 5px!important;
+	word-wrap: break-word;
+}
+
+.processRow {
+	background-color: #bce8f1!important;
+}
+
+.processRow td {
+	line-height: 2em!important;
+}
+
+#batchNavbar,
+#filesNavbar {
+	border-radius: 0;
+	border-width: 0 0 1px 0;
+	margin: 0;
+}
+
+#batchNavbar a,
+#filesNavbar a {
+	padding: 5px 7px 5px 7px;
+}
+
+#batchNavbar.navbar,
+#filesNavbar.navbar {
+	min-height: 0;
+}
+
+#batchNavbar i,
+#filesNavbar i {
+	margin-right: 5px;
+}
+
+#batchNavbar .navbar-brand,
+#filesNavbar .navbar-brand {
+	height: 30px;
+}
+
+@media (min-width: 768px) {
+	#batchNavbarContent {
+		padding: 0;
+	}
+
+	#batchNavbar .container-fluid {
+		padding-left: 7px;
+	}
+
+	#filesNavbar .container-fluid {
+		padding-right: 7px;
+	}
+}
+
+@media (max-width: 767px) {
+	#filesNavbar .navbar-brand {
+		display: none;
+	}
+}
+
+@media (max-width: 1199px) {
+	#filesNavbar .navbar-brand {
+		font-size: 15px;
+	}
+}
+
+#batchNavbar .navbar-toggle,
+#filesNavbar .navbar-toggle {
+	margin-right: 0;
+}
+
+
+.batchListThumbTh {
+	width: 55px;
+	padding: 0!important;
+}
+
+.batchListThumbTd {
+	vertical-align: middle;
+	text-align: center;
+	padding: 0!important;
+	width: 55px;
+	height: 55px;
+}
+
+.batchListThumb {
+	max-width: 55px;
+	max-height: 55px;
+}
+
+.batchIconSmile {
+	float: left;
+	margin: 0px 15px 5px 0px;
+	font-size: 200%;
+	color: #4cae4c;
+}
+
+.batchIconWarning {
+	float: left;
+	margin: 0px 15px 5px 0px;
+	font-size: 200%;
+	color: #eea236;
+}
+
+.batchiconInfo {
+	float: left;
+	margin: 0px 15px 5px 0px;
+	font-size: 200%;
+	color: #46b8da;
+}
+
+.batchShortMsg {
+	position: fixed;
+	right: 10px;
+	top: 10px;
+	z-index: 2147483641;
+	/*
+	border: 1px solid #ddd;
+	box-shadow: 0px 0px 4px #818181;
+	border-radius: 3px;
+	position: absolute;
+	padding: 10px 10px 10px 30px;
+	background-color: rgba(255, 255, 255, 1);
+	z-index: 123;
+	min-width: 200px;
+	max-width: 300px;
+	min-height: 70px;
+	font-size: 150%;
+	right: 10px;
+	top: 10px;
+	*/
+}
+
+.batchShortMsg > div {
+	margin: 5px 5px 0 0 !important;
+	width: 200px;
+	position: relative;
+}
+
+#batchViewPlayer {
+	border: #ddd 1px solid;
+}
+
+.batchViewPlayerIdle {
+	width: 100%;
+	height: 100%;
+	background-color: #eee;
+}
+
+.batchViewPlayerIdle::after {
+	content: 'Placeholder for AJAX-ZOOM player';
+	font-size: 18px;
+	color: #aaa;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+@supports (-webkit-appearance:none) and (x:0) {
+	.batchScrollbar::-webkit-scrollbar {
+	  width: 10px;
+	}
+
+	.batchScrollbar::-webkit-scrollbar-thumb {
+	  background: #aaa;
+	  border-radius: 0px;
+	}
+
+	.batchScrollbar::-webkit-scrollbar-track {
+	  background: #eee;
+	  border-radius: 0px;
+	}
+}
+
+#leftFrameFoot {
+	padding: 10px;
+}
+
+#leftFrameFoot input {
+	vertical-align: middle;
+}
+
+#leftFrameFootOpt {
+	padding: 5px;
+	text-align: left;
+	background-color: #FFF;
+	margin-top: 5px;
+	font-size: 80%;;
+}
+
+#leftFrameFootOpt table {
+	width: 100%;
+	padding: 0;
+}
+
+#leftFrameFootOpt table>tbody>tr>td{
+	padding: 1px 2px 1px 2px;
+	vertical-align: middle;
+	line-height: 1.15em;
+	font-size: 11px;
+}
+
+#leftFrameFootOpt table>tbody>tr>td:first-child {
+	width: 24px;
+	vertical-align: top;
+}

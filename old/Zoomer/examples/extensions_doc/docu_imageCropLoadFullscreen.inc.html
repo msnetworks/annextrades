@@ -1,0 +1,318 @@
+<style type="text/css"> 
+.optionsTable, .optionsTable * {box-sizing: border-box;}
+.optionsTable {width: 100%; border-spacing: 0; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
+.optionsTable tbody[data-az_options_head].active th{background-color: #337AB7; border-color: #337AB7 !important; color: #FFF;}
+.optionsTable tbody[data-az_options_head] th i {margin-right: 10px; top: 0px; color: #9E9E9E;}
+.optionsTable tbody[data-az_options_head].active th i{color: #FFF;}
+.optionsTable td {transition: background-color .15s ease;}
+.optionsTable th {white-space: nowrap;}
+.optionsTable td, .optionsTable th {padding-left: 5px; padding-right: 5px; vertical-align: top; text-align: left; padding-top: 3px; padding-bottom: 8px; border-bottom: 1px solid #DDD;}
+.optionsTable th {background-color: #EEE; padding-top: 10px; padding-bottom: 10px; font-size: 16px; font-weight: bold;}
+.optionsTable th.optionsTabCat {cursor: pointer; background-color: #EEE; padding-top: 10px; padding-bottom: 10px; font-weight: normal; font-size:16px; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
+
+.optionsTable ul, .optionsTable ol {padding-left: 14px; margin-top: 0;}
+.optionsTable li {margin-bottom: 5px; padding-left: 14px;}
+.optionsTable tbody tr:nth-child(odd) { background-color: #F9F9F9;}
+.optionsTable tbody tr:nth-child(even) { background-color: #FFF;}
+.optionsTable .removed {text-decoration: line-through;}
+.optionsTable .optionsType {text-align: right; font-size: 8pt; font-weight: bold; position: relative; color: #777; top: -3px; right: -2px; float: right; margin-left: 20px; margin-bottom: 11pt;min-width: 100px;}
+.optionsTable tr td:last-child {border-right: #DDD 1px solid;}
+.optionsTable tr th:last-child {border-right: #DDD 1px solid;}
+.optionsTable tr td:first-child {border-left: #DDD 1px solid;}
+.optionsTable tr th:first-child {border-left: #DDD 1px solid;}
+.optionsTable tbody:first-child tr:first-child th {border-top: #DDD 1px solid;}
+.optionsTable tr td:nth-of-type(2) {word-break: break-all; min-width: 150px;}
+
+.optionsTable .az_highlight_tr, .optionsTable .az_highlight_tr td {background-color: yellow; transition: background-color .15s ease;}
+.optionsTable .optionsDefaultHeading {font-weight: bold; margin-top: 20px;}
+.optionsTable pre:not([class*="language-"]) {border-radius: 0; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; box-shadow: none; margin-top: 0; white-space: pre-wrap;}
+.optionsTable code:not([class*="language-"]) {border-top: #DDD 1px solid; border-right: #DDD 1px solid; border-bottom: #DDD 1px solid; white-space: pre-wrap; padding-left: 2px; padding-right: 2px; tab-size: 2;}
+
+@media only screen and (max-width: 1024px) {
+	.optionsTable {border-top: #DDD 1px solid;}
+	.optionsTable tbody tr:nth-child(odd) {background-color: #FFF;}
+	.optionsTable,.optionsTable>tbody,.optionsTable>tbody>tr>th,.optionsTable>tbody>tr>td,.optionsTable>tbody>tr {display: block;}
+	.optionsTable>tbody>tr>th:not(.optionsTabCat) {display: none;}
+	.optionsTable>tbody>tr>td {position: relative; padding-left: 100px;}
+	.optionsTable>tbody>tr>td:nth-of-type(1), .optionsTable>tbody>tr>td:nth-of-type(2), 
+	.optionsTable>tbody>tr>td:nth-of-type(3) {border-bottom: 1px solid #DDD;}
+	.optionsTable tr>td:nth-of-type(1){padding-bottom: 5px; padding-top: 5px;}
+	.optionsTable tr>td:nth-of-type(2){border-bottom: none; border-left: #DDD 1px solid; border-right: #DDD 1px solid;}
+	.optionsTable>tbody>tr.subOpt>td{background-color: #D4D4D4; color: #000;}
+	.optionsTable>tbody>tr>td[colspan="3"] {background-color: #FFF !important;}
+	.optionsTable>tbody>tr>td:before {position: absolute; top: 3px; left: 3px;width: 90px; white-space: nowrap;}
+	.optionsTable tr:nth-child(2n+1) {background-color: #FFF;}
+	.optionsTable tr td:nth-of-type(2) {word-break: break-word;}
+	.optionsTable>tbody>tr>td:nth-of-type(1) {word-break: break-all; background-color: #EEE; font-size:18px; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; border-left: #DDD 1px solid; border-right: #DDD 1px solid;}
+	.optionsTable>tbody>tr>td:nth-of-type(3) {overflow-x: hidden; border-left: #DDD 1px solid;}
+	.optionsTable>tbody>tr>td:nth-of-type(1):before { content: "";}
+	.optionsTable>tbody>tr>td:nth-of-type(2):before { content: "Default:";}
+	.optionsTable>tbody>tr>td:nth-of-type(3):before { content: "Description:";}
+}
+</style>
+
+<!-- $.azThumbGallery - documentation -->
+<div style="overflow-x: hidden;">
+<table class="optionsTable" >
+<tbody>
+	<tr><th>Option</th><th>Default</th><th>Description</th></tr>
+
+	<tr>
+		<td> installPath </td>
+		<td> "auto" </td>
+		<td> Path to the <code>/axZm</code> folder, e.g. <code>/test/axZm/</code>. 
+			Auto may not always work, e.g., when the JavaScript files are merged into one file. 
+			It is therefore recommended to define the absolute path to the <code>/axZm</code> folder.
+		</td>
+	</tr>
+
+	<tr>
+		<td> parameter </td>
+		<td> "" </td>
+		<td> The query string parameters and values, which the script passes to the AJAX-ZOOM controller. 
+			For example, the <code>3dDir</code> query string parameter value defines the path to the folder with 360-images.
+		</td>
+	</tr>
+
+	<tr>
+		<td> example </td>
+		<td> "spinIpad" </td>
+		<td> When you define the "example" parameter, some default settings from <code>/axZm/zoomConfig.inc.php</code> are overridden in 
+			<code>/axZm/zoomConfigCustom.inc.php</code>. 
+			For more information, please refer to the 
+			<a href="https://www.ajax-zoom.com/index.php?cid=blog&article=options_config&lang=en" rel="nofollow" target="_blank">
+				blog article about the AJAX-ZOOM configuration system</a>.
+		</td>
+	</tr>
+
+	<tr>
+		<td> apiFullscreen </td>
+		<td> false </td>
+		<td> Try to open AJAX-ZOOM at browsers fullscreen mode, which is possible on modern browsers except for IE < 10. 
+			Currently, for mobile devices, even though it is possible to use the fullscreen API, AJAX-ZOOM ignores that for stability reasons.
+		</td>
+	</tr>
+
+	<tr>
+		<td> postMode </td>
+		<td> false </td>
+		<td> Use <code>POST</code> requests instead of <code>GET</code> to communicate with AJAX-ZOOM controller.
+		</td>
+	</tr>
+
+	<tr>
+		<td> lang </td>
+		<td> "en" </td>
+		<td> If you have internationalized data in your product tour, 
+			the <code>lang</code> option determines the language of the user or page version.
+		</td>
+	</tr>
+
+	<tr>
+		<td> fullScreenStartSplash </td>
+		<td> {...} 
+		</td>
+		<td>Display a "loading" layer before AJAX-ZOOM opens.
+		<pre><code class="language-js">
+		{
+			enable: true,
+			className: false,
+			opacity: 0.75
+		}
+		</code></pre>
+		</td>
+	</tr>
+
+	<tr>
+		<td> cropSliderOverlay </td>
+		<td> false </td>
+		<td> By default, the tour slider places itself besides the viewer. 
+			When you enable this option, the slider with the cropped thumbnails appends itself to an overlay above the viewer.
+		</td>
+	</tr>
+
+	<tr>
+		<td> cropSliderOverlayToggle </td>
+		<td> true </td>
+		<td> Create a toggle button to hide the slider.
+		</td>
+	</tr>
+
+	<tr>
+		<td> cropSliderOverlayToggleChar </td>
+		<td> "&#10094;" </td>
+		<td> Character or any other HTML that represents the arrow on the toggle button.
+			You can also use, e.g. "Font Awesome" and the <code>&lt;i></code> (icon) HTML element.
+		</td>
+	</tr>
+
+	<tr>
+		<td> cropSliderOverlayCss </td>
+		<td> {...} </td>
+		<td> 
+		Define, e.g., padding of the overlay slider via options. 
+		You can also override the corresponding CSS classes: 
+		<code>azCropSliderOverlay{Top, Right, Bottom, or Left}</code>
+		This way, you can reduce the width or height of the slider and thus prevent that the thumbnails overlay other AJAX-ZOOM UI elements. 
+		You can use integers, px units or the so-called "viewport" units - vh or vw. 
+		The viewport units are useful here if the UI elements of the viewer such as "image map" are set to be responsive.
+		The CSS "calc" expressions work too.
+		The default values are: 
+		<pre><code class="language-js">
+		{
+			top: {
+				paddingTop: 0, paddingRight: '60px', paddingBottom: 0, paddingLeft: 0
+			},
+			right: {
+				paddingTop: '60px', paddingRight: 0, paddingBottom: 0, paddingLeft: 0
+			},
+			bottom: {
+				paddingTop: 0, paddingRight: 0, paddingBottom: 0, paddingLeft: '130px'
+			},
+			left: {
+				paddingTop: 0, paddingRight: 0, paddingBottom: '80px', paddingLeft: 0
+			},
+		}
+		</code></pre>
+		</td>
+	</tr>
+
+	<tr>
+		<td> cropSliderOverlayMapPadding </td>
+		<td> true </td>
+		<td> Automatically calculate padding for responsive map size. 
+			If map size is responsive, it is nearly impossible to set the offset by using padding or margin with CSS only.
+		</td>
+	</tr>
+
+	<tr>
+		<td> cropAxZmThumbSliderParam </td>
+		<td> {...} </td>
+		<td> Thumbnails slider configuration.
+			You can find the full documentation and examples 
+			<a href="https://www.ajax-zoom.com/index.php?cid=blog&article=axzm_thumb_slider&lang=en" rel="nofollow" target="_blank">here</a>.
+		</td>
+	</tr>
+
+	<tr>
+		<td> cropSliderPosition </td>
+		<td> "auto" </td>
+		<td> Position of the product tour slider, possible values: "top", "right", "bottom", "left" and "auto". 
+			If "auto", the scripts sets it to the right or bottom depending on the screen proportions / viewport.
+		</td>
+	</tr>
+
+	<tr>
+		<td> cropSliderDimension </td>
+		<td> 86 </td>
+		<td> Width or height of the thumbnails slider. 
+		</td>
+	</tr>
+
+	<tr>
+		<td> cropSliderMinSize </td>
+		<td> 0 </td>
+		<td> Disable thumbnails slider if the width or height of the window is below this value. 
+			Set to 0 to disable hiding the slider at any resolution.
+		</td>
+	</tr>
+
+	<tr>
+		<td> cropSliderThumbAutoSize </td>
+		<td> true </td>
+		<td> Calculate the size of the thumbnails automatically depending on the <code>cropSliderDimension</code> option. 
+		</td>
+	</tr>
+
+	<tr>
+		<td> cropSliderThumbAutoMargin </td>
+		<td> 10 </td>
+		<td> Margin between the thumbnails. 
+		</td>
+	</tr>
+
+	<tr>
+		<td> cropSliderThumbDescr </td>
+		<td> true </td>
+		<td> Show thumbnails description if present. 
+		</td>
+	</tr>
+
+	<tr>
+		<td> cropSliderThumbDescrMargin </td>
+		<td> 0 </td>
+		<td> Offset space for the thumbnails description element. 
+		</td>
+	</tr>
+
+	<tr>
+		<td> cropLoadObj </td>
+		<td> {...} </td>
+		<td>
+		This extension also manages the <code>$.axZmImageCropLoad</code> extension. 
+		You can pass options to <code>$.axZmImageCropLoad</code> extension via <code>cropLoadObj</code> option. 
+		The most important are "cropJsonURL" or "cropJson". 
+		<pre><code class="language-js">
+		{
+			cropJsonURL: "", // url of the JSON with crop data
+			cropJson: "" // JSON data coming from elsewhere
+		}
+		</code></pre>
+		<div id="cropLoadObjOpt"></div>
+		</td>
+	</tr>
+
+	<tr>
+		<td> hotspots </td>
+		<td> "" </td>
+		<td> Hotspots object or link to a file that contains the hotspots object. 
+			You can create the hotspots via the AJAX-ZOOM <a href="example33.php" target="_blank">hotspots editor</a>, 
+			or you can use the documentation to import an existing information and build the hotspots dynamically. 
+			The latter is for developers.
+		</td>
+	</tr>
+
+	<tr>
+		<td> callbacks </td>
+		<td> {} </td>
+		<td> Object that may contain AJAX-ZOOM callbacks / hook functions. 
+			For more information on the AJAX-ZOOM callbacks, please see 
+			<a href="https://www.ajax-zoom.com/examples/example14.php" rel="nofollow" target="_blank">this page</a>.
+		</td>
+	</tr>
+
+	<tr><td colspan="3" style="text-align: right;">Last updated: 2019-03-26 </td></tr>
+</tbody>
+</table>
+</div>
+
+
+<script type="text/javascript">
+if (window.jQuery) {
+	$('.optionsTable:not(.methods) td:nth-child(2)').each(function(){
+		var txt = $.trim($(this).html());
+		if (txt == 'false' || txt == 'true'){
+			$(this).html('<span style="color: green">'+txt+'</span>');
+		} else if (txt == 'null') {
+			$(this).html('<span style="color: blue">'+txt+'</span>');
+		} 
+		else if (txt == 'function'){
+			$(this).html('<span style="color: #003c00">'+txt+'</span>');
+		}
+		//else if (txt.charAt(0) != '\'' && txt.charAt(0) != '{' && txt.charAt(0) != '['){
+		else if (parseInt(txt) == txt || parseFloat(txt) == txt){
+			$(this).html('<span style="color: red">'+txt+'</span>');
+		}
+	});
+
+	$('.optionsTable:not(.sub) td:nth-child(1)').each(function(){
+		var txt = $.trim($(this).html());
+		if (txt){$(this).parent().attr('id', 'pOpt_'+txt);}
+	});
+
+	if (window.optionsHeader){$('<div class="optionsHeader">'+window.optionsHeader+'</div>').insertBefore('.optionsTable:eq(0)');}
+	if (window.optionsText){$('<p class="optionsText">'+window.optionsText+'</p>').insertBefore('.optionsTable:eq(0)');}
+}
+</script>
+
+<div style="clear: both; height: 50px;"></div>

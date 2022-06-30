@@ -1,0 +1,20 @@
+<inspector [@bodyExpansion]="!inspectorHidden"></inspector>
+
+<mat-drawer-container>
+    <mat-drawer #inspectorDrawer>
+        <templates-panel *ngIf="getInspectorDrawerPanel() === 'templates'"></templates-panel>
+        <themes-panel *ngIf="getInspectorDrawerPanel() === 'themes'"></themes-panel>
+    </mat-drawer>
+    <mat-drawer-content>
+        <live-preview></live-preview>
+    </mat-drawer-content>
+</mat-drawer-container>
+
+<drag-visual-helper class="drag-helper" #dragHelper></drag-visual-helper>
+
+<loading-indicator class="overlay" [isVisible]="loader.isVisible()"></loading-indicator>
+
+<button type="button" mat-mini-fab color="accent" class="mobile-toggle-button" (click)="toggleInspector()">
+    <mat-icon svgIcon="menu"></mat-icon>
+</button>
+

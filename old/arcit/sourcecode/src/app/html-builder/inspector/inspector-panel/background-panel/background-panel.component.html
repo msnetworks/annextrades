@@ -1,0 +1,20 @@
+<div class="buttons">
+    <button class="no-style" type="button" (click)="openColorpickerPanel()" #backgroundButton>
+        <mat-icon svgIcon="format-color-fill"></mat-icon>
+        <span class="name" trans>Color</span>
+    </button>
+
+    <button class="no-style image-button" type="button" (click)="openBackgroundPanel()">
+        <mat-icon svgIcon="image"></mat-icon>
+        <span class="name" trans>Image</span>
+    </button>
+
+    <button class="no-style" type="button" (click)="openGradientPanel()" #gradientButton>
+        <mat-icon svgIcon="gradient"></mat-icon>
+        <span class="name" trans>Gradient</span>
+    </button>
+</div>
+
+<div class="remove-bg-container">
+    <button mat-button color="warn" (click)="removeBackground()" class="remove-bg-btn" trans>Remove Background</button>
+</div>

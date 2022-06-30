@@ -1,0 +1,40 @@
+@import "variables";
+
+inspector-panel {
+  display: block;
+  overflow: auto;
+
+  .breadcrumbs {
+    background-color: mat-color($app-background, background);
+    border: 1px solid mat-color($app-foreground, divider);
+    padding: 10px;
+    border-radius: 3px;
+    margin-bottom: 30px;
+
+    .crumb-container {
+      &:hover:not(.last) .crumb {
+        text-decoration: underline;
+      }
+
+      &.last .crumb {
+        color: mat-color($app-accent, default);
+        pointer-events: none;
+      }
+    }
+
+    mat-icon {
+      vertical-align: sub;
+      width: 15px;
+      height: 15px;
+    }
+  }
+
+  .edit-layout-button {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .mat-expansion-panel .mat-expansion-panel-body {
+    margin: 15px;
+  }
+}

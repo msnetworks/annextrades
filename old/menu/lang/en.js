@@ -1,0 +1,23 @@
+window.menuMessage = {
+	TITLE_INSTALL: 'Configuration',
+	INST_PAYMENT: 'Use Prices:',
+	INST_WS: 'First day of the week:',
+	INST_PAYMENT_CURRENCY: 'Currency: ',
+	INST_PAYMENT_CURRENCY_DEF: 'USD',
+	INST_SET_ACCESS: 'Admin permission:',
+	INST_FINISH: 'Finish configuration',
+	MENU_DISH_NAME: 'Meal Name',
+	MENU_DISH_PRICE: 'Price',
+	MENU_DISH_ADD: 'add',
+	MENU_DISH_SAVE: 'save',
+	MENU_DISH_SHARE: 'publish',
+	MENU_DISH_SHARED: 'published',
+	MENU_DISH_SHARE_TITLE: 'Menu for #DATE#',
+	WD0: 'Sunday',
+	WD1: 'Monday',
+	WD2: 'Tuesday',
+	WD3: 'Wednesday',
+	WD4: 'Thursday',
+	WD5: 'Friday',
+	WD6: 'Saturday'
+};

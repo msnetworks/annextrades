@@ -1,0 +1,240 @@
+/*!
+* Plugin: jQuery AJAX-ZOOM, jquery.axZm.expButton.css
+* Copyright: Copyright (c) 2010-2019 Vadim Jacobi
+* License Agreement: http://www.ajax-zoom.com/index.php?cid=download
+* Extension Version: 3.1
+* Extension Date: 2019-04-12
+* URL: http://www.ajax-zoom.com
+* License: https://www.ajax-zoom.com/index.php?cid=download
+* Documentation: https://www.ajax-zoom.com/index.php?cid=blog&article=axzm_expandable_button&lang=en
+*/
+
+.axZmEb_Wrap {
+	position: absolute;
+	z-index: 6;
+	overflow: visible!important;
+	max-width: 100%;
+}
+
+.axZmEb_InnerClick {
+	cursor: pointer;
+}
+
+.axZmEb_Inner {
+	background: rgba(0,0,0,0.7);
+	border-radius: 4px 4px 4px 4px;
+	padding: 0px;
+	position: relative;
+	left: -50%;
+}
+
+.axZmEb_InnerIframe {
+	background: #2379b5;
+}
+
+.axZmEb_InnerCorner {
+	left: 0;
+}
+
+.axZmEb_Text {
+	font-family: Tahoma, Arial;
+	position: relative;
+	white-space: nowrap;
+	font-size: 16px;
+	line-height: 100%!important;
+	color: #FFF;
+	padding: 7px 10px 7px 10px;
+}
+
+.axZmEb_Text_no_arrow {
+	padding: 7px 10px 7px 10px;
+}
+
+.axZmEb_TextOpened {
+	line-height: 100%!important;
+	padding: 15px 10px 10px 10px;
+}
+
+.axZmEb_TextOpenedIframe {
+	box-sizing: border-box!important;
+	color: #FFF;
+	height: 60px;
+}
+
+
+/* arrow */
+.axZmEb_Drop {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+.axZmEb_Drop_arr {
+	font-family: arial;
+	display: inline-block;
+	position: relative;
+	transform: scale(1) rotate(0.00001deg);
+	transform-origin: 50% 50% 0;
+	transition: all 0.1s ease-in;
+}
+
+.axZmEb_Drop_down .axZmEb_Drop_arr {
+	transform: scale(1) rotate(90deg);
+}
+
+.axZmEb_Drop_up .axZmEb_Drop_arr {
+	transform: scale(1) rotate(-90deg);
+}
+
+/* close button */
+.axZmEb_WrapClose,
+.axZmEb_WrapCloseIframe {
+	box-sizing: content-box!important;
+	overflow: hidden!important;
+	position: absolute;
+	padding: 0;
+	z-index: 7;
+	top: 0;
+	right: 0;
+	cursor: pointer;
+	line-height: 48px;
+	width: 48px;
+	height: 48px;
+	background-color: #EA0000;
+	transition: all 0.2s ease-in;
+}
+
+.axZmEb_WrapClose_icon {
+	color: #FFF;
+	z-index: 1;
+	font-size: 24px;
+	position: absolute;
+	display: block;
+	line-height: inherit;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	font-family: arial;
+	vertical-align: central;
+	text-align: center;
+	transition: all 0.2s ease-out;
+}
+
+.axZmEb_WrapClose_over,
+.axZmEb_WrapCloseIframe_over {
+	background-color: #C70000;
+}
+
+.axZmEb_WrapCloseIframe_over .axZmEb_WrapClose_icon,
+.axZmEb_WrapClose_over .axZmEb_WrapClose_icon {
+	transform: scale(1.16);
+}
+
+.axZmEb_Descr {
+	position: absolute;
+	overflow: hidden;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	height: auto;
+	margin: 60px 0px 5px 10px;
+	z-index: 2;
+	color: #FFF;
+	-webkit-user-select: text!important;
+	-moz-user-select: text!important; 
+	-ms-user-select: text!important; 
+	-o-user-select: text!important;
+	user-select: text!important;
+}
+
+.axZmEb_DescrInner {
+	line-height: 1.42em!important;
+}
+
+.axZmEb_DescrScroll {
+	margin: 60px 0px 0px 10px;
+	overflow-y: auto;
+}
+
+@media (min-width: 1200px) {
+	body > #zFsO .axZmEb_Descr:not(.axZmEb_DescrIframeNoHeader) {
+		margin-top: 80px;
+	}
+	body > #zFsO .axZmEb_TextOpenedIframe {
+		height: 80px;
+	}
+}
+
+@media (min-width: 1921px) {
+	body > #zFsO .axZmEb_Descr {
+		margin-top: 100px;
+	}
+	body > #zFsO .axZmEb_TextOpenedIframe {
+		height: 100px;
+	}
+}
+
+.axZmEb_DescrIframe {
+	margin: 60px 0px 0px 0px;
+	background-color: #fff;
+}
+
+.axZmEb_DescrIframeNoHeader {
+	margin: 0px 0px 0px 0px;
+	background-color: #FFF;
+}
+
+.axZmEb_DescrAjax {
+	background-color: #FFF;
+}
+
+.axZmEb_DescrNoTitle {
+	margin: 0px 0px 0px 0px;
+}
+
+.axZmEb_Descr p {
+	margin-top: 0;
+}
+.axZmEb_Descr td {
+	vertical-align: top;
+	text-align: left;
+	padding-bottom: 10px!important;
+	padding-right: 10px!important;
+}
+.axZmEb_Descr th {
+	min-width: 130px;
+	font-weight: bold;
+	padding-bottom: 10px;
+	padding-right: 20px;
+	vertical-align: top;
+	text-align: left;
+}
+.axZmEb_Descr table {
+	margin-bottom: 10px!important;
+}
+
+.axZmEb_Descr a,
+.axZmEb_Descr a:visited {
+	color: #FFF;
+	font-weight: bold;
+}
+
+.axZmEb_Descr a:hover {
+	color: #99FF66;
+}
+
+.axZmEb_Lock {
+	overflow: hidden!important;
+	overflow-x: hidden!important;
+	overflow-y: hidden!important;
+}
+
+.axZmEb_TextOpened {
+	font-size: 20px;
+}
+
+.axZmEb_Descr,
+.axZmEb_Descr * {
+	font-size: 12px;
+}

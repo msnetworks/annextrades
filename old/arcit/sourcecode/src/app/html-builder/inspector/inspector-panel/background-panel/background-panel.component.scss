@@ -1,0 +1,44 @@
+@import "variables";
+
+background-panel {
+  display: block;
+
+  .buttons {
+    display: flex;
+
+    button {
+      flex: 1 1 0;
+      height: 71px;
+      background-color: mat-color($app-background, card);
+      border-radius: 4px;
+      border: 1px solid mat-color($app-foreground, divider);
+      text-align: center;
+
+      &:hover {
+        background-color: mat-color($app-background, background);
+      }
+
+      mat-icon {
+        margin: 0 auto;
+        width: 30px;
+        height: 30px;
+      }
+
+      .name {
+        display: block;
+        text-align: center;
+        margin-top: 5px;
+        font-size: 1.3rem;
+      }
+    }
+  }
+
+  .image-button {
+    margin: 0 5px;
+  }
+
+  .remove-bg-container {
+    text-align: right;
+    margin-top: 15px;
+  }
+}

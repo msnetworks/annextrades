@@ -1,0 +1,42 @@
+<material-navbar menuPosition="dashboard" [container]="true"></material-navbar>
+
+<div class="content">
+    <ad-host slot="ads.dashboard_top" class="ad-host-top"></ad-host>
+
+    <div class="container">
+
+        <header class="page-header">
+            <h1 class="title" trans>Choose a template for your project</h1>
+            <p class="subtitle" trans>All templates are 100% customizable so choose one then make it your own.</p>
+
+            <div class="controls" [formGroup]="filterForm">
+                <div class="input-container search-input-container">
+                    <mat-icon svgIcon="search"></mat-icon>
+                    <label for="search-input" class="hidden" trans>Search</label>
+                    <input type="text" id="search-input" formControlName="search" placeholder="Search..." trans-placeholder>
+                </div>
+
+                <div class="input-container category-input-container">
+                    <label for="category-input" class="hidden" trans>Category</label>
+                    <select id="category-input" formControlName="category">
+                        <option [ngValue]="null" trans>All Categories</option>
+                        <option [value]="category" *ngFor="let category of allCategories">{{category}}</option>
+                    </select>
+                </div>
+
+                <button type="button" mat-raised-button color="accent" class="blank-page-button" (click)="openNewProjectModal()" trans>Start with Blank Page</button>
+            </div>
+        </header>
+
+        <div class="template-grid">
+            <figure class="template-grid-item" *ngFor="let template of filteredTemplates" (click)="openNewProjectModal(template.name)">
+                <img [src]="getTemplateThumbnail(template)">
+                <figcaption class="template-grid-item-footer">{{template?.config?.display_name || template.name}}</figcaption>
+            </figure>
+        </div>
+    </div>
+
+    <ad-host slot="ads.dashboard_bottom" class="ad-host-bottom"></ad-host>
+</div>
+
+<loading-indicator [isVisible]="loading" class="inline"></loading-indicator>

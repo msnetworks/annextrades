@@ -1,0 +1,164 @@
+<style type="text/css"> 
+	.optionsTable {width: 100%; border-spacing: 0; border: 1px solid #AAAAAA; font-family: Tahoma, Geneva, sans-serif; font-size: 10pt;}
+	.optionsTable th {background-color: #D4D4D4; padding-top: 10px; padding-bottom: 10px; font-size:12pt; font-family: "Comic Sans MS", cursive, sans-serif;}
+	.optionsTable td,.optionsTable th{padding-left: 5px; padding-right: 5px;}
+	.optionsTable th{white-space: nowrap;}
+	.optionsTable td,.optionsTable th {vertical-align: top; line-height: 1.2em; text-align: left; border-bottom: 1px solid #AAAAAA; padding-top: 3px; padding-bottom: 8px;}
+	.optionsTable .subOpt td {border-bottom-width: 0; font-size: 12pt;}
+	.optionsTable tr.important {font-weight: bolder;}
+	.optionsTable td:nth-child(1) {border-right: #AAA 1px dotted;}
+	.optionsTable td:nth-child(2) {border-right: #AAA 1px dotted; word-break: break-all;}
+	.optionsTable ul,.optionsTable ol {padding-left: 14px; margin: 0 0 0 20px;}
+	.optionsTable ul {list-style-type: square;}
+	.optionsTable li {margin-bottom: 5px; padding-left: 14px; line-height: 0.85em;}
+	.optionsTable tr:nth-child(odd) { background-color: #FDFDFD;}
+	.optionsTable tr:nth-child(even) { background-color: #FFFFFF;}
+	.optionsTable tr:last-child>td { border-bottom: none;}	
+	.optionsTable.sub th {padding-top: 3px; padding-bottom: 3px; font-size: 11pt;}
+	.optionsTable.sub td {line-height: 1em; padding-bottom: 2px; padding-top: 2px;}
+	.optionsTable pre {padding: 0 0 0 20px; margin: 5px 0px 5px 0px; tab-size: 4; -moz-tab-size: 4; line-height: 0.85em;}
+	.optionsTable code {font-size: 9pt; font-family: monospace;}
+	.optionsTable .mono {font-family: monospace;}
+	.optionsSimilarExDescr {position: absolute; background-color: #eee; font-size: 9px; width: 100%; pointer-events: none; text-align: center; overflow: hidden;}
+	.optionsSimilarExLI {float: left; margin: 0 10px 10px 0; position: relative; border: #aaa 1px solid;}
+	.optionsHeader {color: #1a4a7a; font-size: 150%; margin: 0; padding: 20px 0px 5px 0px;}
+	.optionsTable pre, .optionsTable code {white-space: pre-wrap;}
+	.optionsText {}
+</style>
+
+<!-- $.axZm360Gallery - documentation -->
+<table class="optionsTable">
+<tbody>
+	<tr><th>Option</th><th>Default</th><th>Description</th></tr>
+
+	<tr><td>axZmPath </td><td> 'auto' </td><td>Path to /axZm directory, e.g. /test/axZm/ or 'auto' (auto might not always work)</td></tr>
+	<tr><td>divID</td><td> 'mouseOverTilesZoom' </td><td>ID of the flyout zoom, will be created instantly; no need to specify</td></tr>
+	<tr><td>mapDivID</td><td>'mouseOverTilesMapContainer'</td><td>ID of the container for mouseover element</td></tr>
+	<tr><td>galleryDivID</td><td>'mouseOverTilesGallery'</td><td>ID of the container where thumbnails will be inserted into</td></tr>
+	<tr><td>example</td><td>'mouseOverTiles'</td><td>configuration set which is passed to ajax-zoom (see /axZm/zoomConfigCustom.inc.php after elseif ($_GET['example'] == 'mouseOverTiles')</td></tr>
+	
+	<tr><td>images </td><td> {} </td><td>
+		Object containing absolute paths to the master images, optional with titles. Start with 1, not 0. 
+		Your master image "img" can be as big as you want, it never loads into cache.  
+		You can also protect the directory with .htaccess or other http access restrictions. 
+		title is optional.
+<pre><code>
+images: {
+	1: {
+		img: "/pic/fashion_001.jpg", 
+		title: "Test Title 1"
+	},
+	2: {
+		img: "/pic/fashion_002.jpg", 
+		title: "Test Title 2"
+	},
+	3: {
+		img: "/pic/fashion_003.jpg", 
+		title: "Test Title 3"
+	}
+}
+</code></pre>
+		Images for the gallery are generated instantly. 
+		If you want to link to a static image for the gallery, then you can 
+		add "thumb" key and value like this:
+<pre><code>
+images: {
+	1: {
+		img: "/pic/fashion_001.jpg", 
+		thumb: "/some/dir/thumb_fashion_small_res.jpg",
+		title: "Test Title 1"
+	}
+}
+</code></pre>
+		Every image must have an unique filename!!! 
+	</td></tr>	
+
+	<tr><td>firstImageToLoad</td><td> 1 </td><td>if "images" option contains more than one image, this option defines which image should be loaded fist. Index (starts with 1) or image file name</td></tr>
+	<tr><td>showGallery</td><td> true </td><td>enable / disable gallery</td></tr>
+	<tr><td>galleryAxZmThumbSlider</td><td> true </td><td>use $.axZmThumbSlider for the gallery. If false a different Ul->LI structure will be applied without scrolling capability</td></tr>
+
+	<!-- <tr><th colspan="3">Thumbs</th></tr> -->
+	<tr><td>thumbWidth </td><td> 86 </td><td>Width of the thumbnail image </td></tr>
+	<tr><td>thumbHeight </td><td> 86 </td><td>Height of the thumbnail image </td></tr>
+	<tr><td>thumbRetina </td><td> true </td><td>true will double the resolution of the thumbnails images but keep "thumbWidth" and "thumbHeight" on screen </td></tr>
+	<tr><td>thumbsCache </td><td> true </td><td>Cache thumbnails </td></tr>
+	<tr><td>thumbQual </td><td> 90 </td><td>jpg quality of the thumbnail image </td></tr>
+	<tr><td>thumbMode </td><td> false </td><td>possible values: "contain", "cover" or false</td></tr>
+	<tr><td>thumbBackColor </td><td> '#FFFFFF' </td><td>Background color of the thumb if "thumbMode" is set to "contain"</td></tr>
+	<tr><td>thumbPadding </td><td> null </td><td>Quickly overwrite the css padding of the thumbs </td></tr>
+	<tr><td>thumbMarginRight </td><td> null </td><td>Quickly override the css margin to the right of the thumbs </td></tr>
+	<tr><td>thumbMarginBottom </td><td> null </td><td>Quickly override the css margin to the bottom of the thumbs </td></tr>
+	<tr><td>thumbCss </td><td> {} </td><td>Quickly override any other CSS </td></tr>
+	<tr><td>thumbPreloadingImg </td><td> 'ajax-loader-map-white.gif' </td><td>Image located in /axZm/icons directory which will appear before the thumbs are loaded </td></tr>
+	
+	<tr><td>galleryAxZmThumbSliderParam </td><td> {} </td><td>$.axZmThumbSlider options if used - "galleryAxZmThumbSlider" option set to true </td></tr>
+	
+	<tr><td>fadeOutTimeout </td><td> 400 </td><td>time after which flyout disappears if mouse leaves mouseover zoom </td></tr>
+	<tr><td>fadeOutSpeed </td><td> 300 </td><td>speed of fade out for mouse over </td></tr>
+	<tr><td>zoomLevel </td><td> "map" </td><td>show zoom level value, possible option values: map, zoom </td></tr>
+	
+	<!--
+	<tr><td>width </td><td>  "auto" </td><td>width of the mouse image or "auto" (depends on "mapDivID" element width) </td></tr>
+	<tr><td>height </td><td> "auto" </td><td>height of the mouse image or "auto" (depends on "mapDivID" element height) </td></tr>
+	-->
+	
+	<tr><td>heightRatio </td><td> '1.0|+140' </td><td>
+		Instantly adjust the height of the parent contaoner for mouseover image (defined as "mapDivID" option) depending on it's width which can be responsive. 
+	</td></tr>
+	<tr><td>disableTouchMouseover </td><td> true </td><td>
+		Disable mouseover for touch devices.
+	</td></tr>
+	
+	
+	<tr><td>zoomWidth </td><td> 500 </td><td>
+		width of the fly out window; possible values integer - fixed width, 'auto' - available space to the right minus "autoMargin",
+		selector - e.g. #descrDiv which could be the id of the element to the right of mouseover zoom. 
+		The selector can be corrected by some fixed pixel value like this: #descrDiv|-20 
+		which would be the width of the element with id "descrDiv" minus 20px
+	</td></tr>
+	
+	<tr><td>zoomHeight </td><td> 500 </td><td>height if the fly out, same as zoomWidth except that when set to some selector, the height can default to "auto" which just makes sense. </td></tr>
+	
+	<tr><td>autoMargin </td><td> 10 </td><td>if zoomWidth or zoomHeight are set to "auto", the margin to the edge of the screen </td></tr>
+	<tr><td>adjustX </td><td> 20 </td><td>space between mouse over zoom ("mapDivID") and flyout window to the right </td></tr>
+	<tr><td>adjustY </td><td> -1 </td><td>vertical shift of the flyout window </td></tr>
+
+ 	<tr><td>fullScreenApi </td><td> true </td><td>try to open AJAX-ZOOM at browsers fullscreen mode, possible on modern browsers </td></tr>
+ 	<tr><td>mapSelSmoothDrag </td><td> false </td><td>activate smooth drag </td></tr>
+ 	<tr><td>mapSelSmoothDragSpeed </td><td> 500 </td><td>speed of the dragging if "mapSelSmoothDrag" is set to true </td></tr>
+ 	<tr><td>scrollZoom </td><td> 11 </td><td>prc zoom on mouse scroll </td></tr>
+ 	<tr><td>mapMouseWheel </td><td> true </td><td>enable disable scroll with the mousewheel </td></tr>
+	<tr><td>axZmCallBacks </td><td> {} </td><td>callbacks which can be passed to AJAX-ZOOM </td></tr>
+	
+	<tr><td colspan="3" style="text-align: right;">$.mouseOverZoomTiles documentation last updated: 2015-09-23</td></tr>
+</tbody>
+</table>
+
+<script type="text/javascript">
+if (window.jQuery){
+	$('.optionsTable:not(.methods) td:nth-child(2)').each(function(){
+ 		var txt = $.trim($(this).html());
+ 		if (txt == 'false' || txt == 'true'){
+ 			$(this).html('<span style="color: green">'+txt+'</span>');
+		} else if (txt == 'null') {
+			$(this).html('<span style="color: blue">'+txt+'</span>');
+		} 
+		else if (txt == 'function'){
+			$(this).html('<span style="color: #003c00">'+txt+'</span>');
+		}
+		else if (txt.charAt(0) != '\'' && txt.charAt(0) != '{' && txt.charAt(0) != '['){
+			$(this).html('<span style="color: red">'+txt+'</span>');
+		}
+
+	});
+	
+	$('.optionsTable:not(.sub) td:nth-child(1)').each(function(){
+ 		var txt = $.trim($(this).html());
+ 		if (txt){$(this).parent().attr('id', 'pOpt_'+txt);}
+	});	
+	
+	if (window.optionsHeader){$('<div class="optionsHeader">'+window.optionsHeader+'</div>').insertBefore('.optionsTable:eq(0)');}
+	if (window.optionsText){$('<p class="optionsText">'+window.optionsText+'</p>').insertBefore('.optionsTable:eq(0)');}
+	
+}
+</script>
