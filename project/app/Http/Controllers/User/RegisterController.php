@@ -41,18 +41,18 @@ class RegisterController extends Controller
           return response()->json(array('errors' => $validator->getMessageBag()->toArray()));
         }
         //--- Validation Section Ends
-
-	        $user = new User;
-	        $input = $request->all();        
-	        $input['password'] = bcrypt($request['password']);
-	        $token = md5(time().$request->name.$request->email);
-	        $input['verification_link'] = $token;
-	        $input['affilate_code'] = md5($request->name.$request->email);
-
-	          if(!empty($request->vendor))
+		
+		$user = new User;
+		$input = $request->all();        
+		$input['password'] = bcrypt($request['password']);
+		$token = md5(time().$request->name.$request->email);
+		$input['verification_link'] = $token;
+		$input['affilate_code'] = md5($request->name.$request->email);
+		
+		if(!empty($request->vendor))
 	          {
 					//--- Validation Section
-					$rules = [
+					/* $rules = [
 						'shop_name' => 'unique:users',
 						'shop_number'  => 'max:10'
 							];
@@ -64,13 +64,18 @@ class RegisterController extends Controller
 					$validator = Validator::make(Input::all(), $rules, $customs);
 					if ($validator->fails()) {
 					return response()->json(array('errors' => $validator->getMessageBag()->toArray()));
-					}
+					} */
 					$input['is_vendor'] = 1;
-
 			  }
 			  
-			$user->fill($input)->save();
-
+			  $user->fill($input)->save();
+			if(!empty($request->vendor)){
+				$user = User::where('verification_link','=', $token)->first();
+				Auth::guard('web')->login($user); 
+				//return redirect()->route('front.pricing')->with('success','Please select the plan');
+				return response()->json(2);
+			}
+			else{
 	        if($gs->is_verification_email == 1)
 	        {
 	        $to = $request->email;
@@ -190,6 +195,7 @@ class RegisterController extends Controller
             Auth::guard('web')->login($user); 
           	return response()->json(1);
 	        }
+			}
 
     }
 

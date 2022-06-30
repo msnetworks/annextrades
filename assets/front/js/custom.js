@@ -222,10 +222,9 @@ $(function ($) {
       cache: false,
       processData: false,
       success: function (data) {
-
         if (data == 1) {
           window.location = mainurl + '/user/dashboard';
-        } else {
+        }  else {
 
           if ((data.errors)) {
             $this.find('.alert-success').hide();
@@ -273,9 +272,13 @@ $(function ($) {
       cache: false,
       processData: false,
       success: function (data) {
+        console.log(data);
         if (data == 1) {
           window.location = mainurl + '/user/dashboard';
-        } else {
+        } else if(data == 2){
+          $this.find('.alert-success p').html('Register Successfully.');
+          window.location.href = mainurl + '/pricing';
+        }else {
 
           if ((data.errors)) {
             $this.find('.alert-success').hide();

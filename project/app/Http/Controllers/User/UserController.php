@@ -125,14 +125,15 @@ class UserController extends Controller
     
     public function vendorrequestsub(Request $request)
     {
-        $this->validate($request, [
+        /* $this->validate($request, [
             'shop_name'   => 'unique:users',
            ],[ 
                'shop_name.unique' => 'This shop name has already been taken.'
-            ]);
+            ]); */
         $user = Auth::user();
         $package = $user->subscribes()->where('status',1)->orderBy('id','desc')->first();
         $subs = Subscription::findOrFail($request->subs_id);
+
         $settings = Generalsetting::findOrFail(1);
                     $today = Carbon::now()->format('Y-m-d');
                     $input = $request->all();  
@@ -153,6 +154,93 @@ class UserController extends Controller
                     $sub->method = 'Free';
                     $sub->status = 1;
                     $sub->save();
+                    if ($user->email_verified != 'Yes') {
+                        $subject_email = 'Verify your email address.';
+			            $msg_email ="
+			            	<!DOCTYPE html>
+			            		<html xmlns='http://www.w3.org/1999/xhtml' lang='en-GB'>
+			            			<head>
+			            			<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+			            			<title>ANNEXTrades</title>
+			            			<meta name='viewport' content='width=device-width, initial-scale=1.0'/>
+			            			
+			            			<style type='text/css'>
+			            				a[x-apple-data-detectors] {color: inherit !important;}
+			            			</style>
+			            			
+			            			</head>
+			            			<body style='margin: 0; padding: 0;'>
+			            				<table role='presentation'  cellpadding='0' cellspacing='0' width='100%'>
+			            					<tr>
+			            						<td style='padding: 20px 0 30px 0;'>
+			            					
+			            							<table align='center' cellpadding='0' cellspacing='0' style='border-collapse: collapse; '>
+			            								<tr>
+			            									<td align='left' bgcolor='#fff' style='padding: 15px 0 15px 0;'>
+			            									<img src='https://demo.annextrades.com/assets/images/1630056782logo.png' alt='ANNEXTrades' width='150' style='display: block;' />
+			            									</td>
+			            								</tr>
+			            								
+			            								<tr>
+			            									<td bgcolor='#ffffff' align='center' style='padding: 40px 30px 40px 30px;'>
+			            									<table border='0' cellpadding='0' cellspacing='0' width='100%' style='border-collapse: collapse;'>
+			            										<tr height='85px'>
+			            											<td align='center' style='font-family: Arial, sans-serif; margin: 30px;'>
+			            												<img src='https://annextrades.com/assets/images/annexis-emblem.png' alt='ANNEXTrades' width='50px' style='display: block;' />
+			            											</td>
+			            										</tr>
+			            										<tr height='85px'>
+			            											<td align='center' style='font-family: Arial, sans-serif; margin: 30px;'>
+			            											<h1 style='font-size: 24px; color: #292936 !important; margin: 0;' align='center'>Verify Your Email Address</h1>
+			            											</td>
+			            										</tr>
+			            										<tr >
+			            											<td align='center' style='color: #292936; background: #ebebff; font-family: Arial, sans-serif;'>
+			            												<h1 style='font-size: 20px; color: #292936 !important; margin: 0;' align='center'>$user->email</h1>
+			            											</td>
+			            										</tr>
+			            										<tr>
+			            											<td align='left' style='color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 24px; padding: 20px 0 30px 0;'>
+			            												<p style='font-size: 16px; margin: 0;'>Hello $user->name <br>
+			            													As an extra security check, this is to verify your identify. Please verify this is the correct email address for your ANNEXTrades account.
+			            												</p>
+			            											</td>
+			            										</tr>
+			            										<tr>
+			            											<td align='center' style='color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 24px; padding: 20px 0 30px 0;'>
+			            												<a href=".url('user/register/verify/'.$user->verification_link)."><button style='padding: 15px 24px; color: #fff; background: #ff5500; font-weight: 600; border: 0px; border-radius: 30px;'>CONFIRM EMAIL</button></a>
+			            											</td>
+			            										</tr>
+			            										<tr>
+			            											<td align='left' style='color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 24px; padding: 20px 0 30px 0;'>
+			            												<p style='font-size: 16px; margin: 0;'>
+			            													If this is not you, please disregard this email. Thank you.
+			            												</p>
+			            											</td>
+			            										</tr>
+			            										<tr>
+			            											<td height='55' align='left' style='color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 24px; padding: 20px 0 30px 0;'>
+			            												<p align='center'>
+			            													<b>Your Bridge to Expansion & Increased Market Share</b>
+			            												</p>
+			            											</td>
+			            										</tr>
+			            										<!--tr> 
+			            											<td height='70'>
+			            												<small style='font-family:Helvetica, Arial, sans-serif; font-size:10px; color:#4d4d4e;'>Confidentiality Notice: This e-mail message, including any attachments, is for the sole use of the intended recipient(s) and may contain confidential and privileged information. Any unauthorized review, use, disclosure or distribution of this information is prohibited, and may be punishable by law. If this was sent to you in error, please notify the sender by reply e-mail and destroy all copies of the original message. Please consider the environment before printing this e-mail.</small>
+			            											</td>
+			            										</tr-->
+			            									</table>
+			            									</td>
+			            								</tr>
+			            							</table>
+			            						</td>
+			            					</tr>
+			            				</table>
+			            			</body>
+			            	</html>
+			            ";
+                    }
                     if($settings->is_smtp == 1)
                     {
                     $data = [
@@ -165,7 +253,15 @@ class UserController extends Controller
                         'onumber' => "",
                     ];    
                     $mailer = new GeniusMailer();
-                    $mailer->sendAutoMail($data);        
+                    $mailer->sendAutoMail($data);  
+                    
+                    if ($user->email_verified != 'Yes') {
+                        $headers = "MIME-Version: 1.0" . "\r\n";
+                        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+                        $headers .= "From: ".$settings->from_name."<".$settings->from_email.">";
+                        mail($user->email,$subject_email,$msg_email,$headers);
+                    } 
+                    
                     }
                     else
                     {
@@ -283,9 +379,19 @@ class UserController extends Controller
 
         
                     mail($user->email,$msg,$headers);
-                    }
 
-                    return redirect()->route('user-dashboard')->with('success','Vendor Account Activated Successfully');
+                    
+
+                    if ($user->email_verified != 'Yes') {
+                        mail($user->email,$subject_email,$msg_email,$headers);
+                    } 
+                    
+                }
+                if ($user->email_verified != 'Yes') {
+                    return redirect()->route('user-dashboard')->with('success','Vendor Account Successfully Registered. Verification email was sent to '.$user->email.'. Please check Inbox and Spam folder. Click on the provided link to complete verification and proceed to next step.');
+                }else{
+                    return redirect()->route('user-dashboard')->with('success','Vendor Account Activated Successfully.');
+                }
 
     }
 

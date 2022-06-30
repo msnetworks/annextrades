@@ -196,8 +196,13 @@
 										</a>
 									</li>
 									@endif
+									@php
+										//dd(Auth::user()->is_vendor);
+									@endphp
 									@if($_COOKIE['country'] == 'US')
-										{{-- @if (Auth::user()->subscribes()->orderBy('id','desc')->first()->price > 10) --}}
+									{{-- @if(Auth::guard('web')->check())
+										@if (isset(Auth::user()->subscribes()->orderBy('id','desc')->first()->price))
+											@if(Auth::user()->subscribes()->orderBy('id','desc')->first()->price > 10) --}}
 											<li>
 												<a href="{{ route('government-contract') }}">
 													<div class="deals-bulletin" style="font-size: 18px; font-weight: 800;">
@@ -205,7 +210,33 @@
 													</div>
 												</a>
 											</li>
-										{{-- @endif --}}
+										{{--@else
+											<li>
+												<a href="javascript:;" onclick="alert('Please upgrade the plan to access Government Contract.');">
+													<div class="deals-bulletin" style="font-size: 18px; font-weight: 800;">
+														GOVERNMENT CONTRACT
+													</div>
+												</a>
+											</li>
+											@endif
+											@else
+											<li>
+												<a href="javascript:;" onclick="alert('Please upgrade the plan to access Government Contract.');">
+													<div class="deals-bulletin" style="font-size: 18px; font-weight: 800;">
+														GOVERNMENT CONTRACT
+													</div>
+												</a>
+											</li>
+										@endif
+									@else
+										<li>
+											<a href="javascript:;" onclick="alert('Please login to view the Government Contract.');">
+												<div class="deals-bulletin" style="font-size: 18px; font-weight: 800;">
+													GOVERNMENT CONTRACT
+												</div>
+											</a>
+										</li>
+									@endif --}}
 									@endif
 								</ul>
 							</div>
@@ -239,7 +270,7 @@
 														<a href="{{ route('user-dashboard') }}"><i class="fas fa-angle-double-right"></i> {{ $langg->lang221 }}</a>
 													</li>
 
-													@if(Auth::user()->IsVendor())
+													@if(Auth::user()->IsVendor() && Auth::user()->email_verified != 'No')
 													<li>
 														<a href="{{ route('vendor-dashboard') }}"><i class="fas fa-angle-double-right"></i> {{ $langg->lang222 }}</a>
 													</li>
@@ -1396,25 +1427,10 @@
 			background: url('{{asset('assets/gif/background.gif')}}');
 			background-size: 100% 100%;
 		}
-		@media screen and (max-width: 480px) {
-			.bluecard{
-				min-height: 200px;
-				min-width: 300px;
-				background: rgba(0,0,200,0.7);
-				display: flex;
-				justify-content: space-evenly;
-				align-items: center;
-				color: white;
-				flex-direction: column;
-				padding: 28px;
-				margin-top: 0px;
-				margin-left: 0px;
-			}
-		}
 		</style>
 	<div class="countrycontainer">
 		<div class="bluecard">
-			<div style="font-weight:900;font-size:40px;">Select Location:</div>
+			<div style="font-weight:900;font-size:48px;">Select:</div>
 			<div>
 				<input type="radio" value="US" name="country" id="country" style="height: 26px;"/>&nbsp;&nbsp;<span style="font-weight:900;font-size:36px;">North America</span><br/>
 				<input type="radio" value="IN" name="country" id="country" style="height: 26px;"/>&nbsp;&nbsp;<span style="font-weight:900;font-size:36px;">India</span>

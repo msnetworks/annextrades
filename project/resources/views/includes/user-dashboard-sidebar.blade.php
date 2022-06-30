@@ -50,7 +50,7 @@
               <li>
                 <a href="{{ route('user-postrequest-submitquote') }}">Trade Deals</a>
               </li>
-              @if(Auth::user()->IsVendor())
+              @if(Auth::user()->IsVendor() && Auth::user()->email_verified != 'No')
                 <li>
                   <a href="{{ route('vendor-dashboard') }}">
                     {{ $langg->lang230 }}
